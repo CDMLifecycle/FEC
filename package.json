@@ -4,7 +4,7 @@
   "main": "bundle.js",
   "scripts": {
     "start": "nodemon server/server.js",
-    "react-dev": "webpack serve",
+    "react-dev": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

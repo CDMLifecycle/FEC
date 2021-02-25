@@ -9,7 +9,6 @@ module.exports = {
   },
   devServer: {
     contentBase: './client/dist',
-    port: 3000
   },
   module: {
     rules: [
