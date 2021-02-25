@@ -1,15 +1,13 @@
 var express = require('express')
 var app = express()
 port = 3000;
-
-var path = 'https://app-hrsei-api.herokuapp.com/api/fec2/:hr-sfo';
+var path = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+var axios = require('axios');
 
 
 app.use(express.static('./client/dist'));
 
 app.use(express.json());
-
-
 
 //Products
 var allProducts = path + '/products';
@@ -43,6 +41,20 @@ var getCart = path + '/cart';
 var postCart = path + 'cart';
 //Cart
 
+var token = require('../authorization.config.js').token;
+var headers = {
+  headers: { 'Authorization' : `${token}` }
+}
+app.get('/products',(req, res) => {
+  axios.get(allProducts, headers)
+    .then((result) => {
+      console.log('sent');
+      res.send(result.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+});
 
 
 // respond with "hello world" when a GET request is made to the homepage
