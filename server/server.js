@@ -87,12 +87,6 @@ app.get('/products/:id/related', (req,res) => {
   })
 })
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/Hello', function (req, res) {
-  console.log('sent');
-  res.send('hello world');
-});
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
