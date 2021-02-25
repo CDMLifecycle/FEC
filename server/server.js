@@ -39,8 +39,6 @@ var headers = {
 }
 
 //Products
-var productStyles = path + '/products/:product_id/styles';
-var relatedProducts = path + '/products/:product_id/related';
 //products
 
 app.get('/products',(req, res) => {
@@ -66,7 +64,28 @@ app.get('/products/:id', (req,res) => {
   })
 })
 
+app.get('/products/:id/styles', (req,res) => {
+  var productStyles = path + '/products/' + req.params.id + '/styles';
+  axios.get(productStyles, headers)
+  .then((result) => {
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
 
+app.get('/products/:id/related', (req,res) => {
+  console.log(req.params.id)
+  var relatedProducts = path + '/products/' + req.params.id + '/related';
+  axios.get(relatedProducts, headers)
+  .then((result) => {
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/Hello', function (req, res) {
