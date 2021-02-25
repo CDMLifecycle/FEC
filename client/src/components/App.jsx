@@ -13,6 +13,7 @@ class App extends React.Component {
     axios.get('/products')
     .then((res) => {
       console.log(res.data);
+      this.setState({productArr: res.data});
     })
     .catch((error) => {
       console.log(error);
