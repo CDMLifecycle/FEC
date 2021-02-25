@@ -9,14 +9,6 @@ app.use(express.static('./client/dist'));
 
 app.use(express.json());
 
-//Products
-var allProducts = path + '/products';
-var productId = path + '/products/:product_id';
-var productStyles = path + '/products/:product_id/styles';
-var relatedProducts = path + '/products/:product_id/related';
-//products
-
-
 //reviews
 var getReviews = path + '/reviews';
 var reviewMeta = path + '/reviews/meta';
@@ -45,17 +37,55 @@ var token = require('../authorization.config.js').token;
 var headers = {
   headers: { 'Authorization' : `${token}` }
 }
+
+//Products
+//products
+
 app.get('/products',(req, res) => {
+  var allProducts = path + '/products';
   axios.get(allProducts, headers)
-    .then((result) => {
-      console.log('sent');
-      res.send(result.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  .then((result) => {
+    console.log('sent');
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 });
 
+app.get('/products/:id', (req,res) => {
+  var productId = path + '/products/' + req.params.id;
+  axios.get(productId, headers)
+  .then((result) => {
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
+
+app.get('/products/:id/styles', (req,res) => {
+  var productStyles = path + '/products/' + req.params.id + '/styles';
+  axios.get(productStyles, headers)
+  .then((result) => {
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
+
+app.get('/products/:id/related', (req,res) => {
+  console.log(req.params.id)
+  var relatedProducts = path + '/products/' + req.params.id + '/related';
+  axios.get(relatedProducts, headers)
+  .then((result) => {
+    res.send(result.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/Hello', function (req, res) {
