@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import RenderImages from './renderImages.jsx';
+import LargePhoto from './largePhoto.jsx'
 class Product_Detail extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,7 @@ class Product_Detail extends React.Component {
       imageUrl: '',
       styles: [],
       photos: [],
+      largePhoto: '',
     }
     this.getStyle = this.getStyle.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
@@ -19,7 +21,9 @@ class Product_Detail extends React.Component {
     axios.get('/products/14034/styles')
       .then((result) => {
         console.log(result.data);
-        this.setState({styles: result.data, photos: result.data.results[0].photos});
+        this.setState({styles: result.data, photos: result.data.results[0].photos},
+           () => { this.setState({largePhoto: this.state.photos[0].url}); }
+        )
       })
       .catch((error) => {
         console.log(error);
@@ -35,11 +39,14 @@ class Product_Detail extends React.Component {
   render() {
     return(
       <div>
-        <button onClick={this.getStyle}>style</button>
-        <button onClick={this.getPhotos}>photos</button>
+        <button type='button' onClick={this.getStyle}>style</button>
+        <button type='button' onClick={this.getPhotos}>photos</button>
         <div className = 'container'>
           <div className = 'photoContainer'>
             <RenderImages photos={this.state.photos}/>
+          </div>
+          <div className = 'largePhoto'>
+            <LargePhoto photo={this.state.largePhoto}/>
           </div>
         </div>
       </div>

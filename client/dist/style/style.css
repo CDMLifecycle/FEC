@@ -10,12 +10,13 @@
   height: 700px;
   display:flex;
   overflow:scroll;
-
+  flex:0.75;
+  align-items: center;
 }
 
 .largePhoto {
   padding: 10px;
-  flex: 2;
+  flex: 3.25;
 }
 
 img.thumbnails {

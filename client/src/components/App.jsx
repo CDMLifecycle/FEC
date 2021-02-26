@@ -11,14 +11,17 @@ class App extends React.Component {
       productArr:  [],
       input: '',
       searched: '',
+      productID: '',
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.matchSearches = this.matchSearches.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.setState({searched: this.state.input, input: ''});
+    // this.matchSearches();
   }
   handleChange(event) {
     this.setState({input: event.target.value});
@@ -34,6 +37,14 @@ class App extends React.Component {
       console.log(error);
     })
   }
+  // matchSearches() {
+  //   console.log(this.state.productArr);
+  //   var regex = `/${this.state.searched}/gi`
+  //   for(var i = 0; i < this.state.productArr.length; i++) {
+  //     var matches = this.state.productArr[i].name.match(regex);
+  //     console.log(matches);
+  //   }
+  // }
 
   render() {
     return (
@@ -44,7 +55,7 @@ class App extends React.Component {
             CLMD ENTERPRISE
           </Typography>
           <input value={this.state.input} onChange={this.handleChange}></input>
-          <IconButton className='material-icons' onClick={this.handleSubmit}>
+          <IconButton type='submit' className='material-icons' onClick={this.handleSubmit}>
             <img src='https://image.winudf.com/v2/image1/c2Fuc3Vuc2VuMy5pbWFnZXNlYXJjaGVyX3NjcmVlbl83XzE1NDI5MDQ2MTNfMDUx/screen-7.jpg?fakeurl=1&type=.jpg' width="25" height="25"/>
           </IconButton>
           <div>
