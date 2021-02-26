@@ -41,12 +41,22 @@ class Product_Detail extends React.Component {
       <div>
         <button type='button' onClick={this.getStyle}>style</button>
         <button type='button' onClick={this.getPhotos}>photos</button>
-        <div className = 'container'>
-          <div className = 'photoContainer'>
-            <RenderImages photos={this.state.photos}/>
+        <div className='containersInContainers'>
+          <div className = 'allPhotoscontainer'>
+            <div className = 'photoContainer'>
+              <RenderImages photos={this.state.photos}/>
+            </div>
+            <div className = 'largePhoto'>
+              <LargePhoto photo={this.state.largePhoto}/>
+            </div>
           </div>
-          <div className = 'largePhoto'>
-            <LargePhoto photo={this.state.largePhoto}/>
+          <div className='containerColumn'>
+            <div className='reviews'>
+              Reviews Go HERE
+            </div>
+            <div className='q_c'>
+              Quantity/Color GOES HERE
+            </div>
           </div>
         </div>
       </div>
