@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "react-dev": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "axios": "^0.21.1",
     "babel": "^6.23.0",
     "express": "^4.17.1",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
@@ -24,14 +25,28 @@
     "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
     "babel-cli": "^6.26.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
     "webpack": "^5.22.0",
     "webpack-cli": "^4.5.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    }
   }
 }
