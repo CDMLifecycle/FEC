@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import {AppBar, Toolbar, Typography, IconButton} from '@material-ui/core';
 import ProductDetail from './Product_Detail.jsx';
+import NavBar from './NavBar.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -9,23 +9,18 @@ class App extends React.Component {
 
     this.state = {
       productArr:  [],
-      input: '',
-      searched: '',
+      searchedQuery: '',
       productID: '',
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({searched: this.state.input, input: ''});
+  handleSubmitForm(searched) {
+    this.setState({searchedQuery: searched});
     // this.matchSearches();
   }
-  handleChange(event) {
-    this.setState({input: event.target.value});
-  }
+
 
   componentDidMount() {
     axios.get('/products')
@@ -49,19 +44,7 @@ class App extends React.Component {
   render() {
     return (
     <form onSubmit={this.handleSubmit}>
-      <AppBar position="static" elevation={0} >
-        <Toolbar>
-          <Typography type="title" color="inherit">
-            CLMD ENTERPRISE
-          </Typography>
-          <input value={this.state.input} onChange={this.handleChange}></input>
-          <IconButton type='submit' className='material-icons' onClick={this.handleSubmit}>
-            <img src='https://image.winudf.com/v2/image1/c2Fuc3Vuc2VuMy5pbWFnZXNlYXJjaGVyX3NjcmVlbl83XzE1NDI5MDQ2MTNfMDUx/screen-7.jpg?fakeurl=1&type=.jpg' width="25" height="25"/>
-          </IconButton>
-          <div>
-          </div>
-        </Toolbar>
-      </AppBar>
+      <NavBar handleSubmitForm={this.handleSubmitForm}/>
       {/* addCode after this */}
       <ProductDetail searched={this.state.searched}/>
     </form>
