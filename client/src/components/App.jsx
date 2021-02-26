@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {AppBar, Toolbar, Typography, IconButton} from '@material-ui/core';
+import ProductDetail from './Product_Detail.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -50,6 +51,8 @@ class App extends React.Component {
           </div>
         </Toolbar>
       </AppBar>
+      {/* addCode after this */}
+      <ProductDetail searched={this.state.searched}/>
     </form>
     );
   }
