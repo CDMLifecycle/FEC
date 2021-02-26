@@ -7,6 +7,7 @@ class Product_Detail extends React.Component {
     super(props);
 
     this.state = {
+      products: [],
       imageUrl: '',
       styles: [],
       photos: [],
@@ -14,6 +15,7 @@ class Product_Detail extends React.Component {
     }
     this.getStyle = this.getStyle.bind(this);
     this.getPhotos = this.getPhotos.bind(this);
+    this.changeLarge = this.changeLarge.bind(this);
   }
 
   getStyle(event) {
@@ -35,8 +37,25 @@ class Product_Detail extends React.Component {
       console.log(this.state.photos[i])
     }
   }
+  changeLarge(event, url) {
+    event.preventDefault();
+    this.setState({largePhoto: url});
+  }
+
+  componentDidMount() {
+    axios.get('/products')
+    .then((res) => {
+      console.log(res.data);
+      this.setState({products: res.data});
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
   render() {
+    var func = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
+
     return(
       <div>
         <button type='button' onClick={this.getStyle}>style</button>
@@ -44,7 +63,7 @@ class Product_Detail extends React.Component {
         <div className='containersInContainers'>
           <div className = 'allPhotoscontainer'>
             <div className = 'photoContainer'>
-              <RenderImages photos={this.state.photos}/>
+              <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
             </div>
             <div className = 'largePhoto'>
               <LargePhoto photo={this.state.largePhoto}/>
@@ -59,6 +78,7 @@ class Product_Detail extends React.Component {
             </div>
           </div>
         </div>
+        {func}
       </div>
     )
   }

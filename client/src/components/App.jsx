@@ -32,14 +32,6 @@ class App extends React.Component {
       console.log(error);
     })
   }
-  // matchSearches() {
-  //   console.log(this.state.productArr);
-  //   var regex = `/${this.state.searched}/gi`
-  //   for(var i = 0; i < this.state.productArr.length; i++) {
-  //     var matches = this.state.productArr[i].name.match(regex);
-  //     console.log(matches);
-  //   }
-  // }
 
   render() {
     return (
