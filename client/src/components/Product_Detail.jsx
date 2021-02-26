@@ -31,15 +31,17 @@ class Product_Detail extends React.Component {
       console.log(this.state.photos[i])
     }
   }
-  // getPhotos(event) {
-  //   this.setState({pr})
-  // }
+
   render() {
     return(
       <div>
         <button onClick={this.getStyle}>style</button>
         <button onClick={this.getPhotos}>photos</button>
-        <RenderImages photos={this.state.photos}/>
+        <div className = 'container'>
+          <div className = 'photoContainer'>
+            <RenderImages photos={this.state.photos}/>
+          </div>
+        </div>
       </div>
     )
   }
