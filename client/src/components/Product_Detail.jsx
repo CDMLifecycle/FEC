@@ -42,15 +42,20 @@ class Product_Detail extends React.Component {
     this.setState({largePhoto: url});
   }
 
-  componentDidMount() {
-    axios.get('/products')
-    .then((res) => {
-      console.log(res.data);
-      this.setState({products: res.data});
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  // componentDidMount() {
+  //   axios.get('/products')
+  //   .then((res) => {
+  //     this.setState({products: res.data});
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   })
+  // }
+  static getDerivedStateFromProps(props, products) {
+    if(products !== props.searchedArr) {
+      return {products: props.searchedArr};
+    }
+    return null;
   }
 
   render() {
