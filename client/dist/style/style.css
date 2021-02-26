@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.photoContainer {
+  flex-direction: column;
+  width: 167px;
+  height: 700px;
+  display:flex;
+  overflow:scroll;
+
+}
+
+.largePhoto {
+  padding: 10px;
+  flex: 2;
+}
+
+img.thumbnails {
+  margin-bottom: 30px;
+}
