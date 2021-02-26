@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "react-dev": "webpack",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
