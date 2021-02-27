@@ -1,3 +1,4 @@
-config/config.js
-node_modules
+node_modules/
 authorization.config.js
+coverage/
+client/dist/bundle.js
