@@ -1,4 +1,5 @@
-node_modules/
+node_modules
 authorization.config.js
-coverage/
+.DS_Store
+coverage
 client/dist/bundle.js
