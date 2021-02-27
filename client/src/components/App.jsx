@@ -1,9 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import ProductDetail from './Product_Detail.jsx';
+import ProductDetail from './Product_rendering/Product_Detail.jsx';
 import NavBar from './NavBar.jsx';
 var stringSimilarity = require("string-similarity");
-
 
 class App extends React.Component {
   constructor() {

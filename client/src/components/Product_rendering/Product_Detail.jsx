@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import RenderImages from './renderImages.jsx';
-import LargePhoto from './largePhoto.jsx'
+import LargePhoto from './largePhoto.jsx';
 class Product_Detail extends React.Component {
   constructor(props) {
     super(props);
@@ -16,12 +16,12 @@ class Product_Detail extends React.Component {
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
+    this.fun = this.fun.bind(this);
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
     axios.get(url)
       .then((result) => {
-        console.log(result.data);
         this.setState({styles: result.data, photos: result.data.results, largePhoto: result.data.results[0].photos[0].url})
       })
       .catch((error) => {
@@ -41,6 +41,13 @@ class Product_Detail extends React.Component {
     }
     return null;
   }
+  fun() {
+    var arr = [];
+    for(var i = 0; i < 30; i++) {
+      arr.push(<option key={`${i}`}>{i}</option>)
+    }
+    return arr;
+  }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.id !== this.state.id) {
       this.getStyle(this.state.id);
@@ -50,6 +57,7 @@ class Product_Detail extends React.Component {
 
   render() {
     var func = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
+    var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name} </div> : <div></div>
     return(
       <div>
         <div className='containersInContainers'>
@@ -65,8 +73,22 @@ class Product_Detail extends React.Component {
             <div className='reviews'>
               Reviews Go HERE
             </div>
+            {productName}
             <div className='q_c'>
-              Quantity/Color GOES HERE
+                Quantity:
+              <select>
+                {this.fun()}
+              </select>
+                Size:
+                <select>
+                  <option key='holder'>SELECT SIZE</option>
+                  <option key='XS'>XS</option>
+                  <option key='S'>S</option>
+                  <option key='M'>M</option>
+                  <option key='L'>L</option>
+                  <option key='XL'>XL</option>
+                  <option key='XXL'>XXL</option>
+                </select>
             </div>
           </div>
         </div>
