@@ -26,10 +26,13 @@
   overflow:scroll;
   flex:1.25;
   align-items: center;
+  border: solid;
+  border-color: black;
 }
 
 .largePhoto {
   flex: 2.75;
+
 }
 
 img.thumbnails {

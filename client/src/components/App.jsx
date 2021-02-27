@@ -30,7 +30,9 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
-    this.setState({searchedArr: arr});
+    if(arr[0]){
+      this.setState({searchedArr: arr, productID: arr[0].id});
+    }
   }
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparion());
@@ -45,13 +47,16 @@ class App extends React.Component {
       console.log(error);
     })
   }
+  handleSubmit(event) {
+    event.preventDefault();
+  }
 
   render() {
     return (
     <form onSubmit={this.handleSubmit}>
       <NavBar handleSubmitForm={this.handleSubmitForm}/>
       {/* addCode after this */}
-      <ProductDetail searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+      <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
     </form>
     );
   }
