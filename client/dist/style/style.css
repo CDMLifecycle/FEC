@@ -26,10 +26,13 @@
   overflow:scroll;
   flex:1.25;
   align-items: center;
+  border: solid;
+  border-color: black;
 }
 
 .largePhoto {
   flex: 2.75;
+
 }
 
 img.thumbnails {
@@ -53,4 +56,9 @@ img.thumbnails {
   font-size: 20px;
   border: solid;
   height: 100px;
+}
+
+.productName {
+  font-size: 30px;
+  font:bold;
 }

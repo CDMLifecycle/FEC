@@ -22,6 +22,7 @@
       this.setState({searched: this.state.input, input: ''});
       // this.matchSearches();
     }
+
     render() {
       return (
         <AppBar position="static" elevation={0} >
