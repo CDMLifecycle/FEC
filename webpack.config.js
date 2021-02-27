@@ -15,8 +15,9 @@ module.exports = {
         include: path.join(__dirname, 'client/src'),
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-       }
+          loader: 'babel-loader',
+
+        }
       }
     ]
   }
