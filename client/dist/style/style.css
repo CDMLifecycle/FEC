@@ -67,5 +67,30 @@ img.thumbnails {
 .quanity_Size_Container {
   flex:display;
   flex-direction: row;
+}
+/*------------------------------------Styles for Related Products-------------------------- */
 
+.ProductCard {
+  height: auto;
+  width: auto;
+  background-color: rgb(203, 203, 203);
+  border: 2px solid black;
+}
+
+.RelatedItems {
+  height: auto;
+  width: 100%;
+  background-color: seashell;
+
+}
+
+.RelatedItems-carousel-placeholder {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.ProjectCard-primary-img {
+  width: 50%;
+  height: 50%;
 }
