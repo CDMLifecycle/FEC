@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import RenderImages from './renderImages.jsx';
 import LargePhoto from './largePhoto.jsx';
+import { Rating } from '@material-ui/lab';
+
 class Product_Detail extends React.Component {
   constructor(props) {
     super(props);
@@ -13,10 +15,12 @@ class Product_Detail extends React.Component {
       photos: [],
       largePhoto: '',
       id: '',
+      rating: 0,
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
     this.fun = this.fun.bind(this);
+    this.reviewSet = this.reviewSet.bind(this);
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
@@ -53,7 +57,10 @@ class Product_Detail extends React.Component {
       this.getStyle(this.state.id);
     }
   }
-
+  reviewSet (event) {
+    var val = Number(event.target.value);
+    this.setState({rating: val});
+  }
 
   render() {
     var func = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
@@ -71,7 +78,12 @@ class Product_Detail extends React.Component {
           </div>
           <div className='containerColumn'>
             <div className='reviews'>
-              Reviews Go HERE
+              Reviews: <Rating value={this.state.rating}
+                precision={0.5}
+                max={5}
+                name="unique-rating"
+                onClick={this.reviewSet}
+              />
             </div>
             {productName}
             <div className='q_c'>

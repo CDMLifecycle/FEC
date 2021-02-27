@@ -15,7 +15,8 @@
   height: 100%;
   width: 100%;
   flex-direction: column;
-  flex:1
+  flex:1;
+  align-items: center;
 }
 
 .photoContainer {
@@ -40,16 +41,14 @@ img.thumbnails {
 }
 
 .reviews {
-  flex: 1;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  flex:1;
+  font-size: 20px;
+
 }
 .q_c {
   flex:1;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  font-size: 20px;
+
 }
 
 .descriptionText {
