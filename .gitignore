@@ -1,3 +1,5 @@
 config/config.js
 node_modules
 authorization.config.js
+.DS_Store
+coverage
