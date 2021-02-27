@@ -2,6 +2,8 @@ var express = require('express')
 var productController = require('./controller/products').productController;
 var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
 
+const ratingsAndReviewsRoutes = require('./routes/ratingsAndReviewsRoutes').ratingsAndReviewsRoutes;
+
 
 var app = express()
 port = 3000;
@@ -14,6 +16,7 @@ app.use(express.json());
 
 //routes
 app.use('/relatedItemsData', relatedProductRoutes);
+app.use('/ratingsAndReviewsRoutes', ratingsAndReviewsRoutes);
 
 
 //reviews
