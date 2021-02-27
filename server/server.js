@@ -19,14 +19,6 @@ app.use('/relatedItemsData', relatedProductRoutes);
 app.use('/ratingsAndReviewsRoutes', ratingsAndReviewsRoutes);
 
 
-//reviews
-var getReviews = path + '/reviews';
-var reviewMeta = path + '/reviews/meta';
-var postReviews = path + '/reviews';
-var putReviews = path + '/reviews/:reviews_id/helpful';
-var putReport =  path + '/reviews/:review_id/report';
-//reviews
-
 //QA
 var getQA = path + '/qa/questions';
 var getAnswers = path + '/qa/questions/:questions_id/answers';

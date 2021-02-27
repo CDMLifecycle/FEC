@@ -7,8 +7,6 @@ var options = {
   }
 }
 
-// fix url
-var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/{FIX ME}';
 
 
 const ratingsAndReviewsController = {
