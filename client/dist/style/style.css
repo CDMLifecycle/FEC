@@ -43,6 +43,7 @@ img.thumbnails {
 .reviews {
   flex:1;
   font-size: 20px;
+  margin: 20px;
 
 }
 .q_c {
@@ -60,4 +61,11 @@ img.thumbnails {
 .productName {
   font-size: 30px;
   font:bold;
+  margin-bottom: 40px;
+}
+
+.quanity_Size_Container {
+  flex:display;
+  flex-direction: row;
+
 }
