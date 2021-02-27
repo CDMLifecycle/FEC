@@ -1,4 +1,8 @@
 var express = require('express')
+var productController = require('./controller/products').productController;
+var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
+
+
 var app = express()
 port = 3000;
 var path = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
@@ -6,8 +10,11 @@ var axios = require('axios');
 
 
 app.use(express.static('./client/dist'));
-
 app.use(express.json());
+
+//routes
+app.use('/relatedItemsData', relatedProductRoutes);
+
 
 //reviews
 var getReviews = path + '/reviews';
