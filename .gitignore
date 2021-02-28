@@ -3,3 +3,4 @@ authorization.config.js
 .DS_Store
 coverage
 client/dist/bundle.js
+bundle.js
