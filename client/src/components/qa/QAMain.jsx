@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import QuestionList from './QuestionList.jsx';
+
 
 class QAMain extends React.Component {
   constructor(props){
     super(props)
 
     this.state = {
-      searchTerm: '',
-      state: 0
+      searchTerm: ''
     }
     this.handleQSearch = this.handleQSearch.bind(this);
   }
@@ -21,16 +22,14 @@ class QAMain extends React.Component {
   }
 
 
-
-
   render() {
     return(
       <>
         <form>
-          <input type="search" name="search" value={this.state.searchTerm}/>
-          <Questions />
-          <button name="moreQuestions"></button>
-          <button name="addQuestion"></button>
+          <input type="search" name="search" value={this.state.searchTerm} onChange={this.handleQSearch}/>
+          <QuestionList />
+          <button name="moreQuestions">More Questions</button>
+          <button name="addQuestion">Add Question</button>
         </form>
       </>
     )

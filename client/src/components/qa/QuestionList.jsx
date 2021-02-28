@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import QuestionItem from './QuestionItem.jsx'
 
-class Answers extends React.Component {
+class QuestionList extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
 
     }
+
   }
 
   render() {
     return (
       <div>
-        Answers List
+        <QuestionItem />
       </div>
     )
   }
+
 }
 
-export default Answers
+export default QuestionList
