@@ -30,7 +30,7 @@
           <Typography type="title" color="inherit">
             CLMD ENTERPRISE
           </Typography>
-          <input value={this.state.input} onChange={this.handleChange}></input>
+          <input className='searchBar' value={this.state.input} onChange={this.handleChange}></input>
           <IconButton type='submit' className='material-icons' onClick={this.handleSubmit}>
             <img src='https://image.winudf.com/v2/image1/c2Fuc3Vuc2VuMy5pbWFnZXNlYXJjaGVyX3NjcmVlbl83XzE1NDI5MDQ2MTNfMDUx/screen-7.jpg?fakeurl=1&type=.jpg' width="25" height="25"/>
           </IconButton>

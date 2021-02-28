@@ -8,7 +8,10 @@
   display: flex;
   height: 100%;
   width: 100%;
-  flex:1
+  flex:1;
+  margin-left: 300px;
+  border: solid;
+  border-color: black;
 }
 .containerColumn {
   display: flex;
@@ -21,23 +24,34 @@
 
 .photoContainer {
   flex-direction: column;
-  width: 200px;
   height: 700px;
+  width: 100%;
   display:flex;
   overflow:scroll;
-  flex:1.25;
   align-items: center;
   border: solid;
   border-color: black;
+  background-color: black;
+  -ms-overflow-style: none;
+}
+.photoContainer::-webkit-scrollbar {
+  display:none;
 }
 
 .largePhoto {
-  flex: 2.75;
-
+  flex: 3;
+  margin-left: 30px;
+  background-color: black;
 }
 
 img.thumbnails {
+  display:block;
   margin-bottom: 30px;
+  width: 100px;
+  height: 100px;
+  border: solid;
+  border-color: black;
+  object-fit: cover;
 }
 
 .reviews {
@@ -48,12 +62,13 @@ img.thumbnails {
 }
 .q_c {
   flex:1;
-  font-size: 20px;
+  font-size: 25px;
+  margin-bottom: 20px;
 
 }
 .size {
   flex:1;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .descriptionText {
@@ -83,15 +98,27 @@ img.thumbnails {
 }
 
 .circleStyle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: solid;
+  border-color: black;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  background-position: center;
 }
 
 .styleFont {
   font-size: 30px;
   font:bold;
   margin-top: 40px;
+}
+
+select#quantityId {
+  font-size: larger;
+}
+select#sizeId {
+  font-size: larger;
 }
 
 /*------------------------------------Styles for Related Products-------------------------- */
