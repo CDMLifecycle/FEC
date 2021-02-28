@@ -1,5 +1,6 @@
 var express = require('express')
 var productController = require('./controller/products').productController;
+var reviewController = require('./controller/reviews').reviewController;
 var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
 
 
@@ -93,6 +94,21 @@ app.get('/products/:id/related', (req,res) => {
     console.log(error);
   })
 })
+
+app.get('/productReview', (req, res) => {
+  if (!req.query.id) {
+    res.sendStatus(404);
+  } else {
+    reviewController.getProductRatings(req.query.id)
+    .then(result => {
+      res.send(result.toString());
+    })
+    .catch(err => {
+      res.sendStatus(500);
+    });
+  }
+})
+
 
 
 app.listen(port, () => {
