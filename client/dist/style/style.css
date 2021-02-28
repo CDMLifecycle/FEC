@@ -51,6 +51,10 @@ img.thumbnails {
   font-size: 20px;
 
 }
+.size {
+  flex:1;
+  font-size: 20px;
+}
 
 .descriptionText {
   font-size: 20px;
@@ -68,6 +72,28 @@ img.thumbnails {
   flex:display;
   flex-direction: row;
 }
+
+.styleContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  height: auto;
+  width: auto;
+  max-width: 400px;
+}
+
+.circleStyle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%
+}
+
+.styleFont {
+  font-size: 30px;
+  font:bold;
+  margin-top: 40px;
+}
+
 /*------------------------------------Styles for Related Products-------------------------- */
 
 .ProductCard {
