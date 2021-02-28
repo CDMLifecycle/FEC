@@ -10,6 +10,7 @@ var combineRelatedProductInformation = (items, itemStyles, itemRatings) => {
   for (let i = 0; i < items.length; i++) {
     let combined = {}
     combined.name = items[i].name;
+    combined.id = items[i].id;
     combined.category = items[i].category;
     combined.default_price = items[i].default_price;
     combined.features = items[i].features;
