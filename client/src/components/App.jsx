@@ -16,13 +16,15 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
+      reviewsList: []
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.stringComparion = this.stringComparion.bind(this);
+    this.stringComparison = this.stringComparison.bind(this);
+    this.getReviews = this.getReviews.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
   }
 
-  stringComparion() {
+  stringComparison() {
     var arr = [];
     for(var i = 0; i < this.state.productArr.length; i++) {
       var string1 = this.state.productArr[i].name;
@@ -32,12 +34,34 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
+    // if(arr[0]){
+    //   this.setState({searchedArr: arr, productID: arr[0].id});
+    // }
     if(arr[0]){
-      this.setState({searchedArr: arr, productID: arr[0].id});
+      let productID = arr[0].id;
+      this.getReviews(productID)
+        .then(res => {
+          this.setState({
+            searchedArr: arr,
+            productID: productID,
+            reviewsList: res.data.results
+          })
+        });
     }
   }
+
+  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+    return new Promise((resolve, reject) => {
+      axios.get('/reviews', {
+        params: { productID, sort, count, page }
+      })
+        .then(res => resolve(res))
+        .catch(err => reject(console.log('error App.jsx - getReviews')))
+    });
+  }
+
   handleSubmitForm(searched) {
-    this.setState({searchedQuery: searched}, () => this.stringComparion());
+    this.setState({searchedQuery: searched}, () => this.stringComparison());
   }
 
   componentDidMount() {
@@ -58,12 +82,12 @@ class App extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <NavBar handleSubmitForm={this.handleSubmitForm}/>
-          {/* addCode after this */}
         </form>
-          <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-          <RelatedItems />
-          <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-          <RatingsAndReviews productID={this.state.productID}/>
+        {/* addCode after this */}
+        <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+        <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+        <RelatedItems productId={14931} />
+        {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
       </div>
     );
   }
