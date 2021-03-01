@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
   rrController.getProductReviews(productID)
     .then(response => res.send(response))
-    .catch(err => res.send(err))
+    .catch(err => res.sendStatus(404))
 });
 
 

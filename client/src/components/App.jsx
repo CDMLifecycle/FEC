@@ -84,7 +84,7 @@ class App extends React.Component {
         </form>
         {/* addCode after this */}
         <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-        <RelatedItems />
+        <RelatedItems productId={14931} />
         {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
       </div>
     );
