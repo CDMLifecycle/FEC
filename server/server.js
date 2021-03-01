@@ -3,6 +3,8 @@ var productController = require('./controller/products').productController;
 var reviewController = require('./controller/reviews').reviewController;
 var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
 
+const ratingsAndReviewsRoutes = require('./routes/ratingsAndReviewsRoutes').ratingsAndReviewsRoutes;
+
 
 var app = express()
 port = 3000;
@@ -15,15 +17,8 @@ app.use(express.json());
 
 //routes
 app.use('/relatedItemsData', relatedProductRoutes);
+app.use('/ratingsAndReviewsRoutes', ratingsAndReviewsRoutes);
 
-
-//reviews
-var getReviews = path + '/reviews';
-var reviewMeta = path + '/reviews/meta';
-var postReviews = path + '/reviews';
-var putReviews = path + '/reviews/:reviews_id/helpful';
-var putReport =  path + '/reviews/:review_id/report';
-//reviews
 
 //QA
 var getQA = path + '/qa/questions';

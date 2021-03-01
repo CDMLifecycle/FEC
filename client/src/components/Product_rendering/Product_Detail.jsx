@@ -3,6 +3,7 @@ import axios from 'axios';
 import RenderImages from './renderImages.jsx';
 import LargePhoto from './largePhoto.jsx';
 import { Rating } from '@material-ui/lab';
+import StylesMap from './stylesMap.jsx';
 
 class Product_Detail extends React.Component {
   constructor(props) {
@@ -16,11 +17,17 @@ class Product_Detail extends React.Component {
       largePhoto: '',
       id: '',
       rating: 0,
+      size: '',
+      quantity: '',
+      color: ''
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
     this.fun = this.fun.bind(this);
     this.reviewSet = this.reviewSet.bind(this);
+    this.sizeSet = this.sizeSet.bind(this);
+    this.quantitySet = this.quantitySet.bind(this);
+    this.colorSet = this.colorSet.bind(this);
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
@@ -48,7 +55,7 @@ class Product_Detail extends React.Component {
   fun() {
     var arr = [];
     for(var i = 0; i < 30; i++) {
-      arr.push(<option key={`${i}`}>{i}</option>)
+      arr.push(<option value={`${i}`} key={`${i}`}>{i}</option>)
     }
     return arr;
   }
@@ -61,10 +68,24 @@ class Product_Detail extends React.Component {
     var val = Number(event.target.value);
     this.setState({rating: val});
   }
+  sizeSet(event) {
+    this.setState({size: document.getElementById('sizeId').value});
+  }
+  quantitySet(event) {
+    this.setState({quantity: document.getElementById('quantityId').value});
+  }
+  colorSet(val) {
+    this.setState({color: val});
+  }
 
   render() {
     var func = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
     var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name} </div> : <div></div>
+    var categoryName = this.state.products[0] ? <div className='categoryName'>{this.state.products[0].category}</div> : <div></div>
+    var price = this.state.products[0] ? <div className='priceCost'>Price: {this.state.products[0].default_price}</div> : <div></div>
+    var styles = this.state.photos ? <StylesMap photos={this.state.photos} colorSet={this.colorSet}/> : <div></div>
+    var selectedStyles = this.state.color ? this.state.color : 'Selected Styles'
+
     return(
       <div>
         <div className='containersInContainers'>
@@ -85,23 +106,33 @@ class Product_Detail extends React.Component {
                 onClick={this.reviewSet}
               />
             </div>
+            {categoryName}
             {productName}
-            <div className='q_c'>
-                Quantity:
-              <select>
-                {this.fun()}
-              </select>
-                Size:
-                <select>
-                  <option key='holder'>SELECT SIZE</option>
-                  <option key='XS'>XS</option>
-                  <option key='S'>S</option>
-                  <option key='M'>M</option>
-                  <option key='L'>L</option>
-                  <option key='XL'>XL</option>
-                  <option key='XXL'>XXL</option>
-                </select>
+            {price}
+
+              <div className='styleFont'>Styles > {selectedStyles}</div>
+            <div className='styleContainer'>
+              {styles}
             </div>
+            <div className='quantity_Size_Container'></div>
+              <div className='q_c'>
+                  Quantity:
+                <select id='quantityId' onChange={this.quantitySet}>
+                  {this.fun()}
+                </select>
+              </div>
+              <div className='size'>
+                Size:
+                <select id='sizeId' onChange={this.sizeSet}>
+                  <option key='holder'>SELECT SIZE</option>
+                  <option value='XS' key='XS'>XS</option>
+                  <option value='S' key='S'>S</option>
+                  <option value='M' key='M'>M</option>
+                  <option value='L' key='L'>L</option>
+                  <option value='XL' key='XL'>XL</option>
+                  <option value='XXL' key='XXL'>XXL</option>
+                </select>
+              </div>
           </div>
         </div>
         {func}
