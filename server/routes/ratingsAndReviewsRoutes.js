@@ -19,18 +19,16 @@ router.post('/add', (req, res, next) => {
 
 // PUT - Mark Helpful ______________________________
 router.put('/helpful', (req, res, next) => {
-  let review_id = req.query.reviewID;
 
-  rrController.markHelpful(review_id)
+  rrController.markHelpful(req.query.reviewID)
     .then(response => res.sendStatus(204))
     .catch(err => res.send(404))
 });
 
 // PUT - Report______________________________________
 router.put('/report', (req, res, next) => {
-  let review_id = req.query.reviewID;
 
-  rrController.reportReview(review_id)
+  rrController.reportReview(req.query.reviewID)
     .then(response => res.sendStatus(204))
     .catch(err => res.send(404))
 
