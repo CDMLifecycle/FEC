@@ -1,5 +1,7 @@
 import React from 'react';
-import Answers from './Answers.jsx'
+import AnswerList from './AnswerList.jsx'
+import QuestionOptions from './QuestionOptions.jsx'
+
 
 class QuestionItem extends React.Component {
   constructor(props){
@@ -12,12 +14,12 @@ class QuestionItem extends React.Component {
 
   render() {
     return (
-      <div>
-        Q: Question body<br />
-        A: <Answers />
+      <>
+      <div className="qaQuestionBody">Q: {'Muffin tart bear claw macaroon toffee toffee cake icing candy canes?'}
+      <QuestionOptions />
       </div>
-      // this.props.questions.map((question) => {
-      // })
+      <AnswerList />
+      </>
     )
   }
 }

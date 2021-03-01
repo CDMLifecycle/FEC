@@ -11,6 +11,7 @@ class QAMain extends React.Component {
       searchTerm: ''
     }
     this.handleQSearch = this.handleQSearch.bind(this);
+    this.moreQuestions = this.moreQuestions.bind(this);
   }
 
   handleQSearch(e) {
@@ -21,15 +22,18 @@ class QAMain extends React.Component {
     })
   }
 
+  moreQuestions (e) {
+    e.preventDefault();
+    console.log('See 2 more questions, please!')
+  }
 
   render() {
     return(
       <>
-        <form>
-          <input type="search" name="search" value={this.state.searchTerm} onChange={this.handleQSearch}/>
+        <form className="QAMain">
+          {'QUESTIONS & ANSWERS'}
+          <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." value={this.state.searchTerm} onChange={this.handleQSearch}/>
           <QuestionList />
-          <button name="moreQuestions">More Questions</button>
-          <button name="addQuestion">Add Question</button>
         </form>
       </>
     )
