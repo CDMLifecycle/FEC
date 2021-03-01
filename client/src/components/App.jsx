@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
 import NavBar from './NavBar.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
+import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 var stringSimilarity = require("string-similarity");
 
@@ -54,13 +55,16 @@ class App extends React.Component {
 
   render() {
     return (
-    <form onSubmit={this.handleSubmit}>
-      <NavBar handleSubmitForm={this.handleSubmitForm}/>
-      {/* addCode after this */}
-      <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-      <RelatedItems />
-      <RatingsAndReviews productID={this.state.productID}/>
-    </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <NavBar handleSubmitForm={this.handleSubmitForm}/>
+          {/* addCode after this */}
+        </form>
+          <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+          <RelatedItems />
+          <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+          <RatingsAndReviews productID={this.state.productID}/>
+      </div>
     );
   }
 }
