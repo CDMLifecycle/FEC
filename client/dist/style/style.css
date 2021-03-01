@@ -121,6 +121,28 @@ select#sizeId {
   font-size: larger;
 }
 
+.searchBarLanding {
+  width: 900px;
+  height: 100px;
+  font-size: 80px;
+  position: absolute;
+  top:400px;
+  left: 120px;
+  border: groove 15px red;
+  border-radius: 25%;
+}
+.Landing {
+  height: 600px;
+  background-image: url('https://i.pinimg.com/originals/67/b4/bc/67b4bc272857e8e29a06d19264aad9f8.gif');
+  background-repeat: no-repeat;
+  display:flex;
+  flex-direction: column;
+  background-size: cover;
+}
+
+body, html {
+  height: 100%;
+}
 /*------------------------------------Styles for Related Products-------------------------- */
 
 .ProductCard {

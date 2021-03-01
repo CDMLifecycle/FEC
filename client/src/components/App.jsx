@@ -4,9 +4,8 @@ import ProductDetail from './Product_rendering/Product_Detail.jsx';
 import NavBar from './NavBar.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
-import Landing from './landing.jsx';
+import Landing from './Landing.jsx';
 var stringSimilarity = require("string-similarity");
-
 
 class App extends React.Component {
   constructor() {
@@ -53,9 +52,9 @@ class App extends React.Component {
       console.log(error);
     })
   }
+
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.paths);
     if(this.state.paths !== '/final') {
       this.setState({paths: '/final'});
     }
@@ -64,11 +63,15 @@ class App extends React.Component {
   switchStatement() {
     switch(this.state.paths) {
       case "/":
-        return <NavBar handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+        return (
+          <Landing handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+        )
       case "/final":
         return (
           <div>
-            <NavBar handleSubmitForm={this.handleSubmitForm}/>
+            <form onSubmit={this.handleSubmit}>
+              <NavBar handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+            </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <RelatedItems />
             <RatingsAndReviews productID={this.state.productID}/>
@@ -79,9 +82,10 @@ class App extends React.Component {
 
   render() {
     return (
-    <form onSubmit={this.handleSubmit}>
-      {this.switchStatement()}
-    </form>)
+      <div>
+        {this.switchStatement()}
+      </div>
+    )
   }
 }
 
