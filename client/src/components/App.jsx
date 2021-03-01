@@ -15,9 +15,11 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
+      reviewsList: []
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.stringComparion = this.stringComparion.bind(this);
+    this.getReviews = this.getReviews.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
   }
 
@@ -31,10 +33,32 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
+    // if(arr[0]){
+    //   this.setState({searchedArr: arr, productID: arr[0].id});
+    // }
     if(arr[0]){
-      this.setState({searchedArr: arr, productID: arr[0].id});
+      let productID = arr[0].id;
+      this.getReviews(productID)
+        .then(res => {
+          this.setState({
+            searchedArr: arr,
+            productID: productID,
+            reviewsList: res.data.results
+          })
+        });
     }
   }
+
+  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+    return new Promise((resolve, reject) => {
+      axios.get('/reviews', {
+        params: { productID, sort, count, page }
+      })
+        .then(res => resolve(res))
+        .catch(err => reject(console.log('error App.jsx - getReviews')))
+    });
+  }
+
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparion());
   }
@@ -59,7 +83,7 @@ class App extends React.Component {
       {/* addCode after this */}
       <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
       <RelatedItems />
-      <RatingsAndReviews productID={this.state.productID}/>
+      {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
     </form>
     );
   }
