@@ -18,12 +18,12 @@ class App extends React.Component {
       reviewsList: []
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.stringComparion = this.stringComparion.bind(this);
+    this.stringComparison = this.stringComparison.bind(this);
     this.getReviews = this.getReviews.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
   }
 
-  stringComparion() {
+  stringComparison() {
     var arr = [];
     for(var i = 0; i < this.state.productArr.length; i++) {
       var string1 = this.state.productArr[i].name;
@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   handleSubmitForm(searched) {
-    this.setState({searchedQuery: searched}, () => this.stringComparion());
+    this.setState({searchedQuery: searched}, () => this.stringComparison());
   }
 
   componentDidMount() {
@@ -78,13 +78,15 @@ class App extends React.Component {
 
   render() {
     return (
-    <form onSubmit={this.handleSubmit}>
-      <NavBar handleSubmitForm={this.handleSubmitForm}/>
-      {/* addCode after this */}
-      <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-      <RelatedItems />
-      {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
-    </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <NavBar handleSubmitForm={this.handleSubmitForm}/>
+        </form>
+        {/* addCode after this */}
+        <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+        <RelatedItems />
+        {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
+      </div>
     );
   }
 }
