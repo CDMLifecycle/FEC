@@ -125,16 +125,22 @@ select#sizeId {
 
 .ProductCard {
   height: auto;
-  width: auto;
+  width: 600px;
   background-color: rgb(203, 203, 203);
+  cursor: pointer;
+}
+
+.ProductCard:hover {
   border: 2px solid black;
 }
 
 .RelatedItems {
   height: auto;
-  width: 100%;
+  width: 80%;
   background-color: seashell;
-
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .RelatedItems-carousel-placeholder {
@@ -146,4 +152,19 @@ select#sizeId {
 .ProjectCard-primary-img {
   width: 50%;
   height: 50%;
+}
+
+.CardCarousel {
+  width: 80%;
+}
+
+
+.CardCarousel-Scroller {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.CardCarousel-Scroller::-webkit-scrollbar {
+    width: 0px;
+    background: transparent
 }
