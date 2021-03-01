@@ -13,12 +13,13 @@ class ReviewList extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <div>
         <h3>Reviews List</h3>
         <h1>{this.props.productID}</h1>
         <Sort />
-        <ReviewTile />
+        <ReviewTile reportReview={this.props.reportReview}/>
         <button>Show More Reviews</button>
         <button>Write a Review</button>
         <WriteReview />

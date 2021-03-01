@@ -50,10 +50,10 @@ class App extends React.Component {
     }
   }
 
-  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+  getReviews(product_id, sort = 'relevant', count = 5, page = 1) {
     return new Promise((resolve, reject) => {
       axios.get('/reviews', {
-        params: { productID, sort, count, page }
+        params: { product_id, sort, count, page }
       })
         .then(res => resolve(res))
         .catch(err => reject(console.log('error App.jsx - getReviews')))
@@ -87,7 +87,11 @@ class App extends React.Component {
         <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
         <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
         <RelatedItems productId={14931} />
-        {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
+        {this.state.productID
+          ? <RatingsAndReviews
+              productID={this.state.productID}
+            />
+          : <div></div>}
       </div>
     );
   }
