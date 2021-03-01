@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
 import NavBar from './NavBar.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
+import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 var stringSimilarity = require("string-similarity");
@@ -16,16 +17,18 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
+      reviewsList: [],
       paths: '/'
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.stringComparion = this.stringComparion.bind(this);
     this.switchStatement = this.switchStatement.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.stringComparison = this.stringComparison.bind(this);
+    this.getReviews = this.getReviews.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
   }
 
-  stringComparion() {
+  stringComparison() {
     var arr = [];
     for(var i = 0; i < this.state.productArr.length; i++) {
       var string1 = this.state.productArr[i].name;
@@ -35,12 +38,34 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
+    // if(arr[0]){
+    //   this.setState({searchedArr: arr, productID: arr[0].id});
+    // }
     if(arr[0]){
-      this.setState({searchedArr: arr, productID: arr[0].id});
+      let productID = arr[0].id;
+      this.getReviews(productID)
+        .then(res => {
+          this.setState({
+            searchedArr: arr,
+            productID: productID,
+            reviewsList: res.data.results
+          })
+        });
     }
   }
+
+  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+    return new Promise((resolve, reject) => {
+      axios.get('/reviews', {
+        params: { productID, sort, count, page }
+      })
+        .then(res => resolve(res))
+        .catch(err => reject(console.log('error App.jsx - getReviews')))
+    });
+  }
+
   handleSubmitForm(searched) {
-    this.setState({searchedQuery: searched}, () => this.stringComparion());
+    this.setState({searchedQuery: searched}, () => this.stringComparison());
   }
 
   componentDidMount() {
@@ -70,11 +95,12 @@ class App extends React.Component {
         return (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <NavBar handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+              <NavBar handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-            <RelatedItems />
-            <RatingsAndReviews productID={this.state.productID}/>
+            <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
+            <RelatedItems productId={14931} />
+            {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
           </div>
         )
       }
@@ -85,7 +111,7 @@ class App extends React.Component {
       <div>
         {this.switchStatement()}
       </div>
-    )
+    );
   }
 }
 
