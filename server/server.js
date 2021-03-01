@@ -3,7 +3,7 @@ var productController = require('./controller/products').productController;
 var reviewController = require('./controller/reviews').reviewController;
 var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
 
-const ratingsAndReviewsRoutes = require('./routes/ratingsAndReviewsRoutes').ratingsAndReviewsRoutes;
+const ratingsAndReviewsRoutes = require('./routes/ratingsAndReviewsRoutes.js').ratingsAndReviewsRoutes;
 
 
 var app = express()
@@ -17,7 +17,7 @@ app.use(express.json());
 
 //routes
 app.use('/relatedItemsData', relatedProductRoutes);
-app.use('/ratingsAndReviewsRoutes', ratingsAndReviewsRoutes);
+app.use('/reviews', ratingsAndReviewsRoutes);
 
 
 //QA
