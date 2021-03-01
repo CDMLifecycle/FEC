@@ -14,7 +14,7 @@ var RelatedItems = (props) => {
       if (!err && data) {
         setRelatedProducts(data)
       } else {
-        console.log(err);
+        console.log("Error in fetching relatedItem data", err);
       }
     })
   }, [currentProductId])

@@ -72,7 +72,6 @@ router.get('/', (req, res, next) => {
         res.send(finalRelatedItemInformmationArray);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).send(err.message);
       });
   }
