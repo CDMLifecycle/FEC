@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import dummydata from './dummydata.js';
 import ProductCard from './ProductCard.jsx';
 import fetch from './fetch.js';
-
+import CardCarousel from './CardCarousel.jsx';
 
 var RelatedItems = (props) => {
   var fakeProps = dummydata.relatedItemsWithFullInformation;
@@ -23,13 +23,11 @@ var RelatedItems = (props) => {
 
   return (
     <div className='RelatedItems'>
-      <div className='RelatedItems-carousel-placeholder'>
-        {relatedProducts ?
-        relatedProducts.map(item =>
-          <ProductCard key={item.id} product={item} />)
-        : null
-        }
-      </div>
+      <h2>You May Also Like</h2>
+
+     {relatedProducts ?
+      <CardCarousel relatedProducts={relatedProducts} /> : null
+      }
     </div>
   )
 }
