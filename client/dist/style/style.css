@@ -127,8 +127,6 @@ select#sizeId {
   height: 100px;
   font-size: 80px;
   position: relative;
-  /* top:400px; */
-  /* left: 120px; */
   margin: 0 auto;
   border: groove 15px red;
   border-radius: 25px;
@@ -149,16 +147,23 @@ body, html {
 
 .ProductCard {
   height: auto;
-  width: auto;
+  width: 300px;
   background-color: rgb(203, 203, 203);
+  cursor: pointer;
+  flex: none;
+}
+
+.ProductCard:hover {
   border: 2px solid black;
 }
 
 .RelatedItems {
   height: auto;
-  width: 100%;
+  width: 80%;
   background-color: seashell;
-
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .RelatedItems-carousel-placeholder {
@@ -170,6 +175,41 @@ body, html {
 .ProjectCard-primary-img {
   width: 50%;
   height: 50%;
+}
+
+.CardCarousel {
+  width: 80%;
+}
+
+.CardCarousel-Scroller {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.CardCarousel-Scroller::-webkit-scrollbar {
+    /* width: 0px;
+    background: transparent */
+}
+
+.material-icons {
+  cursor: pointer;
+
+}
+
+.AddToLooksCard {
+  height: 400px;
+  width: 300px;
+  background-color: rgb(150, 150, 150);
+  cursor: pointer;
+  flex: none;
+}
+
+
+.Looks {
+  height: auto;
+  width: 80%;
+  background-color: rgb(77, 190, 250);
 }
 
 /*------------------------------------Styles for QA -------------------------- */

@@ -6,7 +6,10 @@ import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
+import Looks from './relatedProducts/Looks.jsx';
+import dummyData from './relatedProducts/dummydata.js';
 var stringSimilarity = require("string-similarity");
+
 
 class App extends React.Component {
   constructor() {
@@ -54,10 +57,10 @@ class App extends React.Component {
     }
   }
 
-  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+  getReviews(product_id, sort = 'relevant', count = 5, page = 1) {
     return new Promise((resolve, reject) => {
       axios.get('/reviews', {
-        params: { productID, sort, count, page }
+        params: { product_id, sort, count, page }
       })
         .then(res => resolve(res))
         .catch(err => reject(console.log('error App.jsx - getReviews')))
@@ -98,9 +101,10 @@ class App extends React.Component {
               <NavBar handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-            <RelatedItems productId={14931} />
+            <RelatedItems productId={14042} />
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
+            <Looks products={[dummyData.formattedDefaultProduct]} />
             {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
           </div>
         )
