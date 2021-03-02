@@ -14,7 +14,8 @@ class ReviewList extends React.Component {
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleShowMoreReviews = this.handleShowMoreReviews.bind(this);
-    this.handleWriteReview = this.handleWriteReview.bind(this);
+    this.handleWriteReviewBtn = this.handleWriteReviewBtn.bind(this);
+    this.submitWriteReview = this.submitWriteReview.bind(this);
   }
 
   handleSelectChange(e) {
@@ -33,13 +34,27 @@ class ReviewList extends React.Component {
     )
   }
 
-  handleWriteReview(e) {
+  handleWriteReviewBtn(e) {
     e.preventDefault();
-    this.setState({
-      writeBtn: true
-    })
+    if (!this.state.writeBtn) {
+      this.setState({
+        writeBtn: true
+      })
+    }
   }
 
+  submitWriteReview(postParams) {
+    console.log(postParams)
+    axios.post('/reviews/add', postParams)
+      .then(response => {
+        console.log('successful post');
+        this.setState({ writeBtn: false })
+      })
+      .catch(err => {
+        console.log('did not post review');
+        alert('did not post');
+      })
+  }
 
   render () {
     let reviewArray = this.props.reviewsList;
@@ -64,8 +79,14 @@ class ReviewList extends React.Component {
           />))
         }
         <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
-        <button onClick={this.handleWriteReview}>Write a Review</button>
-        {this.state.writeBtn ? <WriteReview /> : <React.Fragment></React.Fragment>}
+        <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
+        {this.state.writeBtn
+          ? <WriteReview
+              submitWriteReview={this.submitWriteReview}
+              productID={this.props.productID}
+            />
+          : <React.Fragment></React.Fragment>
+        }
       </div>
     )
   }

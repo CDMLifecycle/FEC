@@ -8,11 +8,9 @@ class ReviewTile extends React.Component {
   }
 
   render (){
-    console.log(this.props)
     let review = this.props.review;
-    console.log(review)
     return (
-      <div>
+      <div className='review-tile' style={reviewTileStyle}>
         <h1>_______________________________</h1>
         <SingleStar rating={review.rating}/>
         <h5>{review.summary}</h5>
@@ -27,7 +25,11 @@ class ReviewTile extends React.Component {
         <h1>_______________________________</h1>
       </div>
   )}
+}
 
+
+const reviewTileStyle = {
+  backgroundColor: 'yellow'
 }
 
 export default ReviewTile;
