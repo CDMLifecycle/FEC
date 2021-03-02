@@ -15,26 +15,24 @@ class RatingsAndReviews extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // axios request for meta data
-  }
-
 
 
 
   render () {
-
     return (
       <div>
       <h3>Ratings and Reviews</h3>
       <div>
-        <RatingBreakdown />
+        <RatingBreakdown
+          productMetadata={this.props.productMetadata}
+        />
       </div>
       <div>
         <ReviewList
           reviewsList={this.props.reviewsList}
           productID={this.props.productID}
           getReviews={this.props.getReviews}
+          productMetadata={this.props.productMetadata}
         />
       </div>
     </div>

@@ -14,9 +14,13 @@ class WriteReview extends React.Component {
       email: '',
       photos: [],
       fit: '',
+      fitID: '',
       length: '',
+      lengthID: '',
       comfort: '',
+      comfortID: '',
       quality: '',
+      qualityID: '',
       postParams: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,54 +35,28 @@ class WriteReview extends React.Component {
   }
 
   handleSubmit(e) {
+    let st = this.state;
     e.preventDefault();
     this.setState({
       date: new Date(),
       postParams: {
-        product_id: this.state.product_id,
-        rating: Number(this.state.rating),
-        summary: this.state.summary,
-        body: this.state.body,
-        recommend: this.state.recommend,
-        name: this.state.name,
-        email: this.state.email,
+        product_id: Number(st.product_id),
+        rating: Number(st.rating),
+        summary: st.summary,
+        body: st.body,
+        recommend: st.recommend,
+        name: st.name,
+        email: st.email,
         photos: [],
         characteristics: {
-          // Fit: {
-          //   characteristic_id: '',
-          //   value: this.state.fit
-          // },
-          // Length: {
-          //   characteristic_id: '',
-          //   value: this.state.length
-          // },
-          // Quality: {
-          //   characteristic_id: '',
-          //   value: this.state.quality
-          // },
-          // Comfort: {
-          //   characteristic_id: '',
-          //   value: this.state.comfort
-          // },
-          // Size: {
-          //   characteristic_id: '',
-          //   value: null
-          // },
-          // Width: {
-          //   characteristic_id: '',
-          //   value: null
-          // }
-          50013: Number(this.state.fit),
-          50014: Number(this.state.length),
-          50015: Number(this.state.quality),
-          50016: Number(this.state.comfort)
+          [st.fitID]: Number(st.fit),
+          [st.lengthID]: Number(st.length),
+          [st.qualityID]: Number(st.quality),
+          [st.comfortID]: Number(st.comfort)
         }
       }
     },
-      () => {
-        this.props.submitWriteReview(this.state.postParams)
-      }
-    )
+    () => { this.props.submitWriteReview(this.state.postParams) });
   }
 
   handleBoolean(e) {
@@ -88,8 +66,14 @@ class WriteReview extends React.Component {
   }
 
   componentDidMount() {
+    let meta = this.props.productMetadata;
+    let metaChar = meta.characteristics;
     this.setState({
-      product_id: this.props.productID
+      product_id: meta.product_id,
+      fitID: metaChar.Fit.id,
+      lengthID: metaChar.Length.id,
+      qualityID: metaChar.Quality.id,
+      comfortID: metaChar.Comfort.id
     })
   }
 

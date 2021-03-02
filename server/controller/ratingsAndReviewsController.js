@@ -39,27 +39,12 @@ const ratingsAndReviewsController = {
     })
   },
 
-  // untested
+  // tested
   postReview: params => {
     return new Promise((resolve, reject) => {
-
-      // let queryParams = {
-        //   headers: {
-          //     Authorization: auth_token,
-          //     'Content-Type': 'application/json'
-          //   }
-          // };
-
-
         axios.post(reviewsURL, params, options)
           .then(res => resolve(console.log(res.data)))
           .catch(err=> reject(console.log(err)))
-
-
-      // queryParams.data = params;
-      // axios.post(reviewsURL, queryParams)
-      //   .then(res => resolve(console.log(res.data)))
-      //   .catch(err=> reject(console.log(err)))
     })
   },
 
