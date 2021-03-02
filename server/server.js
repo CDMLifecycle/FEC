@@ -21,7 +21,6 @@ app.use('/reviews', ratingsAndReviewsRoutes);
 
 
 //QA
-var getQA = path + '/qa/questions';
 var getAnswers = path + '/qa/questions/:questions_id/answers';
 var addQuestion = path + '/qa/questions';
 var addAnswer = path + '/qa/questions/:question_id/answers';
@@ -104,7 +103,17 @@ app.get('/productReview', (req, res) => {
   }
 })
 
-
+app.get('/qa/questions', (req, res) => {
+  console.log(req.query.product_id)
+  var getQA = path + '/qa/questions?product_id=' + req.query.product_id;
+  axios.get(getQA, headers)
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(error => {
+      {error}
+    })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

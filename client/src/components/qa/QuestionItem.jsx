@@ -15,10 +15,10 @@ class QuestionItem extends React.Component {
   render() {
     return (
       <>
-      <div className="qaQuestionBody">Q: {'Muffin tart bear claw macaroon toffee toffee cake icing candy canes?'}
-      <QuestionOptions />
+      <div className="qaQuestionBody">Q: {this.props.q.question_body}
+      <QuestionOptions qHelpful={this.props.q.question_helpfulness} q_id={this.props.q.question_id}/>
       </div>
-      <AnswerList />
+      <AnswerList answers={this.props.q.answers}/>
       </>
     )
   }

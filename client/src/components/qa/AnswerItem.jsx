@@ -12,10 +12,13 @@ class AnswerItem extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="qaAnswerBody">{'Candy canes topping marshmallow jujubes pudding icing macaroon. Candy pudding carrot cake powder tiramisu candy biscuit. Marshmallow ice cream cupcake pastry chupa chups cake. Jelly-o chocolate cake gummi bears powder cake chocolate bar sweet roll pudding dessert.'}</div>
-        <AnswerOptions />
-      </>
+      <div className="qaAnswerList">
+        <div className="flexRow">
+          <div>A: </div>
+          <div className="qaAnswerBody"> {this.props.answer.body}</div>
+        </div>
+        <AnswerOptions answerData={this.props.answer}/>
+      </div>
     )
   }
 }
