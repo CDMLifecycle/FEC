@@ -148,7 +148,7 @@ body, html {
 
 .ProductCard {
   height: auto;
-  width: 600px;
+  width: 300px;
   background-color: rgb(203, 203, 203);
   cursor: pointer;
   flex: none;
@@ -186,13 +186,28 @@ body, html {
 .CardCarousel-Scroller {
   display: flex;
   overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 .CardCarousel-Scroller::-webkit-scrollbar {
-    width: 0px;
-    background: transparent
+    /* width: 0px;
+    background: transparent */
 }
 
 .material-icons {
   cursor: pointer;
+}
+
+.AddToLooksCard {
+  height: 400px;
+  width: 300px;
+  background-color: rgb(150, 150, 150);
+  cursor: pointer;
+  flex: none;
+}
+
+.Looks {
+  height: auto;
+  width: 80%;
+  background-color: rgb(77, 190, 250);
 }
