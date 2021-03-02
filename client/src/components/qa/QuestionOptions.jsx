@@ -7,11 +7,12 @@ class QuestionOptions extends React.Component {
     this.state = {
 
     }
-    this.qHelpful = this.qHelpful.bind(this);
+
+    this.markQHelpful = this.markQHelpful.bind(this);
     this.addAnswer = this.addAnswer.bind(this);
   }
 
-  qHelpful (e) {
+  markQHelpful (e) {
     e.preventDefault();
     console.log('this question is helpful');
   }
@@ -27,9 +28,9 @@ class QuestionOptions extends React.Component {
     return(
       <div className="questionOptions">
         <span id="helpfulQ">Helpful? </span>
-        <button className="helpful qaLinkButton" onClick={this.qHelpful}>Yes</button> (#)
+        <button className="helpful qaLinkButton qaButton" onClick={this.markQHelpful}>Yes</button> ({this.props.qHelpful})
         <span className="qaDivider">|</span>
-        <button className="helpful qaLinkButton" onClick={this.addAnswer}>Add Answer</button>
+        <button className="helpful qaLinkButton qaButton" onClick={this.addAnswer}>Add Answer</button>
       </div>
     )
   }
