@@ -98,8 +98,9 @@ class App extends React.Component {
               <NavBar handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-            <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <RelatedItems productId={14931} />
+            {this.state.productID ?
+            <QAMain productID={this.state.productID} /> : null}
             {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
           </div>
         )
