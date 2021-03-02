@@ -18,7 +18,9 @@ class RatingsAndReviews extends React.Component {
         <RatingBreakdown />
       </div>
       <div>
-        <ReviewList productID={this.props.productID}/>
+        <ReviewList
+          productID={this.props.productID}
+        />
       </div>
     </div>
     );
