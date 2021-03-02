@@ -8,6 +8,7 @@ class QuestionList extends React.Component {
     this.state = {
 
     }
+
     this.moreQuestions = this.moreQuestions.bind(this);
     this.addQuestion = this.addQuestion.bind(this);
   }
@@ -24,10 +25,12 @@ class QuestionList extends React.Component {
 
 
   render() {
+    console.log(this.props.questions);
     return (
       <div>
-        {/* map over questions */}
-        <QuestionItem />
+        {this.props.questions.map((question) => {
+          return (<QuestionItem q={question} key={question.question_id} />)
+        })}
         <button onClick={this.moreQuestions}name="moreQuestions" className="qaBigButton qaCaps">More Answered Questions</button>
         <button name="addQuestion" onClick={this.addQuestion} className="qaBigButton qaCaps">Add A Question +</button>
       </div>

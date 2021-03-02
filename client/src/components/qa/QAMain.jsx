@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import QuestionList from './QuestionList.jsx';
+import axios from 'axios';
 
 
 class QAMain extends React.Component {
@@ -8,7 +9,8 @@ class QAMain extends React.Component {
     super(props)
 
     this.state = {
-      searchTerm: ''
+      searchTerm: '',
+      questions: []
     }
     this.handleQSearch = this.handleQSearch.bind(this);
     this.moreQuestions = this.moreQuestions.bind(this);
@@ -27,13 +29,30 @@ class QAMain extends React.Component {
     console.log('See 2 more questions, please!')
   }
 
+  componentDidMount() {
+    axios.get(`/qa/questions/`, {
+      params: {
+        product_id: this.props.productID
+      }
+    })
+    .then(response => {
+      console.log(Array.isArray(response.data.results));
+      this.setState({
+        questions: response.data.results
+      })
+    })
+    .catch(reject => {
+      console.log(reject);
+    })
+  }
+
   render() {
     return(
       <>
         <form className="QAMain">
           {'QUESTIONS & ANSWERS'}
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList />
+          <QuestionList questions={this.state.questions} />
         </form>
       </>
     )
