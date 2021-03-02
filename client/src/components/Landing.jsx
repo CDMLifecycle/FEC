@@ -21,8 +21,8 @@ class Landing extends React.Component {
     this.props.handleSubmitForm(this.state.input);
     this.setState({searched: this.state.input, input: ''});
     this.props.handleSubmit(event);
-    // this.matchSearches();
   }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
