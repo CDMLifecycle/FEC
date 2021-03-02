@@ -148,10 +148,12 @@ body, html {
 
 .ProductCard {
   height: auto;
-  width: 300px;
+  width: 25%;
   background-color: rgb(203, 203, 203);
   cursor: pointer;
   flex: none;
+  margin: 5px;
+  text-align: center;
 }
 
 .ProductCard:hover {
@@ -162,6 +164,8 @@ body, html {
   height: auto;
   width: 80%;
   background-color: seashell;
+  margin-left: 10%;
+  margin-right: 10%;
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -179,11 +183,12 @@ body, html {
 }
 
 .CardCarousel {
-  width: 80%;
+  width: 100%;
 }
 
 
 .CardCarousel-Scroller {
+  width: 90%;
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
@@ -204,10 +209,42 @@ body, html {
   background-color: rgb(150, 150, 150);
   cursor: pointer;
   flex: none;
+  text-align: center;
+}
+
+.AddToLooksCard:hover {
+  border: 2px solid white;
+}
+
+.AddToLooksCardCard-p {
+  margin-top: 50%;
+}
+
+.AddToLooksCard-Icon {
+  font-size: 80px;
+  text-align: center;
+  margin-top: 40%;
 }
 
 .Looks {
   height: auto;
   width: 80%;
   background-color: rgb(77, 190, 250);
+  margin-left: 10%;
+  margin-right: 10%;
 }
+
+.CarouselArrow-forward {
+  display: inline;
+  width: 10%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  right: 0;
+}
+
+.CarouselArrow-back {
+  display: inline;
+  width: 10%;
+}
+
