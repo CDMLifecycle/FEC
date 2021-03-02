@@ -14,7 +14,9 @@ router.get('/', (req, res, next) => {
 
 // POST review _____________________________________
 router.post('/add', (req, res, next) => {
-
+  rrController.postReview(req.body)
+    .then(response => res.send(response))
+    .catch(err => res.sendStatus(404))
 });
 
 // PUT - Mark Helpful ______________________________

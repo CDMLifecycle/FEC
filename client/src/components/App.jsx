@@ -50,19 +50,18 @@ class App extends React.Component {
         .then(res => {
           this.setState({
             searchedArr: arr,
-            productID: productID,
-            reviewsList: res.data.results
+            productID: productID
           })
         });
     }
   }
 
-  getReviews(product_id, sort = 'relevant', count = 5, page = 1) {
+  getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
     return new Promise((resolve, reject) => {
       axios.get('/reviews', {
         params: { product_id, sort, count, page }
       })
-        .then(res => resolve(res))
+        .then(res => resolve(this.setState({ reviewsList: res.data.results })))
         .catch(err => reject(console.log('error App.jsx - getReviews')))
     });
   }
@@ -105,7 +104,13 @@ class App extends React.Component {
             <Looks products={[dummyData.formattedDefaultProduct]} />
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
-            {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
+            {this.state.productID
+              ? <RatingsAndReviews
+                productID={this.state.productID}
+                reviewsList={this.state.reviewsList}
+                getReviews={this.getReviews}
+                />
+              : <div></div>}
           </div>
         )
       }
