@@ -7,7 +7,7 @@ var CarouselArrow = (props) => {
 
   return (
     <div className='CarouselArrow'>
-      <span className="material-icons">{props.direction === 'forward' ? forwardArrow : backwardArrow}</span>
+      <span onClick={() => props.scroll(props.direction)} className="material-icons">{props.direction === 'forward' ? forwardArrow : backwardArrow}</span>
     </div>
   )
 }

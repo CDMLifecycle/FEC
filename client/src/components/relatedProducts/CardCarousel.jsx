@@ -4,14 +4,25 @@ import ProductCard from './ProductCard.jsx';
 import CarouselArrow from './CarouselArrow.jsx';
 
 var CardCarousel = (props) => {
+
+  const [startingCardIndex, setStartingCardIndex] = useState(1);
   const carouselRef = useRef(null);
 
-  var scroll = amount => {
-
+  var scroll = (direction) => {
+    if (direction === 'back') {
+      var amount = 500;
+      carouselRef.current.scrollBy(amount * (startingCardIndex - props.relatedProducts.length + 3), 0);
+      setStartingCardIndex(startingCardIndex - 1);
+    } else if (direction === 'forward') {
+      var amount = 500;
+      carouselRef.current.scrollBy(amount * startingCardIndex, 0);
+      setStartingCardIndex(startingCardIndex+1);
+    }
   }
   return (
     <div className='CardCarousel'>
-      <CarouselArrow direction={'forward'} />
+     {startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
+     {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
       <div ref={carouselRef} className='CardCarousel-Scroller'>
       {props.Looks ? <AddToLooksCard /> : null}
        {props.relatedProducts ?
