@@ -6,7 +6,10 @@ import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
+import Looks from './relatedProducts/Looks.jsx';
+import dummyData from './relatedProducts/dummydata.js';
 var stringSimilarity = require("string-similarity");
+
 
 class App extends React.Component {
   constructor() {
@@ -99,7 +102,8 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <QAMain productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
-            <RelatedItems productId={14931} />
+            <RelatedItems productId={14042} />
+            <Looks products={[dummyData.formattedDefaultProduct]} />
             {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
           </div>
         )

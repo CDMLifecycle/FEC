@@ -3,10 +3,12 @@ import React, {useState} from 'react';
 var ProductCard = (props) => {
   const [primaryImg, setPrimaryImg] = useState(props.product.photos[0].thumbnail_url);
 
+  var defaultImg = 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'
+
   return(
     <div onClick={() => console.log('this click should navigate the page to this product')} className='ProductCard'>
       <div className='ProjectCard-img-container'>
-        <img className='ProjectCard-primary-img' src={primaryImg}></img>
+        <img className='ProjectCard-primary-img' src={primaryImg ? primaryImg : defaultImg}></img>
         <img className='ProjectCard-compare-icon'></img>
       </div>
       <div className='ProjectCard-product-information'>
