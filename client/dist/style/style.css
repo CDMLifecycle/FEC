@@ -13,6 +13,7 @@
   border: solid;
   border-color: black;
 }
+
 .containerColumn {
   display: flex;
   height: 100%;
@@ -34,6 +35,7 @@
   background-color: black;
   -ms-overflow-style: none;
 }
+
 .photoContainer::-webkit-scrollbar {
   display:none;
 }
@@ -58,14 +60,14 @@ img.thumbnails {
   flex:1;
   font-size: 20px;
   margin: 20px;
-
 }
+
 .q_c {
   flex:1;
   font-size: 25px;
   margin-bottom: 20px;
-
 }
+
 .size {
   flex:1;
   font-size: 25px;
@@ -131,6 +133,7 @@ select#sizeId {
   border: groove 15px red;
   border-radius: 25px;
 }
+
 .Landing {
   height: 600px;
   background-image: url('https://i.pinimg.com/originals/67/b4/bc/67b4bc272857e8e29a06d19264aad9f8.gif');
@@ -143,6 +146,7 @@ select#sizeId {
 body, html {
   height: 100%;
 }
+
 /*------------------------------------Styles for Related Products-------------------------- */
 
 .ProductCard {
@@ -234,6 +238,7 @@ body, html {
   margin: 15px 0px;
   color: #525252;
   font-weight: 800;
+  width: 80%
 }
 
 .questionOptions {
@@ -244,20 +249,40 @@ body, html {
   font-weight: 400;
 }
 
+.qaAnswerList {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.answerDiv {
+  display: flex;
+  max-width: fit-content;
+}
+
 .qaAnswerBody {
-  margin: 10px 0px;
+  margin: 0 0 15px 10px;
   color: #525252;
-  display: inline;
+  width: 70%;
+  overflow-wrap: break-word;
 }
 
 .qaAnswerOptions {
   margin: 15px 0 20px 0;
   font-size: smaller;
+  display: block;
 }
 
 .moreAnswers {
   margin: 0 0 15px 0;
   text-decoration: none;
+}
+
+.flexRow {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .qaCaps {

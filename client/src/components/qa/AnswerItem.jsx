@@ -12,10 +12,13 @@ class AnswerItem extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="qaAnswerBody">{this.props.answer.body}</div>
+      <div className="qaAnswerList">
+        <div className="flexRow">
+          <div>A: </div>
+          <div className="qaAnswerBody"> {this.props.answer.body}</div>
+        </div>
         <AnswerOptions answerData={this.props.answer}/>
-      </>
+      </div>
     )
   }
 }

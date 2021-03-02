@@ -102,9 +102,9 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <RelatedItems productId={14042} />
+            <Looks products={[dummyData.formattedDefaultProduct]} />
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
-            <Looks products={[dummyData.formattedDefaultProduct]} />
             {this.state.productID ? <RatingsAndReviews productID={this.state.productID}/> : <div></div>}
           </div>
         )

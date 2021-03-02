@@ -13,6 +13,7 @@ class AnswerOptions extends React.Component {
 
   aHelpful (e) {
     e.preventDefault();
+    // put request
     console.log('this answer is helpful');
   }
 
@@ -30,10 +31,11 @@ class AnswerOptions extends React.Component {
   render() {
     return (
       <div className="qaAnswerOptions">
-        by
         {/* {this.props.answerData.answerer_name.toLowerCase() === 'seller' ? (<span className="bolded">{this.props.answerData.answerer_name}</span>) : ({this.props.answerData.answerer_name})}, */}
-        {this.props.answerData.answerer_name}
-        {this.props.answerData.date}
+        {`by
+        ${this.props.answerData.answerer_name}
+        ${this.props.answerData.date}`
+        }
         <span className="qaDivider">|</span>
          Helpful?
         <button className="helpful qaLinkButton qaButton" onClick={this.aHelpful}>Yes</button> ({this.props.answerData.helpfulness})
