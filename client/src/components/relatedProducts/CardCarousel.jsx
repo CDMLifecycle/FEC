@@ -24,7 +24,7 @@ var CardCarousel = (props) => {
      {startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
      {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
       <div ref={carouselRef} className='CardCarousel-Scroller'>
-      {props.Looks ? <AddToLooksCard /> : null}
+      {props.isLooks ? <AddToLooksCard /> : null}
        {props.relatedProducts ?
         props.relatedProducts.map(item =>
           <ProductCard key={item.id} product={item} />)

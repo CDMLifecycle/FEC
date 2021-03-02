@@ -197,3 +197,17 @@ body, html {
 .material-icons {
   cursor: pointer;
 }
+
+.AddToLooksCard {
+  height: 400px;
+  width: 300px;
+  background-color: rgb(150, 150, 150);
+  cursor: pointer;
+  flex: none;
+}
+
+.Looks {
+  height: auto;
+  width: 80%;
+  background-color: rgb(77, 190, 250);
+}
