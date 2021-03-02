@@ -20,7 +20,7 @@
       event.preventDefault();
       this.props.handleSubmitForm(this.state.input);
       this.setState({searched: this.state.input, input: ''});
-      this.props.handleSubmit(event);
+      // this.props.handleSubmit(event);
       // this.matchSearches();
     }
 

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.56% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.56% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,19 +101,20 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,11 +124,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,15 +151,15 @@
   import {AppBar, Toolbar, Typography, IconButton} from '@material-ui/core';
 &nbsp;
   class NavBar extends React.Component {
-    constructor(props) {
-      super(props);
+<span class="fstat-no" title="function not covered" >    co</span>nstructor(props) {
+<span class="cstat-no" title="statement not covered" >      super(props);</span>
 &nbsp;
-      this.state = {
+<span class="cstat-no" title="statement not covered" >      this.state = {</span>
         input: '',
         searched: '',
       }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+<span class="cstat-no" title="statement not covered" >      this.handleChange = this.handleChange.bind(this);</span>
+<span class="cstat-no" title="statement not covered" >      this.handleSubmit = this.handleSubmit.bind(this);</span>
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    ha</span>ndleChange(event) {
@@ -167,17 +169,18 @@
 <span class="cstat-no" title="statement not covered" >      event.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >      this.props.handleSubmitForm(this.state.input);</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({searched: this.state.input, input: ''});</span>
+<span class="cstat-no" title="statement not covered" >      this.props.handleSubmit(event);</span>
       // this.matchSearches();
     }
 &nbsp;
-    render() {
-      return (
+<span class="fstat-no" title="function not covered" >    re</span>nder() {
+<span class="cstat-no" title="statement not covered" >      return (</span>
         &lt;AppBar position="static" elevation={0} &gt;
         &lt;Toolbar&gt;
           &lt;Typography type="title" color="inherit"&gt;
             CLMD ENTERPRISE
           &lt;/Typography&gt;
-          &lt;input value={this.state.input} onChange={this.handleChange}&gt;&lt;/input&gt;
+          &lt;input className='searchBar' value={this.state.input} onChange={this.handleChange}&gt;&lt;/input&gt;
           &lt;IconButton type='submit' className='material-icons' onClick={this.handleSubmit}&gt;
             &lt;img src='https://image.winudf.com/v2/image1/c2Fuc3Vuc2VuMy5pbWFnZXNlYXJjaGVyX3NjcmVlbl83XzE1NDI5MDQ2MTNfMDUx/screen-7.jpg?fakeurl=1&amp;type=.jpg' width="25" height="25"/&gt;
           &lt;/IconButton&gt;
@@ -196,7 +199,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 26 2021 19:24:06 GMT-0800 (Pacific Standard Time)
+                at Mon Mar 01 2021 22:31:58 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
