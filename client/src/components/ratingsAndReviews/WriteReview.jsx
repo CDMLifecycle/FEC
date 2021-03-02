@@ -21,6 +21,7 @@ class WriteReview extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleBoolean = this.handleBoolean.bind(this);
   }
 
   handleChange(e) {
@@ -35,7 +36,7 @@ class WriteReview extends React.Component {
       date: new Date(),
       postParams: {
         product_id: this.state.product_id,
-        rating: this.state.rating,
+        rating: Number(this.state.rating),
         summary: this.state.summary,
         body: this.state.body,
         recommend: this.state.recommend,
@@ -43,17 +44,47 @@ class WriteReview extends React.Component {
         email: this.state.email,
         photos: [],
         characteristics: {
-          fit: this.state.fit,
-          length: this.state.length,
-          quality: this.state.quality,
-          comfort: this.state.comfort
-          }
+          // Fit: {
+          //   characteristic_id: '',
+          //   value: this.state.fit
+          // },
+          // Length: {
+          //   characteristic_id: '',
+          //   value: this.state.length
+          // },
+          // Quality: {
+          //   characteristic_id: '',
+          //   value: this.state.quality
+          // },
+          // Comfort: {
+          //   characteristic_id: '',
+          //   value: this.state.comfort
+          // },
+          // Size: {
+          //   characteristic_id: '',
+          //   value: null
+          // },
+          // Width: {
+          //   characteristic_id: '',
+          //   value: null
+          // }
+          50013: Number(this.state.fit),
+          50014: Number(this.state.length),
+          50015: Number(this.state.quality),
+          50016: Number(this.state.comfort)
         }
-      },
+      }
+    },
       () => {
         this.props.submitWriteReview(this.state.postParams)
       }
     )
+  }
+
+  handleBoolean(e) {
+    e.target.value === 'true'
+    ? this.setState({ recommend: true })
+    : this.setState({ recommend: false });
   }
 
   componentDidMount() {
@@ -104,10 +135,10 @@ class WriteReview extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label onChange={this.handleChange} value={this.state.recommend}>
+          <label onChange={this.handleBoolean} value={this.state.recommend}>
             <h6>Would you recommend this item?</h6>
-            <input type='radio' name='recommend' value={true} required />Yes
-            <input type='radio' name='recommend' value={false} />No
+            <input type='radio' name='recommend' value='true' required />Yes
+            <input type='radio' name='recommend' value='false' />No
           </label>
           <div className='characteristics-container'>
             <span style={{padding: '3px'}}>Characteristics</span>

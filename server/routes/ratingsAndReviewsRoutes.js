@@ -12,6 +12,14 @@ router.get('/', (req, res, next) => {
     .catch(err => res.sendStatus(404))
 });
 
+// GET meta data _________________________
+router.get('/meta', (req, res, next) => {
+  console.log('/meta: ', req.query)
+  rrController.getMetaReviewData(req.query)
+    .then(response => res.send(response))
+    .catch(err => res.sendStatus(404))
+});
+
 // POST review _____________________________________
 router.post('/add', (req, res, next) => {
   rrController.postReview(req.body)
