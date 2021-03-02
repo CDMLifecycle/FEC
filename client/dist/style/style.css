@@ -188,7 +188,7 @@ body, html {
 
 
 .CardCarousel-Scroller {
-  width: 90%;
+  width: 100%;
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
