@@ -54,10 +54,10 @@ class App extends React.Component {
     }
   }
 
-  getReviews(productID, sort = 'relevant', count = 5, page = 1) {
+  getReviews(product_id, sort = 'relevant', count = 5, page = 1) {
     return new Promise((resolve, reject) => {
       axios.get('/reviews', {
-        params: { productID, sort, count, page }
+        params: { product_id, sort, count, page }
       })
         .then(res => resolve(res))
         .catch(err => reject(console.log('error App.jsx - getReviews')))
