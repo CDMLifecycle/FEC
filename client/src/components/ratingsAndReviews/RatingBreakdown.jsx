@@ -5,7 +5,7 @@ import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 
 const RatingBreakdown = (props) => (
   <div>
-    <h3>3.5 stars</h3>
+    <h3>Show average</h3>
     <SingleStar />
     <DistributionFilter />
     <CharacteristicsBreakdown />

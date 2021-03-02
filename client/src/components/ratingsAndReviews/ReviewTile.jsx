@@ -5,39 +5,31 @@ class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
-
   }
 
-
-  // reportReview(e) {
-  //   e.preventDefault();
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('/reviews/report', {
-  //       params: { productID }
-  //     })
-  //       .then(res => resolve(res))
-  //       .catch(err => reject(console.log('error App.jsx - reportReview')))
-  //   });
-  // }
-
-
-  // componentDidMount(){
-  //   this.setState({
-  //     productID: this.
-  //   })
-  // }
-
   render (){
+    let review = this.props.review;
     return (
-
-      <div>
-    <SingleStar />
-    <h5>Review Tile</h5>
-    <button>report</button>
-    <button>mark helpful</button>
-  </div>
+      <div className='review-tile' style={reviewTileStyle}>
+        <h1>_______________________________</h1>
+        <SingleStar rating={review.rating}/>
+        <h5>{review.summary}</h5>
+        <h6>{review.body}</h6>
+        <h6>{review.date}</h6>
+        <h6>{review.reviewer_name}</h6>
+        <button>report</button>
+        <button>mark helpful</button>
+        <h6>{review.helpful}</h6>
+        <h6>{review.helpfulness}</h6>
+        {/* <img>If images</img> */}
+        <h1>_______________________________</h1>
+      </div>
   )}
+}
 
+
+const reviewTileStyle = {
+  backgroundColor: 'yellow'
 }
 
 export default ReviewTile;
