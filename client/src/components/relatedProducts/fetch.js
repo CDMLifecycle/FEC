@@ -12,6 +12,18 @@ var fetch = {
       .catch(err => {
         cb(err, null);
       })
+  },
+  getCurrentProductInformation: (id, cb) => {
+    axios({
+      url: `/currentProductInformation?id=${id}`,
+      method: 'get',
+    })
+      .then(result => {
+        cb(null, result.data);
+      })
+      .catch(err => {
+        cb(err, null);
+      })
   }
 };
 

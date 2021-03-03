@@ -22,7 +22,8 @@ class App extends React.Component {
       productID: '',
       searchedArr: [],
       reviewsList: [],
-      paths: '/'
+      paths: '/',
+      currentProductInformation: null
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.switchStatement = this.switchStatement.bind(this);
@@ -31,6 +32,7 @@ class App extends React.Component {
     this.getReviews = this.getReviews.bind(this);
     this.getMetadata = this.getMetadata.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
+    this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
   }
 
   stringComparison() {
@@ -96,6 +98,16 @@ class App extends React.Component {
     }
   }
 
+  updateCurrentProductInformation(product) {
+    event.preventDefault();
+    if (typeof product === 'object' && product.campus) {
+      this.setState({
+        currentProductInformation: product
+      })
+    }
+  }
+
+
   switchStatement() {
     switch(this.state.paths) {
       case "/":
@@ -110,7 +122,7 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <RelatedItems productId={14042} />
-            <Looks products={[dummyData.formattedDefaultProduct]} />
+            <Looks products={[dummyData.formattedDefaultProduct]} currentProductId={14807} setCurrentProduct={this.updateCurrentProductInformation}/>
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
             {this.state.productID

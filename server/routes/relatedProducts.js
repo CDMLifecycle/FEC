@@ -79,3 +79,4 @@ router.get('/', (req, res, next) => {
 
 
 module.exports.relatedProducts = router;
+module.exports.combineRelatedProductInformation = combineRelatedProductInformation;
