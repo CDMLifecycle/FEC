@@ -153,8 +153,30 @@ body, html {
 
 /*------------------------------------Styles for Related Products-------------------------- */
 
+.RelatedItems {
+  height: auto;
+  /* width: 100%; */
+  /* background-color: seashell; */
+  margin-left: 10%;
+  margin-right: 10%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.RelatedItems h2 {
+  margin-bottom: 0;
+}
+
+.RelatedItems-carousel-placeholder {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
 .ProductCard {
-  /* display: grid; */
+  display: grid;
+  grid-template-rows:67% 33%;
   height: auto;
   width: 24%;
   background-color: rgb(203, 203, 203);
@@ -168,33 +190,33 @@ body, html {
   border: 2px solid black;
 }
 
-.RelatedItems {
-  height: auto;
-  /* width: 100%; */
-  background-color: seashell;
-  margin-left: 10%;
-  margin-right: 10%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
-
-.RelatedItems-carousel-placeholder {
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
-}
-
 .ProductCard-img-container {
 
 }
 
 
 .ProductCard-primary-img {
-  width: 50%;
-  height: 50%;
+  width: 80%;
 }
 
+.ProductCard-product-information {
+  text-align: left;
+  background-color: white;
+  padding-left: 5%;
+  height: inherit;
+}
+
+.ProductCard-product-information-rating {
+  margin-bottom: 0;
+}
+
+.ProductCard-product-information-price {
+  margin: 0;
+}
+
+.ProductCard-product-information-name {
+  margin: 0;
+}
 
 .CardCarousel {
   width: 100%;
@@ -248,7 +270,7 @@ body, html {
 
 .Looks {
   height: auto;
-  width: 80%;
+  /* width: 80%; */
   /* background-color: rgb(77, 190, 250); */
   margin-left: 10%;
   margin-right: 10%;
