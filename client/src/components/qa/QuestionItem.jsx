@@ -2,7 +2,6 @@ import React from 'react';
 import AnswerList from './AnswerList.jsx'
 import QuestionOptions from './QuestionOptions.jsx'
 
-
 class QuestionItem extends React.Component {
   constructor(props){
     super(props)
@@ -16,7 +15,7 @@ class QuestionItem extends React.Component {
     return (
       <>
       <div className="qaQuestionBody">Q: {this.props.q.question_body}
-      <QuestionOptions qHelpful={this.props.q.question_helpfulness} q_id={this.props.q.question_id}/>
+        <QuestionOptions qHelpful={this.props.q.question_helpfulness} q_id={this.props.q.question_id}/>
       </div>
       <AnswerList answers={this.props.q.answers}/>
       </>

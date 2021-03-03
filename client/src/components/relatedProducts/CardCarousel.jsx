@@ -38,7 +38,7 @@ var CardCarousel = (props) => {
         {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks} refer={cardRef}/> : null}
         {props.relatedProducts ?
           props.relatedProducts.map(item =>
-            <ProductCard cardAction={cardAction} key={item.id} product={item} />)
+            <ProductCard removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />)
         : null}
       </div>
     </div>
