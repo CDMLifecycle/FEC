@@ -83,7 +83,7 @@ class ReviewList extends React.Component {
         {this.state.writeBtn
           ? <WriteReview
               submitWriteReview={this.submitWriteReview}
-              productID={this.props.productID}
+              productMetadata={this.props.productMetadata}
             />
           : <React.Fragment></React.Fragment>
         }

@@ -17,44 +17,34 @@ const options = {
 // Set Controller for API Requests___________________________
 const ratingsAndReviewsController = {
 
+  // tested
   getProductReviews: params => {
     return new Promise((resolve, reject) => {
       let queryParams = options;
       queryParams.params = params;
-
       axios.get(reviewsURL, queryParams)
         .then(res => resolve(res.data))
         .catch(err=> reject(err))
     })
   },
 
-  // untested
-  getMetaReviewData: product_id => {
+  // tested
+  getMetaReviewData: params => {
     return new Promise((resolve, reject) => {
       let queryParams = options;
-      queryParams.params = { product_id };
-
+      queryParams.params =  params;
       axios.get(metaReviewsURL, queryParams)
         .then(res => resolve(res.data))
         .catch(err=> reject(err))
     })
   },
 
-  // untested
+  // tested
   postReview: params => {
     return new Promise((resolve, reject) => {
-      let queryParams = {
-        headers: {
-          Authorization: auth_token,
-          "Content-Type": 'application/json'
-        }
-      };
-
-      queryParams.data = params;
-
-      axios.post(reviewsURL, JSON.stringify(queryParams))
-        .then(res => resolve(console.log(res.data)))
-        .catch(err=> reject(console.log(err)))
+        axios.post(reviewsURL, params, options)
+          .then(res => resolve(console.log(res.data)))
+          .catch(err=> reject(console.log(err)))
     })
   },
 
