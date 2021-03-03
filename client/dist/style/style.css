@@ -214,6 +214,16 @@ body, html {
   margin: 0;
 }
 
+.ProductCard-product-information-price-discounted {
+  margin: 0;
+  text-decoration: line-through;
+}
+
+.ProductCard-product-information-sale-price {
+  margin: 0;
+  color: red;
+}
+
 .ProductCard-product-information-name {
   margin: 0;
 }
@@ -292,7 +302,7 @@ body, html {
 }
 
 .ProductComparison {
-  width: 60%;
+  width: 50%;
   height: auto;
   background-color: #ffffff;
   z-index: 101;
@@ -304,6 +314,8 @@ body, html {
   border: 1px solid black;
   padding-bottom: 20px;
   position: relative;
+  top: 25%;
+  left: 25%;
 }
 
 .ProductComparison-headings {
@@ -315,21 +327,28 @@ body, html {
 
 .ComparisonTable {
   width: 90%;
+  overflow-y: scroll;
+}
+
+.ComparisonTable::-webkit-scrollbar {
+  width: 0px;
+  background: transparent
 }
 
 .ComparisonTable-row {
   display: grid;
   grid-template-columns: 10% 80% 10%;
+  margin-bottom: 7px;
 }
 
 .ProductComparison-overlay {
   /* opacity:0.8; */
   /* background-color:#ccc; */
-  position:fixed;
+  position: fixed;
   width:100vw;
   height:100vh;
   top:0px;
-  left:0px;
+  /* left:0px; */
   z-index:100;
   overflow: auto;
 }

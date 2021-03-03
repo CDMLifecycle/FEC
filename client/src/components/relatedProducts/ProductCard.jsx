@@ -1,7 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 var ProductCard = (props) => {
   const [primaryImg, setPrimaryImg] = useState(props.product.photos[0].thumbnail_url);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (props.getWidthOfCard !== undefined) {
+      console.log('the width is ', cardRef.current.offsetWidth);
+      props.getWidthOfCard(cardRef.current.offsetWidth);
+    }
+  }, []);
+
+
+
+
+
 
   var defaultImg = 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'
 
@@ -13,10 +26,13 @@ var ProductCard = (props) => {
     }
   }
 
-
+  var saleClass = 'ProductCard-product-information-price'
+  if (props.product.sale_price) {
+    saleClass = 'ProductCard-product-information-price-discounted'
+  }
 
   return(
-    <div className='ProductCard'>
+    <div ref={cardRef} className='ProductCard'>
       <div className='ProductCard-img-container'>
         <img className='ProductCard-primary-img' src={primaryImg ? primaryImg : defaultImg}></img>
         <span onClick={handleClick} className='ProductCard-action-icon'>{
@@ -30,8 +46,9 @@ var ProductCard = (props) => {
       <div className='ProductCard-product-information'>
         <p>{props.product.category}</p>
         <p className='ProductCard-product-information-name'>{props.product.name}</p>
-        <p className='ProductCard-product-information-price'>${props.product.default_price}</p>
-        <p className='ProductCard-product-information-rating'>{props.product.rating}</p>
+        <p className={saleClass}>${props.product.default_price}</p>
+        {props.product.sale_price ? <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
+        <p className='ProductCard-product-information-rating'>{props.product.rating ? props.product.rating : "product unrated"}</p>
       </div>
     </div>
   )
