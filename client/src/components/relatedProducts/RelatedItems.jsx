@@ -28,10 +28,14 @@ var RelatedItems = (props) => {
     setComparedProduct(relatedProduct);
   }
 
+  var closeComparisonModel = () => {
+    setCompareModel(false);
+  }
+
   return (
     <div className='RelatedItems'>
       <h2>You May Also Like</h2>
-     {comparedProduct && compareModel ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} /> : null}
+     {comparedProduct && compareModel ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} closeComparisonModel={closeComparisonModel}/> : null}
      {relatedProducts ?
       <CardCarousel relatedProducts={relatedProducts} compareProducts={handleActionClick}/> : null
       }

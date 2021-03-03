@@ -1,4 +1,5 @@
 import react, {useState, useEffect} from 'react';
+import ComparisonTable from './ComparisonTable.jsx';
 
 var ProductComparison = (props) => {
 
@@ -7,33 +8,34 @@ var ProductComparison = (props) => {
 
   useEffect(() => {
     var featureObj = {}
-    for (let feature of props.currentProduct.features) {
-      featureObj[feature.feature] = [feature.value, 1]
+    for (let obj of props.currentProduct.features) {
+        featureObj[obj.feature] = [obj.feature, obj.value , 1]
     }
 
     for (let feat of props.comparedProduct.features) {
       if (featureObj[feat.feature] === undefined) {
-        featureObj[feat.feature] = [feat.value, 2]
+        featureObj[feat.feature] = [feat.feature, feat.value, 2]
       } else {
         featureObj[feat.feature].push(2);
       }
-    setTableData(featureObj)
+    setTableData(Object.values(featureObj))
     }
   }, [])
 
+  //need an array of data per char. Need the
+
 
   return (
-    <div className='ProductComparison'>
-      <h3>Product Comparison</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>{props.currentProduct.name}</th>
-            <th>Characteristics</th>
-            <th>{props.comparedProduct.name}</th>
-          </tr>
-        </thead>
-      </table>
+    <div onClick={props.closeComparisonModel} className='ProductComparison-overlay'>
+      <div className='ProductComparison'>
+        <h5>Product Comparison</h5>
+        <div className='ProductComparison-headings'>
+          <span>{props.currentProduct.name}</span>
+          <span></span>
+          <span>{props.comparedProduct.name}</span>
+        </div>
+        {tableData ? <ComparisonTable tableData={tableData}/> : null}
+      </div>
     </div>
   )
 }
