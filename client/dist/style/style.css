@@ -180,7 +180,7 @@ body, html {
   justify-content: left;
 }
 
-.ProjectCard-primary-img {
+.ProductCard-primary-img {
   width: 50%;
   height: 50%;
 }
@@ -229,6 +229,11 @@ body, html {
   margin-top: 40%;
 }
 
+.ProductCard-action-icon {
+  float: right;
+  margin-top: 2px;
+  margin-right: 5px;
+}
 
 .Looks {
   height: auto;
@@ -243,7 +248,8 @@ body, html {
   width: 10%;
   margin: 0;
   padding: 0;
-  right: 0;
+  float: right;
+  text-align: right;
 }
 
 .CarouselArrow-back {
