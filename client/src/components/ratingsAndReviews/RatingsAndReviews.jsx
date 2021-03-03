@@ -11,12 +11,8 @@ class RatingsAndReviews extends React.Component {
 
       // filter parameters
       // meta data
-
     };
   }
-
-
-
 
   render () {
     return (
