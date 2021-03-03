@@ -103,6 +103,8 @@ app.get('/productReview', (req, res) => {
   }
 })
 
+
+//---------------------QA----------------------//
 app.get('/qa/questions', (req, res) => {
   console.log(req.query.product_id)
   var getQA = path + '/qa/questions?product_id=' + req.query.product_id;
