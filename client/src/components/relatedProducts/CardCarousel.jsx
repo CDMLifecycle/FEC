@@ -11,27 +11,35 @@ var CardCarousel = (props) => {
 
   var scroll = (direction) => {
     if (direction === 'back') {
-
-      var amount = cardRef.current.offsetWidth;
-      carouselRef.current.scrollBy(amount * (startingCardIndex - props.relatedProducts.length + 3), 0);
+      var amount = 350;
+      carouselRef.current.scrollBy(amount * (startingCardIndex - props.relatedProducts.length + 2), 0);
       setStartingCardIndex(startingCardIndex - 1);
     } else if (direction === 'forward') {
-      var amount = 500;
+      var amount = 350;
       carouselRef.current.scrollBy(amount * startingCardIndex, 0);
       setStartingCardIndex(startingCardIndex+1);
     }
   }
+
+  var cardAction;
+  if (props.removeFromLooks) {
+    cardAction = props.removeFromLooks;
+  } else if (props.compareProducts) {
+    cardAction = props.compareProducts;
+  }
   return (
     <div className='CardCarousel'>
-     {startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
-     {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
+      <div className='CardCarousel-Arrows'>
+       {startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
+       {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
+      </div>
+
       <div ref={carouselRef} className='CardCarousel-Scroller'>
-      {props.isLooks ? <AddToLooksCard refer={cardRef}/> : null}
-       {props.relatedProducts ?
-        props.relatedProducts.map(item =>
-          <ProductCard key={item.id} product={item} />)
-        : null
-        }
+        {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks} refer={cardRef}/> : null}
+        {props.relatedProducts ?
+          props.relatedProducts.map(item =>
+            <ProductCard cardAction={cardAction} key={item.id} product={item} />)
+        : null}
       </div>
     </div>
   )
