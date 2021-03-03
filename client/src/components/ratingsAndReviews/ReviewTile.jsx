@@ -7,6 +7,8 @@ class ReviewTile extends React.Component {
     this.state = {}
   }
 
+  // handleReport()
+
   render (){
     let review = this.props.review;
     return (
