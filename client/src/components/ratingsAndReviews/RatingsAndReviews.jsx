@@ -8,11 +8,16 @@ class RatingsAndReviews extends React.Component {
     super(props);
     this.state = {
       averageRating: '',
+      filterSelections: []
 
       // filter parameters
       // meta data
     };
   }
+
+
+
+
 
   render () {
     return (

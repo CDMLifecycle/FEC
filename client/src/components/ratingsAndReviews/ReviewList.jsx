@@ -46,12 +46,12 @@ class ReviewList extends React.Component {
   }
 
   submitWriteReview(postParams) {
-    console.log(postParams)
     axios.post('/reviews/add', postParams)
       .then(response => {
         console.log('successful post');
-        this.setState({ writeBtn: false })
+        this.setState({ writeBtn: false, count: this.state.count++ })
       })
+      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
       .catch(err => {
         console.log('did not post review');
         alert('did not post');
@@ -67,6 +67,7 @@ class ReviewList extends React.Component {
   sendHelpful(review_id) {
     axios.put('/reviews/helpful', { data: review_id })
       .then(res => console.log('success on helpful report'))
+      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
       .catch(err => console.log(err, 'error with helpful review'))
   }
 
