@@ -14,13 +14,18 @@ class WriteReview extends React.Component {
       email: '',
       photos: [],
       fit: '',
+      fitID: '',
       length: '',
+      lengthID: '',
       comfort: '',
+      comfortID: '',
       quality: '',
+      qualityID: '',
       postParams: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleBoolean = this.handleBoolean.bind(this);
   }
 
   handleChange(e) {
@@ -30,35 +35,45 @@ class WriteReview extends React.Component {
   }
 
   handleSubmit(e) {
+    let st = this.state;
     e.preventDefault();
     this.setState({
       date: new Date(),
       postParams: {
-        product_id: this.state.product_id,
-        rating: this.state.rating,
-        summary: this.state.summary,
-        body: this.state.body,
-        recommend: this.state.recommend,
-        name: this.state.name,
-        email: this.state.email,
+        product_id: Number(st.product_id),
+        rating: Number(st.rating),
+        summary: st.summary,
+        body: st.body,
+        recommend: st.recommend,
+        name: st.name,
+        email: st.email,
         photos: [],
         characteristics: {
-          fit: this.state.fit,
-          length: this.state.length,
-          quality: this.state.quality,
-          comfort: this.state.comfort
-          }
+          [st.fitID]: Number(st.fit),
+          [st.lengthID]: Number(st.length),
+          [st.qualityID]: Number(st.quality),
+          [st.comfortID]: Number(st.comfort)
         }
-      },
-      () => {
-        this.props.submitWriteReview(this.state.postParams)
       }
-    )
+    },
+    () => { this.props.submitWriteReview(this.state.postParams) });
+  }
+
+  handleBoolean(e) {
+    e.target.value === 'true'
+    ? this.setState({ recommend: true })
+    : this.setState({ recommend: false });
   }
 
   componentDidMount() {
+    let meta = this.props.productMetadata;
+    let metaChar = meta.characteristics;
     this.setState({
-      product_id: this.props.productID
+      product_id: meta.product_id,
+      fitID: metaChar.Fit.id,
+      lengthID: metaChar.Length.id,
+      qualityID: metaChar.Quality.id,
+      comfortID: metaChar.Comfort.id
     })
   }
 
@@ -104,10 +119,10 @@ class WriteReview extends React.Component {
             onChange={this.handleChange}
             required
           />
-          <label onChange={this.handleChange} value={this.state.recommend}>
+          <label onChange={this.handleBoolean} value={this.state.recommend}>
             <h6>Would you recommend this item?</h6>
-            <input type='radio' name='recommend' value={true} required />Yes
-            <input type='radio' name='recommend' value={false} />No
+            <input type='radio' name='recommend' value='true' required />Yes
+            <input type='radio' name='recommend' value='false' />No
           </label>
           <div className='characteristics-container'>
             <span style={{padding: '3px'}}>Characteristics</span>

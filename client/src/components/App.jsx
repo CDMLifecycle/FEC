@@ -17,18 +17,22 @@ class App extends React.Component {
 
     this.state = {
       productArr:  [],
+      productMetadata: {},
       searchedQuery: '',
       productID: '',
       searchedArr: [],
       reviewsList: [],
-      paths: '/'
+      paths: '/',
+      currentProductInformation: null
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.switchStatement = this.switchStatement.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.stringComparison = this.stringComparison.bind(this);
     this.getReviews = this.getReviews.bind(this);
+    this.getMetadata = this.getMetadata.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
+    this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
   }
 
   stringComparison() {
@@ -58,12 +62,19 @@ class App extends React.Component {
 
   getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
     return new Promise((resolve, reject) => {
-      axios.get('/reviews', {
-        params: { product_id, sort, count, page }
-      })
+      axios.get('/reviews', { params: { product_id, sort, count, page } })
         .then(res => resolve(this.setState({ reviewsList: res.data.results })))
+        .then(() => this.getMetadata(product_id))
         .catch(err => reject(console.log('error App.jsx - getReviews')))
     });
+  }
+
+  getMetadata(product_id) {
+    return new Promise((resolve, reject) => {
+      axios.get('/reviews/meta', { params: { product_id } })
+      .then(res => resolve(this.setState({ productMetadata: res.data })))
+      .catch(err => reject(console.log('error App.jsx - getMetadata')))
+    })
   }
 
   handleSubmitForm(searched) {
@@ -87,6 +98,16 @@ class App extends React.Component {
     }
   }
 
+  updateCurrentProductInformation(product) {
+    event.preventDefault();
+    if (typeof product === 'object' && product.campus) {
+      this.setState({
+        currentProductInformation: product
+      })
+    }
+  }
+
+
   switchStatement() {
     switch(this.state.paths) {
       case "/":
@@ -101,7 +122,7 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr}/>
             <RelatedItems productId={14042} />
-            <Looks products={[dummyData.formattedDefaultProduct]} />
+            <Looks products={[dummyData.formattedDefaultProduct]} currentProductId={14807} setCurrentProduct={this.updateCurrentProductInformation}/>
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
             {this.state.productID
@@ -109,6 +130,7 @@ class App extends React.Component {
                 productID={this.state.productID}
                 reviewsList={this.state.reviewsList}
                 getReviews={this.getReviews}
+                productMetadata={this.state.productMetadata}
                 />
               : <div></div>}
           </div>

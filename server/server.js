@@ -2,7 +2,7 @@ var express = require('express')
 var productController = require('./controller/products').productController;
 var reviewController = require('./controller/reviews').reviewController;
 var relatedProductRoutes = require('./routes/relatedProducts').relatedProducts;
-
+var curentProductInformationRoute = require('./routes/currentProductInformation').curentProductInformation;
 const ratingsAndReviewsRoutes = require('./routes/ratingsAndReviewsRoutes.js').ratingsAndReviewsRoutes;
 
 
@@ -18,7 +18,7 @@ app.use(express.json());
 //routes
 app.use('/relatedItemsData', relatedProductRoutes);
 app.use('/reviews', ratingsAndReviewsRoutes);
-
+app.use('/currentProductInformation', curentProductInformationRoute);
 
 //QA
 var getAnswers = path + '/qa/questions/:questions_id/answers';
