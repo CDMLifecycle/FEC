@@ -36,7 +36,6 @@ class QAMain extends React.Component {
       }
     })
     .then(response => {
-      console.log(Array.isArray(response.data.results));
       this.setState({
         questions: response.data.results
       })
