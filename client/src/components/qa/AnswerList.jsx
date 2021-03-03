@@ -8,10 +8,10 @@ class AnswerList extends React.Component {
 
     this.state = {
       answers: Object.values(this.props.answers),
-      showAnswers: [],
       answerLimit: 2
     }
     this.showMoreAnswers = this.showMoreAnswers.bind(this);
+    this.showLessAnswers = this.showLessAnswers.bind(this);
   }
   showMoreAnswers (e) {
     e.preventDefault();
@@ -20,6 +20,13 @@ class AnswerList extends React.Component {
       answerLimit: updateLimit
     })
     console.log('clicked on See More Answers')
+  }
+
+  showLessAnswers (e) {
+    e.preventDefault();
+    this.setState({
+      answerLimit: 2
+    })
   }
 
   componentDidMount() {
@@ -34,7 +41,9 @@ class AnswerList extends React.Component {
           )
         })}
         {this.state.answers.length > this.state.answerLimit ? (
-          <button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showMoreAnswers}>Load More Answers</button>) : (null)}
+          <button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showMoreAnswers}>Load More Answers</button>)
+          : this.state.answers.length === 0 || this.state.answers.length === this.state.answerLimit ? (null)
+          : (<button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showLessAnswers}>Collapse Answers</button>)}
       </div>
     )
   }
