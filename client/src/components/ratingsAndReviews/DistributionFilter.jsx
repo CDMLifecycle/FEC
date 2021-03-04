@@ -15,7 +15,6 @@ class DistributionFilter extends React.Component {
 
   handleClick(e) {
     // e.preventDefault();
-    console.log(e.target.value)
     let hit = e.target.value
     this.setState({
       [hit]: !this.state[hit]

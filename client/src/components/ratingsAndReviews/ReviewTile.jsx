@@ -9,11 +9,6 @@ class ReviewTile extends React.Component {
     this.state = {}
     this.handleHelpful = this.handleHelpful.bind(this);
     this.handleReport = this.handleReport.bind(this);
-    // this.throttleHandleHelpful = this.throttleHandleHelpful.bind(this);
-    // this.throttler = this.throttler.bind(throttler);
-    //throttled
-    // this.throttleHandleHelpful = throttle(e => this.handleHelpful(e), 1000)
-    // this.handleReport =
   }
 
   handleReport(e){
@@ -23,12 +18,10 @@ class ReviewTile extends React.Component {
 
   handleHelpful(e){
     e.preventDefault();
-    console.log('this:', this)
-    console.log('e: ', e)
     this.props.sendHelpful(e.target.value)
   }
 
-  render (){
+  render () {
     let review = this.props.review;
     return (
       <div className='review-tile' style={reviewTileStyle}>

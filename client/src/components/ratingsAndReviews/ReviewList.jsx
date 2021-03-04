@@ -31,9 +31,10 @@ class ReviewList extends React.Component {
 
   handleShowMoreReviews(e) {
     e.preventDefault();
-    this.setState({ count: this.state.count += 2 },
-    () => this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
-    )
+    this.setState({ count: this.state.count += 2 }, () => {
+      this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+        .then(() => this.props.reRender())
+    })
   }
 
   handleWriteReviewBtn(e) {
@@ -65,7 +66,6 @@ class ReviewList extends React.Component {
   }
 
   sendHelpful(review_id) {
-    console.log('sent')
     axios.put('/reviews/helpful', { data: review_id })
       .then(res => console.log('success on helpful report'))
       .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
@@ -74,8 +74,6 @@ class ReviewList extends React.Component {
 
   render () {
     let reviewArray = this.props.reviewsList;
-
-    console.log('Current array: ', reviewArray)
     return (
       <div>
         <h2>Reviews List</h2>

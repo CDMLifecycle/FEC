@@ -14,33 +14,38 @@ class RatingsAndReviews extends React.Component {
     };
     this.updateFilter = this.updateFilter.bind(this);
     this.filterArray = this.filterArray.bind(this);
+    this.reRender = this.reRender.bind(this);
   }
-
 
   componentDidMount() {
-    this.setState({
-      filteredList: this.props.reviewsList
-    })
+    this.setState({ filteredList: this.props.reviewsList })
   }
 
-  updateFilter(states) {
+  reRender(){
+    if (this.state.filterSelections.length) {
+      this.filterArray(this.props.reviewsList, this.state.filterSelections);
+      this.setState({ filteredList: refilter });
+    } else {
+      this.setState({ filteredList: this.props.reviewsList })
+    }
+  }
+
+  updateFilter(state) {
     let update = [];
-    for (let num in states) {
-      if (states[num]) {
+    for (let num in state) {
+      if (state[num]) {
         update.push(Number(num))
       }
     }
     if (update.length) {
-      this.setState({ filterSelections: update }, () => {
-        this.filterArray(this.props.reviewsList, this.state.filterSelections)
-      })
+      this.filterArray(this.props.reviewsList, update)
     } else {
       this.setState({
         filterFlag: false,
-        filteredList: this.props.reviewsList
-       })
+        filteredList: this.props.reviewsList,
+        filterSelections: []
+      });
     }
-
   }
 
   filterArray(array, ratingFilter) {
@@ -51,7 +56,8 @@ class RatingsAndReviews extends React.Component {
       }
     });
     this.setState({
-      filterListed: filtered
+      filteredList: filtered,
+      filterSelections: ratingFilter
     });
   }
 
@@ -73,6 +79,7 @@ class RatingsAndReviews extends React.Component {
           getReviews={this.props.getReviews}
           productMetadata={meta}
           filterSelections={this.state.filterSelections}
+          reRender={this.reRender}
         />
       </div>
     </div>

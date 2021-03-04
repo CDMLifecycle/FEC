@@ -4,7 +4,6 @@ import DistributionFilter from './DistributionFilter.jsx';
 import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 
 const RatingBreakdown = (props) => {
-  console.log(props);
   return props.productMetadata.totals
   ?
 
