@@ -15,3 +15,18 @@
   z-index: 10;
   position: absolute;
 } */
+
+locked-slider::disabled {
+  color: red;
+  background-color: blue;
+}
+
+
+input[type=range] {
+  -webkit-appearance: none;
+  max-width: 20rem;
+  width: 100%;
+  background: transparent;
+  background-color: blue;
+
+}

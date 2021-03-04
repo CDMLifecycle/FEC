@@ -6,11 +6,9 @@ import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 const RatingBreakdown = (props) => {
   return props.productMetadata.totals
   ?
-
     (
     <div className='rating-breakdown-container'>
       <div>
-        {/* {console.log(productMetadata)} */}
         <h1>{props.productMetadata.totals.avgRating.toFixed(1)}</h1>
         <SingleStar avgQtr={props.productMetadata.totals.avgRatingsToQtr}/>
         <h3>{props.productMetadata.totals.percentRecommend}% of reviews recommend this product</h3>
@@ -18,7 +16,7 @@ const RatingBreakdown = (props) => {
           productMetadata={props.productMetadata}
           updateFilter={props.updateFilter}
         />
-        <CharacteristicsBreakdown />
+        <CharacteristicsBreakdown productMetadata={props.productMetadata}/>
       </div>
     </div>
   )
