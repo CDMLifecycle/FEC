@@ -7,15 +7,19 @@ var CardCarousel = (props) => {
 
   const [startingCardIndex, setStartingCardIndex] = useState(1);
   const carouselRef = useRef(null);
-  const cardRef = useRef(null);
+  const [cardWidth, setCardWidth] = useState(null);
+
+  var getWidthOfCard = (width) => {
+    setCardWidth(width);
+  }
 
   var scroll = (direction) => {
+    var amount;
+   cardWidth !== null ? amount = cardWidth : amount = 350;
     if (direction === 'back') {
-      var amount = 350;
       carouselRef.current.scrollBy(amount * (startingCardIndex - props.relatedProducts.length + 2), 0);
       setStartingCardIndex(startingCardIndex - 1);
     } else if (direction === 'forward') {
-      var amount = 350;
       carouselRef.current.scrollBy(amount * startingCardIndex, 0);
       setStartingCardIndex(startingCardIndex+1);
     }
@@ -35,10 +39,13 @@ var CardCarousel = (props) => {
       </div>
 
       <div ref={carouselRef} className='CardCarousel-Scroller'>
-        {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks} refer={cardRef}/> : null}
+        {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks}/> : null}
         {props.relatedProducts ?
-          props.relatedProducts.map(item =>
-            <ProductCard cardAction={cardAction} key={item.id} product={item} />)
+          props.relatedProducts.map((item, index) =>
+          index === 0 ?
+            <ProductCard getWidthOfCard={getWidthOfCard} removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />
+            :
+            <ProductCard removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />)
         : null}
       </div>
     </div>

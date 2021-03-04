@@ -153,7 +153,30 @@ body, html {
 
 /*------------------------------------Styles for Related Products-------------------------- */
 
+.RelatedItems {
+  height: auto;
+  /* width: 100%; */
+  /* background-color: seashell; */
+  margin-left: 10%;
+  margin-right: 10%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.RelatedItems h2 {
+  margin-bottom: 0;
+}
+
+.RelatedItems-carousel-placeholder {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
 .ProductCard {
+  display: grid;
+  grid-template-rows:67% 33%;
   height: auto;
   width: 24%;
   background-color: rgb(203, 203, 203);
@@ -167,26 +190,42 @@ body, html {
   border: 2px solid black;
 }
 
-.RelatedItems {
-  height: auto;
+.ProductCard-img-container {
+
+}
+
+
+.ProductCard-primary-img {
   width: 80%;
-  background-color: seashell;
-  margin-left: 10%;
-  margin-right: 10%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
-.RelatedItems-carousel-placeholder {
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
+.ProductCard-product-information {
+  text-align: left;
+  background-color: white;
+  padding-left: 5%;
+  height: inherit;
 }
 
-.ProjectCard-primary-img {
-  width: 50%;
-  height: 50%;
+.ProductCard-product-information-rating {
+  margin-bottom: 0;
+}
+
+.ProductCard-product-information-price {
+  margin: 0;
+}
+
+.ProductCard-product-information-price-discounted {
+  margin: 0;
+  text-decoration: line-through;
+}
+
+.ProductCard-product-information-sale-price {
+  margin: 0;
+  color: red;
+}
+
+.ProductCard-product-information-name {
+  margin: 0;
 }
 
 .CardCarousel {
@@ -201,8 +240,8 @@ body, html {
 }
 
 .CardCarousel-Scroller::-webkit-scrollbar {
-    /* width: 0px;
-    background: transparent */
+    width: 0px;
+    background: transparent
 }
 
 .material-icons {
@@ -233,11 +272,16 @@ body, html {
   margin-top: 40%;
 }
 
+.ProductCard-action-icon {
+  float: right;
+  margin-top: 2px;
+  margin-right: 5px;
+}
 
 .Looks {
   height: auto;
-  width: 80%;
-  background-color: rgb(77, 190, 250);
+  /* width: 80%; */
+  /* background-color: rgb(77, 190, 250); */
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -247,14 +291,67 @@ body, html {
   width: 10%;
   margin: 0;
   padding: 0;
-  right: 0;
+  float: right;
+  text-align: right;
 }
 
 .CarouselArrow-back {
   display: inline;
   width: 10%;
+  margin-left: 5px;
 }
 
+.ProductComparison {
+  width: 50%;
+  height: auto;
+  background-color: #ffffff;
+  z-index: 101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border: 1px solid black;
+  padding-bottom: 20px;
+  position: relative;
+  top: 25%;
+  left: 25%;
+}
+
+.ProductComparison-headings {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.ComparisonTable {
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.ComparisonTable::-webkit-scrollbar {
+  width: 0px;
+  background: transparent
+}
+
+.ComparisonTable-row {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  margin-bottom: 7px;
+}
+
+.ProductComparison-overlay {
+  /* opacity:0.8; */
+  /* background-color:#ccc; */
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  top:0px;
+  /* left:0px; */
+  z-index:100;
+  overflow: auto;
+}
 
 /*------------------------------------Styles for QA -------------------------- */
 
