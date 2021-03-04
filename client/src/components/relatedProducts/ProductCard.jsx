@@ -6,7 +6,6 @@ var ProductCard = (props) => {
 
   useEffect(() => {
     if (props.getWidthOfCard !== undefined) {
-      console.log('the width is ', cardRef.current.offsetWidth);
       props.getWidthOfCard(cardRef.current.offsetWidth);
     }
   }, []);

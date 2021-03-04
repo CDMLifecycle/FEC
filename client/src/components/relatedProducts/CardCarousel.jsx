@@ -11,7 +11,6 @@ var CardCarousel = (props) => {
 
   var getWidthOfCard = (width) => {
     setCardWidth(width);
-    console.log('set width in carousel to' , width);
   }
 
   var scroll = (direction) => {
