@@ -228,6 +228,13 @@ body, html {
   margin: 0;
 }
 
+
+.ProductCard-action-icon {
+  float: right;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
 .CardCarousel {
   width: 100%;
 }
@@ -270,12 +277,6 @@ body, html {
   font-size: 80px;
   text-align: center;
   margin-top: 40%;
-}
-
-.ProductCard-action-icon {
-  float: right;
-  margin-top: 2px;
-  margin-right: 5px;
 }
 
 .Looks {

@@ -1,10 +1,17 @@
 import React, {useState, useRef, useEffect} from 'react';
 
 var ProductCard = (props) => {
-  const [primaryImg, setPrimaryImg] = useState(props.product.photos[0].thumbnail_url);
+  const [primaryImg, setPrimaryImg] = useState(null);
   const cardRef = useRef(null);
 
   useEffect(() => {
+
+    if(props.product.photos[0].thumbnail_url) {
+      setPrimaryImg(props.product.photos[0].thumbnail_url)
+    } else {
+      setPrimaryImg(defaultImg);
+    }
+
     if (props.getWidthOfCard !== undefined) {
       props.getWidthOfCard(cardRef.current.offsetWidth);
     }
@@ -33,7 +40,7 @@ var ProductCard = (props) => {
   return(
     <div ref={cardRef} className='ProductCard'>
       <div className='ProductCard-img-container'>
-        <img className='ProductCard-primary-img' src={primaryImg ? primaryImg : defaultImg}></img>
+        <img className='ProductCard-primary-img' src={primaryImg}></img>
         <span onClick={handleClick} className='ProductCard-action-icon'>{
          props.compareProducts ? <span className="material-icons">
          compare_arrows
