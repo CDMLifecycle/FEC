@@ -1,8 +1,8 @@
 const calc  = {
 
   averageRatingToQtr: (ratings) => {
-    let average = calc.avgRating(ratings)
-    return average ? Math.round(average * 4) / 4 : null
+    let average = calc.avgRating(ratings);
+    return average ? Math.round(average * 4) / 4 : null;
   },
 
   sumObjValues: (property) => {
@@ -20,7 +20,7 @@ const calc  = {
     let keyValueSum = 0;
     let flag = false;
     for (let rating in property) {
-      keyValueSum += parseInt(rating) * parseInt(property[rating])
+      keyValueSum += parseInt(rating) * parseInt(property[rating]);
       flag = true;
     }
     return flag ? Number((keyValueSum / totalRatings).toFixed(2)) : null;
@@ -40,8 +40,6 @@ const calc  = {
     }
     return { totals };
   }
-
 }
-
 
 module.exports = calc;
