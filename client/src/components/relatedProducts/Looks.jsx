@@ -13,7 +13,6 @@ var Looks = (props) => {
       if (err) {
         console.log(err);
       } else {
-        console.log('got the current product', data);
         setCurrentProduct(data);
         props.setCurrentProduct(data);
       }
@@ -24,7 +23,6 @@ var Looks = (props) => {
   var addToLooks = () => {
     var clone = rfdc();
     for (let product of currentLooks) {
-      console.log(product)
       if (product.id === props.currentProductId) {
         return;
       }
