@@ -16,6 +16,8 @@ class ReviewList extends React.Component {
     this.handleShowMoreReviews = this.handleShowMoreReviews.bind(this);
     this.handleWriteReviewBtn = this.handleWriteReviewBtn.bind(this);
     this.submitWriteReview = this.submitWriteReview.bind(this);
+    this.sendHelpful = this.sendHelpful.bind(this);
+    this.sendReport = this.sendReport.bind(this);
   }
 
   handleSelectChange(e) {
@@ -44,21 +46,33 @@ class ReviewList extends React.Component {
   }
 
   submitWriteReview(postParams) {
-    console.log(postParams)
     axios.post('/reviews/add', postParams)
       .then(response => {
         console.log('successful post');
-        this.setState({ writeBtn: false })
+        this.setState({ writeBtn: false, count: this.state.count++ })
       })
+      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
       .catch(err => {
         console.log('did not post review');
         alert('did not post');
       })
   }
 
+  sendReport(review_id) {
+    axios.put('/reviews/report', { data: review_id })
+     .then(res => console.log('success on report'))
+     .catch(err => console.log('error with reporting review'))
+  }
+
+  sendHelpful(review_id) {
+    axios.put('/reviews/helpful', { data: review_id })
+      .then(res => console.log('success on helpful report'))
+      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
+      .catch(err => console.log(err, 'error with helpful review'))
+  }
+
   render () {
     let reviewArray = this.props.reviewsList;
-
     return (
       <div>
         <h2>Reviews List</h2>
@@ -76,8 +90,12 @@ class ReviewList extends React.Component {
           <ReviewTile
             review={review}
             key={review.review_id}
-          />))
-        }
+            getReviews={this.props.getReviews}
+            getReviewsParams={this.state}
+            sendHelpful={this.sendHelpful}
+            sendReport={this.sendReport}
+          />
+        ))}
         <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
         <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
         {this.state.writeBtn

@@ -1,11 +1,11 @@
 const axios = require('axios');
 const auth_token = require('../../authorization.config.js').token;
+const calc = require('./calculator.js')
 
 const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
 const reviewsURL = `${URL}/reviews`;
 const metaReviewsURL = `${URL}/reviews/meta`;
-const reportReviewsURL = `${URL}/reviews/:review_id/report`;
-const helpfulReviewsURL = `${URL}/reviews/:review_id/helpful`;
+
 
 // Set Header_______________________________________________
 const options = {
@@ -20,7 +20,7 @@ const ratingsAndReviewsController = {
   // tested
   getProductReviews: params => {
     return new Promise((resolve, reject) => {
-      let queryParams = options;
+      let queryParams = Object.assign({}, options);
       queryParams.params = params;
       axios.get(reviewsURL, queryParams)
         .then(res => resolve(res.data))
@@ -31,10 +31,10 @@ const ratingsAndReviewsController = {
   // tested
   getMetaReviewData: params => {
     return new Promise((resolve, reject) => {
-      let queryParams = options;
+      let queryParams = Object.assign({}, options);
       queryParams.params =  params;
       axios.get(metaReviewsURL, queryParams)
-        .then(res => resolve(res.data))
+        .then(res => resolve(Object.assign(res.data, calc.calcMeta(res.data))))
         .catch(err=> reject(err))
     })
   },
@@ -48,27 +48,21 @@ const ratingsAndReviewsController = {
     })
   },
 
-  // untested
+  // tested
   reportReview: review_id => {
     return new Promise((resolve, reject) => {
-      let queryParams = options;
-      queryParams.params = { review_id };
-
-      axios.put(reportReviewsURL, queryParams)
+      axios.put(`${URL}/reviews/${review_id.data}/report`, review_id.data, options)
         .then(res => resolve(res))
         .catch(err => reject(err))
     })
   },
 
-  // untested
+  // tested
   markHelpful: review_id => {
     return new Promise((resolve, reject) => {
-      let queryParams = options;
-      queryParams.params = { review_id };
-
-      axios.put(helpfulReviewsURL, queryParams)
-        .then(res => resolve(res))
-        .catch(err => reject(err))
+      axios.put(`${URL}/reviews/${review_id.data}/helpful`, review_id.data, options)
+        .then(res => resolve(console.log(res.data)))
+        .catch(err => reject(console.log(err)))
     })
   }
 };
