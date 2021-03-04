@@ -5,9 +5,19 @@ class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
+    this.handleHelpful = this.handleHelpful.bind(this);
+    this.handleReport = this.handleReport.bind(this);
   }
 
-  // handleReport()
+  handleReport(e){
+    e.preventDefault();
+    this.props.sendReport(e.target.value)
+  }
+
+  handleHelpful(e){
+    e.preventDefault();
+    this.props.sendHelpful(e.target.value)
+  }
 
   render (){
     let review = this.props.review;
@@ -19,8 +29,16 @@ class ReviewTile extends React.Component {
         <h6>{review.body}</h6>
         <h6>{review.date}</h6>
         <h6>{review.reviewer_name}</h6>
-        <button>report</button>
-        <button>mark helpful</button>
+        <div>
+          <button
+            onClick={this.handleReport}
+            value={review.review_id}
+          >report</button>
+          <button
+            onClick={this.handleHelpful}
+            value={review.review_id}
+          >mark helpful</button>
+        </div>
         <h6>{review.helpful}</h6>
         <h6>{review.helpfulness}</h6>
         {/* <img>If images</img> */}
