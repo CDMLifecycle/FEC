@@ -31,9 +31,10 @@ class ReviewList extends React.Component {
 
   handleShowMoreReviews(e) {
     e.preventDefault();
-    this.setState({ count: this.state.count += 2 },
-    () => this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
-    )
+    this.setState({ count: this.state.count += 2 }, () => {
+      this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+        .then(() => this.props.reRender())
+    })
   }
 
   handleWriteReviewBtn(e) {
