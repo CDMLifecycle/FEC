@@ -1,0 +1,32 @@
+/* .star {
+  height: 20px;
+  width: 20px;
+  font-size: 50em;
+  color: black;
+  border-color: coral;
+  /* position: absolute; */
+
+
+/* .fill {
+  font-size: 25em;
+  height: 20px;
+  width: 20px;
+  color:white;
+  z-index: 10;
+  position: absolute;
+} */
+
+locked-slider::disabled {
+  color: red;
+  background-color: blue;
+}
+
+
+input[type=range] {
+  -webkit-appearance: none;
+  max-width: 20rem;
+  width: 100%;
+  background: transparent;
+  background-color: blue;
+
+}

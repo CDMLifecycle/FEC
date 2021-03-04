@@ -1,5 +1,7 @@
 import React from 'react';
 import SingleStar from './SingleStar.jsx';
+import { throttle } from 'lodash';
+
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class ReviewTile extends React.Component {
     this.props.sendHelpful(e.target.value)
   }
 
-  render (){
+  render () {
     let review = this.props.review;
     return (
       <div className='review-tile' style={reviewTileStyle}>
