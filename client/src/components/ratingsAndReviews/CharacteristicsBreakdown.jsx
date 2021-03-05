@@ -2,7 +2,7 @@ import React from 'react';
 
 const CharacteristicsBreakdown = (props) =>
 
-  (<div>
+  (<div className='characteristics-container'>
       <h5>Breakdown by characteristics</h5>
       <div>
         <span>Fit:     </span>

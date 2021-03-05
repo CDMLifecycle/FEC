@@ -21,6 +21,7 @@ class Product_Detail extends React.Component {
       quantity: '',
       color: '',
       metadata: {},
+      fullscreen: false,
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -29,6 +30,7 @@ class Product_Detail extends React.Component {
     this.sizeSet = this.sizeSet.bind(this);
     this.quantitySet = this.quantitySet.bind(this);
     this.colorSet = this.colorSet.bind(this);
+    this.fullscreen = this.fullscreen.bind(this);
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
@@ -86,6 +88,22 @@ class Product_Detail extends React.Component {
   colorSet(val) {
     this.setState({color: val});
   }
+  fullscreen() {
+    console.log(document.getElementById('lg'));
+    if (this.state.fullscreen) {
+      document.getElementById('lg').style.width = 'auto';
+      document.getElementById('lg').style.height = '600px';
+      document.getElementById('lg').style.maxWidth = '1000px';
+      this.setState({fullscreen: false});
+    } else {
+      document.getElementById('lg').style.maxWidth = 'none';
+      document.getElementById('lg').style.position = 'relative';
+      document.getElementById('lg').style.height = '1500px';
+      document.getElementById('lg').style.width ='auto';
+
+      this.setState({fullscreen: true});
+    }
+  }
 
   render() {
     var description = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
@@ -103,8 +121,11 @@ class Product_Detail extends React.Component {
               <div className = 'photoContainer'>
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
+              <button id='fs' onClick={this.fullscreen}>
+                  <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
+                </button>
               <div className = 'largePhoto'>
-                <LargePhoto photo={this.state.largePhoto}/>
+                <LargePhoto photo={this.state.largePhoto} fullscreen={this.fullscreen}/>
               </div>
             </div>
           </div>
@@ -134,7 +155,7 @@ class Product_Detail extends React.Component {
               </div>
                   <span className='styleFont'>Select Size</span>
               <div id='size'>
-                  <button className='sizeButton' id='S' value='XS' key='XS'>XS</button>
+                  <button className='sizeButton' id='XS' value='XS' key='XS'>XS</button>
                   <button className='sizeButton' value='S' key='S'>S</button >
                   <button  className='sizeButton' value='M' key='M'>M</button >
                   <button  className='sizeButton' value='L' key='L'>L</button >

@@ -16,6 +16,44 @@
   position: absolute;
 } */
 
+/* Ratings and Reviews top level styles */
+
+#ratings-reviews-main-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  width: 100%;
+  padding-top: 10px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#ratings-reviews-header {
+  text-transform: uppercase;
+  display: block;
+  font-weight: 800;
+  font-size: 25px;
+}
+
+#breakdown-reviewlist-content {
+  display: flex;
+  border: 1px solid black;
+}
+
+img.star {
+  width: 25px;
+  height: auto;
+}
+
+/* _____________________________ */
+
+
+/*  Write Review Modal   */
+
+
+
+
+
 locked-slider::disabled {
   color: red;
   background-color: blue;
@@ -30,3 +68,40 @@ input[type=range] {
   background-color: blue;
 
 }
+
+
+/*  Write Review Modal   */
+
+.write-review-container {
+  width: 80%;
+  margin: auto;
+  background-color: coral;
+  border: 2px #333 solid;
+}
+
+/* ___________________________ */
+
+
+/*   Review Tile  */
+.btn-review-tile {
+  text-decoration: underline;
+ }
+
+ /* _________________________ */
+
+
+
+ /*  Distribution filter  */
+.slider-container Slider {
+  display: block;
+ }
+
+ /* _________________________ */
+
+
+ /*  Characterisctics   */
+ .characteristics-container input {
+  display: block;
+ }
+
+ /* _________________________ */
