@@ -21,6 +21,7 @@ class Product_Detail extends React.Component {
       quantity: '',
       color: '',
       metadata: {},
+      fullscreen: false,
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -29,6 +30,7 @@ class Product_Detail extends React.Component {
     this.sizeSet = this.sizeSet.bind(this);
     this.quantitySet = this.quantitySet.bind(this);
     this.colorSet = this.colorSet.bind(this);
+    this.fullscreen = this.fullscreen.bind(this);
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
@@ -86,6 +88,19 @@ class Product_Detail extends React.Component {
   colorSet(val) {
     this.setState({color: val});
   }
+  fullscreen() {
+    console.log(document.getElementById('lg'));
+    if (this.state.fullscreen) {
+      document.getElementById('lg').style.width = 'auto';
+      document.getElementById('lg').style.height = '600px';
+      this.setState({fullscreen: false});
+    } else {
+      document.getElementById('lg').style.width = 'auto';
+      document.getElementById('lg').style.height = '1500px';
+      this.setState({fullscreen: true});
+
+    }
+  }
 
   render() {
     var description = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
@@ -103,6 +118,9 @@ class Product_Detail extends React.Component {
               <div className = 'photoContainer'>
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
+              <button id='fs' onClick={this.fullscreen}>
+                  <img src='https://png.pngtree.com/png-vector/20190223/ourlarge/pngtree-full-screen-vector-icon-png-image_696454.jpg' width='30px' height='30px'></img>
+                </button>
               <div className = 'largePhoto'>
                 <LargePhoto photo={this.state.largePhoto}/>
               </div>
@@ -134,7 +152,7 @@ class Product_Detail extends React.Component {
               </div>
                   <span className='styleFont'>Select Size</span>
               <div id='size'>
-                  <button className='sizeButton' id='S' value='XS' key='XS'>XS</button>
+                  <button className='sizeButton' id='XS' value='XS' key='XS'>XS</button>
                   <button className='sizeButton' value='S' key='S'>S</button >
                   <button  className='sizeButton' value='M' key='M'>M</button >
                   <button  className='sizeButton' value='L' key='L'>L</button >
