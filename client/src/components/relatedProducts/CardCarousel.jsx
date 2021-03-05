@@ -17,7 +17,7 @@ var CardCarousel = (props) => {
     var amount;
    cardWidth !== null ? amount = cardWidth : amount = 350;
     if (direction === 'back') {
-      carouselRef.current.scrollBy(amount * (startingCardIndex - props.relatedProducts.length + 2), 0);
+      carouselRef.current.scrollBy((amount + 30) * (startingCardIndex - props.relatedProducts.length + 2), 0);
       setStartingCardIndex(startingCardIndex - 1);
     } else if (direction === 'forward') {
       carouselRef.current.scrollBy(amount * startingCardIndex, 0);

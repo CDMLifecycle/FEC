@@ -17,11 +17,6 @@ var ProductCard = (props) => {
     }
   }, []);
 
-
-
-
-
-
   var defaultImg = 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'
 
   var handleClick = () => {
@@ -40,19 +35,19 @@ var ProductCard = (props) => {
   return(
     <div ref={cardRef} className='ProductCard'>
       <div className='ProductCard-img-container'>
-        <img className='ProductCard-primary-img' src={primaryImg}></img>
-        <span onClick={handleClick} className='ProductCard-action-icon'>{
-         props.compareProducts ? <span className="material-icons">
-         compare_arrows
-         </span> :
-         <span className="material-icons">remove_circle</span>
+        <div className='ProductCard-action-icon-background'>{
+           props.compareProducts ? <span onClick={handleClick} className="material-icons ProductCard-action-icon">
+           compare_arrows
+           </span> :
+           <span onClick={handleClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
         }
-        </span>
+        </div>
+        <img className='ProductCard-primary-img' src={primaryImg}></img>
       </div>
       <div className='ProductCard-product-information'>
-        <p>{props.product.category}</p>
-        <p className='ProductCard-product-information-name'>{props.product.name}</p>
-        <p className={saleClass}>${props.product.default_price}</p>
+        <p className='ProductCard-product-information-category'>{props.product.category}</p>
+        <p className='ProductCard-product-information-name'>{props.product.name.toUpperCase()}</p>
+        <p className={saleClass}>${props.product.default_price.substring(0, props.product.default_price.indexOf('.'))}</p>
         {props.product.sale_price ? <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
         <p className='ProductCard-product-information-rating'>{props.product.rating ? props.product.rating : "product unrated"}</p>
       </div>
