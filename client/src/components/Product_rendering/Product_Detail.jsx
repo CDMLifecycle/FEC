@@ -19,7 +19,8 @@ class Product_Detail extends React.Component {
       rating: 0,
       size: '',
       quantity: '',
-      color: ''
+      color: '',
+      metadata: {},
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -45,9 +46,10 @@ class Product_Detail extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    var returnObj = {};
     if(props.searchedArr[0]) {
       if(state.products !== props.searchedArr) {
-        return {products: props.searchedArr, id: props.productID};
+        return {products: props.searchedArr, id: props.productID}
       }
     }
     return null;
@@ -63,13 +65,20 @@ class Product_Detail extends React.Component {
     if (prevState.id !== this.state.id) {
       this.getStyle(this.state.id);
     }
+    if(prevState.metadata !== this.props.Metadata) {
+      this.setState({metadata: this.props.Metadata}, () => {
+        if(this.props.Metadata.totals) {
+          this.setState({rating: this.props.Metadata.totals.avgRating});
+        }
+      });
+    }
   }
   reviewSet (event) {
     var val = Number(event.target.value);
     this.setState({rating: val});
   }
   sizeSet(event) {
-    this.setState({size: document.getElementById('sizeId').value});
+    this.setState({size: event.target.value});
   }
   quantitySet(event) {
     this.setState({quantity: document.getElementById('quantityId').value});
@@ -79,7 +88,7 @@ class Product_Detail extends React.Component {
   }
 
   render() {
-    var func = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
+    var description = this.state.products[0] ? <div className='descriptionText'>Product Description: {this.state.products[0].description}</div> : <div></div>
     var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name} </div> : <div></div>
     var categoryName = this.state.products[0] ? <div className='categoryName'>{this.state.products[0].category}</div> : <div></div>
     var price = this.state.products[0] ? <div className='priceCost'>Price: {this.state.products[0].default_price}</div> : <div></div>
@@ -89,21 +98,23 @@ class Product_Detail extends React.Component {
     return(
       <div>
         <div className='containersInContainers'>
-          <div className = 'allPhotoscontainer'>
-            <div className = 'photoContainer'>
-              <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
-            </div>
-            <div className = 'largePhoto'>
-              <LargePhoto photo={this.state.largePhoto}/>
+          <div className='pictureBackground'>
+            <div className = 'allPhotoscontainer'>
+              <div className = 'photoContainer'>
+                <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
+              </div>
+              <div className = 'largePhoto'>
+                <LargePhoto photo={this.state.largePhoto}/>
+              </div>
             </div>
           </div>
           <div className='containerColumn'>
             <div className='reviews'>
-              Reviews: <Rating value={this.state.rating}
+              <Rating value={this.state.rating}
                 precision={0.5}
                 max={5}
                 name="unique-rating"
-                onClick={this.reviewSet}
+                readOnly
               />
             </div>
             {categoryName}
@@ -121,21 +132,18 @@ class Product_Detail extends React.Component {
                   {this.fun()}
                 </select>
               </div>
-              <div className='size'>
-                Size:
-                <select id='sizeId' onChange={this.sizeSet}>
-                  <option key='holder'>SELECT SIZE</option>
-                  <option value='XS' key='XS'>XS</option>
-                  <option value='S' key='S'>S</option>
-                  <option value='M' key='M'>M</option>
-                  <option value='L' key='L'>L</option>
-                  <option value='XL' key='XL'>XL</option>
-                  <option value='XXL' key='XXL'>XXL</option>
-                </select>
+                  <span className='styleFont'>Select Size</span>
+              <div id='size'>
+                  <button className='sizeButton' id='S' value='XS' key='XS'>XS</button>
+                  <button className='sizeButton' value='S' key='S'>S</button >
+                  <button  className='sizeButton' value='M' key='M'>M</button >
+                  <button  className='sizeButton' value='L' key='L'>L</button >
+                  <button  className='sizeButton' value='XL' key='XL'>XL</button >
+                  <button  className='sizeButton' value='XXL' key='XXL'>XXL</button >
               </div>
           </div>
         </div>
-        {func}
+        {description}
       </div>
     )
   }
