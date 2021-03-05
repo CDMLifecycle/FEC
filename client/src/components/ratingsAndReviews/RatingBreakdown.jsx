@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleStar from './SingleStar.jsx';
+import Stars from './Stars.jsx';
 import DistributionFilter from './DistributionFilter.jsx';
 import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 
@@ -10,7 +11,7 @@ const RatingBreakdown = (props) => {
     <div className='rating-breakdown-container'>
       <div>
         <h1>{props.productMetadata.totals.avgRating.toFixed(1)}</h1>
-        <SingleStar avgQtr={props.productMetadata.totals.avgRatingsToQtr}/>
+        <Stars avgQtr={props.productMetadata.totals.avgRatingsToQtr}/>
         <h3>{props.productMetadata.totals.percentRecommend}% of reviews recommend this product</h3>
         <DistributionFilter
           productMetadata={props.productMetadata}

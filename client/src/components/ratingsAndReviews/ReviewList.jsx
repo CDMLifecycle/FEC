@@ -95,6 +95,7 @@ class ReviewList extends React.Component {
             getReviewsParams={this.state}
             sendHelpful={this.sendHelpful}
             sendReport={this.sendReport}
+            productMetadata={this.props.productMetadata}
           />
         ))}
         <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
