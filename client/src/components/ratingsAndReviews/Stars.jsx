@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleStar from './SingleStar.jsx';
+import './styles.css';
 
 
 class Stars extends React.Component {
