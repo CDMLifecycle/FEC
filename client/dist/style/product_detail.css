@@ -13,7 +13,8 @@ html {
   height: 100%;
   width: 100%;
   flex:1;
-  margin-left: 30px;
+  justify-content: center;
+  align-items: center;
 }
 .pictureBackground {
   background-color: mintcream;
@@ -34,9 +35,10 @@ html {
   height: 500px;
   display:flex;
   overflow:scroll;
-  align-items: center;
   background-color: mintcream;
   margin-top: 40px;
+  position: relative;
+  left: 30px;
 }
 
 .photoContainer::-webkit-scrollbar {
@@ -44,8 +46,12 @@ html {
 }
 
 .largePhoto {
+  box-sizing: border-box;
   flex: 3;
   background-color: mintcream;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
   display: flex;
   width:auto;
   height:100%;
@@ -66,6 +72,7 @@ img.thumbnails {
 img.thumbnails:hover {
   width: 120px;
   height: 120px;
+  cursor: pointer;
 }
 
 img.largeImage {
@@ -73,7 +80,22 @@ img.largeImage {
   width: auto;
   margin: 40px;
   max-width: 1000px;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
+  transition: 0.5s all ease-in-out;
 }
+img.magnifier-image {
+  height: 600px;
+  width: auto;
+  margin: 40px;
+  max-width: 1000px;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
+  transition: 0.5s all ease-in-out;
+}
+
 button#fs{
   width: 40px;
   height: 40px;
@@ -82,9 +104,11 @@ button#fs{
   position: relative;
   left: 100px;
   margin: 20px;
+  bottom: 320px;
 }
 button#fs:hover {
-  background-color: snow;
+  background-color: grey;
+  cursor: pointer;
 }
 .reviews {
   flex:1;
@@ -147,6 +171,7 @@ button#fs:hover {
 .circleStyle:hover {
   width: 90px;
   height: 90px;
+  cursor: pointer;
 }
 
 .styleFont {
@@ -198,10 +223,12 @@ body, html {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
+  border-radius: 50%;
 }
 .sizeButton:hover {
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
 .sizeButton:focus {

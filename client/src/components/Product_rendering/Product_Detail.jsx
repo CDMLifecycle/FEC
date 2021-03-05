@@ -93,12 +93,15 @@ class Product_Detail extends React.Component {
     if (this.state.fullscreen) {
       document.getElementById('lg').style.width = 'auto';
       document.getElementById('lg').style.height = '600px';
+      document.getElementById('lg').style.maxWidth = '1000px';
       this.setState({fullscreen: false});
     } else {
-      document.getElementById('lg').style.width = 'auto';
+      document.getElementById('lg').style.maxWidth = 'none';
+      document.getElementById('lg').style.position = 'relative';
       document.getElementById('lg').style.height = '1500px';
-      this.setState({fullscreen: true});
+      document.getElementById('lg').style.width ='auto';
 
+      this.setState({fullscreen: true});
     }
   }
 
@@ -119,10 +122,10 @@ class Product_Detail extends React.Component {
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
               <button id='fs' onClick={this.fullscreen}>
-                  <img src='https://png.pngtree.com/png-vector/20190223/ourlarge/pngtree-full-screen-vector-icon-png-image_696454.jpg' width='30px' height='30px'></img>
+                  <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
               <div className = 'largePhoto'>
-                <LargePhoto photo={this.state.largePhoto}/>
+                <LargePhoto photo={this.state.largePhoto} fullscreen={this.fullscreen}/>
               </div>
             </div>
           </div>
