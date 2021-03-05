@@ -35,13 +35,15 @@ class ReviewTile extends React.Component {
           <button
             onClick={this.handleReport}
             value={review.review_id}
+            className="btn-review-tile"
           >report</button>
           <button
             onClick={this.handleHelpful}
             value={review.review_id}
+            className="btn-review-tile"
           >mark helpful</button>
         </div>
-        <h6>{review.helpful}</h6>
+        <h6></h6>
         <h6>{review.helpfulness}</h6>
         {/* <img>If images</img> */}
         <h1>_______________________________</h1>

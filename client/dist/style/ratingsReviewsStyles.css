@@ -30,3 +30,40 @@ input[type=range] {
   background-color: blue;
 
 }
+
+
+/*  Write Review Modal   */
+
+.write-review-container {
+  width: 80%;
+  margin: auto;
+  background-color: coral;
+  border: 2px #333 solid;
+}
+
+/* ___________________________ */
+
+
+/*   Review Tile  */
+.btn-review-tile {
+  text-decoration: underline;
+ }
+
+ /* _________________________ */
+
+
+
+ /*  Distribution filter  */
+.slider-container Slider {
+  display: block;
+ }
+
+ /* _________________________ */
+
+
+ /*  Characterisctics   */
+ .characteristics-container input {
+  display: block;
+ }
+
+ /* _________________________ */
