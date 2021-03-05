@@ -9,8 +9,8 @@ class QuestionList extends React.Component {
 
     this.state = {
       modal: false,
-      questions: this.props.questions,
-      questionLimit: 2
+      questions: [],
+      questionLimit: 4
     }
 
     this.moreQuestions = this.moreQuestions.bind(this);
@@ -33,23 +33,26 @@ class QuestionList extends React.Component {
     console.log('you want to add a question')
   }
 
-  componentDidMount () {
-    this.setState({
-      questions: this.props.questions
-    })
+  static getDerivedStateFromProps(props, state) {
+    if(props.questions[0]) {
+      if(state.questions !== props.questions) {
+        return {questions: props.questions};
+      }
+    }
+    return null;
   }
 
+//check this.state.questions in render and CDM
   render() {
-    console.log('questionLimit', this.state.questionLimit, 'questions', this.state.questions);
     return (
       <div>
-        {this.props.questions.slice(0, this.state.questionLimit).map((question) => {
+        {this.state.questions.slice(0, this.state.questionLimit).map((question) => {
           return (
             <QuestionItem q={question} key={question.question_id} />
           )
         })}
         <div className="questionButtons">
-          {this.props.questions.length > this.state.questionLimit ?
+          {this.state.questions.length > this.state.questionLimit ?
             (<button onClick={this.moreQuestions} name="moreQuestions" className="qaBigButton qaCaps">More Answered Questions</button>)
             : (null)
           }
@@ -59,7 +62,6 @@ class QuestionList extends React.Component {
       </div>
     )
   }
-
 }
 
 export default QuestionList

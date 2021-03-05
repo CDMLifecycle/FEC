@@ -14,7 +14,7 @@ class QuestionItem extends React.Component {
   render() {
     return (
       <>
-      <div className="qaQuestionBody">Q: {this.props.q.question_body}
+      <div className="qaQuestionBody"><span className="space">Q:</span> {this.props.q.question_body}
         <QuestionOptions qHelpful={this.props.q.question_helpfulness} q_id={this.props.q.question_id}/>
       </div>
       <AnswerList answers={this.props.q.answers}/>

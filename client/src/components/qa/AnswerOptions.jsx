@@ -38,10 +38,10 @@ class AnswerOptions extends React.Component {
         }
         <span className="qaDivider">|</span>
          Helpful?
-        <button className="helpful qaLinkButton qaButton" onClick={this.aHelpful}>Yes</button> ({this.props.answerData.helpfulness})
+        <button className="underline qaLinkButton qaButton" onClick={this.aHelpful}>Yes</button> ({this.props.answerData.helpfulness})
         <span className="qaDivider">|</span>
         {!this.state.reported ? (
-          <button className="qaLinkButton qaButton" id="reportButton" onClick={this.report}>Report</button>
+          <button className="qaLinkButton qaButton underline" onClick={this.report}>Report</button>
           ) : 'Reported'}
       </div>
     )
