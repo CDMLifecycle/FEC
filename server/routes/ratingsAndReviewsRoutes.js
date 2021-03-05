@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const rrController = require('../controller/ratingsAndReviewsController').ratingsAndReviewsController;
-
-
+const throttle = require('lodash/throttle')
 
 // Handle Reviews Routes __________________________
 
@@ -28,19 +27,16 @@ router.post('/add', (req, res, next) => {
 
 // PUT - Mark Helpful ______________________________
 router.put('/helpful', (req, res, next) => {
-
-  rrController.markHelpful(req.query.reviewID)
-    .then(response => res.sendStatus(204))
-    .catch(err => res.send(404))
+  rrController.markHelpful(req.body)
+    .then(response => res.send(console.log('success')))
+    .catch(err => console.log(err))
 });
 
 // PUT - Report______________________________________
 router.put('/report', (req, res, next) => {
-
-  rrController.reportReview(req.query.reviewID)
-    .then(response => res.sendStatus(204))
-    .catch(err => res.send(404))
-
+  rrController.reportReview(req.body)
+    .then(response => res.send(console.log('success')))
+    .catch(err => res.sendStatus(404))
 });
 
 module.exports.ratingsAndReviewsRoutes = router;

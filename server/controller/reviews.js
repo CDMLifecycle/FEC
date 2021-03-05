@@ -1,22 +1,24 @@
 const axios = require('axios');
 const auth_token = require('../../authorization.config.js').token;
+const calc = require('./calculator.js');
+
 
 /* -------------------------------Helper Functions--------------------------*/
 
-var calculateAverageRating = (ratings) => {
-  let total = 0
-  let numOfRatings = 0;
-  for (let key in ratings) {
-    total+= parseInt(key) * parseInt(ratings[key]);
-    numOfRatings += parseInt(ratings[key]);
-  }
-  if (numOfRatings > 0) {
-    var average = total / numOfRatings
-    return Math.floor(average * 4) / 4;
-  } else {
-    return null;
-  }
-}
+// var calculateAverageRating = (ratings) => {
+//   let total = 0
+//   let numOfRatings = 0;
+//   for (let key in ratings) {
+//     total+= parseInt(key) * parseInt(ratings[key]);
+//     numOfRatings += parseInt(ratings[key]);
+//   }
+//   if (numOfRatings > 0) {
+//     var average = total / numOfRatings
+//     return Math.floor(average * 4) / 4;
+//   } else {
+//     return null;
+//   }
+// }
 
 
 /* --------------------------------api options -------------------------------*/
@@ -47,7 +49,7 @@ var reviewController = {
     return new Promise((resolve, reject) => {
       axios.get(url + `/meta/?product_id=${id}`, options)
         .then(result => {
-          let averageScore = calculateAverageRating(result.data.ratings)
+          let averageScore = calc.averageRatingToQtr(result.data.ratings)
           resolve(averageScore);
         })
         .catch(err => {
