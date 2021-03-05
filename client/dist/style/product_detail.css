@@ -83,7 +83,7 @@ img.largeImage {
   border: solid;
   border-color: grey;
   border-width: thin;
-  transition: 0.5s all ease-in-out;
+  transition: 1s all ease-in-out;
 }
 img.magnifier-image {
   height: 600px;
@@ -93,7 +93,7 @@ img.magnifier-image {
   border: solid;
   border-color: grey;
   border-width: thin;
-  transition: 0.5s all ease-in-out;
+  transition: 1s all ease-in-out;
 }
 
 button#fs{
@@ -182,6 +182,11 @@ button#fs:hover {
 
 select#quantityId {
   font-size: larger;
+  border-radius: 50%;
+  border: solid;
+  border-color: black;
+  border-width: thin;
+  margin-left: 30px;
 }
 
 
