@@ -40,7 +40,6 @@ class QuestionList extends React.Component {
   }
 
   render() {
-    console.log('questionLimit', this.state.questionLimit, 'questions', this.state.questions);
     return (
       <div>
         {this.props.questions.slice(0, this.state.questionLimit).map((question) => {
