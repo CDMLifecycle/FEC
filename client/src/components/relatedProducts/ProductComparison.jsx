@@ -28,11 +28,11 @@ var ProductComparison = (props) => {
   return (
     <div onClick={props.closeComparisonModel} className='ProductComparison-overlay'>
       <div className='ProductComparison'>
-        <h5>Product Comparison</h5>
+        <h4>PRODUCT COMPARISON</h4>
         <div className='ProductComparison-headings'>
-          <span>{props.currentProduct.name}</span>
+          <span>{props.currentProduct.name.toUpperCase()}</span>
           <span></span>
-          <span>{props.comparedProduct.name}</span>
+          <span>{props.comparedProduct.name.toUpperCase()}</span>
         </div>
         {tableData ? <ComparisonTable tableData={tableData}/> : null}
       </div>

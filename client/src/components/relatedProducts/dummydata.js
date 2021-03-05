@@ -212,7 +212,93 @@ var dummyData = {
           }
         ],
       }
-    ]
+    ],
+    formattedDefaultProduct: {
+    "name": "Rodrigo Sweater",
+    "id": 15034,
+    "category": "Sweater",
+    "default_price": "878.00",
+    "features": [
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Stitching",
+            "value": "\"Double Stitch\""
+        },
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Non-GMO",
+            "value": null
+        }
+    ],
+    "sale_price": null,
+    "photos": [
+        {
+            "thumbnail_url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1461551449292-b63f7419ac93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1970&q=80"
+        }
+    ],
+    "rating": 2.5
+  },
+  testDataWithoutPhotos: {
+    "name": "Rodrigo Sweater",
+    "id": 15034,
+    "category": "Sweater",
+    "default_price": "878.00",
+    "features": [
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Stitching",
+            "value": "\"Double Stitch\""
+        },
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Non-GMO",
+            "value": null
+        }
+    ],
+    "sale_price": null,
+    "photos": [],
+    "rating": 2.5
+  },
+  testDataWithSalePrice: {
+    "name": "Rodrigo Sweater",
+    "id": 15034,
+    "category": "Sweater",
+    "default_price": "878.00",
+    "features": [
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Stitching",
+            "value": "\"Double Stitch\""
+        },
+        {
+            "feature": "Lifetime Guarantee",
+            "value": null
+        },
+        {
+            "feature": "Non-GMO",
+            "value": null
+        }
+    ],
+    "sale_price": '100',
+    "photos": [],
+    "rating": 2.5
+  },
 }
 
 export default dummyData;
