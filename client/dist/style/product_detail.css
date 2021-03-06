@@ -80,16 +80,6 @@ img.thumbnails:hover {
   cursor: pointer;
 }
 
-img.largeImage {
-  height: 600px;
-  width: auto;
-
-  max-width: 1000px;
-  border: solid;
-  border-color: grey;
-  border-width: thin;
-  transition: 1s all ease-in-out;
-}
 img.magnifier-image {
   height: 690px;
   width: auto;
@@ -100,6 +90,37 @@ img.magnifier-image {
   border-color: grey;
   border-width: thin;
   transition: 1s all ease-in-out;
+  animation-name: slidein;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation: none;
+}
+
+@keyframes slidein {
+  from {
+    margin-right: 100%;
+  }
+
+  60% {
+    margin-right: 50%;
+  }
+
+  to {
+    margin-right: 0%;
+  }
+}
+@keyframes slideout {
+  from {
+    margin-left: 0%;
+  }
+
+  60% {
+    margin-left: 50%;
+  }
+
+  to {
+    margin-left: 100%;
+  }
 }
 
 button#fs{
