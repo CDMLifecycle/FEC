@@ -64,25 +64,29 @@ class RatingsAndReviews extends React.Component {
   render () {
     let meta = this.props.productMetadata;
     return (
-      <div>
-      <h3>Ratings and Reviews</h3>
-      <div>
-        <RatingBreakdown
-          productMetadata={meta}
-          updateFilter={this.updateFilter}
-        />
+      <div id='ratings-reviews-main-container'>
+        <div id='ratings-reviews-header'>
+          <h3>Ratings & Reviews</h3>
+        </div>
+        <div id='breakdown-reviewlist-content'>
+          <div>
+            <RatingBreakdown
+              productMetadata={meta}
+              updateFilter={this.updateFilter}
+            />
+          </div>
+          <div>
+            <ReviewList
+              reviewsList={this.state.filteredList}
+              productID={this.props.productID}
+              getReviews={this.props.getReviews}
+              productMetadata={meta}
+              filterSelections={this.state.filterSelections}
+              reRender={this.reRender}
+            />
+            </div>
+          </div>
       </div>
-      <div>
-        <ReviewList
-          reviewsList={this.state.filteredList}
-          productID={this.props.productID}
-          getReviews={this.props.getReviews}
-          productMetadata={meta}
-          filterSelections={this.state.filterSelections}
-          reRender={this.reRender}
-        />
-      </div>
-    </div>
     );
 
   }

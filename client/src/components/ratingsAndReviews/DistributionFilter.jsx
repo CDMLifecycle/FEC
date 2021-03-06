@@ -25,7 +25,7 @@ class DistributionFilter extends React.Component {
   render() {
     return this.props
     ? (
-      <div>
+      <div className='slider-container'>
         <h3>Little distribution graph</h3>
           <button onClick={this.handleClick} value='1'>1 Star</button>
             <Slider

@@ -13,7 +13,9 @@ html {
   height: 100%;
   width: 100%;
   flex:1;
-  margin-left: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 .pictureBackground {
   background-color: mintcream;
@@ -34,9 +36,12 @@ html {
   height: 500px;
   display:flex;
   overflow:scroll;
-  align-items: center;
-  background-color: mintcream;
+  background-color: white;
   margin-top: 40px;
+  position: relative;
+  margin-right: 30px;
+  left: 10px;
+  scroll-behavior: smooth;
 }
 
 .photoContainer::-webkit-scrollbar {
@@ -44,12 +49,18 @@ html {
 }
 
 .largePhoto {
+  box-sizing: border-box;
   flex: 3;
   background-color: mintcream;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
   display: flex;
   width:auto;
   height:100%;
   justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 img.thumbnails {
@@ -60,20 +71,51 @@ img.thumbnails {
   border: solid;
   border-color: black;
   object-fit: cover;
+  border-width: thin;
 }
 
 img.thumbnails:hover {
   width: 120px;
   height: 120px;
+  cursor: pointer;
 }
 
 img.largeImage {
   height: 600px;
   width: auto;
-  margin: 40px;
+
   max-width: 1000px;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
+  transition: 1s all ease-in-out;
+}
+img.magnifier-image {
+  height: 690px;
+  width: auto;
+  margin-right: 40px;
+  margin-left: 40px;
+  max-width: 1000px;
+  border: solid;
+  border-color: grey;
+  border-width: thin;
+  transition: 1s all ease-in-out;
 }
 
+button#fs{
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: mintcream;
+  position: absolute;
+  left: 150px;
+  bottom: 850px;
+  z-index: 1;
+}
+button#fs:hover {
+  background-color: grey;
+  cursor: pointer;
+}
 .reviews {
   flex:1;
   font-size: 20px;
@@ -81,9 +123,10 @@ img.largeImage {
 }
 
 .q_c {
-  flex:1;
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 #size {
@@ -91,11 +134,22 @@ img.largeImage {
   display: block;
   width: 310px;
 }
+.productDescriptionContainer {
+  display: flex;
+  flex-direction: row;
+}
 
 .descriptionText {
   font-size: 20px;
+  flex: 1;
   border: solid;
   height: 100px;
+  position:relative;
+  word-wrap: break-word;
+  height: auto;
+  border-width: thin;
+  padding: 30px;
+  font-style: italic;
 }
 
 .productName {
@@ -108,7 +162,7 @@ img.largeImage {
 
 /* typo quantity review for later */
 .quanity_Size_Container {
-  flex:display;
+  display:flex;
   flex-direction: row;
 }
 
@@ -119,6 +173,7 @@ img.largeImage {
   height: auto;
   width: auto;
   max-width: 350px;
+  justify-content: center;
 }
 
 .circleStyle {
@@ -134,6 +189,7 @@ img.largeImage {
 .circleStyle:hover {
   width: 90px;
   height: 90px;
+  cursor: pointer;
 }
 
 .styleFont {
@@ -144,6 +200,11 @@ img.largeImage {
 
 select#quantityId {
   font-size: larger;
+  border-radius: 50%;
+  border: solid;
+  border-color: black;
+  border-width: thin;
+  margin-left: 30px;
 }
 
 
@@ -179,19 +240,54 @@ body, html {
   font-weight: 700;
   background-color: white; /* Green */
   border: solid;
+  border-color: grey;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 5px;
+  border-radius: 50%;
 }
 .sizeButton:hover {
   background-color: black;
   color: white;
+  cursor: pointer;
 }
 
-.sizeButton:focus {
-  background-color: black;
-  color: white;
+.quantityBox {
+  border:solid;
+  border-width: thin;
+  border-color: grey;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* cards */
+
+.card {
+  border-radius: '5px';
+  padding: '75px 50px';
+  margin: '0px 25px';
+  width: '500px';
+  box-shadow: '20px 20px 20px black';
+  display: 'flex';
+  justify-content: 'center';
+}
+
+button.leftright {
+  position: relative;
+  height: 40px;
+  width: 50px;
+  margin: 30px;
+  border:solid;
+  border-width: thin;
+  background-color: honeydew;
+}
+
+button.leftright:hover {
+  background-color: lavender;
 }

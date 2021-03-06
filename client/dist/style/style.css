@@ -10,10 +10,29 @@
   /* display: flex;
   justify-content: center;
   align-items: center; */
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+
+.LoadingComponent {
+  height: 450px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadein .5s;
+}
+
+.LoadingComponent-animation {
 }
 
 .RelatedItems h2 {
   margin-bottom: 8px;
+  letter-spacing: .08em;
 }
 
 .RelatedItems-carousel-placeholder {
@@ -27,22 +46,19 @@
   grid-template-rows:67% 33%;
   height: 420px;
   width: 24.3%;
-  /* background-color: rgb(203, 203, 203); */
-  /* cursor: pointer; */
   flex: none;
-  margin: 5px;
   text-align: center;
+  padding: 6px;
+  cursor: pointer;
+  animation: fadein .3s;
 }
 
 .ProductCard:hover {
-  border-bottom: .5px solid black;
-  cursor: pointer;
+  opacity:90%;
+  transition: opacity 0.3s;
+  border-image: linear-gradient(90deg, white 0%, #fefefe 5%, #CCC 30%, #adb2b6 50%, #CCC 70%, #fefefe 95%, white 100%) 1;
+  border-bottom: 2px solid;
 }
-
-.ProductCard-img-container {
-
-}
-
 
 .ProductCard-primary-img {
   width: 95%;
@@ -54,7 +70,6 @@
   text-align: left;
   background-color: white;
   padding-left: 5%;
-  /* height: inherit; */
 }
 
 
@@ -64,7 +79,7 @@
 }
 
 .ProductCard-product-information-category {
-  color:rgb(203, 203, 203);
+  color: #ccc;
 }
 
 .ProductCard-product-information-rating {
@@ -72,7 +87,7 @@
 }
 
 .ProductCard-product-information-price {
-  margin: 0;
+  margin: 0 0 15px 0;
 }
 
 .ProductCard-product-information-price-discounted {
@@ -91,33 +106,28 @@
 
 .ProductCard-action-icon-background {
   position: relative;
-  /* color: white; */
-  /* background-color: black; */
-  /* height: 15px; */
-  /* align-self: flex-end; */
-  /* top: 0; */
-  /* right: 0; */
   width: 100%;
   text-align: right;
   margin-right: 45px;
   float: right;
   background-color: cadetblue;
+  z-index: 10;
 }
 
 .ProductCard-action-icon {
   float: right;
   margin-top: 7px;
   position: absolute;
-  background-color: white;
+  background-color: #fefefe;
   text-align: right;
   padding: 3px;
   border-radius: 100%;
-  background: white;
 }
 
 .ProductCard-action-icon:hover {
-  color: white;
-  background: black;
+  color: #fefefe;
+  background: #3A3E40;
+  animation: fadein .2s;
 }
 
 .CardCarousel {
@@ -126,6 +136,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  animation: fadein .7s;
 }
 
 .CardCarousel-Scroller {
@@ -141,32 +152,27 @@
     background: transparent
 }
 
-.matieral-icons {
-
-}
-
 .material-icons {
   cursor: pointer;
-
 }
 
 .AddToLooksCard {
-  height: 400px;
-  width: 25%;
+  height: 425px;
+  width: 24.3%;
   background-color: rgb(150, 150, 150);
   cursor: pointer;
   flex: none;
   text-align: center;
-  color: white;
+  color: #fefefe;
+  margin-top: 5px;
 }
 
 .AddToLooksCard:hover {
   border: 2px solid white;
-  color: black;
+  color: #3A3E40;
 }
 
 .AddToLooksCard-p {
-  /* margin-top: 50%; */
   letter-spacing: .05em;
 }
 
@@ -182,52 +188,56 @@
 
 .Looks {
   height: auto;
-  /* width: 80%; */
-  /* background-color: rgb(77, 190, 250); */
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.Looks h2 {
+  margin-bottom: 8px;
+  letter-spacing: .08em;
 }
 
 .CardCarousel-Arrows {
   position: absolute;
   width: 77%;
+  z-index: 8;
 }
 
 .CarouselArrow-forward {
-  /* display: inline; */
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   margin: 0;
   padding: 0;
   float: right;
   text-align: center;
-  background-color: white;
+  background-color: #fefefe;
   border-radius: 100%;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadein .5s;
 }
 
 .CarouselArrow-forward:hover {
-  border: 2px solid black;
-  color: white;
-  background-color: black;
+  border: 1px solid #3A3E40;
+  color: #fefefe;
+  background-color: #3A3E40;
+  animation: fadein .2s;
 }
 
 .CarouselArrow-back:hover {
-  border: 2px solid black;
-  color: white;
-  background-color: black;
+  border: 2px solid #3A3E40;
+  color: #fefefe;
+  background-color: #3A3E40;
+  animation: fadein .2s;
 }
 
 .CarouselArrow-back {
-  /* display: inline; */
-  /* width: 10%; */
   margin-left: 5px;
-  height: 35px;
-  width: 35px;
-  background-color: white;
+  height: 45px;
+  width: 45px;
+  background-color: #fefefe;
   z-index: 10;
   text-align: right;
   margin: 0;
@@ -236,23 +246,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadein .3s;
+}
+
+.icon-back {
+  margin-left: 8px;
 }
 
 .ProductComparison {
   width: 50%;
   height: auto;
-  background-color: white;
+  background-color: #fefefe;
   z-index: 101;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid #3A3E40;
   padding: 30px 0 30px 0;
   position: relative;
-  /* top: 25%; */
+  top: 20%;
   left: 25%;
+}
+
+.ProductComparison h4 {
+  color: #3A3E40;
+  letter-spacing: .08em;
 }
 
 .ProductComparison-headings {
@@ -285,7 +305,6 @@
 }
 
 .ProductComparison-overlay {
-  /* opacity:0.8; */
   background-color: rgba(164, 163, 163, 0.33);
   position: fixed;
   width:100vw;
@@ -294,7 +313,14 @@
   left:0px;
   z-index:100;
   overflow: auto;
+  animation: fadein .7s;
 }
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   {opacity: 1;}
+}
+
 
 /*------------------------------------Styles for QA -------------------------- */
 
