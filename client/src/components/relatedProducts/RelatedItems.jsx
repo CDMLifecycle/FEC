@@ -4,7 +4,7 @@ import ProductCard from './ProductCard.jsx';
 import fetch from './fetch.js';
 import CardCarousel from './CardCarousel.jsx';
 import ProductComparison from './ProductComparison.jsx';
-
+import LoadingComponent from './LoadingComponent.jsx';
 
 var RelatedItems = (props) => {
   var fakeProps = dummydata.relatedItemsWithFullInformation;
@@ -34,10 +34,10 @@ var RelatedItems = (props) => {
 
   return (
     <div className='RelatedItems'>
-      <h2>You May Also Like</h2>
+      <h2>YOU MAY ALSO LIKE</h2>
      {comparedProduct && compareModel ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} closeComparisonModel={closeComparisonModel}/> : null}
      {relatedProducts ?
-      <CardCarousel relatedProducts={relatedProducts} compareProducts={handleActionClick}/> : null
+      <CardCarousel relatedProducts={relatedProducts} compareProducts={handleActionClick}/> : <LoadingComponent />
       }
     </div>
   )
