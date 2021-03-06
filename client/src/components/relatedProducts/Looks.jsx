@@ -41,7 +41,7 @@ var Looks = (props) => {
 
   return (
     <div className='Looks'>
-      <h2>Your Looks</h2>
+      <h2>YOUR LOOKS</h2>
       {currentProduct ? <CardCarousel removeFromLooks={removeFromLooks} relatedProducts={currentLooks} isLooks={true} addToLooks={addToLooks}/> : <LoadingComponent />}
     </div>
   )
