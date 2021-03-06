@@ -15,7 +15,7 @@ html {
   flex:1;
   justify-content: center;
   align-items: center;
-
+  background-color: white;
 }
 .pictureBackground {
   background-color: mintcream;
@@ -36,7 +36,7 @@ html {
   height: 500px;
   display:flex;
   overflow:scroll;
-  background-color: mintcream;
+  background-color: white;
   margin-top: 40px;
   position: relative;
   margin-right: 30px;
@@ -83,7 +83,7 @@ img.thumbnails:hover {
 img.largeImage {
   height: 600px;
   width: auto;
-  margin: 40px;
+
   max-width: 1000px;
   border: solid;
   border-color: grey;
@@ -91,9 +91,10 @@ img.largeImage {
   transition: 1s all ease-in-out;
 }
 img.magnifier-image {
-  height: 600px;
+  height: 690px;
   width: auto;
-  margin: 60px;
+  margin-right: 40px;
+  margin-left: 40px;
   max-width: 1000px;
   border: solid;
   border-color: grey;
@@ -147,6 +148,8 @@ button#fs:hover {
   word-wrap: break-word;
   height: auto;
   border-width: thin;
+  padding: 30px;
+  font-style: italic;
 }
 
 .productName {
@@ -283,4 +286,8 @@ button.leftright {
   border:solid;
   border-width: thin;
   background-color: honeydew;
+}
+
+button.leftright:hover {
+  background-color: lavender;
 }
