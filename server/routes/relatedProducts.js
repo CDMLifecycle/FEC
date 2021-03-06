@@ -18,6 +18,7 @@ var combineRelatedProductInformation = (items, itemStyles, itemRatings) => {
     combined.default = itemStyles[i].results[0].default;
     combined.photos = itemStyles[i].results[0].photos;
     combined.rating = itemRatings[i];
+    combined.description = items[i].description;
     outputArray.push(combined);
   }
   return outputArray;

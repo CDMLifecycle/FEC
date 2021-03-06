@@ -7,7 +7,9 @@ import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
+import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import dummyData from './relatedProducts/dummydata.js';
+import './color-schema.css';
 var stringSimilarity = require("string-similarity");
 
 
@@ -116,7 +118,7 @@ class App extends React.Component {
         )
       case "/final":
         return (
-          <div>
+          <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
               <NavBar handleSubmitForm={this.handleSubmitForm}/>
             </form>
