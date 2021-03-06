@@ -3,6 +3,7 @@ import CardCarousel from './CardCarousel.jsx';
 import dummydata from './dummydata.js';
 import rfdc from 'rfdc';
 import fetch from './fetch.js';
+import LoadingComponent from './LoadingComponent.jsx';
 
 var Looks = (props) => {
   const [currentLooks, setCurrentLooks] = useState(props.products);
@@ -40,8 +41,8 @@ var Looks = (props) => {
 
   return (
     <div className='Looks'>
-      <h2>Your Looks</h2>
-      <CardCarousel removeFromLooks={removeFromLooks} relatedProducts={currentLooks} isLooks={true} addToLooks={addToLooks}/>
+      <h2>YOUR LOOKS</h2>
+      {currentProduct ? <CardCarousel removeFromLooks={removeFromLooks} relatedProducts={currentLooks} isLooks={true} addToLooks={addToLooks}/> : <LoadingComponent />}
     </div>
   )
 }
