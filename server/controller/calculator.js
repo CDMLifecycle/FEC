@@ -15,6 +15,14 @@ const calc  = {
     return flag ? sum : null;
   },
 
+  numOfReviews: (reviews) => {
+    var totalNum = 0;
+    for (let rating in reviews) {
+      reviews[rating] ? totalNum += parseInt(reviews[rating]) : null;
+    }
+    return totalNum;
+  },
+
   avgRating: (property) => {
     let totalRatings = calc.sumObjValues(property);
     let keyValueSum = 0;

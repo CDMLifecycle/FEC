@@ -49,6 +49,7 @@ var reviewController = {
     return new Promise((resolve, reject) => {
       axios.get(url + `/meta/?product_id=${id}`, options)
         .then(result => {
+          let numOfRatings = calc.numOfReviews(result);
           let averageScore = calc.averageRatingToQtr(result.data.ratings)
           resolve(averageScore);
         })

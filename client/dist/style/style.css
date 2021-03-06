@@ -156,13 +156,14 @@
 }
 
 .AddToLooksCard {
-  height: 400px;
-  width: 25%;
+  height: 425px;
+  width: 24.3%;
   background-color: rgb(150, 150, 150);
   cursor: pointer;
   flex: none;
   text-align: center;
   color: #fefefe;
+  margin-top: 5px;
 }
 
 .AddToLooksCard:hover {
