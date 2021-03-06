@@ -50,6 +50,7 @@
   text-align: center;
   padding: 6px;
   cursor: pointer;
+  animation: fadein .3s;
 }
 
 .ProductCard:hover {
