@@ -1,0 +1,6 @@
+.slider-container {
+  /* --webkit */
+  display: block;
+  border: chartreuse 1px solid;
+  width: 100%;
+ }

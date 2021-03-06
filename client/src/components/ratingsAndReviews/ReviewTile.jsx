@@ -1,6 +1,7 @@
 import React from 'react';
 import Stars from './Stars.jsx';
 import { throttle } from 'lodash';
+import './reviewTile.css';
 
 
 
@@ -10,6 +11,11 @@ class ReviewTile extends React.Component {
     this.state = {}
     this.handleHelpful = this.handleHelpful.bind(this);
     this.handleReport = this.handleReport.bind(this);
+  }
+
+  formatDate(date){
+    let options = {year: 'numeric', month: 'long', day: 'numeric'};
+    return new Date(date).toLocaleDateString(undefined, options);
   }
 
   handleReport(e){
@@ -28,31 +34,37 @@ class ReviewTile extends React.Component {
     } else {
 
       let review = this.props.review;
-      console.log(this.props)
+      console.log(review)
       return (
         <div className='review-tile-container'>
-          <div className='review-tile' style={reviewTileStyle}>
-            <Stars avgQtr={review.rating}/>
-            <h5>{review.summary}</h5>
-            <h6>{review.body}</h6>
-            <h6>{review.date}</h6>
-            <h6>{review.reviewer_name}</h6>
-            <div>
-              <button
-                onClick={this.handleReport}
-                value={review.review_id}
-                className="btn-review-tile"
-                >report</button>
-              <button
-                onClick={this.handleHelpful}
-                value={review.review_id}
-                className="btn-review-tile"
-                >mark helpful</button>
+          <div className='review-tile'>
+            <div className='date-stars-container'>
+              <Stars avgQtr={review.rating}/>
+              <h5>{this.formatDate(review.date)}</h5>
             </div>
-            <h6></h6>
-            <h6>{review.helpfulness}</h6>
-            {/* <img>If images</img> */}
-            <h1>_______________________________</h1>
+              <div className='review-body'>
+                <h4>{review.summary}</h4>
+                <h5>{review.body}</h5>
+                <h6>-{review.reviewer_name}</h6>
+                {/* if verified  */}
+              <div className='btn-box'>
+                <div className='helpful'>
+                  <button
+                    onClick={this.handleHelpful}
+                    value={review.review_id}
+                    className="btn"
+                    >Was this review helpful?</button>
+                </div>
+                <div>
+                  <h6 className='yes'>Yes   ({review.helpfulness})</h6>
+                </div>
+                <button
+                  onClick={this.handleReport}
+                  value={review.review_id}
+                  className="btn report"
+                >Report</button>
+              </div>
+           </div>
           </div>
         </div>
       )}
@@ -60,8 +72,5 @@ class ReviewTile extends React.Component {
 }
 
 
-const reviewTileStyle = {
-  backgroundColor: 'yellow'
-}
 
 export default ReviewTile;

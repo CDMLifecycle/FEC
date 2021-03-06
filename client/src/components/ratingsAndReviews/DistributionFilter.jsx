@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from './Slider.jsx'
+import './distributionFilter.css';
 
 class DistributionFilter extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class DistributionFilter extends React.Component {
     return this.props
     ? (
       <div className='slider-container'>
-        <h3>Little distribution graph</h3>
+        <h3>RATING BREAKDOWN</h3>
           <button onClick={this.handleClick} value='1'>1 Star</button>
             <Slider
               productPercent={this.props.productMetadata.totals.ratingsPercent['1']

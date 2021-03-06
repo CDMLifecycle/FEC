@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import WriteReview from './WriteReview.jsx';
 import ReviewTile from './ReviewTile.jsx';
+import './reviewList.css';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -18,9 +19,11 @@ class ReviewList extends React.Component {
     this.submitWriteReview = this.submitWriteReview.bind(this);
     this.sendHelpful = this.sendHelpful.bind(this);
     this.sendReport = this.sendReport.bind(this);
+    this.assignSortClass = this.assignSortClass.bind(this);
   }
 
   handleSelectChange(e) {
+    console.log(e.target)
     if (e.target.value !== this.state.sort) {
       this.setState(
         { sort: e.target.value },
@@ -72,41 +75,64 @@ class ReviewList extends React.Component {
       .catch(err => console.log(err, 'error with helpful review'))
   }
 
+// to rating breakdown
+//   <div className='sort-header'>
+//   {this.addSpan(this.props)}
+// </div>
+
+//   addSpan(props){
+//     console.log(props)
+//     if (props.productMetadata.totals) {
+//       // console.log('in func', props.productMetadata.totals.totalRatings)
+//       return <span>{props.productMetadata.totals.totalRatings} ratings</span>
+//     }
+//   }
+
+  assignSortClass(type) {
+    return type === this.state.sort ? 'sort-selected' : 'plain-button';
+  }
+
   render () {
     let reviewArray = this.props.reviewsList;
     return (
-      <div>
-        <h2>Reviews List</h2>
-        <div className='sort-container'>
-          <form>
-            <select value={this.state.sort} onChange={this.handleSelectChange}>
-              <option value='relevant'>Relevant</option>
-              <option value='newest'>Newest</option>
-              <option value='helpful'>Helpful</option>
-            </select>
-          </form>
+      <div className='reviews-list-container'>
+        <div onClick={this.handleSelectChange} className='sort-btn-container'>
+            <button
+              value='relevant'
+              className={this.assignSortClass('relevant')}
+            >Relevant</button>
+            <button
+              value='newest'
+              className={this.assignSortClass('newest')}
+            >Newest</button>
+            <button
+              value='helpful'
+              className={this.assignSortClass('helpful')}
+            >Helpful</button>
         </div>
-        <h1>{this.props.productID}</h1>
-        {reviewArray.map(review => (
-          <ReviewTile
-            review={review}
-            key={review.review_id}
-            getReviews={this.props.getReviews}
-            getReviewsParams={this.state}
-            sendHelpful={this.sendHelpful}
-            sendReport={this.sendReport}
-            productMetadata={this.props.productMetadata}
-          />
-        ))}
-        <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
-        <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
-        {this.state.writeBtn
-          ? <WriteReview
-              submitWriteReview={this.submitWriteReview}
+        <div className='mapped-tiles-container'>
+          {reviewArray.map(review => (
+            <ReviewTile
+              review={review}
+              key={review.review_id}
+              getReviews={this.props.getReviews}
+              getReviewsParams={this.state}
+              sendHelpful={this.sendHelpful}
+              sendReport={this.sendReport}
               productMetadata={this.props.productMetadata}
             />
-          : <React.Fragment></React.Fragment>
-        }
+          ))}
+          <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
+          <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
+
+          {this.state.writeBtn
+            ? <WriteReview
+                submitWriteReview={this.submitWriteReview}
+                productMetadata={this.props.productMetadata}
+              />
+            : <React.Fragment></React.Fragment>
+          }
+        </div>
       </div>
     )
   }

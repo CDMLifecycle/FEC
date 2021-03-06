@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
+import './slider.css';
 
 const Slider = (props) => (
- <div>
-    <span>{props.num}</span>
-    <input
-      type='range'
-      disabled
-      min='0'
-      max='1'
-      value={Number(props.productPercent)}
-      step='any'
-    />
+  <div className='single-slider'>
+    <div>
+        <input
+          type='range'
+          disabled
+          min='0'
+          max='1'
+          value={Number(props.productPercent)}
+          step='any'
+        />
+    </div>
   </div>
 )
 

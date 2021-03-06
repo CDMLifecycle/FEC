@@ -1,6 +1,6 @@
 import React from 'react';
 import SingleStar from './SingleStar.jsx';
-import './styles.css';
+import './stars.css';
 
 
 class Stars extends React.Component {
@@ -9,7 +9,6 @@ class Stars extends React.Component {
   }
 
   componentDidMount(){
-
   }
 
   render () {
@@ -32,8 +31,6 @@ class Stars extends React.Component {
       starSet.push(-1)
     };
 
-    // const stars = starSet.map(starType => <SingleStar num={starType} />)
-
     return (
       <div className='star-container'>
         {starSet.map(starType => <SingleStar num={starType} />)}
@@ -41,6 +38,5 @@ class Stars extends React.Component {
     )
   }
 }
-
 
 export default Stars;

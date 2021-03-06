@@ -1,0 +1,57 @@
+.reviews-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sort-header {
+  padding: 12px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.sort-btn-container {
+  width: 100%;
+  display: flex;
+  align-content: stretch;
+  justify-content: center;
+  height: 65px;
+  border:black 1px solid;
+}
+
+button {
+  height: 100%;
+  flex: 1;
+  background-color: transparent;
+  border: 0 1px;
+}
+.sort-btn-container  {
+  /* height: 100%;
+  flex: 1;
+  background-color: transparent;
+  border: black 3px solid; */
+  font-weight: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sort-selected {
+  border: 1px black solid;
+  border-bottom: 4px black solid;
+  background-color: hotpink;
+}
+
+.plain-button:hover {
+  color: red;
+  background-color: greenyellow;
+}
+
+
+
+.mapped-tiles-container {
+  width: 100%;
+}
+
+/* review-tile-container {
+  display: flex;
+} */
