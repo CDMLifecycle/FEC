@@ -15,6 +15,7 @@ html {
   flex:1;
   justify-content: center;
   align-items: center;
+
 }
 .pictureBackground {
   background-color: mintcream;
@@ -38,7 +39,9 @@ html {
   background-color: mintcream;
   margin-top: 40px;
   position: relative;
-  left: 30px;
+  margin-right: 30px;
+  left: 10px;
+  scroll-behavior: smooth;
 }
 
 .photoContainer::-webkit-scrollbar {
@@ -57,6 +60,7 @@ html {
   height:100%;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 img.thumbnails {
@@ -67,6 +71,7 @@ img.thumbnails {
   border: solid;
   border-color: black;
   object-fit: cover;
+  border-width: thin;
 }
 
 img.thumbnails:hover {
@@ -88,7 +93,7 @@ img.largeImage {
 img.magnifier-image {
   height: 600px;
   width: auto;
-  margin: 40px;
+  margin: 60px;
   max-width: 1000px;
   border: solid;
   border-color: grey;
@@ -101,10 +106,10 @@ button#fs{
   height: 40px;
   border: none;
   background-color: mintcream;
-  position: relative;
-  left: 100px;
-  margin: 20px;
-  bottom: 320px;
+  position: absolute;
+  left: 150px;
+  bottom: 850px;
+  z-index: 1;
 }
 button#fs:hover {
   background-color: grey;
@@ -117,9 +122,10 @@ button#fs:hover {
 }
 
 .q_c {
-  flex:1;
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 #size {
@@ -127,11 +133,20 @@ button#fs:hover {
   display: block;
   width: 310px;
 }
+.productDescriptionContainer {
+  display: flex;
+  flex-direction: row;
+}
 
 .descriptionText {
   font-size: 20px;
+  flex: 1;
   border: solid;
   height: 100px;
+  position:relative;
+  word-wrap: break-word;
+  height: auto;
+  border-width: thin;
 }
 
 .productName {
@@ -144,7 +159,7 @@ button#fs:hover {
 
 /* typo quantity review for later */
 .quanity_Size_Container {
-  flex:display;
+  display:flex;
   flex-direction: row;
 }
 
@@ -222,6 +237,7 @@ body, html {
   font-weight: 700;
   background-color: white; /* Green */
   border: solid;
+  border-color: grey;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -236,8 +252,35 @@ body, html {
   cursor: pointer;
 }
 
-.sizeButton:focus {
-  background-color: black;
-  color: white;
+.quantityBox {
+  border:solid;
+  border-width: thin;
+  border-color: grey;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* cards */
+
+.card {
+  border-radius: '5px';
+  padding: '75px 50px';
+  margin: '0px 25px';
+  width: '500px';
+  box-shadow: '20px 20px 20px black';
+  display: 'flex';
+  justify-content: 'center';
 }
 
+button.leftright {
+  position: relative;
+  height: 40px;
+  width: 50px;
+  margin: 30px;
+  border:solid;
+  border-width: thin;
+  background-color: honeydew;
+}
