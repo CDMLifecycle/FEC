@@ -47,7 +47,6 @@ class AnswerList extends React.Component {
   // Object.values(this.props.answers)
 
   render() {
-    console.log('answers', this.state.answers);
     return (
       <>
       {this.state.answers.length !== 0 ?
