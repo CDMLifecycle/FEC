@@ -295,22 +295,40 @@ button.leftright {
 button.leftright:hover {
   background-color: lavender;
 }
-
+/*
 .fade-enter {
   opacity: 0.01;
+  transform: translateX(25%);
 }
 .fade-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
+  transform: translateX(100%);
 }
 .fade-exit {
   opacity: 1;
+  transform: translateX(100%);
+
 }
 
 .fade-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
-}
-/* .fade-exit {
-  opacity: 0.01;
+  transform: translateX(0%);
+
 } */
+
+.show-enter {
+  opacity: 0.04;
+}
+.show-enter-active {
+  opacity: 5;
+  transition: opacity 500ms ease-in;
+}
+.show-exit {
+  opacity: 1;
+}
+.show-exit-active {
+  opacity: 0.04;
+  transition: opacity 500ms ease-in;
+}
