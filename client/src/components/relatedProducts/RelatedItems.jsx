@@ -35,7 +35,7 @@ var RelatedItems = (props) => {
   return (
     <div className='RelatedItems'>
       <h2>YOU MAY ALSO LIKE</h2>
-     {comparedProduct && compareModel ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} closeComparisonModel={closeComparisonModel}/> : null}
+     {comparedProduct && compareModel && props.currentProductInformation ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} closeComparisonModel={closeComparisonModel}/> : null}
      {relatedProducts ?
       <CardCarousel relatedProducts={relatedProducts} compareProducts={handleActionClick}/> : <LoadingComponent />
       }
