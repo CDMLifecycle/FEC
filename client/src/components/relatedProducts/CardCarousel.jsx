@@ -35,13 +35,13 @@ var CardCarousel = (props) => {
   return (
     <div className='CardCarousel'>
       <div className='CardCarousel-Arrows'>
-       {startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
+       {props.relatedProducts && startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
        {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
       </div>
 
       <div ref={carouselRef} className='CardCarousel-Scroller'>
         {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks}/> : null}
-        {props.relatedProducts ?
+        {props.relatedProducts && props.relatedProducts.length > 0 ?
         props.relatedProducts.map(
           (item, index) =>
           index === 0 ?
