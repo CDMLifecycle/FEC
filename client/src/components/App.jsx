@@ -141,12 +141,12 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
-              productId={14295}
+              productId={14798}
               currentProductInformation={this.state.currentProductInformation}
             />
             <Looks
               products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14294}
+              currentProductId={14658}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
