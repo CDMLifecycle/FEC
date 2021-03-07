@@ -51,6 +51,7 @@
   padding: 6px;
   cursor: pointer;
   animation: fadein .3s;
+  border-bottom: 2px solid transparent;
 }
 
 .ProductCard:hover {
@@ -166,10 +167,11 @@
   color: #fefefe;
   margin-top: 5px;
   margin-left: 5px;
+  border: .5px solid transparent;
 }
 
 .AddToLooksCard:hover {
-  border: 2px solid white;
+  border: .5px solid rgb(33, 33, 33);
   color: #3A3E40;
 }
 
