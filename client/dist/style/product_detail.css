@@ -63,7 +63,6 @@ html {
   align-items: center;
   position: relative;
   box-shadow: inset 0 0 10px black;
-
 }
 
 img.thumbnails {
@@ -86,7 +85,8 @@ img.thumbnails:hover {
 }
 
 img.magnifier-image {
-  height: 690px;
+  /* height: 690px; */
+  height: 500px;
   width: auto;
   margin-right: 40px;
   margin-left: 40px;
@@ -94,36 +94,8 @@ img.magnifier-image {
   border: solid;
   border-color: grey;
   border-width: thin;
-  transition: 1s all ease-in-out;
-  animation-timing-function: linear;
   box-shadow: 5px 5px 10px;
-}
-
-@keyframes slidein {
-  from {
-    margin-right: 100%;
-  }
-
-  60% {
-    margin-right: 50%;
-  }
-
-  to {
-    margin-right: 0%;
-  }
-}
-@keyframes slideout {
-  from {
-    margin-left: 0%;
-  }
-
-  60% {
-    margin-left: 50%;
-  }
-
-  to {
-    margin-left: 100%;
-  }
+  transition: all .5s ease-in-out;
 }
 
 button#fs{
@@ -163,8 +135,6 @@ button#fs:hover {
 .productDescriptionContainer {
   display: flex;
   flex-direction: row;
-  box-shadow: 5px 5px 20px black;
-
 }
 
 .descriptionText {
@@ -178,6 +148,7 @@ button#fs:hover {
   border-width: thin;
   padding: 30px;
   font-style: italic;
+  box-shadow: 0 10px 10px -5px black;
 }
 
 .productName {
@@ -213,7 +184,7 @@ button#fs:hover {
   margin-right: 20px;
   margin-bottom: 10px;
   background-position: center;
-  box-shadow: 0 10px 10px -5px grey;
+  box-shadow: 5px 5px 20px grey;
 
 }
 .circleStyle:hover {
@@ -324,3 +295,22 @@ button.leftright {
 button.leftright:hover {
   background-color: lavender;
 }
+
+.fade-enter {
+  opacity: 0.01;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+/* .fade-exit {
+  opacity: 0.01;
+} */

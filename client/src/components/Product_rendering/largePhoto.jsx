@@ -1,17 +1,17 @@
 import Magnifier from 'react-magnifier';
-import { AnimateOnChange } from 'react-animation';
-import { animations } from 'react-animation'
+import React, {useEffect} from 'react';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-var largePhoto = (props) => {
-  return (props.photo ?
-    <AnimateOnChange
-      animationIn="slidein 500ms ease-out forwards"
-      animationOut="slideout 500ms ease-in forwards"
-      durationOut={700}
-      durationIn={0}
-    >
-      <Magnifier onClick={props.fullscreen} className='largeImage' id='lg' src={props.photo} width='auto' height='600'></Magnifier>
-    </AnimateOnChange>
-: <div></div>)
-}
-export default largePhoto;
+ var largePhoto = (props) => {
+       return (props.photo ?
+        <CSSTransitionGroup
+        transitionName='fade'
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+        >
+      <Magnifier key={props.photo} onClick={props.fullscreen} className='largeImage' id='lg' src={props.photo} width='auto' height='600'></Magnifier>
+      </CSSTransitionGroup>
+      : <div></div>)
+  }
+
+  export default largePhoto;
