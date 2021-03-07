@@ -96,6 +96,7 @@ img.magnifier-image {
   border-width: thin;
   box-shadow: 5px 5px 10px;
   transition: all .5s ease-in-out;
+  animation-name: slide-in;
 }
 
 button#fs{
@@ -288,47 +289,54 @@ button.leftright {
   margin: 30px;
   border:solid;
   border-width: thin;
-  background-color: honeydew;
+  background-color: white;
   box-shadow: 0 10px 10px -5px black;
 }
 
 button.leftright:hover {
   background-color: lavender;
 }
-/*
-.fade-enter {
-  opacity: 0.01;
-  transform: translateX(25%);
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-  transform: translateX(100%);
-}
-.fade-exit {
-  opacity: 1;
-  transform: translateX(100%);
 
+/* .example-enter {
+  opacity: 0;
+  transform:   translate(-250px,0);
+  transform: translate3d(-250px,0,0);
 }
-
-.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-  transform: translateX(0%);
-
+.example-enter.example-enter-active {
+opacity: 1;
+transition: opacity 1s ease;
+transform:   translate(0,0);
+transform: translate3d(0,0,0);
+transition-property: transform, opacity;
+transition-duration: 300ms;
+transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave {
+opacity: 1;
+transform:   translate(0,0,0);
+transform: translate3d(0,0,0);
+transition-property: transform, opacity;
+transition-duration: 300ms;
+transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}
+.example-leave.example-leave-active {
+opacity: 0;
+transform:   translate(250px,0);
+transform: translate3d(250px,0,0);
 } */
 
-.show-enter {
-  opacity: 0.04;
+.pageSliderRight-enter {
+  transform: translate3d(-100%, 0, 0);
 }
-.show-enter-active {
-  opacity: 5;
-  transition: opacity 500ms ease-in;
+.pageSliderRight-enter.pageSliderRight-enter-active {
+  transform: translate3d(0, 0, 0);
+  transition: all 600ms;
 }
-.show-exit {
-  opacity: 1;
+.pageSliderRight-exit {
+  transform: translate3d(0, 0, 0);
 }
-.show-exit-active {
-  opacity: 0.04;
-  transition: opacity 500ms ease-in;
+.pageSliderRight-exit.pageSliderRight-exit-active {
+  transform: translate3d(-100%, 0, 0);
+  transition: all 600ms;
 }
+

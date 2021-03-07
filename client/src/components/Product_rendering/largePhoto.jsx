@@ -5,11 +5,13 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
  var largePhoto = (props) => {
        return (props.photo ?
         <CSSTransitionGroup
-        transitionName='show'
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}
+          transitionName="pageSliderRight"
+          transitionAppear={true}
+          transitionAppearTimeout={300}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
         >
-      <Magnifier key={props.photo} onClick={props.fullscreen} className='largeImage' id='lg' src={props.photo} width='auto' height='600'></Magnifier>
+      <Magnifier key={props.photo} onClick={props.fullscreen} className='largeImage show' id='lg' src={props.photo} width='auto' height='600'></Magnifier>
       </CSSTransitionGroup>
       : <div></div>)
   }
