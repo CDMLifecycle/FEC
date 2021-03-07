@@ -131,6 +131,26 @@
   animation: fadein .2s;
 }
 
+.ThumbnailCarousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.ThumbnailCarousel-img-cell {
+  height: auto;
+  width: auto;
+}
+
+.ThumbnailCarousel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: auto;
+  height: 30px;
+}
+
 .CardCarousel {
   width: 100%;
   display: flex;

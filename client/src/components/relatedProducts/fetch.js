@@ -24,6 +24,27 @@ var fetch = {
       .catch(err => {
         cb(err, null);
       })
+  },
+  sendInteraction: (widgetName, className) => {
+    if (widgetName && typeof widgetName === 'string' && className && typeof className === 'string') {
+      var date = new Date();
+      var interactionObj = {
+        'widget': widgetName,
+        'element': className,
+        'date': date
+      }
+      axios({
+        url: `/interaction`,
+        method: 'post',
+        data: interactionObj
+      })
+        .then(result => {
+
+        })
+        .catch(err => {
+          console.log('error sending interaction: ', err.message);
+        })
+    }
   }
 };
 
