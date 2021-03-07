@@ -34,7 +34,6 @@ class ReviewTile extends React.Component {
     } else {
 
       let review = this.props.review;
-      console.log(review)
       return (
         <div className='review-tile-container'>
           <div className='review-tile'>

@@ -1,7 +1,7 @@
 .reviews-list-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 550px;
 }
 
 .sort-header {
@@ -19,39 +19,41 @@
   border:black 1px solid;
 }
 
-button {
-  height: 100%;
-  flex: 1;
-  background-color: transparent;
-  border: 0 1px;
+
+.sort-btn-container {
+  display: flex;
+  align-content: stretch;
 }
-.sort-btn-container  {
-  /* height: 100%;
-  flex: 1;
+
+.plain-button, .sort-selected {
+  font-size: 16px;
+}
+
+.plain-button {
   background-color: transparent;
-  border: black 3px solid; */
-  font-weight: none;
-  font-size: 20px;
-  cursor: pointer;
+  font-weight: 400;
+  border: 0 1px;
+  width: 100%;
+  flex: 1;
 }
 
 .sort-selected {
   border: 1px black solid;
   border-bottom: 4px black solid;
   background-color: hotpink;
+  font-weight: 700;
+  width: 100%;
+  flex: 1;
+
 }
 
 .plain-button:hover {
   color: red;
   background-color: greenyellow;
+  cursor: pointer;
 }
-
 
 
 .mapped-tiles-container {
   width: 100%;
 }
-
-/* review-tile-container {
-  display: flex;
-} */

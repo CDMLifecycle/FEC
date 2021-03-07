@@ -24,15 +24,11 @@
 /* Both review list and breakdown */
 #breakdown-reviewlist-content {
   display: flex;
-  /* border: 1px solid black; */
   justify-content: flex-start;
-  /* margin: auto; */
 }
 
 
 #rating-breakdown-container {
-  /* width: 30%; */
   min-width: 375px;
   padding: 0 10px;
-  /* border: red 1px solid; */
 }

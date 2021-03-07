@@ -1,16 +1,39 @@
-/*
-locked-slider::disabled {
-  color: red;
-  background-color: blue;
+.single-slider-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  width: 100%;
 }
 
+.unselected, .selected {
+  text-decoration: underline;
+  text-align: center;
+  width: 15%;
+  border: none;
+  cursor: pointer;
+}
 
-input[type=range] {
-  -webkit-appearance: none;
-  max-width: 20rem;
-  width: 100%;
-  background: transparent;
-  background-color: blue;
+.unselected {
+  background-color: transparent;
+}
 
-} */
+.selected {
+  background-color: yellow;
+}
 
+.range-container {
+  width: 80%;
+  display: flex;
+}
+
+.range-bar {
+  width: 90%;
+  height: 8px;
+  background-color: lightgray;
+}
+
+.fill {
+  height: 100%;
+  background-color: orange;
+}

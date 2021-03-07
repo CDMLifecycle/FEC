@@ -1,7 +1,7 @@
 .rating-breakdown-container {
-  border: 2px orange solid;
   padding-top: 0;
   margin-top: 0;
+  height: 100%;
 }
 
 .number-stars-container {

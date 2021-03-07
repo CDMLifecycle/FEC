@@ -40,7 +40,6 @@ class App extends React.Component {
     for(var i = 0; i < this.state.productArr.length; i++) {
       var string1 = this.state.productArr[i].name;
       var string2 = this.state.searchedQuery;
-      // var similarity = stringSimilarity.compareTwoStrings(string1, string2);
       var similarity = stringSimilarity.compareTwoStrings(string1, string2);
       if (similarity > 0.15) {
         arr.push(this.state.productArr[i]);
@@ -79,8 +78,8 @@ class App extends React.Component {
   }
 
   handleSubmitForm(searched) {
-    // this.setState({searchedQuery: searched}, () => this.stringComparison());
-    this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
+    this.setState({searchedQuery: searched}, () => this.stringComparison());
+    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   componentDidMount() {

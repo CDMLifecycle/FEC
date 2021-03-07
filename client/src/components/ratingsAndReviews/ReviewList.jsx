@@ -23,7 +23,6 @@ class ReviewList extends React.Component {
   }
 
   handleSelectChange(e) {
-    console.log(e.target)
     if (e.target.value !== this.state.sort) {
       this.setState(
         { sort: e.target.value },
@@ -124,11 +123,11 @@ class ReviewList extends React.Component {
           ))}
           <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
           <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
-
           {this.state.writeBtn
             ? <WriteReview
                 submitWriteReview={this.submitWriteReview}
                 productMetadata={this.props.productMetadata}
+                className='write-review-modal'
               />
             : <React.Fragment></React.Fragment>
           }

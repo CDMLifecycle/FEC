@@ -31,7 +31,7 @@ const RatingBreakdown = (props) => {
       </div>
     </div>
   )
-  : null
+  : null;
 }
 
 export default RatingBreakdown;
