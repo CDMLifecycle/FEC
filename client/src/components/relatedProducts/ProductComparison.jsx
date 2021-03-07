@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react';
 import ComparisonTable from './ComparisonTable.jsx';
+import {replaceEscapeQuotes} from './utility.js';
 
 var ProductComparison = (props) => {
 
@@ -9,14 +10,14 @@ var ProductComparison = (props) => {
   useEffect(() => {
     var featureObj = {}
     for (let obj of props.currentProduct.features) {
-        featureObj[obj.feature] = [obj.feature, obj.value , 1]
+        featureObj[replaceEscapeQuotes(obj.feature)] = [replaceEscapeQuotes(obj.feature), replaceEscapeQuotes(obj.value), 1]
     }
 
     for (let feat of props.comparedProduct.features) {
-      if (featureObj[feat.feature] === undefined) {
-        featureObj[feat.feature] = [feat.feature, feat.value, 2]
+      if (featureObj[replaceEscapeQuotes(feat.feature)] === undefined) {
+        featureObj[replaceEscapeQuotes(feat.feature)] = [replaceEscapeQuotes(feat.feature), replaceEscapeQuotes(feat.value), 2]
       } else {
-        featureObj[feat.feature].push(2);
+        featureObj[replaceEscapeQuotes(feat.feature)].push(2);
       }
     setTableData(Object.values(featureObj))
     }

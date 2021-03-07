@@ -17,10 +17,11 @@ var CardCarousel = (props) => {
     var amount;
    cardWidth !== null ? amount = cardWidth : amount = 350;
     if (direction === 'back') {
-      carouselRef.current.scrollBy((amount + 30) * (startingCardIndex - props.relatedProducts.length + 2), 0);
+      carouselRef.current.scrollBy((-amount), 0);
       setStartingCardIndex(startingCardIndex - 1);
     } else if (direction === 'forward') {
-      carouselRef.current.scrollBy(amount * startingCardIndex, 0);
+      console.log(amount * startingCardIndex)
+      carouselRef.current.scrollBy(amount, 0);
       setStartingCardIndex(startingCardIndex+1);
     }
   }
@@ -41,10 +42,11 @@ var CardCarousel = (props) => {
       <div ref={carouselRef} className='CardCarousel-Scroller'>
         {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks}/> : null}
         {props.relatedProducts ?
-          props.relatedProducts.map((item, index) =>
+        props.relatedProducts.map(
+          (item, index) =>
           index === 0 ?
             <ProductCard getWidthOfCard={getWidthOfCard} removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />
-            :
+          :
             <ProductCard removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />)
         : null}
       </div>

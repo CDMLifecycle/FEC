@@ -7,7 +7,9 @@ import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
+import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import dummyData from './relatedProducts/dummydata.js';
+import './color-schema.css';
 var stringSimilarity = require("string-similarity");
 
 
@@ -117,13 +119,20 @@ class App extends React.Component {
         )
       case "/final":
         return (
-          <div>
+          <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
               <NavBar handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
-            <RelatedItems productId={14042} currentProductInformation={this.state.currentProductInformation} />
-            <Looks products={[dummyData.formattedDefaultProduct]} currentProductId={14807} setCurrentProduct={this.updateCurrentProductInformation}/>
+            <RelatedItems
+              productId={14295}
+              currentProductInformation={this.state.currentProductInformation}
+            />
+            <Looks
+              products={[dummyData.formattedDefaultProduct]}
+              currentProductId={14294}
+              setCurrentProduct={this.updateCurrentProductInformation}
+            />
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
             {this.state.productID

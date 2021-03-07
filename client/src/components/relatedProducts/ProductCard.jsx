@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import Stars from '../ratingsAndReviews/Stars.jsx';
 
 var ProductCard = (props) => {
   const [primaryImg, setPrimaryImg] = useState(null);
@@ -49,7 +50,8 @@ var ProductCard = (props) => {
         <p className='ProductCard-product-information-name'>{props.product.name.toUpperCase()}</p>
         <p className={saleClass}>${props.product.default_price.substring(0, props.product.default_price.indexOf('.'))}</p>
         {props.product.sale_price ? <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
-        <p className='ProductCard-product-information-rating'>{props.product.rating ? props.product.rating : "product unrated"}</p>
+        {/* <div className='ProductCard-product-information-onhover-description'>{props.product.description}</div> */}
+        <div className='ProductCard-product-information-rating'>{props.product.rating ? <Stars avgQtr={props.product.rating} /> : "N/A"}</div>
       </div>
     </div>
   )
