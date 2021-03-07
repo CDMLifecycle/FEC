@@ -6,7 +6,7 @@ import fetch from './fetch.js';
 import LoadingComponent from './LoadingComponent.jsx';
 
 var Looks = (props) => {
-  const [currentLooks, setCurrentLooks] = useState(null);
+  const [currentLooks, setCurrentLooks] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
@@ -27,18 +27,24 @@ var Looks = (props) => {
   }, [props.currentProductId])
 
 var addToLooks = () => {
-  var clone = rfdc();
-  for (let product of currentLooks) {
-    if (product.id === props.currentProductId) {
-      return;
+  if (currentLooks.length > 0) {
+    var clone = rfdc();
+    for (let product of currentLooks) {
+      if (product.id === props.currentProductId) {
+        return;
+      }
     }
+    var looksCopy = clone(currentLooks);
+    looksCopy.unshift(currentProduct);
+    setCurrentLooks(looksCopy);
+    //update session storage
+    window.sessionStorage.removeItem('Looks');
+    props.updateLooksInSession(looksCopy);
+  } else {
+    setCurrentLooks([currentProduct])
+    window.sessionStorage.removeItem('Looks');
+    props.updateLooksInSession([currentProduct]);
   }
-  var looksCopy = clone(currentLooks);
-  looksCopy.unshift(currentProduct);
-  setCurrentLooks(looksCopy);
-  //update session storage
-  window.sessionStorage.removeItem('Looks');
-  props.updateLooksInSession(looksCopy);
 }
 
 var removeFromLooks = (id) => {
