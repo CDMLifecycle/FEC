@@ -1,6 +1,6 @@
 import React from 'react';
 import SingleStar from './SingleStar.jsx';
-import './styles.css';
+import './stars.css';
 
 
 class Stars extends React.Component {
@@ -9,7 +9,6 @@ class Stars extends React.Component {
   }
 
   componentDidMount(){
-
   }
 
   render () {
@@ -18,21 +17,19 @@ class Stars extends React.Component {
     }
     let partialStar = this.props.avgQtr % 1;
     let wholeStar = this.props.avgQtr - partialStar;
-    let noStar = 5 - wholeStar;
+    let noStar = partialStar > 0 ? 4 - wholeStar : 5 - wholeStar;
 
     let starSet = []
 
     for (let i = 0; i < wholeStar; i++) {
       starSet.push(1)
     };
-    if (partialStar > 1) {
+    if (partialStar > 0) {
       starSet.push(partialStar)
     }
     for (let i = 0; i < noStar; i++) {
       starSet.push(-1)
     };
-
-    // const stars = starSet.map(starType => <SingleStar num={starType} />)
 
     return (
       <div className='star-container'>
@@ -41,6 +38,5 @@ class Stars extends React.Component {
     )
   }
 }
-
 
 export default Stars;

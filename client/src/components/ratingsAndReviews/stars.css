@@ -1,0 +1,8 @@
+.star-container {
+  display: flex;
+}
+
+img.star {
+  width: 25px;
+  height: auto;
+}
