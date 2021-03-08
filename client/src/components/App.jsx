@@ -83,6 +83,7 @@ class App extends React.Component {
 
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparison());
+    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   componentDidMount() {

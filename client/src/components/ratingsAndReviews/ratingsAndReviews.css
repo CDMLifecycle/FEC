@@ -1,0 +1,34 @@
+#ratings-reviews-main-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  width: 98%;
+  padding-top: 10px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+#ratings-reviews-header {
+  text-transform: uppercase;
+  display: block;
+  height: 35px;
+  padding-left: 12px;
+}
+
+#ratings-reviews-header h3 {
+  font-weight: 800;
+  font-size: 25px;
+}
+
+/* Both review list and breakdown */
+#breakdown-reviewlist-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+#rating-breakdown-container {
+  min-width: 375px;
+  padding: 0 10px;
+}

@@ -1,0 +1,45 @@
+.rating-breakdown-container {
+  padding-top: 0;
+  margin-top: 0;
+  height: 100%;
+}
+
+.number-stars-container {
+  background-color: yellow;
+  color: black;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-number {
+  padding: 0;
+  margin: 0;
+  padding-right: 20px;
+}
+
+.big-number h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+.star-avg {
+  height: 60px;
+  font-weight: 300;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.percent-rec {
+  display: block;
+}
+
+.percent-rec h4 {
+  font-weight: 400;
+  margin: 20 auto;
+  text-align: center;
+
+}

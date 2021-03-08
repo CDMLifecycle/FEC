@@ -1,0 +1,13 @@
+.df-container {
+  display: block;
+  width: 100%;
+ }
+
+ .df-container h3 {
+   padding-left: 0px;
+ }
+
+.sliders-df-container {
+  display: flex;
+  flex-direction: column;
+}

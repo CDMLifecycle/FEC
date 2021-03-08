@@ -1,10 +1,10 @@
 import React from 'react';
-import StarThreeQuarters from './starsSVG/starThreeQuarter.svg';
-import StarHalf from './starsSVG/starHalf.svg';
-import StarNoFill from './starsSVG/starNoFill.svg';
-import StarQuarter from './starsSVG/starQuarter.svg';
-import StarFill from './starsSVG/starFill.svg';
-import StarYellow from './starsSVG/starYellow.svg';
+import StarThreeQuarters from './svg/starThreeQuarter.svg';
+import StarHalf from './svg/starHalf.svg';
+import StarNoFill from './svg/starNoFill.svg';
+import StarQuarter from './svg/starQuarter.svg';
+import StarFill from './svg/starFill.svg';
+import StarYellow from './svg/starYellow.svg';
 
 
 class SingleStar extends React.Component{

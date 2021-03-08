@@ -1,0 +1,7 @@
+.characteristics-container input {
+  display: flex;
+ }
+
+ .characteristics-container h4 {
+   padding-left: 0px;
+ }
