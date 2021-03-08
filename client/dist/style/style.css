@@ -14,10 +14,15 @@
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
+  font-size: 14px;
 }
 
 .Footer a {
   color: #fefefe;
+}
+
+.Footer p {
+  margin: 10px 0 10px 0
 }
 
 
