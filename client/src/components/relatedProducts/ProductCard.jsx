@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Stars from '../ratingsAndReviews/Stars.jsx';
+import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 
 var ProductCard = (props) => {
   const [primaryImg, setPrimaryImg] = useState(null);
@@ -46,11 +47,14 @@ var ProductCard = (props) => {
         <img className='ProductCard-primary-img' src={primaryImg}></img>
       </div>
       <div className='ProductCard-product-information'>
+        {/* {props.product.photos.length > 1 ?
+          <ThumbnailCarousel photos={props.product.photos} />
+          : null
+        } */}
         <p className='ProductCard-product-information-category'>{props.product.category}</p>
         <p className='ProductCard-product-information-name'>{props.product.name.toUpperCase()}</p>
         <p className={saleClass}>${props.product.default_price.substring(0, props.product.default_price.indexOf('.'))}</p>
         {props.product.sale_price ? <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
-        {/* <div className='ProductCard-product-information-onhover-description'>{props.product.description}</div> */}
         <div className='ProductCard-product-information-rating'>{props.product.rating ? <Stars avgQtr={props.product.rating} /> : "N/A"}</div>
       </div>
     </div>

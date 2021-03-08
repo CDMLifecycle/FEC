@@ -6,7 +6,7 @@ import fetch from './fetch.js';
 import LoadingComponent from './LoadingComponent.jsx';
 
 var Looks = (props) => {
-  const [currentLooks, setCurrentLooks] = useState(props.products);
+  const [currentLooks, setCurrentLooks] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
@@ -18,10 +18,16 @@ var Looks = (props) => {
         props.setCurrentProduct(data);
       }
     })
+    //look for session storage
+  var sessionLooks = props.getLooksInSession();
+  if (sessionLooks && sessionLooks.length && sessionLooks.length > 0) {
+    setCurrentLooks(sessionLooks)
+  }
+  console.log('this is session: ', sessionLooks);
   }, [props.currentProductId])
 
-
-  var addToLooks = () => {
+var addToLooks = () => {
+  if (currentLooks.length > 0) {
     var clone = rfdc();
     for (let product of currentLooks) {
       if (product.id === props.currentProductId) {
@@ -31,12 +37,43 @@ var Looks = (props) => {
     var looksCopy = clone(currentLooks);
     looksCopy.unshift(currentProduct);
     setCurrentLooks(looksCopy);
+    //update session storage
+    window.sessionStorage.removeItem('Looks');
+    props.updateLooksInSession(looksCopy);
+  } else {
+    setCurrentLooks([currentProduct])
+    window.sessionStorage.removeItem('Looks');
+    props.updateLooksInSession([currentProduct]);
   }
+}
 
-  var removeFromLooks = (id) => {
-    var updatedLooks = currentLooks.filter((product) => product.id !== id);
-    setCurrentLooks(updatedLooks);
-  }
+var removeFromLooks = (id) => {
+  var updatedLooks = currentLooks.filter((product) => product.id !== id);
+  setCurrentLooks(updatedLooks);
+  //update session storage;
+  window.sessionStorage.removeItem('Looks');
+  window.sessionStorage.setItem('Looks', JSON.stringify(updatedLooks));
+}
+
+
+
+
+  // var addToLooks = () => {
+  //   var clone = rfdc();
+  //   for (let product of currentLooks) {
+  //     if (product.id === props.currentProductId) {
+  //       return;
+  //     }
+  //   }
+  //   var looksCopy = clone(currentLooks);
+  //   looksCopy.unshift(currentProduct);
+  //   setCurrentLooks(looksCopy);
+  // }
+
+  // var removeFromLooks = (id) => {
+  //   var updatedLooks = currentLooks.filter((product) => product.id !== id);
+  //   setCurrentLooks(updatedLooks);
+  // }
 
 
   return (
