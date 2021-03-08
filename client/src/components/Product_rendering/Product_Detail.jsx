@@ -25,6 +25,7 @@ class Product_Detail extends React.Component {
       fullscreen: false,
       hf: false,
       index: 0,
+      slide: false,
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -38,7 +39,6 @@ class Product_Detail extends React.Component {
     this.toggleSize = this.toggleSize.bind(this);
     this.changeIndexRight = this.changeIndexRight.bind(this);
     this.changeIndexLeft = this.changeIndexLeft.bind(this);
-
   }
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
@@ -55,9 +55,11 @@ class Product_Detail extends React.Component {
     // document.getElementById(index).scrollIntoView({behavior: 'smooth'});
     var target = document.getElementById(index);
     target.parentNode.scrollTop = target.offsetTop;
-    this.setState({largePhoto: url, index: index} );
+    var prev = this.state.largePhoto;
+    this.setState({largePhoto: url, index: index, prevPhoto: prev, slide: true} );
   }
   changeIndexRight(event) {
+    event.preventDefault();
     var arr = this.state.photos;
     var newIndex = this.state.index + 1;
     if (this.state.index === (arr.length - 1)) {
@@ -67,6 +69,7 @@ class Product_Detail extends React.Component {
     }
   }
   changeIndexLeft(event) {
+    event.preventDefault();
     var arr = this.state.photos;
     var arrlen = arr.length - 1;
     if (this.state.index === 0) {
@@ -98,6 +101,7 @@ class Product_Detail extends React.Component {
       });
     }
   }
+
   reviewSet (event) {
     var val = Number(event.target.value);
     this.setState({rating: val});
@@ -105,12 +109,14 @@ class Product_Detail extends React.Component {
   sizeSet(event) {
     this.setState({size: event.target.value});
   }
-  quantityDecrease() {
+  quantityDecrease(event) {
+    event.preventDefault();
     if(this.state.quantity > 0) {
       this.setState({quantity: this.state.quantity - 1});
     }
   }
-  quantityIncrease() {
+  quantityIncrease(event) {
+    event.preventDefault();
     this.setState({quantity: this.state.quantity + 1});
   }
   colorSet(val) {
@@ -159,6 +165,7 @@ class Product_Detail extends React.Component {
   }
 
 
+
   render() {
     var description = this.state.products[0] ?
     <div className='productDescriptionContainer'>
@@ -187,11 +194,11 @@ class Product_Detail extends React.Component {
                   <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
               <div className = 'largePhoto'>
-                <button class='leftright' onClick={this.changeIndexLeft}>
+                <button type='button' class='leftright' onClick={this.changeIndexLeft}>
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen}/>
-                <button class='leftright' onClick={this.changeIndexRight}>
+                <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} slide={this.state.slide}/>
+                <button type='button' class='leftright' onClick={this.changeIndexRight}>
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
@@ -217,9 +224,11 @@ class Product_Detail extends React.Component {
             <div className='quantity_Size_Container'></div>
               <div className='q_c'>
                 Quantity:
-                <button onClick={this.quantityDecrease}><i className="fa fa-minus" aria-hidden="true"></i></button>
+                <button type='button' onClick={(event) => {
+                  this.quantityDecrease(event);
+                }} ><i className="fa fa-minus" aria-hidden="true"></i></button>
                 <div className='quantityBox'>{this.state.quantity}</div>
-                <button onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                <button type='button' onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
               </div>
                   <span className='styleFont'>Select Size</span>
               <div id='size'>

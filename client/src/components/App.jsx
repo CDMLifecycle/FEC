@@ -8,7 +8,7 @@ import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
-// import dummyData from './relatedProducts/dummydata.js';
+import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 var stringSimilarity = require("string-similarity");
 
@@ -35,6 +35,8 @@ class App extends React.Component {
     this.getMetadata = this.getMetadata.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
     this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
+    this.updateLooksInSession = this.updateLooksInSession.bind(this);
+    this.getLooksInSession = this.getLooksInSession.bind(this);
   }
 
   stringComparison() {
@@ -109,6 +111,21 @@ class App extends React.Component {
     }
   }
 
+  updateLooksInSession(product) {
+    var looksArray = JSON.parse(window.sessionStorage.getItem('Looks'));
+    if (looksArray && Array.isArray(looksArray)) {
+      looksArray.push(product);
+      window.sessionStorage.removeItem('Looks');
+      window.sessionStorage.setItem('Looks', JSON.stringify(looksArray));
+    } else {
+      window.sessionStorage.setItem('Looks', JSON.stringify(product));
+    }
+  }
+
+  getLooksInSession() {
+    return JSON.parse(window.sessionStorage.getItem('Looks'))
+  }
+
 
   switchStatement() {
     switch(this.state.paths) {
@@ -124,13 +141,15 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
-              productId={14295}
+              productId={14798}
               currentProductInformation={this.state.currentProductInformation}
             />
             <Looks
               products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14294}
+              currentProductId={14658}
               setCurrentProduct={this.updateCurrentProductInformation}
+              getLooksInSession={this.getLooksInSession}
+              updateLooksInSession={this.updateLooksInSession}
             />
             {this.state.productID ?
             <QAMain productID={this.state.productID} /> : null}
