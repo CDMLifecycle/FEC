@@ -17,14 +17,14 @@ class Stars extends React.Component {
     }
     let partialStar = this.props.avgQtr % 1;
     let wholeStar = this.props.avgQtr - partialStar;
-    let noStar = 5 - wholeStar;
+    let noStar = partialStar > 0 ? 4 - wholeStar : 5 - wholeStar;
 
     let starSet = []
 
     for (let i = 0; i < wholeStar; i++) {
       starSet.push(1)
     };
-    if (partialStar > 1) {
+    if (partialStar > 0) {
       starSet.push(partialStar)
     }
     for (let i = 0; i < noStar; i++) {

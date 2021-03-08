@@ -3,8 +3,6 @@ import Stars from './Stars.jsx';
 import { throttle } from 'lodash';
 import './reviewTile.css';
 
-
-
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
