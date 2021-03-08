@@ -111,7 +111,7 @@
   margin: 0 10px;
 }
 
-.qModal {
+.qaModal {
   position: fixed;
   background-color: rgba(0, 0, 0, .4);
   backdrop-filter: blur(5px);
@@ -125,7 +125,7 @@
   /* filter: blur(5px) */
 }
 
-.qModal-Content {
+.Modal-Content {
   background-color: #f9f9f9;
   width: 50%;
   margin: 0 auto;

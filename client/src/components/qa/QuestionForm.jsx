@@ -14,10 +14,10 @@ const QuestionForm = props => {
     e.preventDefault();
   }
 
-  let Form = (
-    <div className="qModal" onClick={closeModal}
+  let QForm = (
+    <div className="qaModal" onClick={closeModal}
     style={divStyle}>
-      <div className="qModal-Content" onClick={e => e.stopPropagation()}>
+      <div className="Modal-Content" onClick={e => e.stopPropagation()}>
         <span className="close" onClick={closeModal}>Close</span>
         <form onSubmit={submitQForm}>
           <label className="qa_label" name="Your Question">Your Question</label><br />
