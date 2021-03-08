@@ -20,23 +20,23 @@ const AnswerForm = props => {
     style={divStyle}>
       <div className="Modal-Content" onClick={e => e.stopPropagation()}>
         <span className="close" onClick={closeModal}>Close</span>
-        <form onSubmit={this.submitAForm}>
-          <label className="qa_label" name="Your Question">Your Question</label><br />
-          <textarea className="qInput q-modal-form" type="text" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" required /><br />
+        <form onSubmit={submitAForm}>
+          <h3>Submit your answer</h3>
+          <h5 className="qa_subtitle" >{props.productName}: {props.q_body}</h5>
+          <label className="qa_label" name="Your Question">Your Answer</label><br />
+          <textarea className="qInput qa-modal-form" type="text" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" required /><br />
           <label className="qa_label" name="nickname">Nickname</label><br />
-          <input className="qInput" placeholder="EXAMPLE: JACKSON11!" autoComplete="off" required /><br />
-          <p className="qa_label">For privacy reasons, do not use your full name or email address</p><br />
+          <input className="qInput" placeholder="EXAMPLE: jack543!" autoComplete="off" required /><br />
           <label className="qa_label" name="email">Email</label><br />
-          <input className="qInput" placeholder="EXAMPLE: JACKSON11@EMAIL.COM" maxLength="60" autoComplete="off" required /><br />
-          <p className="qa_label">For authentication reasons, you wil not be emailed</p><br />
-          <button className="submitQuestion">SUBMIT QUESTION</button>
+          <input className="qInput" placeholder="EXAMPLE: JACKSON@EMAIL.COM" maxLength="60" autoComplete="off" required /><br />
+          <button className="submitAnswer">SUBMIT ANSWER</button>
         </form>
       </div>
     </div>
   )
 
   return (
-    props.displayModal ? (Form) : (null)
+    props.displayModal ? (AForm) : (null)
   )
 }
 

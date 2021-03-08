@@ -20,6 +20,8 @@ const QuestionForm = props => {
       <div className="Modal-Content" onClick={e => e.stopPropagation()}>
         <span className="close" onClick={closeModal}>Close</span>
         <form onSubmit={submitQForm}>
+          <h3>Ask Your Question</h3>
+          <h5 className="qa_subtitle">About the {props.productName}</h5>
           <label className="qa_label" name="Your Question">Your Question</label><br />
           <textarea className="qInput q-modal-form" type="text" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" required /><br />
           <label className="qa_label" name="nickname">Nickname</label><br />
@@ -35,7 +37,7 @@ const QuestionForm = props => {
   )
 
   return (
-    props.displayModal ? (Form) : (null)
+    props.displayModal ? (QForm) : (null)
   )
 }
 

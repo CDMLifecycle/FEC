@@ -1,4 +1,5 @@
 import React from 'react';
+// import $ from 'jquery';
 
 class AnswerOptions extends React.Component {
   constructor(props) {
@@ -9,12 +10,35 @@ class AnswerOptions extends React.Component {
     }
     this.aHelpful = this.aHelpful.bind(this);
     this.report = this.report.bind(this);
+    // this.formatDate = this.formatDate.bind(this);
   }
 
   aHelpful (e) {
     e.preventDefault();
     // put request
     console.log('this answer is helpful');
+  }
+
+  formatDate(isoDate){
+  let date = new Date(isoDate);
+    let months = {
+      1: 'January',
+      2: 'February',
+      3: 'March',
+      4: 'April',
+      5: 'May',
+      6: 'June',
+      7: 'July',
+      8: 'August',
+      9: 'September',
+      10: 'October',
+      11: 'November',
+      12: 'December'
+    }
+
+    let month = (date.getMonth() + 1).toString();
+    date = `${months[month]} ${date.getDate()}, ${date.getFullYear()}`;
+    return date;
   }
 
   report (e) {
@@ -34,7 +58,7 @@ class AnswerOptions extends React.Component {
         {/* {this.props.answerData.answerer_name.toLowerCase() === 'seller' ? (<span className="bolded">{this.props.answerData.answerer_name}</span>) : ({this.props.answerData.answerer_name})}, */}
         {`by
         ${this.props.answerData.answerer_name}
-        ${this.props.answerData.date}`
+        ${this.formatDate(this.props.answerData.date.toString())}`
         }
         <span className="qaDivider">|</span>
          Helpful?

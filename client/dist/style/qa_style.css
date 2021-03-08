@@ -3,26 +3,23 @@
   width: 90%;
   margin: 30px 0;
   text-align: left;
-  color: #525252;
+  color: #3A3E40;
   font-size: 14px;
 }
 
-.qaSearchBar{
+.qaSearchBar {
   width: 100%;
   height: 50px;
-  border: 1px solid #525252;
+  border: 1px solid #3A3E40;
   padding: 15px;
   margin: 20px 0px;
   border-radius: 7px;
+  transition: all 100ms ease-in;
 }
 
-.qaSearchBar:focus {
-  outline: 2px;
-  box-shadow: 2px 2px 5px 3px #000;
-}
-
-.qaSearchBar:hover {
+.qaSearchBar:hover, .qaSearchBar:focus {
   box-shadow: 3px 3px 5px 3px #555;
+  outline: none;
 }
 
 .space {
@@ -30,16 +27,21 @@
 }
 
 .qaQuestionBody {
-  margin: 5px 0px 15px 0;
-  color: #525252;
+  margin: 5px 0 25px 0;
+  color: #3A3E40;
   font-weight: 800;
-  width: 80%
+  width: 100%;
+}
+
+.qa_hr {
+  color: #3A3E40;
 }
 
 .questionOptions {
   float: right;
   font-weight: 400;
   right: 0;
+  white-space: nowrap;
 }
 
 #helpfulQ {
@@ -56,19 +58,27 @@
 .answersContainer {
   height: 150px;
   overflow: auto;
+  width: 100%;
+  margin: 30px 15px;
 }
 
 .qaAnswerBody {
-  margin: 0 0 5px 7px;
-  color: #525252;
+  margin: 0 0 10px 7px;
+  color: #3A3E40;
   width: 70%;
   overflow-wrap: break-word;
 }
 
 .qaAnswerOptions {
-  margin: 0 0 20px 0;
+  margin: 10px 0 20px 0;
   font-size: small;
   display: block;
+}
+
+.qa_Img {
+  max-width: 300px;
+  height: 100px;
+  padding: 5px 10px;
 }
 
 .moreAnswers {
@@ -94,12 +104,12 @@
   display: inline-block;
   cursor: pointer;
   padding: 0;
-  color: #0B3954;
-  transition: font-weight 200ms ease-in-out;
+  color: #3A3E40;
+  transition: all 100ms ease;
 }
 
 .qaLinkButton:hover {
-  color: #7EC4CF;
+  color: #6C8789;
   text-decoration: underline;
 }
 
@@ -134,10 +144,12 @@
 }
 
 .close {
-  /* display: flex;
-  justify-content: space-between; */
   display: block;
   float: right;
+}
+
+.close:hover {
+  cursor: pointer;
 }
 
 .q-modal-form::-webkit-textarea-placeholder {
@@ -147,10 +159,14 @@
   /* transform:translateY(-200%) !important; */
 }
 
-.q-modal-form {
+.qa-modal-form {
   width: 70%;
   height: 100px;
   resize: none;
+}
+
+.qa_subtitle {
+  word-wrap: normal;
 }
 
 .qa_label {
@@ -162,16 +178,16 @@
   border-radius: 6px;
   border: none;
   padding: 15px 15px;
-  width: 60%;
+  width: 200px;
   margin: 10px 15px;
   font-family: "roboto", sans-serif;
 }
 
-.qInput:focus {
+/* .qInput:focus {
   box-shadow: 2px 2px 5px #525252;
-}
+} */
 
-.submitQuestion {
+.submitQuestion, .submitAnswer {
   background: #f9f9f9;
   color: #525252;
   font-weight: 600;
@@ -185,19 +201,20 @@
 
 .qaBigButton {
   background: none;
-  border: 1px solid #525252;
+  border: 1px solid #3A3E40;
   border-radius: 3px;
-  color: #525252;
+  color: #3A3E40;
   padding: 15px;
   margin: 15px 15px 0 0;
   box-shadow: 3px 2px 8px #888;
   transition: all ease-in-out 200ms;
 }
 
-.qaBigButton:hover, .submitQuestion:hover {
-  background:#525252;
+.qaBigButton:hover, .submitQuestion:hover, .submitAnswer:hover {
+  background:#6C8789;
   color: white;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .qaBigButton:focus, .qaButton, form input {

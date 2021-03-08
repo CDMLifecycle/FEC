@@ -48,7 +48,7 @@ class QuestionList extends React.Component {
       <div>
         {this.state.questions.slice(0, this.state.questionLimit).map((question) => {
           return (
-            <QuestionItem q={question} key={question.question_id} />
+            <QuestionItem productName={this.props.productName}q={question} key={question.question_id} />
           )
         })}
         <div className="questionButtons">
@@ -57,7 +57,7 @@ class QuestionList extends React.Component {
             : (null)
           }
           <button name="addQuestion" onClick={this.addQuestion} className="qaBigButton qaCaps">Add A Question +</button>
-          <QuestionForm displayModal={this.state.modal} closeModal={this.addQuestion}/>
+          <QuestionForm productName={this.props.productName}displayModal={this.state.modal} closeModal={this.addQuestion}/>
         </div>
       </div>
     )

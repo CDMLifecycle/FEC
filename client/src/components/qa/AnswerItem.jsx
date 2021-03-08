@@ -16,7 +16,16 @@ class AnswerItem extends React.Component {
         <div className="flexRow">
           <div>A: </div>
           <div className="qaAnswerBody"> {this.props.answer.body}</div>
-        </div>
+          </div>
+          {this.props.answer.photos.length > 0 ?
+          <div className="qa_ImgContainer">
+            {this.props.answer.photos.map((image) => {
+              console.log(image)
+              return <img className="qa_Img" key={image} src={`${image}`}></img>
+            })}
+          </div>
+            : (null)
+          }
         <AnswerOptions answerData={this.props.answer}/>
       </div>
     )

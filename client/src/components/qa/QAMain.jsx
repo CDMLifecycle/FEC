@@ -36,6 +36,7 @@ class QAMain extends React.Component {
       }
     })
     .then(response => {
+      console.log(response.data);
       this.setState({
         questions: response.data.results
       })
@@ -46,12 +47,13 @@ class QAMain extends React.Component {
   }
 
   render() {
+    console.log(this.props.searchedArr[0].name)
     return(
       <>
         <div className="QAMain">
           {'QUESTIONS & ANSWERS'}
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList questions={this.state.questions} />
+          <QuestionList productName={this.props.searchedArr[0].name} questions={this.state.questions} />
         </div>
       </>
     )

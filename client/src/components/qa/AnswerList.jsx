@@ -44,8 +44,6 @@ class AnswerList extends React.Component {
 
   }
 
-  // Object.values(this.props.answers)
-
   render() {
     return (
       <>
@@ -61,7 +59,7 @@ class AnswerList extends React.Component {
           : this.state.answers.length <= 2 ? (null)
           : (
             <button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showLessAnswers}>Collapse Answers</button>
-            )}
+        )}
       </div>
       : (null)}
       </>
