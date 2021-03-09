@@ -130,46 +130,48 @@ class WriteReview extends React.Component {
       <div id='backdrop-write-review'>
         <div id='write-review-contents'>
           <div id='exit'>
-            <button onClick={this.props.exit}>X</button>
+            <button onClick={this.props.exit}>CLOSE</button>
           </div>
           <h3>Submit your review for {this.props.productInfo.name.toUpperCase()} below</h3>
           <div id='form-review-container'>
-            <div id='review-stars-container'>
-              How do you rate this product?
-              <label
-                className={this.state.selected}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
-                onChange={this.handleChange}
-                onClick={this.selectBtn}
-                value='1'
-                name='rating'>
-                <input
-                  type='radio'
-                  value='1'
-                  name='rating'
-                  require
-                />
-                <img src={this.setStar(1)} value='1'/>
-              </label>
-              <label className={this.state.selected}>
-                <input type='radio' value='2' name='rating' onChange={this.handleChange}/>
-                <img src={this.setStar(2)} />
-              </label>
-              <label className={this.state.selected}>
-                <input type='radio' value='3' name='rating' onChange={this.handleChange}/>
-                <img src={this.setStar(3)} />
-              </label>
-              <label className={this.state.selected}>
-                <input type='radio' value='4' name='rating' onChange={this.handleChange}/>
-                <img src={this.setStar(4)} />
-              </label>
-              <label className={this.state.selected}>
-                <input type='radio' value='5' name='rating' onChange={this.handleChange}/>
-                <img src={this.setStar(5)} />
-              </label>
-            </div>
             <form onSubmit={this.handleSubmit}>
+              <div id='review-stars-container'>
+                How do you rate this product?
+                <div id='star-box'>
+                  <label
+                    className={this.state.selected}
+                    onMouseEnter={this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseLeave}
+                    onChange={this.handleChange}
+                    onClick={this.selectBtn}
+                    value='1'
+                    name='rating'>
+                    <input
+                      type='radio'
+                      value='1'
+                      name='rating'
+                      require
+                    />
+                    <img src={this.setStar(1)} value='1'/>
+                  </label>
+                  <label className={this.state.selected}>
+                    <input type='radio' value='2' name='rating' onChange={this.handleChange}/>
+                    <img src={this.setStar(2)} />
+                  </label>
+                  <label className={this.state.selected}>
+                    <input type='radio' value='3' name='rating' onChange={this.handleChange}/>
+                    <img src={this.setStar(3)} />
+                  </label>
+                  <label className={this.state.selected}>
+                    <input type='radio' value='4' name='rating' onChange={this.handleChange}/>
+                    <img src={this.setStar(4)} />
+                  </label>
+                  <label className={this.state.selected}>
+                    <input type='radio' value='5' name='rating' onChange={this.handleChange}/>
+                    <img src={this.setStar(5)} />
+                  </label>
+                </div>
+              </div>
               <div className='review-input-container'>
                 <div>
                   <label className='review-input-form'>
@@ -220,18 +222,20 @@ class WriteReview extends React.Component {
                   </label>
                 </div>
               </div>
-
-
-              <label onChange={this.handleBoolean} value={this.state.recommend}>
+              <div id='would-recommend-container'>
                 <h4>Would you recommend this item?</h4>
-                <input type='radio' name='recommend' value='true' required />Yes
-                <input type='radio' name='recommend' value='false' />No
-              </label>
-              <div>
-                <span style={{padding: '3px'}}>Characteristics</span>
-                <div>
+                  <div id='yes-no-box'>
+                    <label onChange={this.handleBoolean} value={this.state.recommend}>
+                      <input type='radio' name='recommend' value='true' required />Yes
+                      <input type='radio' name='recommend' value='false' />No
+                    </label>
+                  </div>
+              </div>
+              <div id='characteristics-review-box'>
+                <h4>Characteristics</h4>
+                <div className='per-characteristic-box'>
+                  Fit
                   <label onChange={this.handleChange} value={this.state.rating}>
-                    Fit
                     <input type='radio' value='1' name='fit' required/>1
                     <input type='radio' value='2' name='fit'/>2
                     <input type='radio' value='3' name='fit'/>3
@@ -239,9 +243,9 @@ class WriteReview extends React.Component {
                     <input type='radio' value='5' name='fit'/>5
                   </label>
                 </div>
-                <div>
+                <div className='per-characteristic-box'>
+                  Length
                   <label onChange={this.handleChange} value={this.state.rating}>
-                    Length
                     <input type='radio' value='1' name='length' required/>1
                     <input type='radio' value='2' name='length'/>2
                     <input type='radio' value='3' name='length'/>3
@@ -249,9 +253,9 @@ class WriteReview extends React.Component {
                     <input type='radio' value='5' name='length'/>5
                   </label>
                 </div>
-                <div>
+                <div className='per-characteristic-box'>
+                  Comfort
                   <label onChange={this.handleChange} value={this.state.rating}>
-                    Comfort
                     <input type='radio' value='1' name='comfort' required/>1
                     <input type='radio' value='2' name='comfort'/>2
                     <input type='radio' value='3' name='comfort'/>3
@@ -259,9 +263,9 @@ class WriteReview extends React.Component {
                     <input type='radio' value='5' name='comfort'/>5
                   </label>
                 </div>
-                <div>
+                <div className='per-characteristic-box'>
+                  Quality
                   <label onChange={this.handleChange} value={this.state.rating}>
-                    Quality
                     <input type='radio' value='1' name='quality' required/>1
                     <input type='radio' value='2' name='quality'/>2
                     <input type='radio' value='3' name='quality'/>3
@@ -270,8 +274,10 @@ class WriteReview extends React.Component {
                   </label>
                 </div>
               </div>
-              <button id='exit-write-review' onClick={this.props.exit}>Go back</button>
-              <button id='submit-write-review'>Submit</button>
+              <div id='modal-btn-box'>
+                <button id='exit-write-review' onClick={this.props.exit}>Go back</button>
+                <button id='submit-write-review'>Submit</button>
+              </div>
             </form>
           </div>
         </div>
