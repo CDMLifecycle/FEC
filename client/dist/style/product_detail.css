@@ -1,7 +1,10 @@
 html {
   font-family: 'Roboto', sans-serif;
 }
-
+.productDisplay {
+  margin: 0 auto;
+  width: 95%;
+}
 .containersInContainers{
   display:flex;
   height: 100%;
@@ -11,17 +14,14 @@ html {
 
 .allPhotoscontainer {
   display: flex;
-  height: 100%;
+  height: 850px;
   width: 100%;
   flex:1;
   justify-content: center;
   align-items: center;
   background-color: white;
 }
-.pictureBackground {
-  background-color: mintcream;
-  flex: 2;
-}
+
 
 .containerColumn {
   display: flex;
@@ -52,17 +52,13 @@ html {
 .largePhoto {
   box-sizing: border-box;
   flex: 3;
-  /* background-color: mintcream; */
-  border: solid;
-  border-color: grey;
-  border-width: thin;
+  background-color:white;
   display: flex;
-  width:auto;
+  width: 1000px;
   height:100%;
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: inset 0 0 10px black;
 }
 
 img.thumbnails {
@@ -77,41 +73,66 @@ img.thumbnails {
   box-shadow: 0 10px 10px -5px;
   z-index:2;
   position: relative;
+  border-radius: 4px;
 }
 
 img.thumbnails:hover {
-  width: 120px;
-  height: 120px;
+  transform: scale(1.2);
   cursor: pointer;
+}
+.sloganText {
+  font-size: 30px;
+  flex: 1;
+  border: solid;
+  height: 100px;
+  position:relative;
+  word-wrap: break-word;
+  height: auto;
+  border-width: thin;
+  padding: 30px;
+  font-style: italic;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
+  border-left: hidden;
+  border-right: hidden;
+  border-top: hidden;
+  border-bottom: hidden;
+  border-radius: 8px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .largeImage {
   /* height: 690px; */
-  animation: mymove .3s linear;
+  animation: mymove .3s ease-in-out;
 }
 
 img.magnifier-image {
   /* height: 690px; */
-  height: 500px;
+  height: auto;
+  max-height: 750px;
   width: auto;
   margin-right: 40px;
   margin-left: 40px;
-  max-width: 1000px;
+  max-width: 850px;
   border: solid;
   border-color: grey;
   border-width: thin;
   box-shadow: 5px 5px 10px;
   transition: all .5s linear;
   animation: mymove 2s linear;
+  border-radius: 4px;
+
 }
 
 button#fs{
   width: 40px;
   height: 40px;
   border: none;
-  background-color: mintcream;
-  position: inherit;
-  left: 150px;
+  background-color: #fefefe;
+  position: absolute;
+  left: 200px;
   bottom: 850px;
   z-index: 103;
 }
@@ -131,17 +152,21 @@ button#fs:hover {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-
+  margin-top: 60px;
 }
 
 #size {
-  flex:1;
-  display: block;
-  width: 310px;
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  max-width: 250px;
+  justify-content: center;
+  margin: 20px;
 }
 .productDescriptionContainer {
   display: flex;
   flex-direction: row;
+  position:relative;
 }
 
 .descriptionText {
@@ -155,7 +180,19 @@ button#fs:hover {
   border-width: thin;
   padding: 30px;
   font-style: italic;
-  box-shadow: 0 10px 10px -5px black;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
+  border-left: hidden;
+  border-right: hidden;
+  border-top: hidden;
+  border-bottom: hidden;
+  border-radius: 8px;
+  margin-right: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.DescriptionFont {
+  font-weight: 800;
+  font-size: 15px;
 }
 
 .productName {
@@ -164,6 +201,11 @@ button#fs:hover {
   font-weight: 500;
   font-size: 42px;
   line-height: 38px;
+  letter-spacing: 0.08em;
+}
+.categoryName {
+  letter-spacing: 0.08em;
+
 }
 
 /* typo quantity review for later */
@@ -178,24 +220,27 @@ button#fs:hover {
   min-height: 200px;
   max-width: 350px;
   justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .circleStyle {
   width: 70px;
   height: 70px;
-  border-radius: 50%;
   border: solid;
-  border-color: black;
+  border-width: 2px;
+  border-color:grey;
   margin-right: 20px;
   margin-bottom: 10px;
   background-position: center;
-  box-shadow: 5px 5px 20px grey;
-  z-index: 100;
+  object-fit: cover;
+  border-radius: 8px;
 }
+
 .circleStyle:hover {
-  width: 90px;
-  height: 90px;
+  transform: scale(1.2);
   cursor: pointer;
+  z-index: 100;
 }
 
 .styleFont {
@@ -243,19 +288,21 @@ body, html {
   text-transform: uppercase;
   font-family: Helvetica, Arial, sans-serif;
   font-style: italic;
-  font-weight: 700;
   background-color: white; /* Green */
   border: solid;
-  border-color: grey;
+  border-width: .3px;
+  border-color: lightgrey;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
   font-size: 16px;
-  margin: 5px;
-  border-radius: 50%;
-  box-shadow: 0 10px 10px -5px grey;
+  border-radius: 8px;
   z-index: 100;
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+  margin: 5px;
 }
 .sizeButton:hover {
   background-color: black;
@@ -268,11 +315,12 @@ body, html {
   border-width: thin;
   border-color: grey;
   position: relative;
-  height: 30px;
-  width: 30px;
+  height: 48px;
+  width: 50px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  display: flex;
 }
 /* cards */
 
@@ -287,19 +335,17 @@ body, html {
 }
 
 button.leftright {
-  position: relative;
   height: 40px;
   width: 50px;
-  margin: 30px;
-  border:solid;
-  border-width: thin;
-  background-color: white;
-  box-shadow: 0 10px 10px -5px black;
+  border: 0.8px solid #ccc;
+  background-color: #fefefe;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
+  border-radius: 4px;
 }
 
 
 button.leftright:hover {
-  background-color: lavender;
+  background-color: #ccc;
 }
 
 /* magnifying */
@@ -327,6 +373,8 @@ input[type=text] {
   width: 130px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
+  border: solid;
+  border-color: black;
 }
 
 input[type=text]:focus {
@@ -337,4 +385,64 @@ input[type=text]:focus {
   position: relative;
   left: 500px;
 
+}
+
+.leftScroller {
+  position:absolute;
+  left: 10px;
+  top: 380px;
+}
+
+.rightScroller {
+  position:absolute;
+  left: 940px;
+  top: 380px;
+}
+
+.qsButtonLeft {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  background-color: #fefefe;
+  border-right: hidden;
+  margin-left: 2px;
+  border-width: 1px;
+
+}
+.qsButtonRight {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  background-color: #fefefe;
+  border-left: hidden;
+  margin-right: 2px;
+  border-width: 1px;
+}
+.qsButtonLeft:hover {
+  background-color: #CCC;
+}
+.qsButtonRight:hover {
+  background-color: #CCC;
+}
+
+.Checkout {
+  background: #fefefe;
+  border: 1px solid #fefefe;
+  border-radius: 3px;
+  color: #3A3E40;
+  padding: 15px;
+  margin: 15px 15px 0 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+  transition: all ease-in-out 200ms;
+}
+
+.Checkout:hover {
+  background:#6C8789;
+  color: white;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+button:focus {
+  outline: none;
 }
