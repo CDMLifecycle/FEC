@@ -154,7 +154,7 @@ class App extends React.Component {
               updateLooksInSession={this.updateLooksInSession}
             />
             {this.state.productID ?
-            <QAMain productID={this.state.productID} /> : null}
+            <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productID
               ? <RatingsAndReviews
                 productID={this.state.productID}
