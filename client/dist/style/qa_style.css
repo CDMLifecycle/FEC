@@ -223,4 +223,5 @@
 
 .qaBigButton:focus, .qaButton, form input {
   outline: none;
+  border: none;
 }

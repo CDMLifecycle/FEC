@@ -37,7 +37,7 @@ const AnswerForm = props => {
 
   return (
     props.displayModal ? (AForm) : (null)
-  )
+  );
 }
 
 export default AnswerForm;
