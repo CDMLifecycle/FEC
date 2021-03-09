@@ -16,13 +16,17 @@ var ThumbnailCarousel = (props) => {
     setImageArray(rowsOfImages);
   }, []);
 
+  var handleClick = (src) => {
+    props.selectImage(src);
+  }
+
   return (
     <div className='ThumbnailCarousel'>
       {imageArray ?
         imageArray.map((fourImgArray) =>
           <div className='ThumbnailCarousel-row'>
             {fourImgArray.map(img =>
-              <img className='ThumbnailCarousel-img-cell' src={img}></img>
+              <img className='ThumbnailCarousel-img-cell' key={img} onClick={() => handleClick(img)} src={img}></img>
             )}
           </div>
          )

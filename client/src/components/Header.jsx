@@ -1,5 +1,5 @@
 import React from 'react';
-import FECIcon from '../../dist/images/FECicon.png';
+import FECIcon from '../../dist/images/logo.png';
 
 class Header extends React.Component {
   constructor(props) {

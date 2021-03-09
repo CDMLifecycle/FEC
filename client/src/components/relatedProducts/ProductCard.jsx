@@ -29,6 +29,10 @@ var ProductCard = (props) => {
     }
   }
 
+  var selectImage = (src) => {
+    setPrimaryImg(src);
+  }
+
   var saleClass = 'ProductCard-product-information-price'
   if (props.product.sale_price) {
     saleClass = 'ProductCard-product-information-price-discounted'
@@ -47,10 +51,10 @@ var ProductCard = (props) => {
         <img className='ProductCard-primary-img' src={primaryImg}></img>
       </div>
       <div className='ProductCard-product-information'>
-        {/* { props.compareProducts && props.product.stylePhotos.length > 1 ?
-          <ThumbnailCarousel photos={props.product.stylePhotos} />
+        { props.compareProducts && props.product.stylePhotos.length > 1 ?
+          <ThumbnailCarousel selectImage={selectImage} photos={props.product.stylePhotos} />
           : null
-        } */}
+        }
         <p className='ProductCard-product-information-category'>{props.product.category}</p>
         <p className='ProductCard-product-information-name'>{props.product.name.toUpperCase()}</p>
         <p className={saleClass}>${props.product.default_price.substring(0, props.product.default_price.indexOf('.'))}</p>
