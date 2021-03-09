@@ -8,6 +8,7 @@ import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
+import Footer from './Footer.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 import './app.css';
@@ -164,7 +165,11 @@ class App extends React.Component {
                 productInfo={this.state.searchedArr[0]}
                 />
               : <div></div>}
+<<<<<<< HEAD
             <footer id='push'></footer>
+=======
+              <Footer />
+>>>>>>> e3c9ebe2d1191bacc92aa85f9ec1c8025be933da
           </div>
         )
       }
