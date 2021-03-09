@@ -31,7 +31,7 @@ class QuestionOptions extends React.Component {
   render() {
     return(
       <div className="questionOptions">
-        <span id="underline">Helpful? </span>
+        <span className="space">Helpful?   </span>
         <button className="helpful qaLinkButton qaButton" onClick={this.markQHelpful}>Yes</button> ({this.props.qHelpful})
         <span className="qaDivider">|</span>
         <button className="qaLinkButton qaButton" onClick={this.addAnswer}>Add Answer</button>

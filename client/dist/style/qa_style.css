@@ -1,10 +1,13 @@
 .QAMain {
   font-family: 'Roboto', sans-serif;
   width: 90%;
-  margin: 30px 0;
+  margin: 30px 5%;
   text-align: left;
   color: #3A3E40;
-  font-size: 14px;
+}
+
+.qa_title {
+  letter-spacing: 0.08em;
 }
 
 .qaSearchBar {
@@ -18,12 +21,12 @@
 }
 
 .qaSearchBar:hover, .qaSearchBar:focus {
-  box-shadow: 3px 3px 5px 3px #555;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);;
   outline: none;
 }
 
 .space {
-  padding-right: 2px;
+  padding-right: 4px;
 }
 
 .qaQuestionBody {
@@ -42,6 +45,7 @@
   font-weight: 400;
   right: 0;
   white-space: nowrap;
+  display: inline-flex;
 }
 
 #helpfulQ {
@@ -200,13 +204,13 @@
 }
 
 .qaBigButton {
-  background: none;
-  border: 1px solid #3A3E40;
+  background: #fefefe;
+  border: 1px solid #fefefe;
   border-radius: 3px;
   color: #3A3E40;
   padding: 15px;
   margin: 15px 15px 0 0;
-  box-shadow: 3px 2px 8px #888;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
   transition: all ease-in-out 200ms;
 }
 
