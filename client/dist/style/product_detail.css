@@ -52,7 +52,7 @@ html {
 .largePhoto {
   box-sizing: border-box;
   flex: 3;
-  background-color: mintcream;
+  /* background-color: mintcream; */
   border: solid;
   border-color: grey;
   border-width: thin;
@@ -63,7 +63,6 @@ html {
   align-items: center;
   position: relative;
   box-shadow: inset 0 0 10px black;
-
 }
 
 img.thumbnails {
@@ -111,7 +110,7 @@ button#fs{
   height: 40px;
   border: none;
   background-color: mintcream;
-  position: absolute;
+  position: inherit;
   left: 150px;
   bottom: 850px;
   z-index: 103;

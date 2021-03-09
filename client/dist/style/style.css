@@ -1,5 +1,56 @@
 
 /*------------------------------------Styles for Related Products-------------------------- */
+
+.Header {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color:  #fefefe;
+  color:  #3A3E40;
+  height: 48px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin-bottom: 20px;
+  border-bottom: .5px solid #ccc;
+  /* align-self: self-end; */
+}
+
+.Header-logo {
+  margin-left: 20px;
+  height: 60px;
+  bottom: 0;
+}
+
+.input-container {
+  display: inline;
+  position: absolute;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-left: 3px;
+}
+
+.Header-search {
+  margin-top: 20px;
+}
+
+.Header-search input {
+  width: 200px;
+  /* border-radius: 1px; */
+  height: 32px;
+  background-color: rgb(218, 218, 218);
+  color: black;
+  margin-left: 20px;
+  border: .5px;
+  padding-left: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
 .Footer {
   position: relative;
   left: 0;

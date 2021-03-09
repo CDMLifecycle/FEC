@@ -9,6 +9,7 @@ import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
+import Header from './Header.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 var stringSimilarity = require("string-similarity");
@@ -139,7 +140,7 @@ class App extends React.Component {
         return (
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
-              <NavBar handleSubmitForm={this.handleSubmitForm}/>
+              <Header handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
