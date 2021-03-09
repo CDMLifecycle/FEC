@@ -4,7 +4,6 @@ import RenderImages from './renderImages.jsx';
 import LargePhoto from './largePhoto.jsx';
 import { Rating } from '@material-ui/lab';
 import StylesMap from './stylesMap.jsx';
-import Contents from './carousel/contents.jsx';
 
 class Product_Detail extends React.Component {
   constructor(props) {
@@ -125,29 +124,38 @@ class Product_Detail extends React.Component {
   fullscreen() {
     if (this.state.fullscreen) {
       document.getElementById('lg').style.width = 'auto';
-      document.getElementById('lg').style.height = '600px';
+      document.getElementById('lg').style.height = '500px';
       document.getElementById('lg').style.maxWidth = '1000px';
+      document.getElementById('lg').style.transform = 'scale(1)';
+      document.getElementById('lg').style.zIndex = '1';
+
       this.setState({fullscreen: false});
     } else {
       document.getElementById('lg').style.maxWidth = 'none';
-      document.getElementById('lg').style.position = 'relative';
       document.getElementById('lg').style.height = '1500px';
       document.getElementById('lg').style.width ='auto';
+      document.getElementById('lg').style.transform = 'scale(2.5)';
+      document.getElementById('lg').style.zIndex = '102';
 
       this.setState({fullscreen: true});
     }
   }
   halffullscreen() {
     if (this.state.hf) {
+      document.getElementById('lg').style.position = 'relative';
       document.getElementById('lg').style.width = 'auto';
-      document.getElementById('lg').style.height = '600px';
+      document.getElementById('lg').style.height = '500px';
       document.getElementById('lg').style.maxWidth = '1000px';
+      document.getElementById('lg').style.transform = 'scale(1)';
+      document.getElementById('lg').style.zIndex = '1';
       this.setState({hf: false});
     } else {
       document.getElementById('lg').style.maxWidth = 'none';
-      document.getElementById('lg').style.position = 'relative';
+      // document.getElementById('lg').style.position = 'relative';
+      document.getElementById('lg').style.transform = 'scale(1.667)';
       document.getElementById('lg').style.height = '1000px';
       document.getElementById('lg').style.width ='auto';
+      document.getElementById('lg').style.zIndex = '102';
 
       this.setState({hf: true});
     }
@@ -171,7 +179,7 @@ class Product_Detail extends React.Component {
     <div className='productDescriptionContainer'>
       <div className='descriptionText'>Product Description: {this.state.products[0].description}</div>
       <div className='descriptionText'>
-        something
+        {this.state.products[0].slogan}
         </div>
       <div className='descriptionText'>something else</div>
     </div>
@@ -190,16 +198,16 @@ class Product_Detail extends React.Component {
               <div className = 'photoContainer'>
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
-              <button id='fs' onClick={this.fullscreen}>
+              <button href='#lg' id='fs' onClick={this.fullscreen}>
                   <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
               <div className = 'largePhoto'>
-                <button type='button' class='leftright' onClick={this.changeIndexLeft}>
-                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <button type='button' className='leftright' onClick={this.changeIndexLeft}>
+                  <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
                 <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} slide={this.state.slide}/>
-                <button type='button' class='leftright' onClick={this.changeIndexRight}>
-                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <button type='submit' className='leftright' onClick={this.changeIndexRight}>
+                  <i className="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -221,14 +229,13 @@ class Product_Detail extends React.Component {
             <div className='styleContainer'>
               {styles}
             </div>
-            <div className='quantity_Size_Container'></div>
               <div className='q_c'>
                 Quantity:
-                <button type='button' onClick={(event) => {
+                <button className="qsButton" onClick={(event) => {
                   this.quantityDecrease(event);
                 }} ><i className="fa fa-minus" aria-hidden="true"></i></button>
                 <div className='quantityBox'>{this.state.quantity}</div>
-                <button type='button' onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                <button className="qsButton" onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
               </div>
                   <span className='styleFont'>Select Size</span>
               <div id='size'>
