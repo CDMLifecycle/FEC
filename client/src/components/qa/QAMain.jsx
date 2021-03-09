@@ -36,7 +36,6 @@ class QAMain extends React.Component {
       }
     })
     .then(response => {
-      console.log(response.data);
       this.setState({
         questions: response.data.results
       })
@@ -47,7 +46,6 @@ class QAMain extends React.Component {
   }
 
   render() {
-    console.log(this.props.searchedArr[0].name)
     return(
       <>
         <div className="QAMain">
