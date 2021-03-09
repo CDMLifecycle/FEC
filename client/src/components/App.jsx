@@ -11,6 +11,7 @@ import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
+import './app.css';
 var stringSimilarity = require("string-similarity");
 
 
@@ -83,8 +84,8 @@ class App extends React.Component {
   }
 
   handleSubmitForm(searched) {
-    this.setState({searchedQuery: searched}, () => this.stringComparison());
-    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
+    // this.setState({searchedQuery: searched}, () => this.stringComparison());
+    this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   componentDidMount() {
@@ -161,6 +162,7 @@ class App extends React.Component {
                 reviewsList={this.state.reviewsList}
                 getReviews={this.getReviews}
                 productMetadata={this.state.productMetadata}
+                productInfo={this.state.searchedArr[0]}
                 />
               : <div></div>}
               <Footer />

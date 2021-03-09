@@ -1,7 +1,7 @@
 .reviews-list-container {
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 650px;
 }
 
 .sort-header {
@@ -15,8 +15,8 @@
   display: flex;
   align-content: stretch;
   justify-content: center;
-  height: 65px;
-  border:black 1px solid;
+  height: 40px;
+  /* border:black 1px solid; */
 }
 
 
@@ -27,6 +27,7 @@
 
 .plain-button, .sort-selected {
   font-size: 16px;
+  border: #3A3E40 1px solid;
 }
 
 .plain-button {
@@ -38,9 +39,10 @@
 }
 
 .sort-selected {
-  border: 1px black solid;
-  border-bottom: 4px black solid;
-  background-color: hotpink;
+  border: 1px #3A3E40 solid;
+  border-bottom: 3px #3A3E40 solid;
+  background-color: #6C8789;
+  color: #fefefe;
   font-weight: 700;
   width: 100%;
   flex: 1;
@@ -48,12 +50,47 @@
 }
 
 .plain-button:hover {
-  color: red;
-  background-color: greenyellow;
+  /* color: red; */
+  background-color: #CCC;
   cursor: pointer;
 }
 
 
 .mapped-tiles-container {
   width: 100%;
+}
+
+.btn-show-write-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#write-review-btn, #more-reviews-btn {
+  height: 50%;
+  width: 40%;
+  font-size: 16px;
+  border: 1px #CCC solid;
+}
+
+#write-review-btn {
+  background-color: #6C8789;
+  color: #fefefe;
+}
+
+#write-review-btn:hover {
+  background-color: #fefefe;
+  color: #3A3E40;
+}
+
+#more-reviews-btn {
+  background-color: #fefefe;
+  color: #3A3E40;
+}
+
+#more-reviews-btn:hover {
+  background-color: #6C8789;
+  color: #fefefe;
 }
