@@ -8,6 +8,7 @@ import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
+import Footer from './Footer.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 var stringSimilarity = require("string-similarity");
@@ -162,6 +163,7 @@ class App extends React.Component {
                 productMetadata={this.state.productMetadata}
                 />
               : <div></div>}
+              <Footer />
           </div>
         )
       }
