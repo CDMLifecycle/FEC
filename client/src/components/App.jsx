@@ -6,6 +6,7 @@ import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
+import Home from './Home.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
@@ -134,7 +135,7 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-          <Landing handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+          <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
       case "/final":
         return (
