@@ -33,7 +33,7 @@ class Stars extends React.Component {
     return (this.props.size
       ?
         (<div className='star-container'>
-            {starSet.map(starType => <SingleStar num={starType} size={this.props.size} yellow={this.props.yellow}/>)}
+            {starSet.map(starType => <SingleStar num={starType} size={this.props.size} />)}
           </div>)
       :  null
     )}

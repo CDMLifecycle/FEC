@@ -69,16 +69,28 @@
 }
 
 #write-review-btn, #more-reviews-btn {
-  height: 60%;
+  height: 50%;
   width: 40%;
   font-size: 16px;
   border: 1px #CCC solid;
 }
 
+#write-review-btn {
+  background-color: #6C8789;
+  color: #fefefe;
+}
+
 #write-review-btn:hover {
-  background-color: ;
+  background-color: #fefefe;
+  color: #3A3E40;
+}
+
+#more-reviews-btn {
+  background-color: #fefefe;
+  color: #3A3E40;
 }
 
 #more-reviews-btn:hover {
-
+  background-color: #6C8789;
+  color: #fefefe;
 }

@@ -11,7 +11,8 @@ class WriteReview extends React.Component {
     super(props);
     this.state = {
       selected: false,
-      starsArray: [false, false, false, false, false],
+      starsArray: new Array(5).fill(false),
+      selectedStarsArray: new Array(5).fill(false),
       product_id: '',
       date: '',
       rating: 0,
@@ -43,9 +44,18 @@ class WriteReview extends React.Component {
 
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    console.log(e.target.name)
+    if (e.target.name === 'rating') {
+      this.setState({
+        [e.target.name]: e.target.value,
+        selected: true,
+        selectedStarsArray: new Array(5).fill(true, 0, e.target.value)
+      })
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
   }
 
   handleStarChange(e) {
@@ -98,6 +108,8 @@ class WriteReview extends React.Component {
   }
 
   handleMouseEnter(e){
+    console.log(e.target)
+    e.stopPropagation();
     let select = new Array(Number(e.target.getAttribute('value'))).fill(true);
     let unselect = new Array(5 - select.length).fill(false);
     return !this.state.selected
@@ -113,16 +125,25 @@ class WriteReview extends React.Component {
 
   selectBtn(e) {
     console.log('select btn', e.target)
-    this.handleStarChange(e);
-    e.target.setAttribute('selected', '');
-    this.setState({ selected: true, starsArray: this.state.starsArray })
+    e.preventDefault();
+    e.preventDefault();
+    // this.handleStarChange(e);
+    // e.target.setAttribute('selected', '');
+    this.setState({ starsArray: this.state.starsArray })
+  }
+
+  setStarClass(index) {
+    return this.state.selectedStarsArray[index - 1]// && !this.state.selected
+      ? 'selected'
+      : 'unselected'
   }
 
   setStar(index) {
-    console.log('index', index)
-    return this.state.starsArray[index - 1] && !this.state.selected
-      ? StarYellow
-      : StarNoFill
+    if (this.state.selected) {
+      return this.state.selectedStarsArray[index - 1] ? StarYellow : StarNoFill;;
+    } else {
+      return this.state.starsArray[index - 1] ? StarYellow : StarNoFill;
+    }
   }
 
   render () {
@@ -138,38 +159,78 @@ class WriteReview extends React.Component {
               <div id='review-stars-container'>
                 How do you rate this product?
                 <div id='star-box'>
-                  <label
-                    className={this.state.selected}
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                    onChange={this.handleChange}
-                    onClick={this.selectBtn}
-                    value='1'
-                    name='rating'>
+                  <label onChange={this.handleChange}>
                     <input
                       type='radio'
                       value='1'
                       name='rating'
-                      require
+                      required
                     />
-                    <img src={this.setStar(1)} value='1'/>
+                    <img
+                      src={this.setStar(1)}
+                      value='1'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
                   </label>
-                  <label className={this.state.selected}>
-                    <input type='radio' value='2' name='rating' onChange={this.handleChange}/>
-                    <img src={this.setStar(2)} />
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='2'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(2)}
+                      value='2'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
                   </label>
-                  <label className={this.state.selected}>
-                    <input type='radio' value='3' name='rating' onChange={this.handleChange}/>
-                    <img src={this.setStar(3)} />
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='3'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(3)}
+                      value='3'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
                   </label>
-                  <label className={this.state.selected}>
-                    <input type='radio' value='4' name='rating' onChange={this.handleChange}/>
-                    <img src={this.setStar(4)} />
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='4'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(4)}
+                      value='4'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
                   </label>
-                  <label className={this.state.selected}>
-                    <input type='radio' value='5' name='rating' onChange={this.handleChange}/>
-                    <img src={this.setStar(5)} />
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='5'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(5)}
+                      // className={this.state.selected}
+                      value='5'
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
                   </label>
+
                 </div>
               </div>
               <div className='review-input-container'>
@@ -276,7 +337,7 @@ class WriteReview extends React.Component {
               </div>
               <div id='modal-btn-box'>
                 <button id='exit-write-review' onClick={this.props.exit}>Go back</button>
-                <button id='submit-write-review'>Submit</button>
+                <button type='submit' id='submit-write-review'>Submit</button>
               </div>
             </form>
           </div>

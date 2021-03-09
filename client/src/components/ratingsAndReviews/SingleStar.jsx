@@ -4,8 +4,6 @@ import StarHalf from './svg/starHalf.svg';
 import StarNoFill from './svg/starNoFill.svg';
 import StarQuarter from './svg/starQuarter.svg';
 import StarFill from './svg/starFill.svg';
-import StarYellow from './svg/starYellow.svg';
-
 
 class SingleStar extends React.Component{
   constructor(props){
@@ -13,11 +11,7 @@ class SingleStar extends React.Component{
   }
 
 
-  renderSwitch(num, size, yellow) {
-    if (yellow) {
-      return (<img src={StarYellow} className='star'
-      style={{width: `${size}px`}}/>);
-    }
+  renderSwitch(num, size) {
     switch(num) {
       case 1:
         return (
@@ -58,11 +52,10 @@ class SingleStar extends React.Component{
   }
 
  render() {
-   return (this.props ? this.renderSwitch(this.props.num, this.props.size, this.props.yellow) : null);
+   return (this.props ? this.renderSwitch(this.props.num, this.props.size) : null);
   }
 }
 
-// const YellowStar = (props) => (<img src={StarYellow} className='star' />);
 
 
 
