@@ -20,6 +20,8 @@ class ReviewList extends React.Component {
     this.sendHelpful = this.sendHelpful.bind(this);
     this.sendReport = this.sendReport.bind(this);
     this.assignSortClass = this.assignSortClass.bind(this);
+    this.exitWriteReview = this.exitWriteReview.bind(this);
+    this.showMoreReviewsButton = this.showMoreReviewsButton.bind(this);
   }
 
   handleSelectChange(e) {
@@ -46,6 +48,11 @@ class ReviewList extends React.Component {
         writeBtn: true
       })
     }
+  }
+
+  exitWriteReview(e) {
+    e.preventDefault();
+    this.setState({ writeBtn: false })
   }
 
   submitWriteReview(postParams) {
@@ -76,6 +83,17 @@ class ReviewList extends React.Component {
 
   assignSortClass(type) {
     return type === this.state.sort ? 'sort-selected' : 'plain-button';
+  }
+
+  showMoreReviewsButton(){
+    return (
+      <button
+        onClick={this.handleShowMoreReviews}
+        id='more-reviews-btn'
+      >
+        Show More Reviews
+      </button>
+    )
   }
 
   render () {
@@ -109,14 +127,11 @@ class ReviewList extends React.Component {
             />
           ))}
           <div className='btn-show-write-container'>
-            <button
-              onClick={this.handleShowMoreReviews}
-              id='more-reviews-btn'
-            >Show More Reviews</button>
+          {reviewArray ? this.showMoreReviewsButton() : null}
             <button
               onClick={this.handleWriteReviewBtn}
               id='write-review-btn'
-            >Write a Review</button>
+            >Write a Review+</button>
           </div>
         </div>
           {this.state.writeBtn
@@ -125,6 +140,7 @@ class ReviewList extends React.Component {
                 productMetadata={this.props.productMetadata}
                 className='write-review-modal'
                 productInfo={this.props.productInfo}
+                exit={this.exitWriteReview}
               />
             : <React.Fragment></React.Fragment>
           }
