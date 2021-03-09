@@ -1,4 +1,7 @@
 import React from 'react';
+import StarNoFill from './svg/starNoFill.svg';
+import StarYellow from './svg/starYellow.svg';
+
 
 class StarWriteReview extends React.Component {
   constructor(props){
@@ -11,6 +14,7 @@ class StarWriteReview extends React.Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.selectBtn = this.selectBtn.bind(this);
+    this.setStar = this.setStar.bind(this);
   }
 
 
@@ -31,8 +35,15 @@ class StarWriteReview extends React.Component {
   }
 
   selectBtn(e) {
+    console.log(e.target.value)
     this.props.handleChange(e)
     this.setState({ selected: true })
+  }
+
+  setStar(index) {
+    return this.state.starsArray[index - 1]
+      ? StarYellow
+      : StarNoFill
   }
 
   // setInputs(array) {
@@ -68,27 +79,40 @@ class StarWriteReview extends React.Component {
     // console.log(this.setArray(this.state))
     return(
       <div id='overall-rating'>
-        <div
-        onChange={this.selectBtn}
-        value={this.state.rating}
-        id='ratings-values'>
+
+        {/* <div
+        onClick={this.selectBtn}
+        value={this.props.rating}
+        id='ratings-values-radio'>
+          <div
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+            className='write-review-star'
+            name='rating'
+          >
+            <img src={this.setStar(this.state.starsArray[0])} value={1} />
+          </div>
+
 
           <label
             onChange={this.selectBtn}
             value={this.state.rating}
             id='ratings-values'
           >
+            <input
+                type='radio'
+                value={1}
+                name='rating'
+                className='star-selected'
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+                required
+              />1
+          </label> */}
+
             {/* {this.setInputs(this.state.starsArray)} */}
-            <input
-              type='radio'
-              value={1}
-              name='rating'
-              className='star-selected'
-              onMouseEnter={this.handleMouseEnter}
-              onMouseLeave={this.handleMouseLeave}
-              required
-            />1
-            <input
+
+            {/* <input
               type='radio'
               value={2}
               name='rating'
@@ -112,6 +136,7 @@ class StarWriteReview extends React.Component {
               onMouseEnter={this.handleMouseEnter}
               onMouseLeave={this.handleMouseLeave}
             />4
+            <label>
             <input
               type='radio'
               value={5}
@@ -121,7 +146,7 @@ class StarWriteReview extends React.Component {
               onMouseLeave={this.handleMouseLeave}
             required/>5
           </label>
-          </div>
+          </div> */}
       </div>
     )
   }

@@ -4,10 +4,14 @@
   width: 98%;
   padding-top: 10px;
   margin-bottom: 50px;
+  margin-left: 5%;
   overflow: hidden;
   box-sizing: border-box;
 }
 
+#ratings-reviews-main-container button:focus {
+  outline: none;
+}
 
 #ratings-reviews-header {
   text-transform: uppercase;

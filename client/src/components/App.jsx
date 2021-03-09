@@ -165,11 +165,7 @@ class App extends React.Component {
                 productInfo={this.state.searchedArr[0]}
                 />
               : <div></div>}
-<<<<<<< HEAD
-            <footer id='push'></footer>
-=======
               <Footer />
->>>>>>> e3c9ebe2d1191bacc92aa85f9ec1c8025be933da
           </div>
         )
       }
