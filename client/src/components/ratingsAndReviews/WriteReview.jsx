@@ -1,4 +1,6 @@
 import React from 'react';
+import RadioBtn from './RadioBtn.jsx';
+import StarWriteReview from './StarWriteReview.jsx';
 import './WriteReview.css';
 
 class WriteReview extends React.Component {
@@ -79,26 +81,15 @@ class WriteReview extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     return (
-      <div className='write-review-container'>
-        <div>
-          <h2>______________________________________________________</h2>
-          <h3>Write a new Review for product#{this.state.product_id}</h3>
+      <div id='backdrop-write-review'>
+        <div id='write-review-contents'>
+        <div id='exit'>X</div>
+          <h3>Sumbit your review for {this.props.productInfo.name} below</h3>
           <form onSubmit={this.handleSubmit}>
-            <label onChange={this.handleChange} value={this.state.rating}>
-              <input type='radio' value='1' name='rating' required/>1
-              <input type='radio' value='2' name='rating'/>2
-              <input type='radio' value='3' name='rating'/>3
-              <input type='radio' value='4' name='rating'/>4
-              <input type='radio' value='5' name='rating'/>5
-            </label>
-            <div>
-              <input
-                placeholder='Please give a breif summary of your review'
-                name='summary'
-                value={this.state.summary}
-                onChange={this.handleChange}
-              />
+            {/* <div> */}
+            <div id='input-fields-container'>
               <input
                 placeholder='1000 character max'
                 name='body'
@@ -106,27 +97,46 @@ class WriteReview extends React.Component {
                 onChange={this.handleChange}
                 required
               />
+              <input
+                placeholder='Name'
+                name='name'
+                value={this.state.name}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                placeholder='Email'
+                name='email'
+                value={this.state.email}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                placeholder='Please give a breif summary of your review'
+                name='summary'
+                value={this.state.summary}
+                onChange={this.handleChange}
+              />
             </div>
-            <input
-              placeholder='Name'
-              name='name'
-              value={this.state.name}
+            {/* </div> */}
+            <StarWriteReview handleChange={this.handleChange} />
+            {/* <label
               onChange={this.handleChange}
-              required
-            />
-            <input
-              placeholder='Email'
-              name='email'
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
+              value={this.state.rating}
+              id='overall-rating'
+            >
+              <input type='radio' value='1' name='rating' required/>1
+              <input type='radio' value='2' name='rating'/>2
+              <input type='radio' value='3' name='rating'/>3
+              <input type='radio' value='4' name='rating'/>4
+              <input type='radio' value='5' name='rating'/>5
+            </label> */}
             <label onChange={this.handleBoolean} value={this.state.recommend}>
               <h6>Would you recommend this item?</h6>
               <input type='radio' name='recommend' value='true' required />Yes
               <input type='radio' name='recommend' value='false' />No
             </label>
-            <div className='characteristics-container'>
+            <div>
               <span style={{padding: '3px'}}>Characteristics</span>
               <div>
                 <label onChange={this.handleChange} value={this.state.rating}>

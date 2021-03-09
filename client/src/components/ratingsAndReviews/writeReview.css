@@ -1,8 +1,22 @@
-
-
-.write-review-container {
-  width: 80%;
-  margin: auto;
-  background-color: coral;
+/* #write-review-container {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
   border: 2px #333 solid;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightgray;
 }
+
+
+
+#input-fields-container {
+  border: tomato 2px solid;
+}
+
+
+
+#overall-rating {
+  border: 2px green solid;
+} */

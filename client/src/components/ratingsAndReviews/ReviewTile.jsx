@@ -36,7 +36,7 @@ class ReviewTile extends React.Component {
         <div className='review-tile-container'>
           <div className='review-tile'>
             <div className='date-stars-container'>
-              <Stars avgQtr={review.rating}/>
+              <Stars avgQtr={review.rating} size={25} yellow={false}/>
               <h5>{this.formatDate(review.date)}</h5>
             </div>
               <div className='review-body'>

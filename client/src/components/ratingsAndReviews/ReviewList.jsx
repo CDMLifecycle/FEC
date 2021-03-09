@@ -74,19 +74,6 @@ class ReviewList extends React.Component {
       .catch(err => console.log(err, 'error with helpful review'))
   }
 
-// to rating breakdown
-//   <div className='sort-header'>
-//   {this.addSpan(this.props)}
-// </div>
-
-//   addSpan(props){
-//     console.log(props)
-//     if (props.productMetadata.totals) {
-//       // console.log('in func', props.productMetadata.totals.totalRatings)
-//       return <span>{props.productMetadata.totals.totalRatings} ratings</span>
-//     }
-//   }
-
   assignSortClass(type) {
     return type === this.state.sort ? 'sort-selected' : 'plain-button';
   }
@@ -121,17 +108,26 @@ class ReviewList extends React.Component {
               productMetadata={this.props.productMetadata}
             />
           ))}
-          <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
-          <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
+          <div className='btn-show-write-container'>
+            <button
+              onClick={this.handleShowMoreReviews}
+              id='more-reviews-btn'
+            >Show More Reviews</button>
+            <button
+              onClick={this.handleWriteReviewBtn}
+              id='write-review-btn'
+            >Write a Review</button>
+          </div>
+        </div>
           {this.state.writeBtn
             ? <WriteReview
                 submitWriteReview={this.submitWriteReview}
                 productMetadata={this.props.productMetadata}
                 className='write-review-modal'
+                productInfo={this.props.productInfo}
               />
             : <React.Fragment></React.Fragment>
           }
-        </div>
       </div>
     )
   }

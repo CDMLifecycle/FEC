@@ -15,7 +15,7 @@ const RatingBreakdown = (props) => {
           <h1>{props.productMetadata.totals.avgRating.toFixed(1)}</h1>
         </div>
         <div className='star-avg'>
-          <Stars avgQtr={props.productMetadata.totals.avgRatingsToQtr}/>
+          <Stars avgQtr={props.productMetadata.totals.avgRatingsToQtr} size={25} yellow={false}/>
           <div>{props.productMetadata.totals.totalRatings} Reviews</div>
         </div>
       </div>
