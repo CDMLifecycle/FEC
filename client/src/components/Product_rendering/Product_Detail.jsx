@@ -123,39 +123,33 @@ class Product_Detail extends React.Component {
   }
   fullscreen() {
     if (this.state.fullscreen) {
-      document.getElementById('lg').style.width = 'auto';
-      document.getElementById('lg').style.height = '500px';
-      document.getElementById('lg').style.maxWidth = '1000px';
       document.getElementById('lg').style.transform = 'scale(1)';
       document.getElementById('lg').style.zIndex = '1';
+      document.getElementById('lg').style.position = 'relative';
+      document.getElementById('lg').style.maxWidth = '950px';
 
       this.setState({fullscreen: false});
     } else {
-      document.getElementById('lg').style.maxWidth = 'none';
-      document.getElementById('lg').style.height = '1500px';
-      document.getElementById('lg').style.width ='auto';
-      document.getElementById('lg').style.transform = 'scale(2.5)';
+      document.getElementById('lg').style.transform = 'scale(5)';
       document.getElementById('lg').style.zIndex = '102';
+      document.getElementById('lg').style.position = 'absolute';
 
       this.setState({fullscreen: true});
     }
   }
   halffullscreen() {
     if (this.state.hf) {
-      document.getElementById('lg').style.position = 'relative';
-      document.getElementById('lg').style.width = 'auto';
-      document.getElementById('lg').style.height = '500px';
-      document.getElementById('lg').style.maxWidth = '1000px';
       document.getElementById('lg').style.transform = 'scale(1)';
       document.getElementById('lg').style.zIndex = '1';
+      document.getElementById('lg').style.position = 'relative';
+      document.getElementById('lg').style.maxWidth = '950px';
+
       this.setState({hf: false});
     } else {
       document.getElementById('lg').style.maxWidth = 'none';
-      // document.getElementById('lg').style.position = 'relative';
-      document.getElementById('lg').style.transform = 'scale(1.667)';
-      document.getElementById('lg').style.height = '1000px';
-      document.getElementById('lg').style.width ='auto';
+      document.getElementById('lg').style.transform = 'scale(3)';
       document.getElementById('lg').style.zIndex = '102';
+      document.getElementById('lg').style.position = 'absolute';
 
       this.setState({hf: true});
     }
@@ -172,26 +166,32 @@ class Product_Detail extends React.Component {
     }
   }
 
-
-
   render() {
     var description = this.state.products[0] ?
     <div className='productDescriptionContainer'>
-      <div className='descriptionText'>Product Description: {this.state.products[0].description}</div>
       <div className='descriptionText'>
-        {this.state.products[0].slogan}
+        <div className='DescriptionFont'>DESCRIPTION</div>
+        {this.state.products[0].description}
         </div>
-      <div className='descriptionText'>something else</div>
+      <div className='sloganText'>
+        '{this.state.products[0].slogan}'
+        </div>
+      <div className='descriptionText'>
+        <button className='Checkout'>
+          Checkout
+          <i class="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
+        </button>
+      </div>
     </div>
      : <div></div>
-    var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name} </div> : <div></div>
+    var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name.toUpperCase()} </div> : <div></div>
     var categoryName = this.state.products[0] ? <div className='categoryName'>{this.state.products[0].category}</div> : <div></div>
     var price = this.state.products[0] ? <div className='priceCost'>Price: {this.state.products[0].default_price}</div> : <div></div>
     var styles = this.state.photos ? <StylesMap photos={this.state.photos} colorSet={this.colorSet}/> : <div></div>
-    var selectedStyles = this.state.color ? this.state.color : 'Selected Styles'
+    var selectedStyles = this.state.color ? this.state.color : ''
 
     return(
-      <div>
+      <div className='productDisplay'>
         <div className='containersInContainers'>
           <div className='pictureBackground'>
             <div className = 'allPhotoscontainer'>
@@ -202,11 +202,11 @@ class Product_Detail extends React.Component {
                   <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
               <div className = 'largePhoto'>
-                <button type='button' className='leftright' onClick={this.changeIndexLeft}>
+                <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
                   <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
                 <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} slide={this.state.slide}/>
-                <button type='submit' className='leftright' onClick={this.changeIndexRight}>
+                <button type='button' className='rightScroller leftright' onClick={this.changeIndexRight}>
                   <i className="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
@@ -225,19 +225,11 @@ class Product_Detail extends React.Component {
             {productName}
             {price}
 
-              <div className='styleFont'>Styles > {selectedStyles}</div>
+              <div className='styleFont'> Color: {selectedStyles}</div>
             <div className='styleContainer'>
               {styles}
             </div>
-              <div className='q_c'>
-                Quantity:
-                <button className="qsButton" onClick={(event) => {
-                  this.quantityDecrease(event);
-                }} ><i className="fa fa-minus" aria-hidden="true"></i></button>
-                <div className='quantityBox'>{this.state.quantity}</div>
-                <button className="qsButton" onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
-              </div>
-                  <span className='styleFont'>Select Size</span>
+
               <div id='size'>
                   <button onClick={this.toggleSize} className='sizeButton' id='XS' value='XS' key='XS'>XS</button>
                   <button onClick={this.toggleSize}  className='sizeButton' value='S' key='S'>S</button >
@@ -245,6 +237,13 @@ class Product_Detail extends React.Component {
                   <button  onClick={this.toggleSize} className='sizeButton' value='L' key='L'>L</button >
                   <button  onClick={this.toggleSize} className='sizeButton' value='XL' key='XL'>XL</button >
                   <button  onClick={this.toggleSize} className='sizeButton' value='XXL' key='XXL'>XXL</button >
+              </div>
+              <div className='q_c'>
+                <button className="qsButtonLeft" onClick={(event) => {
+                  this.quantityDecrease(event);
+                }} ><i className="fa fa-minus" aria-hidden="true"></i></button>
+                <div className='quantityBox'>{this.state.quantity}</div>
+                <button className="qsButtonRight" onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
               </div>
           </div>
         </div>
