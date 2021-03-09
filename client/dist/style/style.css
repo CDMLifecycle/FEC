@@ -27,7 +27,7 @@
 
 
 .RelatedItems {
-  height: auto;
+  /* height: auto; */
   /* width: 100%; */
   /* background-color: seashell; */
   margin-left: 10%;
@@ -36,6 +36,7 @@
   justify-content: center;
   align-items: center; */
   margin-bottom: 5%;
+  /* position: absolute; */
   margin-top: 5%;
 }
 
@@ -84,6 +85,7 @@
   transition: opacity 0.7s;
   border-image: linear-gradient(90deg, white 0%, #fefefe 5%, #CCC 30%, #adb2b6 50%, #CCC 70%, #fefefe 95%, white 100%) 1;
   border-bottom: 2px solid;
+  height: 600px;
 }
 
 .ProductCard-primary-img {
@@ -157,23 +159,31 @@
 }
 
 .ThumbnailCarousel {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   align-items: center;
   width: auto;
+  display: none;
+  margin-top: 5px;
   height: auto;
+  grid-auto-rows: auto;
+  grid-template-rows: 60px 1fr;
+}
+
+.ProductCard:hover .ThumbnailCarousel {
+  display: grid;
 }
 
 .ThumbnailCarousel-img-cell {
-  height: auto;
-  width: auto;
+  height: 40px;
+  width: 40px;
 }
 
 .ThumbnailCarousel-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: auto;
-  height: 30px;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: 45px;
+  width: 90%;
 }
 
 .CardCarousel {

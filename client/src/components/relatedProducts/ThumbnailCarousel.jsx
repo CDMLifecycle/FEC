@@ -7,7 +7,7 @@ var ThumbnailCarousel = (props) => {
   useEffect(() => {
     let imgs = [];
     for (let photo of props.photos) {
-      imgs.push(photo.thumbnail_url);
+      imgs.push(photo);
     }
     let rowsOfImages = []
     for (let i = 0; i < imgs.length; i+= 4) {
@@ -22,7 +22,7 @@ var ThumbnailCarousel = (props) => {
         imageArray.map((fourImgArray) =>
           <div className='ThumbnailCarousel-row'>
             {fourImgArray.map(img =>
-              <span className='ThumbnailCarousel-img-cell' src={img}></span>
+              <img className='ThumbnailCarousel-img-cell' src={img}></img>
             )}
           </div>
          )
