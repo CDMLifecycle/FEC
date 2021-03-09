@@ -1,13 +1,21 @@
 import React from 'react';
+import RadioBtn from './RadioBtn.jsx';
+import StarWriteReview from './StarWriteReview.jsx';
 import './WriteReview.css';
+import StarNoFill from './svg/starNoFill.svg';
+import StarYellow from './svg/starYellow.svg';
+
 
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selected: false,
+      starsArray: new Array(5).fill(false),
+      selectedStarsArray: new Array(5).fill(false),
       product_id: '',
       date: '',
-      rating: '',
+      rating: 0,
       summary: '',
       body: '',
       recommend: null,
@@ -27,11 +35,32 @@ class WriteReview extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBoolean = this.handleBoolean.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.selectBtn = this.selectBtn.bind(this);
+    this.setStar = this.setStar.bind(this);
+    this.handleStarChange = this.handleStarChange.bind(this);
   }
 
+
   handleChange(e) {
+    console.log(e.target.name)
+    if (e.target.name === 'rating') {
+      this.setState({
+        [e.target.name]: e.target.value,
+        selected: true,
+        selectedStarsArray: new Array(5).fill(true, 0, e.target.value)
+      })
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
+  }
+
+  handleStarChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.getAttribute('name')]: e.target.getAttribute('value')
     })
   }
 
@@ -78,99 +107,240 @@ class WriteReview extends React.Component {
     })
   }
 
+  handleMouseEnter(e){
+    console.log(e.target)
+    e.stopPropagation();
+    let select = new Array(Number(e.target.getAttribute('value'))).fill(true);
+    let unselect = new Array(5 - select.length).fill(false);
+    return !this.state.selected
+      ? this.setState({ starsArray: select.concat(unselect) })
+      : null
+  }
+
+  handleMouseLeave(e) {
+    !this.state.submited
+      ? this.setState({ starsArray: new Array(5).fill(false)})
+      : null
+  }
+
+  selectBtn(e) {
+    console.log('select btn', e.target)
+    e.preventDefault();
+    e.preventDefault();
+    // this.handleStarChange(e);
+    // e.target.setAttribute('selected', '');
+    this.setState({ starsArray: this.state.starsArray })
+  }
+
+  setStarClass(index) {
+    return this.state.selectedStarsArray[index - 1]// && !this.state.selected
+      ? 'selected'
+      : 'unselected'
+  }
+
+  setStar(index) {
+    if (this.state.selected) {
+      return this.state.selectedStarsArray[index - 1] ? StarYellow : StarNoFill;;
+    } else {
+      return this.state.starsArray[index - 1] ? StarYellow : StarNoFill;
+    }
+  }
+
   render () {
     return (
-      <div className='write-review-container'>
-        <div>
-          <h2>______________________________________________________</h2>
-          <h3>Write a new Review for product#{this.state.product_id}</h3>
-          <form onSubmit={this.handleSubmit}>
-            <label onChange={this.handleChange} value={this.state.rating}>
-              <input type='radio' value='1' name='rating' required/>1
-              <input type='radio' value='2' name='rating'/>2
-              <input type='radio' value='3' name='rating'/>3
-              <input type='radio' value='4' name='rating'/>4
-              <input type='radio' value='5' name='rating'/>5
-            </label>
-            <div>
-              <input
-                placeholder='Please give a breif summary of your review'
-                name='summary'
-                value={this.state.summary}
-                onChange={this.handleChange}
-              />
-              <input
-                placeholder='1000 character max'
-                name='body'
-                value={this.state.body}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-            <input
-              placeholder='Name'
-              name='name'
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <input
-              placeholder='Email'
-              name='email'
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <label onChange={this.handleBoolean} value={this.state.recommend}>
-              <h6>Would you recommend this item?</h6>
-              <input type='radio' name='recommend' value='true' required />Yes
-              <input type='radio' name='recommend' value='false' />No
-            </label>
-            <div className='characteristics-container'>
-              <span style={{padding: '3px'}}>Characteristics</span>
-              <div>
-                <label onChange={this.handleChange} value={this.state.rating}>
+      <div id='backdrop-write-review'>
+        <div id='write-review-contents'>
+          <div id='exit'>
+            <button onClick={this.props.exit}>CLOSE</button>
+          </div>
+          <h3>Submit your review for {this.props.productInfo.name.toUpperCase()} below</h3>
+          <div id='form-review-container'>
+            <form onSubmit={this.handleSubmit}>
+              <div id='review-stars-container'>
+                How do you rate this product?
+                <div id='star-box'>
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='1'
+                      name='rating'
+                      required
+                    />
+                    <img
+                      src={this.setStar(1)}
+                      value='1'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
+                  </label>
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='2'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(2)}
+                      value='2'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
+                  </label>
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='3'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(3)}
+                      value='3'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
+                  </label>
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='4'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(4)}
+                      value='4'
+                      // className={this.state.selected}
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
+                  </label>
+                  <label onChange={this.handleChange}>
+                    <input
+                      type='radio'
+                      value='5'
+                      name='rating'
+                    />
+                    <img
+                      src={this.setStar(5)}
+                      // className={this.state.selected}
+                      value='5'
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}
+                    />
+                  </label>
+
+                </div>
+              </div>
+              <div className='review-input-container'>
+                <div>
+                  <label className='review-input-form'>
+                    Name
+                    <input
+                      placeholder='Name'
+                      name='name'
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label className='review-input-form'>
+                    Email
+                    <input
+                      placeholder='Email'
+                      name='email'
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label  className='review-input-form'>
+                    Summary
+                    <input
+                      placeholder='Please give a breif summary of your review'
+                      name='summary'
+                      value={this.state.summary}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                </div>
+                <div >
+                  <label className='review-input-form' >
+                    Let us know what you think
+                    <input
+                      placeholder='1000 character max'
+                      name='body'
+                      value={this.state.body}
+                      onChange={this.handleChange}
+                      id='long-form'
+                      required
+                    />
+                  </label>
+                </div>
+              </div>
+              <div id='would-recommend-container'>
+                <h4>Would you recommend this item?</h4>
+                  <div id='yes-no-box'>
+                    <label onChange={this.handleBoolean} value={this.state.recommend}>
+                      <input type='radio' name='recommend' value='true' required />Yes
+                      <input type='radio' name='recommend' value='false' />No
+                    </label>
+                  </div>
+              </div>
+              <div id='characteristics-review-box'>
+                <h4>Characteristics</h4>
+                <div className='per-characteristic-box'>
                   Fit
-                  <input type='radio' value='1' name='fit' required/>1
-                  <input type='radio' value='2' name='fit'/>2
-                  <input type='radio' value='3' name='fit'/>3
-                  <input type='radio' value='4' name='fit'/>4
-                  <input type='radio' value='5' name='fit'/>5
-                </label>
-              </div>
-              <div>
-                <label onChange={this.handleChange} value={this.state.rating}>
+                  <label onChange={this.handleChange} value={this.state.rating}>
+                    <input type='radio' value='1' name='fit' required/>1
+                    <input type='radio' value='2' name='fit'/>2
+                    <input type='radio' value='3' name='fit'/>3
+                    <input type='radio' value='4' name='fit'/>4
+                    <input type='radio' value='5' name='fit'/>5
+                  </label>
+                </div>
+                <div className='per-characteristic-box'>
                   Length
-                  <input type='radio' value='1' name='length' required/>1
-                  <input type='radio' value='2' name='length'/>2
-                  <input type='radio' value='3' name='length'/>3
-                  <input type='radio' value='4' name='length'/>4
-                  <input type='radio' value='5' name='length'/>5
-                </label>
-              </div>
-              <div>
-                <label onChange={this.handleChange} value={this.state.rating}>
+                  <label onChange={this.handleChange} value={this.state.rating}>
+                    <input type='radio' value='1' name='length' required/>1
+                    <input type='radio' value='2' name='length'/>2
+                    <input type='radio' value='3' name='length'/>3
+                    <input type='radio' value='4' name='length'/>4
+                    <input type='radio' value='5' name='length'/>5
+                  </label>
+                </div>
+                <div className='per-characteristic-box'>
                   Comfort
-                  <input type='radio' value='1' name='comfort' required/>1
-                  <input type='radio' value='2' name='comfort'/>2
-                  <input type='radio' value='3' name='comfort'/>3
-                  <input type='radio' value='4' name='comfort'/>4
-                  <input type='radio' value='5' name='comfort'/>5
-                </label>
-              </div>
-              <div>
-                <label onChange={this.handleChange} value={this.state.rating}>
+                  <label onChange={this.handleChange} value={this.state.rating}>
+                    <input type='radio' value='1' name='comfort' required/>1
+                    <input type='radio' value='2' name='comfort'/>2
+                    <input type='radio' value='3' name='comfort'/>3
+                    <input type='radio' value='4' name='comfort'/>4
+                    <input type='radio' value='5' name='comfort'/>5
+                  </label>
+                </div>
+                <div className='per-characteristic-box'>
                   Quality
-                  <input type='radio' value='1' name='quality' required/>1
-                  <input type='radio' value='2' name='quality'/>2
-                  <input type='radio' value='3' name='quality'/>3
-                  <input type='radio' value='4' name='quality'/>4
-                  <input type='radio' value='5' name='quality'/>5
-                </label>
+                  <label onChange={this.handleChange} value={this.state.rating}>
+                    <input type='radio' value='1' name='quality' required/>1
+                    <input type='radio' value='2' name='quality'/>2
+                    <input type='radio' value='3' name='quality'/>3
+                    <input type='radio' value='4' name='quality'/>4
+                    <input type='radio' value='5' name='quality'/>5
+                  </label>
+                </div>
               </div>
-            </div>
-            <button>Submit</button>
-          </form>
+              <div id='modal-btn-box'>
+                <button id='exit-write-review' onClick={this.props.exit}>Go back</button>
+                <button type='submit' id='submit-write-review'>Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     )

@@ -85,6 +85,7 @@ class RatingsAndReviews extends React.Component {
               productMetadata={meta}
               filterSelections={this.state.filterSelections}
               reRender={this.reRender}
+              productInfo={this.props.productInfo}
             />
             </div>
           </div>
