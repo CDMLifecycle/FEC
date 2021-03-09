@@ -38,11 +38,11 @@ html {
   display:flex;
   overflow:scroll;
   background-color: white;
-  margin-top: 40px;
   position: relative;
-  margin-right: 30px;
-  left: 10px;
   scroll-behavior: smooth;
+  width: 140px;
+  align-items: center;
+  right: 5px;
 }
 
 .photoContainer::-webkit-scrollbar {
@@ -63,6 +63,7 @@ html {
   align-items: center;
   position: relative;
   box-shadow: inset 0 0 10px black;
+
 }
 
 img.thumbnails {
@@ -75,13 +76,19 @@ img.thumbnails {
   object-fit: cover;
   border-width: thin;
   box-shadow: 0 10px 10px -5px;
-
+  z-index:2;
+  position: relative;
 }
 
 img.thumbnails:hover {
   width: 120px;
   height: 120px;
   cursor: pointer;
+}
+
+.largeImage {
+  /* height: 690px; */
+  animation: mymove .3s linear;
 }
 
 img.magnifier-image {
@@ -95,7 +102,8 @@ img.magnifier-image {
   border-color: grey;
   border-width: thin;
   box-shadow: 5px 5px 10px;
-  transition: all .5s ease-in-out;
+  transition: all .5s linear;
+  animation: mymove 2s linear;
 }
 
 button#fs{
@@ -106,7 +114,7 @@ button#fs{
   position: absolute;
   left: 150px;
   bottom: 850px;
-  z-index: 1;
+  z-index: 103;
 }
 button#fs:hover {
   background-color: grey;
@@ -168,9 +176,7 @@ button#fs:hover {
 .styleContainer {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 50px;
-  height: auto;
-  width: auto;
+  min-height: 200px;
   max-width: 350px;
   justify-content: center;
 }
@@ -185,7 +191,7 @@ button#fs:hover {
   margin-bottom: 10px;
   background-position: center;
   box-shadow: 5px 5px 20px grey;
-
+  z-index: 100;
 }
 .circleStyle:hover {
   width: 90px;
@@ -250,7 +256,7 @@ body, html {
   margin: 5px;
   border-radius: 50%;
   box-shadow: 0 10px 10px -5px grey;
-
+  z-index: 100;
 }
 .sizeButton:hover {
   background-color: black;
@@ -288,47 +294,48 @@ button.leftright {
   margin: 30px;
   border:solid;
   border-width: thin;
-  background-color: honeydew;
+  background-color: white;
   box-shadow: 0 10px 10px -5px black;
 }
+
 
 button.leftright:hover {
   background-color: lavender;
 }
-/*
-.fade-enter {
-  opacity: 0.01;
-  transform: translateX(25%);
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-  transform: translateX(100%);
-}
-.fade-exit {
-  opacity: 1;
-  transform: translateX(100%);
 
+/* magnifying */
+
+.img-magnify {
+  position: relative;
 }
 
-.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-  transform: translateX(0%);
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 100px;
+  height: 100px;
+}
 
-} */
+@keyframes mymove {
+  from {right: 60%;}
+  to {right: 0%;}
+}
 
-.show-enter {
-  opacity: 0.04;
+input[type=text] {
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
-.show-enter-active {
-  opacity: 5;
-  transition: opacity 500ms ease-in;
+
+input[type=text]:focus {
+  width: 500px;
 }
-.show-exit {
-  opacity: 1;
-}
-.show-exit-active {
-  opacity: 0.04;
-  transition: opacity 500ms ease-in;
+
+.NavSearch {
+  position: relative;
+  left: 500px;
+
 }
