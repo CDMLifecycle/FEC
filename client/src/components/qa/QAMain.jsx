@@ -48,11 +48,13 @@ class QAMain extends React.Component {
   render() {
     return(
       <>
-        <form className="QAMain">
+        <div className="QAMain">
+          <h2 className="qa_title">
           {'QUESTIONS & ANSWERS'}
-          <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList questions={this.state.questions} />
-        </form>
+          </h2>
+          <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
+          <QuestionList productName={this.props.searchedArr[0].name} questions={this.state.questions} />
+        </div>
       </>
     )
   }

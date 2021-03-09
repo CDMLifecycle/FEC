@@ -7,7 +7,7 @@ class AnswerList extends React.Component {
     super(props)
 
     this.state = {
-      answers: Object.values(this.props.answers),
+      answers: [],
       answerLimit: 2
     }
     this.showMoreAnswers = this.showMoreAnswers.bind(this);
@@ -15,7 +15,7 @@ class AnswerList extends React.Component {
   }
   showMoreAnswers (e) {
     e.preventDefault();
-    let updateLimit = this.state.answerLimit + 2;
+    let updateLimit = this.state.answers.length;
     this.setState({
       answerLimit: updateLimit
     })
@@ -29,24 +29,53 @@ class AnswerList extends React.Component {
     })
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.answers) {
+      var answersArray = Object.values(props.answers)
+      if (state.answers !== props.answers) {
+        return {answers: answersArray};
+      }
+    }
+    return null;
+  }
+
+
   componentDidMount() {
+
   }
 
   render() {
     return (
-      <div>
+      <>
+      {this.state.answers.length !== 0 ?
+      <div className="answersContainer">
         {this.state.answers.slice(0, this.state.answerLimit).map((answer) => {
           return (
             <AnswerItem answer={answer} key={answer.id}/>
-          )
-        })}
+            )
+          })}
         {this.state.answers.length > this.state.answerLimit ? (
           <button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showMoreAnswers}>Load More Answers</button>)
-          : this.state.answers.length === 0 || this.state.answers.length === this.state.answerLimit ? (null)
-          : (<button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showLessAnswers}>Collapse Answers</button>)}
+          : this.state.answers.length <= 2 ? (null)
+          : (
+            <button className="qaCaps qaLinkButton moreAnswers qaButton" onClick={this.showLessAnswers}>Collapse Answers</button>
+        )}
       </div>
+      : (null)}
+      </>
     )
   }
 }
 
 export default AnswerList
+
+
+// if (state.anwers.length > answerlimit) {
+//   show load more buttons
+// } else {
+//   if(state.answers.length !== limit) {
+//     show collapse
+//   } else {
+//     null
+//   }
+// }
