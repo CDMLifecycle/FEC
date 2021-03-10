@@ -4,8 +4,20 @@
   max-height: 600px;
   display: flex;
   flex-direction: column;
-  color: #3A3E40
-  }
+  color: #3A3E40;
+}
+
+.review-tile {
+  animation-name: tile;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tile {
+  0% { opacity: 0%; background-color: lightgray; }
+  100% { opacity: 100%; }
+}
+
 
 .date-stars-container {
   display: flex;

@@ -1,7 +1,14 @@
 .characteristics-container input {
   display: flex;
- }
+}
 
- .characteristics-container h4 {
-   padding-left: 0px;
- }
+.characteristics-container h3 {
+  padding-left: 0px;
+  font-size: 1.17em;
+}
+
+.characteristics-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}

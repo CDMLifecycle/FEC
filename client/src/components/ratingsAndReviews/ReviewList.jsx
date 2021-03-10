@@ -51,8 +51,10 @@ class ReviewList extends React.Component {
   }
 
   exitWriteReview(e) {
-    e.preventDefault();
-    this.setState({ writeBtn: false })
+    // e.preventDefault();
+    if (e.target.getAttribute('name') === 'backdrop' || e.target.getAttribute('name') === 'exit') {
+      this.setState({ writeBtn: false })
+    }
   }
 
   submitWriteReview(postParams) {
@@ -71,6 +73,7 @@ class ReviewList extends React.Component {
   sendReport(review_id) {
     axios.put('/reviews/report', { data: review_id })
      .then(res => console.log('success on report'))
+     .then(() => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count))
      .catch(err => console.log('error with reporting review'))
   }
 

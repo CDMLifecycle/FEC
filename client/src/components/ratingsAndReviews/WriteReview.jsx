@@ -1,5 +1,4 @@
 import React from 'react';
-import RadioBtn from './RadioBtn.jsx';
 import StarWriteReview from './StarWriteReview.jsx';
 import './writeReview.css';
 import StarNoFill from './svg/starNoFill.svg';
@@ -44,7 +43,6 @@ class WriteReview extends React.Component {
 
 
   handleChange(e) {
-    console.log(e.target.name)
     if (e.target.name === 'rating') {
       this.setState({
         [e.target.name]: e.target.value,
@@ -143,11 +141,8 @@ class WriteReview extends React.Component {
 
   render () {
     return (
-      <div id='backdrop-write-review' onClick={this.props.exit}>
+      <div id='backdrop-write-review' onClick={this.props.exit} name='backdrop'>
         <div id='write-review-contents'>
-          <div id='exit'>
-            <button onClick={this.props.exit}>CLOSE</button>
-          </div>
           <h3>Submit your review for {this.props.productInfo.name.toUpperCase()} below</h3>
           <div id='form-review-container'>
             <form onSubmit={this.handleSubmit}>
@@ -325,7 +320,7 @@ class WriteReview extends React.Component {
                 </div>
               </div>
               <div id='modal-btn-box'>
-                <button id='exit-write-review' onClick={this.props.exit}>Go back</button>
+                <button id='exit-write-review' onClick={this.props.exit} name='exit'>Go back</button>
                 <button type='submit' id='submit-write-review'>Submit</button>
               </div>
             </form>

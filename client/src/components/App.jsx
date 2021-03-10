@@ -27,7 +27,6 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
-      // reviewsList: [],
       paths: '/',
       currentProductInformation: null
     }
@@ -68,15 +67,6 @@ class App extends React.Component {
         });
     }
   }
-
-  // getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('/reviews', { params: { product_id, sort, count, page } })
-  //       .then(res => resolve(this.setState({ reviewsList: res.data.results })))
-  //       .then(() => this.getMetadata(product_id))
-  //       .catch(err => reject(console.log('error App.jsx - getReviews')))
-  //   });
-  // }
 
   getMetadata(product_id) {
     return new Promise((resolve, reject) => {
@@ -131,7 +121,6 @@ class App extends React.Component {
   getLooksInSession() {
     return JSON.parse(window.sessionStorage.getItem('Looks'))
   }
-
 
   switchStatement() {
     switch(this.state.paths) {
