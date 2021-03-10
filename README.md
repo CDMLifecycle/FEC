@@ -20,13 +20,13 @@
     Node v14.15.1
     NPM v6.14.11
 ###### Instructions
-  a. After cloning this repo, open your within the root directory of this project and run 'npm install'.
-  b. Acquire a github personal access token for access to our API. Create a file the root of the project directory named 'authorization.config.js'.
+  - After cloning this repo, open your within the root directory of this project and run 'npm install'.
+  - Acquire a github personal access token for access to our API. Create a file the root of the project directory named 'authorization.config.js'.
   Copy and paste the following code into the newly created file:
     module.exports = {
       token: <YOUR_TOKEN>
     };
-  c. Run 'npm react-dev' to bundle webpack.
+  - Run 'npm react-dev' to bundle webpack.
 
 ### Getting Started
   To run the server locally on your machine, run 'npm start' within the root directory.
