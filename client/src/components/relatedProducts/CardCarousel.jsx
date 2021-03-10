@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import AddToLooksCard from './AddToLooksCard.jsx';
 import ProductCard from './ProductCard.jsx';
 import CarouselArrow from './CarouselArrow.jsx';
+import './relatedProducts.css';
 
 var CardCarousel = (props) => {
 

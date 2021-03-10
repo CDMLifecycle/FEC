@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from './Footer.jsx';
+import './Home.css';
 
 class Home extends React.Component {
   constructor(props) {
