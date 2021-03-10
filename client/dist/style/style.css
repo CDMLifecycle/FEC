@@ -1,5 +1,87 @@
 
 /*------------------------------------Styles for Related Products-------------------------- */
+.Home {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.Home form {
+  height: 82vh;
+  width: 200px;
+  /* margin-top: 10%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Home-form {
+  margin-bottom: 50%;
+    margin-top: 30%;
+}
+
+.Home-searchbar {
+  /* margin-bottom: 400%; */
+  padding-left: 20px;
+  font-size: 18px;
+  width: 400px;
+  height: 30px;
+}
+
+
+.Header {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color:  #fefefe;
+  color:  #3A3E40;
+  height: 48px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin-bottom: 20px;
+  border-bottom: .5px solid #ccc;
+  /* align-self: self-end; */
+}
+
+.Header-logo {
+  margin-left: 20px;
+  height: 60px;
+  bottom: 0;
+}
+
+.input-container {
+  display: inline;
+  position: absolute;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-left: 3px;
+}
+
+.Header-search {
+  margin-top: 20px;
+}
+
+.Header-search input {
+  width: 200px;
+  /* border-radius: 1px; */
+  height: 32px;
+  background-color: rgb(218, 218, 218);
+  color: black;
+  margin-left: 20px;
+  border: .5px;
+  padding-left: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
 .Footer {
   position: relative;
   left: 0;
@@ -27,7 +109,7 @@
 
 
 .RelatedItems {
-  height: auto;
+  /* height: auto; */
   /* width: 100%; */
   /* background-color: seashell; */
   margin-left: 10%;
@@ -36,6 +118,7 @@
   justify-content: center;
   align-items: center; */
   margin-bottom: 5%;
+  /* position: absolute; */
   margin-top: 5%;
 }
 
@@ -69,7 +152,7 @@
 .ProductCard {
   display: grid;
   grid-template-rows:67% 33%;
-  height: 420px;
+  height: 430px;
   width: 24.3%;
   flex: none;
   text-align: center;
@@ -84,7 +167,30 @@
   transition: opacity 0.7s;
   border-image: linear-gradient(90deg, white 0%, #fefefe 5%, #CCC 30%, #adb2b6 50%, #CCC 70%, #fefefe 95%, white 100%) 1;
   border-bottom: 2px solid;
+  /* height: 600px; */
 }
+
+.ProductCard:hover .ProductCard-product-information-category {
+  display: none;
+}
+
+.ProductCard:hover .ProductCard-product-information-name {
+  display: none;
+}
+
+.ProductCard:hover .ProductCard-product-information-price {
+  display: none;
+}
+
+.ProductCard:hover .ProductCard-product-information-price-discounted {
+  display: none;
+}
+
+.ProductCard:hover .ProductCard-product-information-rating {
+  display: none;
+}
+
+
 
 .ProductCard-primary-img {
   width: 95%;
@@ -157,23 +263,38 @@
 }
 
 .ThumbnailCarousel {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   align-items: center;
   width: auto;
+  display: none;
+  margin-top: 5px;
   height: auto;
+  grid-auto-rows: auto;
+  grid-template-rows: 60px 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.ProductCard:hover .ThumbnailCarousel {
+  display: grid;
 }
 
 .ThumbnailCarousel-img-cell {
-  height: auto;
-  width: auto;
+  height: 40px;
+  border: .2px solid #ccc;
+  width: 40px;
+}
+
+.ThumbnailCarousel-img-cell:hover {
+  background-color: #ccc;
 }
 
 .ThumbnailCarousel-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: auto;
-  height: 30px;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: 45px;
+  width: 70%;
 }
 
 .CardCarousel {
