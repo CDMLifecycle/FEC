@@ -15,7 +15,7 @@ import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 import './app.css';
 var stringSimilarity = require("string-similarity");
-
+import StickyButton from './stickyButton.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -145,6 +145,7 @@ class App extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <Header handleSubmitForm={this.handleSubmitForm}/>
             </form>
+            <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
               productId={14107}
