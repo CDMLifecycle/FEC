@@ -35,7 +35,7 @@ class QuestionOptions extends React.Component {
         <button className="helpful qaLinkButton qaButton" onClick={this.markQHelpful}>Yes</button> ({this.props.qHelpful})
         <span className="qaDivider">|</span>
         <button className="qaLinkButton qaButton" onClick={this.addAnswer}>Add Answer</button>
-        <AnswerForm productName={this.props.productName} q_body={this.props.q_body} displayModal={this.state.modal} closeModal={this.addAnswer}/>
+        <AnswerForm productName={this.props.productName} q_body={this.props.q_body} displayModal={this.state.modal} addAnswer={this.addAnswer}/>
       </div>
     )
   }
