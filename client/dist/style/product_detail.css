@@ -59,6 +59,10 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
+  border: solid;
+  border-width: 0.2px;
+  border-color: lightgrey;
+  border-radius: 8px;
 }
 
 img.thumbnails {
@@ -83,24 +87,16 @@ img.thumbnails:hover {
 .sloganText {
   font-size: 30px;
   flex: 1;
-  border: solid;
-  height: 100px;
   position:relative;
   word-wrap: break-word;
-  height: auto;
-  border-width: thin;
-  padding: 30px;
   font-style: italic;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
-  border-left: hidden;
-  border-right: hidden;
-  border-top: hidden;
-  border-bottom: hidden;
-  border-radius: 8px;
-  margin-right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family:  "AdihausDIN", Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
 }
 
 .largeImage {
@@ -132,9 +128,11 @@ button#fs{
   border: none;
   background-color: #fefefe;
   position: absolute;
-  left: 200px;
-  bottom: 850px;
   z-index: 103;
+  transition: all ease-in-out 200ms;
+  left: 957px;
+  bottom: 1px;
+  border-radius: 8px;
 }
 button#fs:hover {
   background-color: grey;
@@ -169,8 +167,7 @@ button#fs:hover {
   position:relative;
 }
 
-.descriptionText {
-  font-size: 20px;
+.descriptionBox {
   flex: 1;
   border: solid;
   height: 100px;
@@ -179,7 +176,6 @@ button#fs:hover {
   height: auto;
   border-width: thin;
   padding: 30px;
-  font-style: italic;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
   border-left: hidden;
   border-right: hidden;
@@ -189,6 +185,12 @@ button#fs:hover {
   margin-right: 8px;
   align-items: center;
   justify-content: center;
+  max-width: 800px;
+  margin-left: 400px;
+}
+.descriptionText {
+  font-size: 20px;
+  font-family: 'Avenir Next Regular',HelveticaNeue-Light,'Helvetica Neue Light','Helvetica Neue',helvetica,arial,'Lucida Grande',sans-serif;
 }
 .DescriptionFont {
   font-weight: 800;
@@ -196,7 +198,6 @@ button#fs:hover {
 }
 
 .productName {
-  font-family: "AdihausDIN Cn",Helvetica, Arial, sans-serif;
   font-style: italic;
   font-weight: 500;
   font-size: 42px;
@@ -232,9 +233,11 @@ button#fs:hover {
   border-color:grey;
   margin-right: 20px;
   margin-bottom: 10px;
-  background-position: center;
+  background-position: bottom;
   object-fit: cover;
   border-radius: 8px;
+  transition: all ease-in-out 200ms;
+
 }
 
 .circleStyle:hover {
@@ -303,9 +306,10 @@ body, html {
   height: 45px;
   justify-content: center;
   margin: 5px;
+  transition: all ease-in-out 200ms;
 }
 .sizeButton:hover {
-  background-color: black;
+  background:#CCC;
   color: white;
   cursor: pointer;
 }
@@ -321,6 +325,8 @@ body, html {
   align-items: center;
   text-align: center;
   display: flex;
+  border-radius: 8px;
+  border-color: lightgrey;
 }
 /* cards */
 
@@ -341,6 +347,7 @@ button.leftright {
   background-color: #fefefe;
   box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
   border-radius: 4px;
+  transition: all ease-in-out 200ms;
 }
 
 
@@ -407,6 +414,9 @@ input[type=text]:focus {
   border-right: hidden;
   margin-left: 2px;
   border-width: 1px;
+  border-radius: 8px;
+  border-color: lightgrey;
+  border:none;
 
 }
 .qsButtonRight {
@@ -417,12 +427,15 @@ input[type=text]:focus {
   border-left: hidden;
   margin-right: 2px;
   border-width: 1px;
+  border-radius: 8px;
+  border-color: lightgrey;
+  border:none;
 }
 .qsButtonLeft:hover {
-  background-color: #CCC;
+  background:#CCC;
 }
 .qsButtonRight:hover {
-  background-color: #CCC;
+  background:#CCC;
 }
 
 .Checkout {
@@ -434,6 +447,9 @@ input[type=text]:focus {
   margin: 15px 15px 0 0;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
   transition: all ease-in-out 200ms;
+  position: relative;
+  width: 238px;
+  height: 124px;
 }
 
 .Checkout:hover {
@@ -443,6 +459,11 @@ input[type=text]:focus {
   border: 1px solid rgba(0, 0, 0, 0);
 }
 
+.descriptionBox.boxCheckout {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 button:focus {
   outline: none;
 }

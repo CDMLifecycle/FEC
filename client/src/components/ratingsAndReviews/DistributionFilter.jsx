@@ -25,7 +25,7 @@ class DistributionFilter extends React.Component {
   }
 
   mapSliders(state) {
-    return this.forMap.map(num =>
+    return this.forMap.map((num, index) =>
       <Slider
         productPercent={this.props.productMetadata.totals.ratingsPercent[num]
           ? Number(this.props.productMetadata.totals.ratingsPercent[num])
@@ -33,6 +33,7 @@ class DistributionFilter extends React.Component {
         num={num}
         handleClick={this.handleClick}
         defineClass={this.state[num]}
+        key={index}
       />)
   }
 

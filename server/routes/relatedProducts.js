@@ -17,11 +17,25 @@ var combineRelatedProductInformation = (items, itemStyles, itemRatings) => {
     combined.sale_price = itemStyles[i].results[0].sale_price;
     combined.default = itemStyles[i].results[0].default;
     combined.photos = itemStyles[i].results[0].photos;
+    combined.stylePhotos = getAllPhotosFromStyles(itemStyles[i].results);
     combined.rating = itemRatings[i];
     combined.description = items[i].description;
     outputArray.push(combined);
   }
   return outputArray;
+}
+
+var getAllPhotosFromStyles = (styles) => {
+  let stylePhotos = []
+  if (styles.length > 1) {
+    for (let style of styles) {
+      stylePhotos.push(style.photos[0].thumbnail_url);
+    }
+    return stylePhotos;
+  } else {
+    return styles[0].photos;
+  }
+
 }
 
 /* -----------------------------------router --------------------------------- */

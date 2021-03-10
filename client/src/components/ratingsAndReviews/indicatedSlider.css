@@ -15,7 +15,7 @@
 
 .tri-bar-box {
   height: 100%;
-  width: 370px;
+  width: 375px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,7 +34,7 @@
 }
 
 .icon-divs-container {
-  width: 370px;
+  width: 375px;
   height: 20px;
   position: absolute;
   z-index: 20;

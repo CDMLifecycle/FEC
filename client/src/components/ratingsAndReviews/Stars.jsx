@@ -30,13 +30,13 @@ class Stars extends React.Component {
     for (let i = 0; i < noStar; i++) {
       starSet.push(-1)
     };
-
-    return (
-      <div className='star-container'>
-        {starSet.map(starType => <SingleStar num={starType} />)}
-      </div>
-    )
-  }
+    return (this.props.size
+      ?
+        (<div className='star-container'>
+            {starSet.map((starType, index) => <SingleStar num={starType} size={this.props.size} key={index}/>)}
+          </div>)
+      :  null
+    )}
 }
 
 export default Stars;
