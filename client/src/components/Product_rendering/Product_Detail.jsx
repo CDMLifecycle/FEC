@@ -126,7 +126,7 @@ class Product_Detail extends React.Component {
       document.getElementById('lg').style.transform = 'scale(1)';
       document.getElementById('lg').style.zIndex = '1';
       document.getElementById('lg').style.position = 'relative';
-      document.getElementById('lg').style.maxWidth = '950px';
+      document.getElementById('lg').style.maxWidth = '850px';
 
       this.setState({fullscreen: false});
     } else {
@@ -142,7 +142,7 @@ class Product_Detail extends React.Component {
       document.getElementById('lg').style.transform = 'scale(1)';
       document.getElementById('lg').style.zIndex = '1';
       document.getElementById('lg').style.position = 'relative';
-      document.getElementById('lg').style.maxWidth = '950px';
+      document.getElementById('lg').style.maxWidth = '850px';
 
       this.setState({hf: false});
     } else {
@@ -169,14 +169,15 @@ class Product_Detail extends React.Component {
   render() {
     var description = this.state.products[0] ?
     <div className='productDescriptionContainer'>
-      <div className='descriptionText'>
-        <div className='DescriptionFont'>DESCRIPTION</div>
+      <div className='descriptionBox'>
+      <div className='sloganText'>
+        "{this.state.products[0].slogan}"
+        </div>
+        <div className='descriptionText'>
         {this.state.products[0].description}
         </div>
-      <div className='sloganText'>
-        '{this.state.products[0].slogan}'
-        </div>
-      <div className='descriptionText'>
+      </div>
+      <div className='descriptionBox boxCheckout'>
         <button className='Checkout'>
           Checkout
           <i className="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
@@ -198,10 +199,10 @@ class Product_Detail extends React.Component {
               <div className = 'photoContainer'>
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
+              <div className = 'largePhoto'>
               <button href='#lg' id='fs' onClick={this.fullscreen}>
                   <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
-              <div className = 'largePhoto'>
                 <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
                   <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
@@ -215,7 +216,7 @@ class Product_Detail extends React.Component {
           <div className='containerColumn'>
             <div className='reviews'>
               <Rating value={this.state.rating}
-                precision={0.5}
+                precision={0.25}
                 max={5}
                 name="unique-rating"
                 readOnly
