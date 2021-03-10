@@ -45,6 +45,19 @@ var fetch = {
           console.log('error sending interaction: ', err.message);
         })
     }
+  },
+  getProduct: (id, cb) => {
+    if(id) {
+      axios({
+        url: `/products/${id}`
+      })
+        .then(result => {
+          cb(null, result)
+        })
+        .catch(err => {
+          console.log('error in get Product');
+        })
+    }
   }
 };
 

@@ -12,6 +12,7 @@ import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
 import dummyData from './relatedProducts/dummydata.js';
+import fetch from './relatedProducts/fetch.js';
 import './color-schema.css';
 import './app.css';
 var stringSimilarity = require("string-similarity");
@@ -42,6 +43,31 @@ class App extends React.Component {
     this.updateLooksInSession = this.updateLooksInSession.bind(this);
     this.getLooksInSession = this.getLooksInSession.bind(this);
   }
+
+  componentDidMount() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = urlParams.get('id');
+    if (!idParam) {
+      axios.get('/products')
+      .then((res) => {
+        this.setState({productArr: res.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    } else {
+      fetch.getProduct(idParam, (err, data) => {
+        if (err) {
+          window.location.href = 'http://localhost:3000';
+        } else {
+          this.getMetadata(data.data.id, data.data, data.data.id);
+        }
+      })
+    }
+  }
+
+
+
 
   stringComparison() {
     var arr = [];
@@ -78,27 +104,28 @@ class App extends React.Component {
   //   });
   // }
 
-  getMetadata(product_id) {
+  getMetadata(product_id, searchedArr, productID) {
     return new Promise((resolve, reject) => {
       axios.get('/reviews/meta', { params: { product_id } })
-      .then(res => resolve(this.setState({ productMetadata: res.data })))
-      .catch(err => reject(console.log('error App.jsx - getMetadata')))
+      .then(res => {
+        if (!searchedArr || !productID) {
+          resolve(this.setState({ productMetadata: res.data }))
+        } else {
+          resolve(this.setState({
+            productMetadata: res.data,
+            searchedArr: [searchedArr],
+            productID: productID,
+            paths: '/final'
+          }))
+        }
+      })
+      .catch(err => reject(console.log('error App.jsx - getMetadata: ', err.message)))
     })
   }
 
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparison());
     // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
-  }
-
-  componentDidMount() {
-    axios.get('/products')
-    .then((res) => {
-      this.setState({productArr: res.data});
-    })
-    .catch((error) => {
-      console.log(error);
-    })
   }
 
   handleSubmit(event) {
@@ -147,12 +174,12 @@ class App extends React.Component {
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
-              productId={14107}
+              productId={this.state.productID}
               currentProductInformation={this.state.currentProductInformation}
             />
             <Looks
               products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14107}
+              currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
