@@ -25,6 +25,7 @@ class Product_Detail extends React.Component {
       hf: false,
       index: 0,
       slide: false,
+      direction: '',
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -49,22 +50,22 @@ class Product_Detail extends React.Component {
         console.log(error);
       })
   }
-  changeLarge(event, url,index) {
+  changeLarge(event, url,index, direct) {
     event.preventDefault();
     // document.getElementById(index).scrollIntoView({behavior: 'smooth'});
     var target = document.getElementById(index);
     target.parentNode.scrollTop = target.offsetTop;
     var prev = this.state.largePhoto;
-    this.setState({largePhoto: url, index: index, prevPhoto: prev, slide: true} );
+    this.setState({largePhoto: url, index: index, prevPhoto: prev, slide: true, direction: direct} );
   }
   changeIndexRight(event) {
     event.preventDefault();
     var arr = this.state.photos;
     var newIndex = this.state.index + 1;
     if (this.state.index === (arr.length - 1)) {
-      this.changeLarge(event, arr[0].photos[0].url, 0);
+      this.changeLarge(event, arr[0].photos[0].url, 0, 'right');
     } else {
-      this.changeLarge(event, arr[newIndex].photos[0].url,newIndex);
+      this.changeLarge(event, arr[newIndex].photos[0].url,newIndex, 'right');
     }
   }
   changeIndexLeft(event) {
@@ -72,10 +73,10 @@ class Product_Detail extends React.Component {
     var arr = this.state.photos;
     var arrlen = arr.length - 1;
     if (this.state.index === 0) {
-      this.changeLarge(event, arr[arrlen].photos[0].url, arrlen);
+      this.changeLarge(event, arr[arrlen].photos[0].url, arrlen, 'left');
     } else {
       var newIndex = this.state.index - 1;
-      this.changeLarge(event, arr[newIndex].photos[0].url,newIndex);
+      this.changeLarge(event, arr[newIndex].photos[0].url,newIndex, 'left');
     }
   }
 
@@ -177,10 +178,10 @@ class Product_Detail extends React.Component {
         {this.state.products[0].description}
         </div>
       </div>
-      <div className='descriptionBox boxCheckout'>
-        <button className='Checkout'>
-          Checkout
-          <i className="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
+      <div className='boxCheckout'>
+        <button id='checkout' className='Checkout'>
+          Add To Cart
+          <i className="fa fa-shopping-cart" style={{fontSize:'40px'}}></i>
         </button>
       </div>
     </div>
@@ -206,7 +207,7 @@ class Product_Detail extends React.Component {
                 <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
                   <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} slide={this.state.slide}/>
+                <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} direction={this.state.direction}/>
                 <button type='button' className='rightScroller leftright' onClick={this.changeIndexRight}>
                   <i className="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
