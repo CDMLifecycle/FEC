@@ -12,15 +12,31 @@
   width: 15%;
   border: none;
   cursor: pointer;
+  transition: all ease-in-out 200ms;
+  border-radius: 3px;
 }
 
 .unselected {
   background-color: transparent;
 }
 
-.selected {
-  background-color: yellow;
+.unselected:hover {
+  background-color: transparent;
+  color: orange;
+
 }
+
+.selected {
+  background-color: #6C8789;
+  color: #fefefe;
+}
+
+.selected:hover {
+  background-color: orange;
+  color: #fefefe;
+}
+
+
 
 .range-container {
   width: 80%;

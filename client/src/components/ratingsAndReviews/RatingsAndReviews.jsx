@@ -10,6 +10,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
     this.state = {
       averageRating: '',
+      reviewsList: [], // new
+      product_id: '', //new
       filterSelections: [],
       filteredList: [],
       filterFlag: false
@@ -17,18 +19,41 @@ class RatingsAndReviews extends React.Component {
     this.updateFilter = this.updateFilter.bind(this);
     this.filterArray = this.filterArray.bind(this);
     this.reRender = this.reRender.bind(this);
+    this.getReviews = this.getReviews.bind(this);
   }
 
+
   componentDidMount() {
-    this.setState({ filteredList: this.props.reviewsList })
-  }
+    this.getReviews(this.props.productMetadata.product_id)
+      .then(() => this.setState({ product_id: this.props.productMetadata.product_id }))
+      .catch(() => console.log('Error in component mount'))
+    }
+
+
+  // old
+  // componentDidMount() {
+  //   this.setState({ filteredList: this.props.reviewsList })
+  // }
+
+
+  //new
+  getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
+      return new Promise((resolve, reject) => {
+        axios.get('/reviews', { params: { product_id, sort, count, page } })
+          .then(res => resolve( this.setState({ reviewsList: res.data.results }) ))
+          .then(() => this.reRender())
+          // .then(() => this.getMetadata(product_id))
+          .catch(err => reject(console.log('error ratingsAndReiews.jsx - getReviews')))
+      });
+    }
+
 
   reRender(){
     if (this.state.filterSelections.length) {
-      this.filterArray(this.props.reviewsList, this.state.filterSelections);
-      this.setState({ filteredList: refilter });
+      this.filterArray(this.state.reviewsList, this.state.filterSelections);
+      // this.setState({ filteredList: refilter });
     } else {
-      this.setState({ filteredList: this.props.reviewsList })
+      this.setState({ filteredList: this.state.reviewsList })
     }
   }
 
@@ -40,11 +65,11 @@ class RatingsAndReviews extends React.Component {
       }
     }
     if (update.length) {
-      this.filterArray(this.props.reviewsList, update)
+      this.filterArray(this.state.reviewsList, update)
     } else {
       this.setState({
         filterFlag: false,
-        filteredList: this.props.reviewsList,
+        filteredList: this.state.reviewsList,
         filterSelections: []
       });
     }
@@ -64,7 +89,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   render () {
-    let meta = this.props.productMetadata;
     return (
       <div id='ratings-reviews-main-container'>
         <div id='ratings-reviews-header'>
@@ -73,16 +97,16 @@ class RatingsAndReviews extends React.Component {
         <div id='breakdown-reviewlist-content'>
           <div id='rating-breakdown-container'>
             <RatingBreakdown
-              productMetadata={meta}
+              productMetadata={this.props.productMetadata}
               updateFilter={this.updateFilter}
             />
           </div>
           <div id='review-list-container'>
             <ReviewList
               reviewsList={this.state.filteredList}
-              productID={this.props.productID}
-              getReviews={this.props.getReviews}
-              productMetadata={meta}
+              // productID={this.props.productID}
+              getReviews={this.getReviews}
+              productMetadata={this.props.productMetadata}
               filterSelections={this.state.filterSelections}
               reRender={this.reRender}
               productInfo={this.props.productInfo}

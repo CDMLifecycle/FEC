@@ -28,7 +28,7 @@ class ReviewList extends React.Component {
     if (e.target.value !== this.state.sort) {
       this.setState(
         { sort: e.target.value },
-        () => this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+        () => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
       )
     }
   }
@@ -36,7 +36,7 @@ class ReviewList extends React.Component {
   handleShowMoreReviews(e) {
     e.preventDefault();
     this.setState({ count: this.state.count += 2 }, () => {
-      this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+      this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
         .then(() => this.props.reRender())
     })
   }
@@ -61,7 +61,7 @@ class ReviewList extends React.Component {
         console.log('successful post');
         this.setState({ writeBtn: false, count: this.state.count++ })
       })
-      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
+      .then(() => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count))
       .catch(err => {
         console.log('did not post review');
         alert('did not post');
@@ -77,7 +77,7 @@ class ReviewList extends React.Component {
   sendHelpful(review_id) {
     axios.put('/reviews/helpful', { data: review_id })
       .then(res => console.log('success on helpful report'))
-      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
+      .then(() => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count))
       .catch(err => console.log(err, 'error with helpful review'))
   }
 
@@ -87,10 +87,7 @@ class ReviewList extends React.Component {
 
   showMoreReviewsButton(){
     return (
-      <button
-        onClick={this.handleShowMoreReviews}
-        id='more-reviews-btn'
-      >
+      <button onClick={this.handleShowMoreReviews} id='more-reviews-btn'>
         Show More Reviews
       </button>
     )
@@ -115,7 +112,7 @@ class ReviewList extends React.Component {
             >Helpful</button>
         </div>
         <div className='mapped-tiles-container'>
-          {reviewArray.map(review => (
+          {reviewArray.map((review, index) => (
             <ReviewTile
               review={review}
               key={review.review_id}
@@ -124,10 +121,11 @@ class ReviewList extends React.Component {
               sendHelpful={this.sendHelpful}
               sendReport={this.sendReport}
               productMetadata={this.props.productMetadata}
+              key={index}
             />
           ))}
           <div className='btn-show-write-container'>
-          {reviewArray ? this.showMoreReviewsButton() : null}
+          {reviewArray.length >= this.state.count ? this.showMoreReviewsButton() : <button id='none' disabled></button>}
             <button
               onClick={this.handleWriteReviewBtn}
               id='write-review-btn'

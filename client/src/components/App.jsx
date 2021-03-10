@@ -27,7 +27,7 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
-      reviewsList: [],
+      // reviewsList: [],
       paths: '/',
       currentProductInformation: null
     }
@@ -35,7 +35,7 @@ class App extends React.Component {
     this.switchStatement = this.switchStatement.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.stringComparison = this.stringComparison.bind(this);
-    this.getReviews = this.getReviews.bind(this);
+    // this.getReviews = this.getReviews.bind(this);
     this.getMetadata = this.getMetadata.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
     this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
@@ -58,7 +58,8 @@ class App extends React.Component {
     // }
     if(arr[0]){
       let productID = arr[0].id;
-      this.getReviews(productID)
+      // this.getReviews(productID)
+      this.getMetadata(productID)
         .then(res => {
           this.setState({
             searchedArr: arr,
@@ -68,14 +69,14 @@ class App extends React.Component {
     }
   }
 
-  getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
-    return new Promise((resolve, reject) => {
-      axios.get('/reviews', { params: { product_id, sort, count, page } })
-        .then(res => resolve(this.setState({ reviewsList: res.data.results })))
-        .then(() => this.getMetadata(product_id))
-        .catch(err => reject(console.log('error App.jsx - getReviews')))
-    });
-  }
+  // getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.get('/reviews', { params: { product_id, sort, count, page } })
+  //       .then(res => resolve(this.setState({ reviewsList: res.data.results })))
+  //       .then(() => this.getMetadata(product_id))
+  //       .catch(err => reject(console.log('error App.jsx - getReviews')))
+  //   });
+  // }
 
   getMetadata(product_id) {
     return new Promise((resolve, reject) => {
@@ -86,8 +87,8 @@ class App extends React.Component {
   }
 
   handleSubmitForm(searched) {
-    // this.setState({searchedQuery: searched}, () => this.stringComparison());
-    this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
+    this.setState({searchedQuery: searched}, () => this.stringComparison());
+    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   componentDidMount() {
@@ -158,11 +159,11 @@ class App extends React.Component {
             />
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
-            {this.state.productID
+            {this.state.productMetadata.product_id
               ? <RatingsAndReviews
-                productID={this.state.productID}
-                reviewsList={this.state.reviewsList}
-                getReviews={this.getReviews}
+                // product_id={this.state.productID}
+                // reviewsList={this.state.reviewsList}
+                // getReviews={this.getReviews}
                 productMetadata={this.state.productMetadata}
                 productInfo={this.state.searchedArr[0]}
                 />
