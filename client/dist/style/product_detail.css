@@ -1,5 +1,6 @@
 html {
   font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
 }
 .productDisplay {
   margin: 0 auto;
@@ -63,6 +64,7 @@ html {
   border-width: 0.2px;
   border-color: lightgrey;
   border-radius: 8px;
+  margin-left: 30px;
 }
 
 img.thumbnails {
@@ -99,9 +101,14 @@ img.thumbnails:hover {
   margin-bottom: 10px;
 }
 
-.largeImage {
+.largeImageL {
   /* height: 690px; */
-  animation: mymove .3s ease-in-out;
+  animation: mymoveL .7s ease-in-out;
+}
+
+.largeImageR {
+  /* height: 690px; */
+  animation: mymoveR .7s ease-in-out;
 }
 
 img.magnifier-image {
@@ -117,11 +124,31 @@ img.magnifier-image {
   border-width: thin;
   box-shadow: 5px 5px 10px;
   transition: all .5s linear;
-  animation: mymove 2s linear;
   border-radius: 4px;
-
+  z-index: 1;
+  cursor: pointer;
 }
 
+@keyframes mymoveR {
+  from {
+    opacity: 0.1;
+    right: 30%;
+  }
+  to {
+    opacity: 1;
+    right: 0%;
+  }
+}
+@keyframes mymoveL {
+  from {
+    opacity: 0.1;
+    left: 30%;
+  }
+  to {
+    opacity: 1;
+    left: 0%;
+  }
+}
 button#fs{
   width: 40px;
   height: 40px;
@@ -185,8 +212,11 @@ button#fs:hover {
   margin-right: 8px;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  margin-left: 400px;
+  max-width: 900px;
+  width: 900px;
+  margin-left: 190px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .descriptionText {
   font-size: 20px;
@@ -237,13 +267,12 @@ button#fs:hover {
   object-fit: cover;
   border-radius: 8px;
   transition: all ease-in-out 200ms;
-
+  z-index: 1;
 }
 
 .circleStyle:hover {
   transform: scale(1.2);
   cursor: pointer;
-  z-index: 100;
 }
 
 .styleFont {
@@ -301,7 +330,6 @@ body, html {
   display: flex;
   font-size: 16px;
   border-radius: 8px;
-  z-index: 100;
   width: 45px;
   height: 45px;
   justify-content: center;
@@ -371,10 +399,7 @@ button.leftright:hover {
   height: 100px;
 }
 
-@keyframes mymove {
-  from {right: 60%;}
-  to {right: 0%;}
-}
+
 
 input[type=text] {
   width: 130px;
@@ -398,12 +423,14 @@ input[type=text]:focus {
   position:absolute;
   left: 10px;
   top: 380px;
+  z-index: 2;
 }
 
 .rightScroller {
   position:absolute;
   left: 940px;
   top: 380px;
+  z-index: 2;
 }
 
 .qsButtonLeft {
@@ -450,6 +477,9 @@ input[type=text]:focus {
   position: relative;
   width: 238px;
   height: 124px;
+  margin-left: 210px;
+  font-size: 20px;
+  font-family: Arial Narrow, sans-serif	;
 }
 
 .Checkout:hover {
@@ -466,4 +496,34 @@ input[type=text]:focus {
 }
 button:focus {
   outline: none;
+}
+
+.scrollup {
+  display: flex;
+  position: sticky;
+  top: 900px;
+  left: 1930px;
+  z-index: 500;
+  border: solid;
+  border-width: thin;
+  background: #fefefe;
+  border-radius: 8px;
+  border-color: #ccc;
+  color: #3A3E40;
+  padding: 15px;
+  transition: all ease-in-out 200ms;
+  font-size: 20px;
+  font-family: Arial Narrow, sans-serif	;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollup:hover {
+  background:#6C8789;
+  color: white;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
