@@ -2,7 +2,7 @@
 
 ### INDEX
 
-    **1. Summary**
+  ### 1. Summary
   ### 2. Installation
   ### 3. Getting Started
   ### 4. Module descriptions
@@ -36,26 +36,36 @@
 
   ### a. Product Details
 In this component, a user can view a product and select through different assortments and view different accessories. Features include:
-- ###### Right and left arrows to change primary product photo
-- ###### Scrolling sidebar to view everything the search option has to offer
-- ###### Full screen option of large photo on click of full screen button
-- ###### On click of photo renders a 1.5x bigger view
-- ###### Selection of different colors by click of a button.
-- ###### Ratings functionality with stars.
-- ###### On click of button to choose size
-- ###### Product detail and slogan
-- ###### Checkout button
+- Right and left arrows to change primary product photo
+- Scrolling sidebar to view everything the search option has to offer
+- Full screen option of large photo on click of full screen button
+- On click of photo renders a 1.5x bigger view
+- Selection of different colors by click of a button.
+- Ratings functionality with stars.
+- On click of button to choose size
+- Product detail and slogan
+- Checkout button
 
   ### b. Related Products and User Looks
+  Related Products Provides a list of scrollable cards that we think a user would be interested in. The component includes:
+  - A table for comparing a related product to the current primary product. The table lists characterstics shared and unique to both products and is availble within a model on click.
+  - A carousel of cards that move left and right on arrow clicks. Cards will scroll the exact width of a product card. Arrows will not display if not needed
+  - A gallery of all product styles images available on hover of a card. These thumbnails will update the larger product card image on click.
+
+  User Looks Prodives a Space for a user to save items to a carousel list of cards that persists through their session. Features include:
+  - A card that adds a currently viewed product to the carousel on click
+  - A delete card icon that removes a card from looks and the session on click
+  - On page refresh, a user's looks will persists until the tab or window is closed.
 
   ### c. Product Questions and Answers
 The QA component allows a user to read and add questions and answers from other users for the selected product. Features include:
-- ###### Submitting a question/answer
-- ###### Containment of answers to question to scrollable div
-- ###### Ability to search for questions
-- ###### Mark answers/questions helpful
-- ###### Report inappropriate questions/answers
-  ###### d. Product Reviews
+- Submitting a question/answer
+- Containment of answers to question to scrollable div
+- Ability to search for questions
+- Mark answers/questions helpful
+- Report inappropriate questions/answers
+
+  ### d. Product Reviews
 
 ### Running The Tests
   To run jest tests that cover the entire project, run 'npm test' in the root dir.
