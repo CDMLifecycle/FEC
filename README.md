@@ -72,10 +72,10 @@ The QA component allows a user to read and add questions and answers from other 
   To run jest tests that cover the entire project, run 'npm test' in the root dir.
 
 ## Authors
-  * Connie Tsai
-  * Michael Smith
-  * Daniel Kosykh
-  * Liem Nguyen
+  * Connie Tsai - Question and Answers
+  * Michael Smith - Related Products and User Looks
+  * Daniel Kosykh - Product Reviews
+  * Liem Nguyen - Product Details
 
 ## License
   This project is licensed under the MIT License - see the LICENSE.md file for details
