@@ -1,6 +1,6 @@
 # PROJECT CATWALK
 
-## INDEX
+### INDEX
 
   ### 1. Summary
   ### 2. Installation
@@ -34,27 +34,27 @@
 
 ### Module Descriptions
 
-  ###### a. Product Details
+  ### a. Product Details
 In this component, a user can view a product and select through different assortments and view different accessories. Features include:
-- Right and left arrows to change primary product photo
-- Scrolling sidebar to view everything the search option has to offer
-- Full screen option of large photo on click of full screen button
-- On click of photo renders a 1.5x bigger view
-- Selection of different colors by click of a button.
-- Ratings functionality with stars.
-- On click of button to choose size
-- Product detail and slogan
-- Checkout button
+- ###### Right and left arrows to change primary product photo
+- ###### Scrolling sidebar to view everything the search option has to offer
+- ###### Full screen option of large photo on click of full screen button
+- ###### On click of photo renders a 1.5x bigger view
+- ###### Selection of different colors by click of a button.
+- ###### Ratings functionality with stars.
+- ###### On click of button to choose size
+- ###### Product detail and slogan
+- ###### Checkout button
 
-  ###### b. Related Products and User Looks
+  ### b. Related Products and User Looks
 
-  ###### c. Product Questions and Answers
+  ### c. Product Questions and Answers
 The QA component allows a user to read and add questions and answers from other users for the selected product. Features include:
-- Submitting a question/answer
-- Containment of answers to question to scrollable div
-- Ability to search for questions
-- Mark answers/questions helpful
-- Report inappropriate questions/answers
+- ###### Submitting a question/answer
+- ###### Containment of answers to question to scrollable div
+- ###### Ability to search for questions
+- ###### Mark answers/questions helpful
+- ###### Report inappropriate questions/answers
   ###### d. Product Reviews
 
 ### Running The Tests
