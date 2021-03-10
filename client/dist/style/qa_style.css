@@ -227,7 +227,7 @@
   border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.qaBigButton:focus, .qaButton, form input {
+.qaBigButton:focus, .qaButton {
   outline: none;
   border: none;
 }
