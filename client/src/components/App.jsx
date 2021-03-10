@@ -6,9 +6,11 @@ import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
+import Home from './Home.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
+import Header from './Header.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 import './app.css';
@@ -135,22 +137,22 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-          <Landing handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+          <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
       case "/final":
         return (
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
-              <NavBar handleSubmitForm={this.handleSubmitForm}/>
+              <Header handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
-              productId={14798}
+              productId={14107}
               currentProductInformation={this.state.currentProductInformation}
             />
             <Looks
               products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14658}
+              currentProductId={14107}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}

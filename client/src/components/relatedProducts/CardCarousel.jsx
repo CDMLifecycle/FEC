@@ -20,7 +20,6 @@ var CardCarousel = (props) => {
       carouselRef.current.scrollBy((-amount), 0);
       setStartingCardIndex(startingCardIndex - 1);
     } else if (direction === 'forward') {
-      console.log(amount * startingCardIndex)
       carouselRef.current.scrollBy(amount, 0);
       setStartingCardIndex(startingCardIndex+1);
     }
