@@ -21,10 +21,11 @@ class CharacteristicsBreakdown extends React.Component {
       ? (
       <div className='characteristics-container'>
         <h4>CHARACTERISTICS</h4>
-          {characteristicsArray.map(character => (
+          {characteristicsArray.map((character, index) => (
             <IndicatedSlider
               characteristic={character}
               metadata={this.props.productMetadata.characteristics[character]}
+              key={index}
             />
           ))}
       </div>)

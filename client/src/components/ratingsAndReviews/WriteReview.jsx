@@ -1,7 +1,7 @@
 import React from 'react';
 import RadioBtn from './RadioBtn.jsx';
 import StarWriteReview from './StarWriteReview.jsx';
-import './WriteReview.css';
+import './writeReview.css';
 import StarNoFill from './svg/starNoFill.svg';
 import StarYellow from './svg/starYellow.svg';
 
@@ -91,8 +91,8 @@ class WriteReview extends React.Component {
 
   handleBoolean(e) {
     e.target.value === 'true'
-    ? this.setState({ recommend: true })
-    : this.setState({ recommend: false });
+      ? this.setState({ recommend: true })
+      : this.setState({ recommend: false });
   }
 
   componentDidMount() {
@@ -108,7 +108,6 @@ class WriteReview extends React.Component {
   }
 
   handleMouseEnter(e){
-    console.log(e.target)
     e.stopPropagation();
     let select = new Array(Number(e.target.getAttribute('value'))).fill(true);
     let unselect = new Array(5 - select.length).fill(false);
@@ -124,19 +123,15 @@ class WriteReview extends React.Component {
   }
 
   selectBtn(e) {
-    console.log('select btn', e.target)
     e.preventDefault();
-    e.preventDefault();
-    // this.handleStarChange(e);
-    // e.target.setAttribute('selected', '');
     this.setState({ starsArray: this.state.starsArray })
   }
 
-  setStarClass(index) {
-    return this.state.selectedStarsArray[index - 1]// && !this.state.selected
-      ? 'selected'
-      : 'unselected'
-  }
+  // setStarClass(index) {
+  //   return this.state.selectedStarsArray[index - 1]
+  //     ? 'selected'
+  //     : 'unselected'
+  // }
 
   setStar(index) {
     if (this.state.selected) {
@@ -148,7 +143,7 @@ class WriteReview extends React.Component {
 
   render () {
     return (
-      <div id='backdrop-write-review'>
+      <div id='backdrop-write-review' onClick={this.props.exit}>
         <div id='write-review-contents'>
           <div id='exit'>
             <button onClick={this.props.exit}>CLOSE</button>
@@ -169,7 +164,6 @@ class WriteReview extends React.Component {
                     <img
                       src={this.setStar(1)}
                       value='1'
-                      // className={this.state.selected}
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
                     />
@@ -183,7 +177,6 @@ class WriteReview extends React.Component {
                     <img
                       src={this.setStar(2)}
                       value='2'
-                      // className={this.state.selected}
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
                     />
@@ -197,7 +190,6 @@ class WriteReview extends React.Component {
                     <img
                       src={this.setStar(3)}
                       value='3'
-                      // className={this.state.selected}
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
                     />
@@ -211,7 +203,6 @@ class WriteReview extends React.Component {
                     <img
                       src={this.setStar(4)}
                       value='4'
-                      // className={this.state.selected}
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
                     />
@@ -224,13 +215,11 @@ class WriteReview extends React.Component {
                     />
                     <img
                       src={this.setStar(5)}
-                      // className={this.state.selected}
                       value='5'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
                     />
                   </label>
-
                 </div>
               </div>
               <div className='review-input-container'>
