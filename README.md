@@ -2,31 +2,31 @@
 
 ### INDEX
 
-  ### 1. Summary
-  ### 2. Installation
-  ### 3. Getting Started
-  ### 4. Module descriptions
-  ### 5. Running the Tests
-  ### 6. Authors
-  ### 7. License
-  ### 8. Acknowledgments
+**1. Summary**
+**2. Installation**
+**3. Getting Started**
+**4. Module descriptions**
+**5. Running the Tests**
+**6. Authors**
+**7. License**
+**8. Acknowledgments**
 
 
 ## Summary
-  Project Catwalk updates our client's outdated, retail portal with a modernized React-based client, running on a highly optimized express server. This retain page organizes and serves information regarding product details, related products, user looks, product question and anwers, and product reviews, as well as a product search feature.
+  Project Catwalk is an ecommerce, retail-centric website application. It updates our companies outdated, retail portal with a modernized, React-based client running on a lean express server. The application organizes and serves information regarding product details, related products, user looks, product question and anwers, and product reviews, as well as a product search feature.
 
 ### Installation
 ###### Pre-Installation Requirements
     Node v14.15.1
     NPM v6.14.11
 ###### Instructions
-  - After cloning this repo, open your within the root directory of this project and run 'npm install'.
-  - Acquire a github personal access token for access to our API. Create a file the root of the project directory named 'authorization.config.js'.
+  - After cloning this repo, open your CLI within the root directory of this project and run 'npm install'.
+  - Acquire a github personal access token for access to our API. Create a file in the root project directory named 'authorization.config.js'.
   Copy and paste the following code into the newly created file:
     module.exports = {
       token: <YOUR_TOKEN>
     };
-  - Run 'npm react-dev' to bundle webpack.
+  - Run 'npm react-dev' to bundle webpack. Webpack will watch for code changes automatically.
 
 ### Getting Started
   To run the server locally on your machine, run 'npm start' within the root directory.
@@ -35,16 +35,16 @@
 ## Module Descriptions
 
 ### Product Details
-In this component, a user can view a product and select through different assortments and view different accessories. Features include:
+In this component, a user can view a product, select through different assortments, and view different accessories. Features include:
 - Right and left arrows to change primary product photo
-- Scrolling sidebar to view everything the search option has to offer
-- Full screen option of large photo on click of full screen button
-- On click of photo renders a 1.5x bigger view
-- Selection of different colors by click of a button.
+- Scrolling sidebars to view everything the search option has to offer
+- An optional full screen version of the primary product photo on click of full screen button
+- On click of a photo renders a 1.5x bigger view
+- Selections of different colors by click of a button.
 - Ratings functionality with stars.
-- On click of button to choose size
-- Product detail and slogan
-- Checkout button
+- On click of button to choose a size
+- The product details and slogan
+- A Checkout button
 
 
 ### Related Products and User Looks
