@@ -46,7 +46,7 @@
 .range-bar {
   width: 90%;
   height: 8px;
-  background-color: lightgray;
+  background-color: #CCC;
 }
 
 .fill {
