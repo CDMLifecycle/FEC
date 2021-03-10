@@ -1,4 +1,5 @@
 import React from 'react';
+import './relatedProducts.css';
 
 var CarouselArrow = (props) => {
 

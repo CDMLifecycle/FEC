@@ -4,6 +4,7 @@ import dummydata from './dummydata.js';
 import rfdc from 'rfdc';
 import fetch from './fetch.js';
 import LoadingComponent from './LoadingComponent.jsx';
+import './relatedProducts.css';
 
 var Looks = (props) => {
   const [currentLooks, setCurrentLooks] = useState([]);

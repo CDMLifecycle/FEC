@@ -1,5 +1,6 @@
 import React from 'react';
 import FECIcon from '../../dist/images/logo.png';
+import './Header.css';
 
 class Header extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Header extends React.Component {
         <div className='Header-search'>
           <input placeholder=' Search' onChange={this.handleChange}/>
           <div className='input-container'>
-            <span onClick={this.handleSubmit} class="material-icons">search</span>
+            <span onClick={this.handleSubmit} className="material-icons">search</span>
           </div>
         </div>
       </div>

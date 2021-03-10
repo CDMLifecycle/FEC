@@ -1,6 +1,7 @@
 import react, {useState, useEffect} from 'react';
 import ComparisonTable from './ComparisonTable.jsx';
 import {replaceEscapeQuotes} from './utility.js';
+import './relatedProducts.css';
 
 var ProductComparison = (props) => {
 
