@@ -5,6 +5,7 @@ import fetch from './fetch.js';
 import CardCarousel from './CardCarousel.jsx';
 import ProductComparison from './ProductComparison.jsx';
 import LoadingComponent from './LoadingComponent.jsx';
+import './relatedProducts.css';
 
 var RelatedItems = (props) => {
   var fakeProps = dummydata.relatedItemsWithFullInformation;
