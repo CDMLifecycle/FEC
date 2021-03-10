@@ -23,6 +23,7 @@ class IndicatedSlider extends React.Component {
             <div className='even-blocks'></div>
             <div className='even-blocks'></div>
             <div className='even-blocks'></div>
+            <div className='label-characteristic'></div>
           </div>
           <div className='icon-divs-container'>
             <div

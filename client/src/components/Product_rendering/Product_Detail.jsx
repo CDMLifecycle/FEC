@@ -179,7 +179,7 @@ class Product_Detail extends React.Component {
       <div className='descriptionText'>
         <button className='Checkout'>
           Checkout
-          <i class="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
+          <i className="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
         </button>
       </div>
     </div>
