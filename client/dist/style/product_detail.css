@@ -59,6 +59,10 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
+  border: solid;
+  border-width: 0.2px;
+  border-color: lightgrey;
+  border-radius: 8px;
 }
 
 img.thumbnails {
@@ -124,9 +128,11 @@ button#fs{
   border: none;
   background-color: #fefefe;
   position: absolute;
-  left: 200px;
-  bottom: 850px;
   z-index: 103;
+  transition: all ease-in-out 200ms;
+  left: 957px;
+  bottom: 1px;
+  border-radius: 8px;
 }
 button#fs:hover {
   background-color: grey;
@@ -179,7 +185,7 @@ button#fs:hover {
   margin-right: 8px;
   align-items: center;
   justify-content: center;
-  max-width: 600px;
+  max-width: 800px;
   margin-left: 400px;
 }
 .descriptionText {
@@ -227,9 +233,11 @@ button#fs:hover {
   border-color:grey;
   margin-right: 20px;
   margin-bottom: 10px;
-  background-position: center;
+  background-position: bottom;
   object-fit: cover;
   border-radius: 8px;
+  transition: all ease-in-out 200ms;
+
 }
 
 .circleStyle:hover {
@@ -298,6 +306,7 @@ body, html {
   height: 45px;
   justify-content: center;
   margin: 5px;
+  transition: all ease-in-out 200ms;
 }
 .sizeButton:hover {
   background:#CCC;
@@ -338,6 +347,7 @@ button.leftright {
   background-color: #fefefe;
   box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
   border-radius: 4px;
+  transition: all ease-in-out 200ms;
 }
 
 

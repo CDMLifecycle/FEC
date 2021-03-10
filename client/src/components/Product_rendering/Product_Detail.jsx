@@ -180,7 +180,7 @@ class Product_Detail extends React.Component {
       <div className='descriptionBox boxCheckout'>
         <button className='Checkout'>
           Checkout
-          <i class="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
+          <i className="fa fa-shopping-cart" style={{fontSize:'30px'}}></i>
         </button>
       </div>
     </div>
@@ -199,10 +199,10 @@ class Product_Detail extends React.Component {
               <div className = 'photoContainer'>
                 <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
               </div>
+              <div className = 'largePhoto'>
               <button href='#lg' id='fs' onClick={this.fullscreen}>
                   <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
                 </button>
-              <div className = 'largePhoto'>
                 <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
                   <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
