@@ -44,7 +44,7 @@ class Product_Detail extends React.Component {
     var url = '/products/'  + InId + '/styles';
     axios.get(url)
       .then((result) => {
-        this.setState({styles: result.data, photos: result.data.results, largePhoto: result.data.results[0].photos[0].url})
+        this.setState({styles: result.data, photos: result.data.results, largePhoto: result.data.results[0].photos[0].url, color: ''})
       })
       .catch((error) => {
         console.log(error);
@@ -134,7 +134,6 @@ class Product_Detail extends React.Component {
       document.getElementById('lg').style.transform = 'scale(5)';
       document.getElementById('lg').style.zIndex = '102';
       document.getElementById('lg').style.position = 'absolute';
-
       this.setState({fullscreen: true});
     }
   }
@@ -188,7 +187,7 @@ class Product_Detail extends React.Component {
      : <div></div>
     var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name.toUpperCase()} </div> : <div></div>
     var categoryName = this.state.products[0] ? <div className='categoryName'>{this.state.products[0].category}</div> : <div></div>
-    var price = this.state.products[0] ? <div className='priceCost'>Price: {this.state.products[0].default_price}</div> : <div></div>
+    var price = this.state.products[0] ? <div className='priceCost'>${Math.trunc(this.state.products[0].default_price)}</div> : <div></div>
     var styles = this.state.photos ? <StylesMap photos={this.state.photos} colorSet={this.colorSet}/> : <div></div>
     var selectedStyles = this.state.color ? this.state.color : ''
 
@@ -227,7 +226,7 @@ class Product_Detail extends React.Component {
             {productName}
             {price}
 
-              <div className='styleFont'> Color: {selectedStyles}</div>
+              <div className='styleFont'> { selectedStyles}</div>
             <div className='styleContainer'>
               {styles}
             </div>

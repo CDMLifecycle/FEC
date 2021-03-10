@@ -399,20 +399,6 @@ button.leftright:hover {
   height: 100px;
 }
 
-
-
-input[type=text] {
-  width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-  border: solid;
-  border-color: black;
-}
-
-input[type=text]:focus {
-  width: 500px;
-}
-
 .NavSearch {
   position: relative;
   left: 500px;
@@ -503,7 +489,7 @@ button:focus {
   position: sticky;
   top: 900px;
   left: 1930px;
-  z-index: 500;
+  z-index: 101;
   border: solid;
   border-width: thin;
   background: #fefefe;
