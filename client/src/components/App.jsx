@@ -6,11 +6,14 @@ import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
 import Landing from './Landing.jsx';
+import Home from './Home.jsx';
 import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
+import Header from './Header.jsx';
 import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
+import './app.css';
 var stringSimilarity = require("string-similarity");
 
 
@@ -24,7 +27,7 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
-      reviewsList: [],
+      // reviewsList: [],
       paths: '/',
       currentProductInformation: null
     }
@@ -32,7 +35,7 @@ class App extends React.Component {
     this.switchStatement = this.switchStatement.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.stringComparison = this.stringComparison.bind(this);
-    this.getReviews = this.getReviews.bind(this);
+    // this.getReviews = this.getReviews.bind(this);
     this.getMetadata = this.getMetadata.bind(this);
     // this.matchSearches = this.matchSearches.bind(this);
     this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
@@ -55,7 +58,8 @@ class App extends React.Component {
     // }
     if(arr[0]){
       let productID = arr[0].id;
-      this.getReviews(productID)
+      // this.getReviews(productID)
+      this.getMetadata(productID)
         .then(res => {
           this.setState({
             searchedArr: arr,
@@ -65,14 +69,14 @@ class App extends React.Component {
     }
   }
 
-  getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
-    return new Promise((resolve, reject) => {
-      axios.get('/reviews', { params: { product_id, sort, count, page } })
-        .then(res => resolve(this.setState({ reviewsList: res.data.results })))
-        .then(() => this.getMetadata(product_id))
-        .catch(err => reject(console.log('error App.jsx - getReviews')))
-    });
-  }
+  // getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.get('/reviews', { params: { product_id, sort, count, page } })
+  //       .then(res => resolve(this.setState({ reviewsList: res.data.results })))
+  //       .then(() => this.getMetadata(product_id))
+  //       .catch(err => reject(console.log('error App.jsx - getReviews')))
+  //   });
+  // }
 
   getMetadata(product_id) {
     return new Promise((resolve, reject) => {
@@ -133,34 +137,35 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-          <Landing handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+          <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
       case "/final":
         return (
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
-              <NavBar handleSubmitForm={this.handleSubmitForm}/>
+              <Header handleSubmitForm={this.handleSubmitForm}/>
             </form>
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
-              productId={14798}
+              productId={14107}
               currentProductInformation={this.state.currentProductInformation}
             />
             <Looks
               products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14658}
+              currentProductId={14107}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
             />
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
-            {this.state.productID
+            {this.state.productMetadata.product_id
               ? <RatingsAndReviews
-                productID={this.state.productID}
-                reviewsList={this.state.reviewsList}
-                getReviews={this.getReviews}
+                // product_id={this.state.productID}
+                // reviewsList={this.state.reviewsList}
+                // getReviews={this.getReviews}
                 productMetadata={this.state.productMetadata}
+                productInfo={this.state.searchedArr[0]}
                 />
               : <div></div>}
               <Footer />

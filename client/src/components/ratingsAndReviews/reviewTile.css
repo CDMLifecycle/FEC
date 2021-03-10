@@ -4,6 +4,7 @@
   max-height: 600px;
   display: flex;
   flex-direction: column;
+  color: #3A3E40
   }
 
 .date-stars-container {
@@ -19,7 +20,7 @@
 .review-body {
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #3A3E40;
 }
 
 .review-body h4 {
@@ -55,11 +56,13 @@
   background-color: transparent;
   border: none;
   padding: 0;
+  transition: all ease-in-out 200ms;
 }
 
 .btn:hover {
   cursor: pointer;
-  color: red;
+  color: orange;
+
 }
 
 .helpful {

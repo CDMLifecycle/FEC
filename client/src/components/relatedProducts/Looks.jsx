@@ -23,7 +23,7 @@ var Looks = (props) => {
   if (sessionLooks && sessionLooks.length && sessionLooks.length > 0) {
     setCurrentLooks(sessionLooks)
   }
-  console.log('this is session: ', sessionLooks);
+
   }, [props.currentProductId])
 
 var addToLooks = () => {

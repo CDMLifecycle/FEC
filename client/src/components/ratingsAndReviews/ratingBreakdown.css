@@ -6,7 +6,7 @@
 
 .number-stars-container {
   background-color: yellow;
-  color: black;
+  color: #1a1e20;
   height: 100px;
   display: flex;
   justify-content: center;

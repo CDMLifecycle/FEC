@@ -15,7 +15,6 @@ class IndicatedSlider extends React.Component {
   }
 
   render() {
-    console.log('in redner',this.ratingToWidth(this.props.metadata.value));
     return (
       <div className='indicated-slider-container'>
         <h5>{this.props.characteristic}</h5>
@@ -24,6 +23,7 @@ class IndicatedSlider extends React.Component {
             <div className='even-blocks'></div>
             <div className='even-blocks'></div>
             <div className='even-blocks'></div>
+            <div className='label-characteristic'></div>
           </div>
           <div className='icon-divs-container'>
             <div

@@ -20,13 +20,15 @@ class ReviewList extends React.Component {
     this.sendHelpful = this.sendHelpful.bind(this);
     this.sendReport = this.sendReport.bind(this);
     this.assignSortClass = this.assignSortClass.bind(this);
+    this.exitWriteReview = this.exitWriteReview.bind(this);
+    this.showMoreReviewsButton = this.showMoreReviewsButton.bind(this);
   }
 
   handleSelectChange(e) {
     if (e.target.value !== this.state.sort) {
       this.setState(
         { sort: e.target.value },
-        () => this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+        () => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
       )
     }
   }
@@ -34,7 +36,7 @@ class ReviewList extends React.Component {
   handleShowMoreReviews(e) {
     e.preventDefault();
     this.setState({ count: this.state.count += 2 }, () => {
-      this.props.getReviews(this.props.productID, this.state.sort, this.state.count)
+      this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
         .then(() => this.props.reRender())
     })
   }
@@ -48,13 +50,18 @@ class ReviewList extends React.Component {
     }
   }
 
+  exitWriteReview(e) {
+    e.preventDefault();
+    this.setState({ writeBtn: false })
+  }
+
   submitWriteReview(postParams) {
     axios.post('/reviews/add', postParams)
       .then(response => {
         console.log('successful post');
         this.setState({ writeBtn: false, count: this.state.count++ })
       })
-      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
+      .then(() => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count))
       .catch(err => {
         console.log('did not post review');
         alert('did not post');
@@ -70,25 +77,20 @@ class ReviewList extends React.Component {
   sendHelpful(review_id) {
     axios.put('/reviews/helpful', { data: review_id })
       .then(res => console.log('success on helpful report'))
-      .then(() => this.props.getReviews(this.props.productID, this.state.sort, this.state.count))
+      .then(() => this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count))
       .catch(err => console.log(err, 'error with helpful review'))
   }
 
-// to rating breakdown
-//   <div className='sort-header'>
-//   {this.addSpan(this.props)}
-// </div>
-
-//   addSpan(props){
-//     console.log(props)
-//     if (props.productMetadata.totals) {
-//       // console.log('in func', props.productMetadata.totals.totalRatings)
-//       return <span>{props.productMetadata.totals.totalRatings} ratings</span>
-//     }
-//   }
-
   assignSortClass(type) {
     return type === this.state.sort ? 'sort-selected' : 'plain-button';
+  }
+
+  showMoreReviewsButton(){
+    return (
+      <button onClick={this.handleShowMoreReviews} id='more-reviews-btn'>
+        Show More Reviews
+      </button>
+    )
   }
 
   render () {
@@ -110,7 +112,7 @@ class ReviewList extends React.Component {
             >Helpful</button>
         </div>
         <div className='mapped-tiles-container'>
-          {reviewArray.map(review => (
+          {reviewArray.map((review, index) => (
             <ReviewTile
               review={review}
               key={review.review_id}
@@ -119,19 +121,27 @@ class ReviewList extends React.Component {
               sendHelpful={this.sendHelpful}
               sendReport={this.sendReport}
               productMetadata={this.props.productMetadata}
+              key={index}
             />
           ))}
-          <button onClick={this.handleShowMoreReviews}>Show More Reviews</button>
-          <button onClick={this.handleWriteReviewBtn}>Write a Review</button>
+          <div className='btn-show-write-container'>
+          {reviewArray.length >= this.state.count ? this.showMoreReviewsButton() : <button id='none' disabled></button>}
+            <button
+              onClick={this.handleWriteReviewBtn}
+              id='write-review-btn'
+            >Write a Review+</button>
+          </div>
+        </div>
           {this.state.writeBtn
             ? <WriteReview
                 submitWriteReview={this.submitWriteReview}
                 productMetadata={this.props.productMetadata}
                 className='write-review-modal'
+                productInfo={this.props.productInfo}
+                exit={this.exitWriteReview}
               />
             : <React.Fragment></React.Fragment>
           }
-        </div>
       </div>
     )
   }
