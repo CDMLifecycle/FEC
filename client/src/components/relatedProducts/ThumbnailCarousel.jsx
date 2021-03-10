@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './relatedProducts.css';
 
 var ThumbnailCarousel = (props) => {
 
@@ -36,8 +37,8 @@ var ThumbnailCarousel = (props) => {
   return (
     <div className='ThumbnailCarousel'>
       {imageArray ?
-        imageArray.map((fourImgArray) =>
-          <div className='ThumbnailCarousel-row'>
+        imageArray.map((fourImgArray, index) =>
+          <div key={`row${index}`} className='ThumbnailCarousel-row'>
             {fourImgArray.map(img =>
               <img className='ThumbnailCarousel-img-cell' key={img} onClick={() => handleClick(img)} src={img}></img>
             )}
