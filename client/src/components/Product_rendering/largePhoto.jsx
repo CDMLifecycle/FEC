@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import Magnifier from 'react-magnifier';
-import Magnify from './Magnify.jsx';
  var largePhoto = (props) => {
    switch(props.direction) {
      case 'right': return (props.photo ?

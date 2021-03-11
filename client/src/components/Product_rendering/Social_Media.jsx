@@ -12,7 +12,7 @@ class Social_Media extends React.Component {
   render() {
     return(
       <div className='socialContainer'>
-        <button className='socialButton'>
+        <button className='socialButton' id='fb' onClick={this.props.func}>
           <img src='https://image.flaticon.com/icons/png/512/124/124010.png' width='20px' height='20px'></img>
         </button>
         <button className='socialButton'><img src='https://louisville.edu/philosophy/images/icons-for-footer/twittericon2.png/image' width='20px' height='20px'></img></button>
