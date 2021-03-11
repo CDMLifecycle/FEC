@@ -175,6 +175,11 @@
   resize: none;
 }
 
+textarea {
+  resize: none;
+  width: 70%;
+}
+
 .qa_subtitle {
   word-wrap: normal;
 }

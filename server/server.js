@@ -25,9 +25,7 @@ app.use('/interaction', interactionRoute);
 var getAnswers = path + '/qa/questions/:questions_id/answers';
 var addQuestion = path + '/qa/questions';
 var addAnswer = path + '/qa/questions/:question_id/answers';
-var markHelpful = path + '/qa/questions/:question_id/helpful';
 var reportQ = path + '/qa/questions/:question_id/report';
-var markAnsHelp = path + '/qa/answers/:answer_id/helpful';
 var reportAns = path + 'qa/answers/:answer_id/report';
 //QA
 
@@ -107,7 +105,6 @@ app.get('/productReview', (req, res) => {
 
 //---------------------QA----------------------//
 app.get('/qa/questions', (req, res) => {
-  console.log(req.query.product_id)
   var getQA = path + '/qa/questions?product_id=' + req.query.product_id;
   axios.get(getQA, headers)
     .then(response => {
@@ -115,6 +112,28 @@ app.get('/qa/questions', (req, res) => {
     })
     .catch(error => {
       {error}
+    })
+})
+
+app.put('/answer/helpful', (req, res) => {
+  var markAnsHelp = path + `/qa/answers/${req.body.id}/helpful`;
+  axios.put(markAnsHelp, {}, headers)
+    .then(response => {
+      res.status(204).send(response.data);
+    })
+    .catch(reject => {
+      console.log('failed in server', reject);
+    })
+})
+
+app.put('/questions/helpful', (req, res) => {
+  var markHelpful = path + `/qa/questions/${req.body.id}/helpful`;
+  axios.put(markHelpful, {}, headers)
+    .then(response => {
+      res.status(204).send(response.data);
+    })
+    .catch(reject => {
+      console.log('qa_markQHelpful failed in sever', reject);
     })
 })
 
