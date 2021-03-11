@@ -14,7 +14,6 @@ class QuestionOptions extends React.Component {
 
     this.markQHelpful = this.markQHelpful.bind(this);
     this.addAnswer = this.addAnswer.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
   }
 
   markQHelpful (e) {
@@ -36,7 +35,6 @@ class QuestionOptions extends React.Component {
 
   addAnswer (e) {
     e.preventDefault();
-    console.log('you want to add an answer');
     this.setState({
       modal: !this.state.modal
     })
@@ -47,7 +45,6 @@ class QuestionOptions extends React.Component {
       helpfulness: this.props.helpfulness
     })
   }
-
 
   render() {
     return(

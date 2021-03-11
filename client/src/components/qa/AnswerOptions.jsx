@@ -13,12 +13,28 @@ class AnswerOptions extends React.Component {
     }
     this.aHelpful = this.aHelpful.bind(this);
     this.report = this.report.bind(this);
-    // this.formatDate = this.formatDate.bind(this);
+  }
+
+  report (e) {
+    e.preventDefault();
+    this.setState({
+      reported: true
+    });
+    axios.put('/answer/update', {
+      id: this.props.answerData.id,
+      target: 'report'
+    })
+      .then(response => {
+        return;
+      })
+      .catch(reject => {
+        console.log('failed to report answer in client');
+      })
   }
 
   aHelpful (e) {
     e.preventDefault();
-    axios.put('/answer/helpful', {
+    axios.put('/answer/update', {
       id: this.props.answerData.id,
       target: 'helpful'
     })
@@ -55,23 +71,6 @@ class AnswerOptions extends React.Component {
     return date;
   }
 
-  report (e) {
-    e.preventDefault();
-    this.setState({
-      reported: true
-    });
-    axios.put('/answer/update', {
-      id: this.props.answerData.id,
-      target: 'report'
-    })
-      .then(response => {
-        console.log('successful answer report');
-      })
-      .catch(reject => {
-        console.log('failed to report answer in client');
-      })
-    console.log('report this answer');
-  }
 
   componentDidMount() {
     this.setState({

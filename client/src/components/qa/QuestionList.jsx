@@ -30,7 +30,6 @@ class QuestionList extends React.Component {
     this.setState({
       modal: !this.state.modal
     })
-    console.log('you want to add a question')
   }
 
   static getDerivedStateFromProps(props, state) {

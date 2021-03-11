@@ -13,20 +13,13 @@ class QAMain extends React.Component {
       questions: []
     }
     this.handleQSearch = this.handleQSearch.bind(this);
-    this.moreQuestions = this.moreQuestions.bind(this);
   }
 
   handleQSearch(e) {
     e.preventDefault();
-    console.log('typing QA search');
     this.setState({
       searchTerm: event.target.value
     })
-  }
-
-  moreQuestions (e) {
-    e.preventDefault();
-    console.log('See 2 more questions, please!')
   }
 
   componentDidMount() {

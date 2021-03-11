@@ -45,13 +45,10 @@ class AnswerForm extends React.Component {
   onType(e) {
     e.preventDefault();
     var key = e.target.name;
-    console.log(key, e.target.value);
     this.setState({
       [key]: e.target.value
     })
   }
-
-
 
   render () {
     const divStyle = {
