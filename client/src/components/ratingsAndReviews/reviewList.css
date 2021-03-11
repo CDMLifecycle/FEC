@@ -16,19 +16,16 @@
   align-content: stretch;
   justify-content: center;
   height: 40px;
-  /* border:black 1px solid; */
-}
-
-
-.sort-btn-container {
-  display: flex;
-  align-content: stretch;
 }
 
 .plain-button, .sort-selected {
   font-size: 16px;
   border: #3A3E40 1px solid;
   transition: all ease-in-out 200ms;
+  height: 40px;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
 }
 
 .plain-button {
@@ -36,7 +33,6 @@
   font-weight: 400;
   border: 0 1px;
   width: 100%;
-  flex: 1;
 }
 
 .sort-selected {
@@ -46,8 +42,10 @@
   color: #fefefe;
   font-weight: 700;
   width: 100%;
-  flex: 1;
   font-size: 17px;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -58,6 +56,8 @@
   transform: scale(1.05);
   transition-duration: .15s;
   transition: ease-in-out;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -71,6 +71,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .no-tiles {
@@ -86,7 +87,12 @@
   width: 40%;
   font-size: 16px;
   border: 1px #CCC solid;
-  transition: all ease-in-out 200ms;
+  transition: ease-in-out 200ms;
+  display: flex;
+  vertical-align: middle;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 #write-review-btn:active, #more-reviews-btn:active {
@@ -97,7 +103,6 @@
 #write-review-btn {
   background-color: #6C8789;
   color: #fefefe;
-  flex: none;
   left: 100%;
 }
 

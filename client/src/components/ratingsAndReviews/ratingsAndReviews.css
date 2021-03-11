@@ -10,11 +10,6 @@
   background-color: #fefefe;
 }
 
-#ratings-reviews-main-container button:focus {
-  outline: none;
-  display: flex;
-}
-
 #ratings-reviews-header {
   text-transform: uppercase;
   display: block;

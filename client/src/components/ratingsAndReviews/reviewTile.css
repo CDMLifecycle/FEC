@@ -83,7 +83,7 @@
 
 .btn:active {
   transform: scale(.95);
-  /* transition-duration: .2s; */
+  transition-duration: .2s;
 }
 
 .helpful {
@@ -101,6 +101,6 @@
 
 .report {
   text-decoration: none;
-  flex: 1.2;
+  flex: 1;
   text-align: right;
 }
