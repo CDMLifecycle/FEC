@@ -103,12 +103,12 @@ img.thumbnails:hover {
 
 .largeImageL {
   /* height: 690px; */
-  animation: mymoveL .7s ease-in-out;
+  animation: mymoveL .6s ease-in-out;
 }
 
 .largeImageR {
   /* height: 690px; */
-  animation: mymoveR .7s ease-in-out;
+  animation: mymoveR .6s ease-in-out;
 }
 
 img.magnifier-image {
