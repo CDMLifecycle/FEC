@@ -131,6 +131,19 @@
   margin: 0 10px;
 }
 
+.qaModal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, .4);
+  backdrop-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  padding-top: 15%;
+  font-family: 'Roboto', sans-serif;
+}
+
 .Modal-Content {
   background-color: #f9f9f9;
   width: 50%;
@@ -159,7 +172,9 @@
   position: relative !important;
   top: 0;
   left: 0;
+  /* transform:translateY(-200%) !important; */
 }
+
 
 textarea {
   resize: none;
@@ -230,6 +245,7 @@ input[type=text]:focus, input[type=email]:focus, textarea:focus {
   background:#6C8789;
   color: white;
   cursor: pointer;
+  /* border: 1px solid rgba(0, 0, 0, 0); */
 }
 
 .qaBigButton:focus, .qaButton {

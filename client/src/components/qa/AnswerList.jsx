@@ -38,11 +38,6 @@ class AnswerList extends React.Component {
     return null;
   }
 
-
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <>

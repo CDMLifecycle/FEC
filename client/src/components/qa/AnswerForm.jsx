@@ -62,18 +62,66 @@ class AnswerForm extends React.Component {
           style={divStyle}>
             <div className="Modal-Content" onClick={e => e.stopPropagation()}>
               <span className="close" onClick={this.closeModal}>✖</span>
-              <form className="qa_form" onSubmit={this.submitAForm}>
+              <form
+                className="qa_form"
+                onSubmit={this.submitAForm}>
                 <h3>Submit your answer</h3>
-                <h5 className="qa_subtitle" >{this.props.productName}: {this.props.q_body}</h5>
-                <label className="qa_label" name="Your Question">Your Answer</label><br />
-                <textarea className="qInput qa-modal-form" type="text" minLength="3" maxLength="1000" placeholder="ENTER YOUR ANSWER..." autoComplete="off" required name="answer" value={this.state.answer} onChange={this.onType} /><br />
-                <label className="qa_label">Nickname</label><br />
-                <input className="qInput" type="text" placeholder="EXAMPLE: jack543!" name="nickname" minLength="2" autoComplete="off" required value={this.state.nickname} onChange={this.onType}/><br />
-                <label className="qa_label" name="email">Email</label><br />
-                <input className="qInput" type="email" name="email" placeholder="EXAMPLE: JACKSON@EMAIL.COM" maxLength="60" autoComplete="off" required value={this.state.email} onChange={this.onType}/><br />
-                {/* <label className="qa_label" name="answerImg">Add Images</label> */}
-                <input className="qa_imgUpload" type="file" name="answerImg" placeholder="Upload Images" /><br />
-                <button className="submitAnswer">SUBMIT ANSWER</button>
+                <h5 className="qa_subtitle" >
+                  {this.props.productName}: {this.props.q_body}
+                </h5>
+                <label
+                  className="qa_label"
+                  name="Your Question">
+                    Your Answer
+                </label><br />
+                <textarea
+                  className="qInput qa-modal-form"
+                  type="text"
+                  minLength="3"
+                  maxLength="1000"
+                  placeholder="ENTER YOUR ANSWER..."
+                  autoComplete="off"
+                  required
+                  name="answer"
+                  value={this.state.answer}
+                  onChange={this.onType} /><br />
+                <label className="qa_label">
+                  Nickname
+                </label><br />
+                <input
+                  className="qInput"
+                  type="text"
+                  placeholder="EXAMPLE: jack543!"
+                  name="nickname"
+                  minLength="2"
+                  autoComplete="off"
+                  required
+                  value={this.state.nickname}
+                  onChange={this.onType}/><br />
+                <label
+                  className="qa_label"
+                  name="email">
+                    Email
+                </label><br />
+                <input
+                  className="qInput"
+                  type="email"
+                  name="email"
+                  placeholder="EXAMPLE: JACKSON@EMAIL.COM"
+                  maxLength="60"
+                  autoComplete="off"
+                  required
+                  value={this.state.email}
+                  onChange={this.onType}/><br />
+                <input
+                  className="qa_imgUpload"
+                  type="file"
+                  name="answerImg"
+                  placeholder="Upload Images" /><br />
+                <button
+                  className="submitAnswer">
+                    SUBMIT ANSWER
+                </button>
               </form>
             </div>
           </div>
