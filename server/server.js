@@ -120,7 +120,7 @@ app.get('/productReview', (req, res) => {
 
 //---------------------QA----------------------//
 app.get('/qa/questions', (req, res) => {
-  var getQA = path + '/qa/questions?product_id=' + req.query.product_id;
+  var getQA = path + '/qa/questions?product_id=' + req.query.product_id + '&count=50';
   axios.get(getQA, headers)
     .then(response => {
       res.send(response.data);
@@ -169,6 +169,7 @@ app.post('/qa/question/answer', (req, res) => {
 });
 
 app.post('/qa/question/post', (req, res) => {
+  console.log(req.body);
   var addQuestion = path + '/qa/questions';
   axios.post(addQuestion, {
     body: req.body.body,
@@ -177,6 +178,7 @@ app.post('/qa/question/post', (req, res) => {
     product_id: req.body.product_id
   }, headers)
     .then(response => {
+      console.log('Created');
       res.status(201).send(response.data);
     })
     .catch(reject => {
