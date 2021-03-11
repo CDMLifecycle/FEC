@@ -60,7 +60,7 @@ class QuestionForm extends React.Component {
           <div className="qaModal" onClick={this.closeModal}
           style={divStyle}>
             <div className="Modal-Content" onClick={e => e.stopPropagation()}>
-              <span className="close" onClick={this.closeModal}>Close</span>
+              <span className="close" onClick={this.closeModal}>✖</span>
               <form className="qa_form" onSubmit={this.submitQForm}>
                 <h3>Ask Your Question</h3>
                 <h5 className="qa_subtitle">About the {this.props.productName}</h5>
