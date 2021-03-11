@@ -2,8 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import RenderImages from './renderImages.jsx';
 import LargePhoto from './largePhoto.jsx';
-import { Rating } from '@material-ui/lab';
 import StylesMap from './stylesMap.jsx';
+import Size from './Size.jsx';
+import Quantity from './Quantity.jsx';
+import Ratings from './Ratings.jsx';
+import Social from './Social_Media.jsx';
 
 class Product_Detail extends React.Component {
   constructor(props) {
@@ -24,12 +27,10 @@ class Product_Detail extends React.Component {
       fullscreen: false,
       hf: false,
       index: 0,
-      slide: false,
-      direction: ''
+      direction: '',
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
-    this.reviewSet = this.reviewSet.bind(this);
     this.sizeSet = this.sizeSet.bind(this);
     this.quantityDecrease = this.quantityDecrease.bind(this);
     this.quantityIncrease = this.quantityIncrease.bind(this);
@@ -51,7 +52,7 @@ class Product_Detail extends React.Component {
     var url = '/products/'  + InId + '/styles';
     axios.get(url)
       .then((result) => {
-        this.setState({styles: result.data, photos: result.data.results, largePhoto: result.data.results[0].photos[0].url})
+        this.setState({styles: result.data, photos: result.data.results, largePhoto: result.data.results[0].photos[0].url, color: ''})
       })
       .catch((error) => {
         console.log(error);
@@ -108,11 +109,6 @@ class Product_Detail extends React.Component {
       });
     }
   }
-
-  reviewSet (event) {
-    var val = Number(event.target.value);
-    this.setState({rating: val});
-  }
   sizeSet(event) {
     this.setState({size: event.target.value});
   }
@@ -141,7 +137,6 @@ class Product_Detail extends React.Component {
       document.getElementById('lg').style.transform = 'scale(5)';
       document.getElementById('lg').style.zIndex = '102';
       document.getElementById('lg').style.position = 'absolute';
-
       this.setState({fullscreen: true});
     }
   }
@@ -195,7 +190,7 @@ class Product_Detail extends React.Component {
      : <div></div>
     var productName = this.state.products[0] ? <div className='productName'>{this.state.products[0].name.toUpperCase()} </div> : <div></div>
     var categoryName = this.state.products[0] ? <div className='categoryName'>{this.state.products[0].category}</div> : <div></div>
-    var price = this.state.products[0] ? <div className='priceCost'>Price: {this.state.products[0].default_price}</div> : <div></div>
+    var price = this.state.products[0] ? <div className='priceCost'>${Math.trunc(this.state.products[0].default_price)}</div> : <div></div>
     var styles = this.state.photos ? <StylesMap photos={this.state.photos} colorSet={this.colorSet}/> : <div></div>
     var selectedStyles = this.state.color ? this.state.color : ''
 
@@ -222,38 +217,18 @@ class Product_Detail extends React.Component {
             </div>
           </div>
           <div className='containerColumn'>
-            <div className='reviews'>
-              <Rating value={this.state.rating}
-                precision={0.25}
-                max={5}
-                name="unique-rating"
-                readOnly
-              />
-            </div>
+            <Ratings rating={this.state.rating}/>
             {categoryName}
             {productName}
             {price}
 
-              <div className='styleFont'> Color: {selectedStyles}</div>
+              <div className='styleFont'> { selectedStyles}</div>
             <div className='styleContainer'>
               {styles}
             </div>
-
-              <div id='size'>
-                  <button onClick={this.toggleSize} className='sizeButton' id='XS' value='XS' key='XS'>XS</button>
-                  <button onClick={this.toggleSize}  className='sizeButton' value='S' key='S'>S</button >
-                  <button onClick={this.toggleSize}  className='sizeButton' value='M' key='M'>M</button >
-                  <button  onClick={this.toggleSize} className='sizeButton' value='L' key='L'>L</button >
-                  <button  onClick={this.toggleSize} className='sizeButton' value='XL' key='XL'>XL</button >
-                  <button  onClick={this.toggleSize} className='sizeButton' value='XXL' key='XXL'>XXL</button >
-              </div>
-              <div className='q_c'>
-                <button className="qsButtonLeft" onClick={(event) => {
-                  this.quantityDecrease(event);
-                }} ><i className="fa fa-minus" aria-hidden="true"></i></button>
-                <div className='quantityBox'>{this.state.quantity}</div>
-                <button className="qsButtonRight" onClick={this.quantityIncrease}><i className="fa fa-plus" aria-hidden="true"></i></button>
-              </div>
+              <Size toggleSize={this.toggleSize}/>
+              <Quantity quantity={this.state.quantity} quantityDecrease={this.quantityDecrease} quantityIncrease={this.quantityIncrease}/>
+              <Social />
           </div>
         </div>
         {description}
