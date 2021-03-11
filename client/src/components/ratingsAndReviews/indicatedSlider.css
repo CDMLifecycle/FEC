@@ -2,41 +2,63 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 60px;;
+  height: 100px;
   align-items: flex-start;
   align-content: flex-start;
+  padding-bottom: 15px;
 }
 
 .indicated-slider-container h5 {
   font-size: 16px;
-  padding: 5px 0;
+  padding-top: 5px 0;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+
+.tri-bar-box, .icon-divs-container, .bars-container-center, .bars-container-right {
+  width: 385px;
 }
 
 .tri-bar-box {
-  height: 100%;
-  width: 375px;
+  height: 40px;
+  /* width: 380px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .bars-container {
-  width: 100%;
+  /* width: 100%; */
+  height: 8px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.bars-container-center {
+  background-image: linear-gradient(to right, #fefefe, orange, #fefefe);
   height: 8px;
   display: flex;
   justify-content: space-between;
 }
 
-.even-blocks {
-  width: 32%;
-  background-color: lightgray;
+.bars-container-right {
+  background-image: linear-gradient(to right, #fefefe 5%, orange );
+  height: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
+/* .even-blocks {
+  width: 32%;
+  background-color: lightgray;
+} */
+
 .icon-divs-container {
-  width: 375px;
   height: 20px;
   position: absolute;
+  margin: 0 auto;
   z-index: 20;
 }
 
@@ -54,4 +76,27 @@
   background-size: cover;
   background-position: center;
   position: relative;
+}
+
+.specifics-box {
+  display: flex;
+  width: 375px;
+  justify-content: space-between;
+  font-size: 14px;
+  /* margin-bottom: 15px; */
+}
+
+.specifics-left {
+  text-align: left;
+  width: 33.3%;
+}
+
+.specifics-center {
+  text-align: center;
+  width: 33.3%;
+}
+
+.specifics-right {
+  text-align: right;
+  width: 33.3%;
 }

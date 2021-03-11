@@ -15,7 +15,7 @@ import dummyData from './relatedProducts/dummydata.js';
 import './color-schema.css';
 import './app.css';
 var stringSimilarity = require("string-similarity");
-
+import StickyButton from './stickyButton.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -27,7 +27,6 @@ class App extends React.Component {
       searchedQuery: '',
       productID: '',
       searchedArr: [],
-      // reviewsList: [],
       paths: '/',
       currentProductInformation: null
     }
@@ -68,15 +67,6 @@ class App extends React.Component {
         });
     }
   }
-
-  // getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('/reviews', { params: { product_id, sort, count, page } })
-  //       .then(res => resolve(this.setState({ reviewsList: res.data.results })))
-  //       .then(() => this.getMetadata(product_id))
-  //       .catch(err => reject(console.log('error App.jsx - getReviews')))
-  //   });
-  // }
 
   getMetadata(product_id) {
     return new Promise((resolve, reject) => {
@@ -132,7 +122,6 @@ class App extends React.Component {
     return JSON.parse(window.sessionStorage.getItem('Looks'))
   }
 
-
   switchStatement() {
     switch(this.state.paths) {
       case "/":
@@ -145,6 +134,7 @@ class App extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <Header handleSubmitForm={this.handleSubmitForm}/>
             </form>
+            <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             <RelatedItems
               productId={14107}
