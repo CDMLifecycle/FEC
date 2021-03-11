@@ -4,8 +4,20 @@
   max-height: 600px;
   display: flex;
   flex-direction: column;
-  color: #3A3E40
-  }
+  color: #3A3E40;
+}
+
+.review-tile {
+  animation-name: tile;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tile {
+  0% { opacity: 0%; background-color: lightgray; }
+  100% { opacity: 100%; }
+}
+
 
 .date-stars-container {
   display: flex;
@@ -62,7 +74,16 @@
 .btn:hover {
   cursor: pointer;
   color: orange;
+}
 
+.helpful .btn:hover{
+  transform: scale(1.1);
+  transition-duration: .2s;
+}
+
+.btn:active {
+  transform: scale(.95);
+  transition-duration: .2s;
 }
 
 .helpful {
@@ -80,6 +101,6 @@
 
 .report {
   text-decoration: none;
-  flex: 1.2;
+  flex: 1;
   text-align: right;
 }

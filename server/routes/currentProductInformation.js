@@ -24,6 +24,7 @@ router.get('/', (req, res, next) => {
       .then(result => {
         itemStyles = result;
         var combined = _merge(item, itemStyles);
+        combined.result
         combined.rating = itemRating;
         combined.photos = itemStyles.results[0].photos;
         res.send(combined);

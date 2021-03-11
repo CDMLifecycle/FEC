@@ -463,7 +463,7 @@ button.leftright:hover {
   position: relative;
   width: 238px;
   height: 124px;
-  margin-left: 210px;
+  margin-left: 205px;
   font-size: 20px;
   font-family: Arial Narrow, sans-serif	;
 }
@@ -509,6 +509,32 @@ button:focus {
 
 .scrollup:hover {
   background:#6C8789;
+  color: white;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.socialContainer {
+  position: relative;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+
+.socialButton {
+  margin-right: 20px;
+  background-color: white;
+  border:solid;
+  background: #fefefe;
+  border: 1px solid #fefefe;
+  border-radius: 3px;
+  color: #3A3E40;
+  margin: 15px 15px 0 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+  transition: all ease-in-out 200ms;
+}
+
+.socialButton:hover {
+  transform: scale(1.2);
   color: white;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0);

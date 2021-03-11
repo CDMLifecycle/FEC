@@ -6,6 +6,7 @@ import StylesMap from './stylesMap.jsx';
 import Size from './Size.jsx';
 import Quantity from './Quantity.jsx';
 import Ratings from './Ratings.jsx';
+import Social from './Social_Media.jsx';
 
 class Product_Detail extends React.Component {
   constructor(props) {
@@ -40,6 +41,13 @@ class Product_Detail extends React.Component {
     this.changeIndexRight = this.changeIndexRight.bind(this);
     this.changeIndexLeft = this.changeIndexLeft.bind(this);
   }
+
+  componentDidMount() {
+    if (this.props.productID) {
+      this.getStyle(this.props.productID);
+    }
+  }
+
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
     axios.get(url)
@@ -220,6 +228,7 @@ class Product_Detail extends React.Component {
             </div>
               <Size toggleSize={this.toggleSize}/>
               <Quantity quantity={this.state.quantity} quantityDecrease={this.quantityDecrease} quantityIncrease={this.quantityIncrease}/>
+              <Social />
           </div>
         </div>
         {description}

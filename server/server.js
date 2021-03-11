@@ -44,6 +44,23 @@ var headers = {
 //Products
 //products
 
+// app.get('/item', (req, res, next) => {
+//   if (!req.query.id) {
+//     res.redirect('/');
+//   } else {
+
+//     res.redirect(`/?id=${req.query.id}`)
+//   }
+// })
+
+// app.get('/', (req, res) => {
+//   if (!req.query.id) {
+//     res.redirect('/');
+//   } else {
+
+//   }
+// })
+
 app.get('/products',(req, res) => {
   var allProducts = path + '/products';
   axios.get(allProducts, headers)
