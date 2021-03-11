@@ -112,7 +112,6 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
       .then(res => {
-        console.log('inside metadata: ', res)
         if (!searchedArr || !productID) {
           resolve(this.setState({ productMetadata: res.data }))
         } else {
@@ -172,7 +171,6 @@ class App extends React.Component {
       })
     } else {
       //window.location = 'http://' + window.location.host + '?id=' + id;
-       console.log('inside updateProductOnClick with id: ', id);
        fetch.getProduct(id, (err, data) => {
          if (err) {
            window.location.href = 'http://localhost:3000';

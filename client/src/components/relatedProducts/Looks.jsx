@@ -11,7 +11,6 @@ var Looks = (props) => {
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
-    console.log('about to look for ', props.currentProductId);
     fetch.getCurrentProductInformation(props.currentProductId, (err, data) => {
       if (err) {
         console.log(err);

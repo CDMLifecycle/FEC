@@ -31,7 +31,7 @@ var ThumbnailCarousel = (props) => {
         imageArray.map((fourImgArray, index) =>
           <div key={`row${index}`} className='ThumbnailCarousel-row'>
             {fourImgArray.map((img, index) =>
-              <img className='ThumbnailCarousel-img-cell' key={img ? img : `blank${index + 1}`} onClick={() => handleClick(img)} src={img}></img>
+              <img className='ThumbnailCarousel-img-cell' key={img ? `${img}-${index}` : `blank${index + 1}`} onClick={() => handleClick(img)} src={img}></img>
             )}
           </div>
          )

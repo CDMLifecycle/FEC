@@ -55,7 +55,7 @@ var ProductCard = (props) => {
            <span onClick={handleActionClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
         }
         </div>
-        <img className='ProductCard-primary-img' src={primaryImg}></img>
+        <img className='ProductCard-primary-img' alt='Product Image' src={primaryImg}></img>
       </div>
       <div className='ProductCard-product-information'>
         { props.compareProducts && props.product.stylePhotos.length > 1 ?
