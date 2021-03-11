@@ -66,7 +66,7 @@ class AnswerForm extends React.Component {
                 <h3>Submit your answer</h3>
                 <h5 className="qa_subtitle" >{this.props.productName}: {this.props.q_body}</h5>
                 <label className="qa_label" name="Your Question">Your Answer</label><br />
-                <textarea className="qInput qa-modal-form" type="text" minLength="3" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" required name="answer" value={this.state.answer} onChange={this.onType} /><br />
+                <textarea className="qInput qa-modal-form" type="text" minLength="3" maxLength="1000" placeholder="ENTER YOUR ANSWER..." autoComplete="off" required name="answer" value={this.state.answer} onChange={this.onType} /><br />
                 <label className="qa_label">Nickname</label><br />
                 <input className="qInput" type="text" placeholder="EXAMPLE: jack543!" name="nickname" minLength="2" autoComplete="off" required value={this.state.nickname} onChange={this.onType}/><br />
                 <label className="qa_label" name="email">Email</label><br />
