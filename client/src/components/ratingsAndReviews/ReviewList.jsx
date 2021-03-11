@@ -51,13 +51,13 @@ class ReviewList extends React.Component {
   }
 
   exitWriteReview(e) {
-    // e.preventDefault();
     if (e.target.getAttribute('name') === 'backdrop' || e.target.getAttribute('name') === 'exit') {
       this.setState({ writeBtn: false })
     }
   }
 
   submitWriteReview(postParams) {
+    console.log(postParams)
     axios.post('/reviews/add', postParams)
       .then(response => {
         console.log('successful post');
@@ -96,8 +96,16 @@ class ReviewList extends React.Component {
     )
   }
 
+  noReviews() {
+    return (
+      <div className='no-tiles'>
+        <h2>Be the first to review this product!</h2>
+      </div>)
+  }
+
   render () {
     let reviewArray = this.props.reviewsList;
+
     return (
       <div className='reviews-list-container'>
         <div onClick={this.handleSelectChange} className='sort-btn-container'>
@@ -115,18 +123,21 @@ class ReviewList extends React.Component {
             >Helpful</button>
         </div>
         <div className='mapped-tiles-container'>
-          {reviewArray.map((review, index) => (
-            <ReviewTile
-              review={review}
-              key={review.review_id}
-              getReviews={this.props.getReviews}
-              getReviewsParams={this.state}
-              sendHelpful={this.sendHelpful}
-              sendReport={this.sendReport}
-              productMetadata={this.props.productMetadata}
-              key={index}
-            />
-          ))}
+          {this.props.productMetadata.totals.totalRatings
+            ? reviewArray.map((review, index) => (
+                <ReviewTile
+                  review={review}
+                  key={review.review_id}
+                  getReviews={this.props.getReviews}
+                  getReviewsParams={this.state}
+                  sendHelpful={this.sendHelpful}
+                  sendReport={this.sendReport}
+                  productMetadata={this.props.productMetadata}
+                  key={index}
+                />
+               ))
+            : this.noReviews()
+          }
           <div className='btn-show-write-container'>
           {reviewArray.length >= this.state.count ? this.showMoreReviewsButton() : <button id='none' disabled></button>}
             <button

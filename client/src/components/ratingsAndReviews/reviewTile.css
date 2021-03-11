@@ -74,7 +74,16 @@
 .btn:hover {
   cursor: pointer;
   color: orange;
+}
 
+.helpful .btn:hover{
+  transform: scale(1.1);
+  transition-duration: .2s;
+}
+
+.btn:active {
+  transform: scale(.95);
+  /* transition-duration: .2s; */
 }
 
 .helpful {

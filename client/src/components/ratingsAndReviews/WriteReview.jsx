@@ -1,5 +1,6 @@
 import React from 'react';
 import StarWriteReview from './StarWriteReview.jsx';
+import WriteReviewCharacteristics from './WriteReviewCharacteristics.jsx';
 import './writeReview.css';
 import StarNoFill from './svg/starNoFill.svg';
 import StarYellow from './svg/starYellow.svg';
@@ -9,6 +10,7 @@ class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      characteristicsArray: [],
       selected: false,
       starsArray: new Array(5).fill(false),
       selectedStarsArray: new Array(5).fill(false),
@@ -29,6 +31,10 @@ class WriteReview extends React.Component {
       comfortID: '',
       quality: '',
       qualityID: '',
+      size: '',
+      sizeID: '',
+      width: '',
+      widthID: '',
       postParams: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +44,7 @@ class WriteReview extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.selectBtn = this.selectBtn.bind(this);
     this.setStar = this.setStar.bind(this);
-    this.handleStarChange = this.handleStarChange.bind(this);
+    this.convertToArray = this.convertToArray.bind(this);
   }
 
 
@@ -54,12 +60,6 @@ class WriteReview extends React.Component {
         [e.target.name]: e.target.value
       })
     }
-  }
-
-  handleStarChange(e) {
-    this.setState({
-      [e.target.getAttribute('name')]: e.target.getAttribute('value')
-    })
   }
 
   handleSubmit(e) {
@@ -80,11 +80,20 @@ class WriteReview extends React.Component {
           [st.fitID]: Number(st.fit),
           [st.lengthID]: Number(st.length),
           [st.qualityID]: Number(st.quality),
-          [st.comfortID]: Number(st.comfort)
+          [st.comfortID]: Number(st.comfort),
+          [st.sizeID]: Number(st.size),
+          [st.widthID]: Number(st.width)
         }
       }
     },
-    () => { this.props.submitWriteReview(this.state.postParams) });
+    () => {
+      for (let char in this.state.postParams.characteristics) {
+        if (!this.state.postParams.characteristics[char]) {
+          delete this.state.postParams.characteristics[char];
+        }
+      }
+      this.props.submitWriteReview(this.state.postParams)
+    });
   }
 
   handleBoolean(e) {
@@ -96,12 +105,16 @@ class WriteReview extends React.Component {
   componentDidMount() {
     let meta = this.props.productMetadata;
     let metaChar = meta.characteristics;
+
     this.setState({
+      characteristicsArray: this.convertToArray(meta),
       product_id: meta.product_id,
-      fitID: metaChar.Fit.id,
-      lengthID: metaChar.Length.id,
-      qualityID: metaChar.Quality.id,
-      comfortID: metaChar.Comfort.id
+      fitID: metaChar.Fit ? metaChar.Fit.id : null ,
+      lengthID: metaChar.Length? metaChar.Length.id : null ,
+      qualityID: metaChar.Quality ? metaChar.Quality.id : null ,
+      comfortID: metaChar.Comfort ? metaChar.Comfort.id : null,
+      sizeID: metaChar.Size ? metaChar.Size.id : null ,
+      widthID: metaChar.Width ? metaChar.Width.id : null
     })
   }
 
@@ -125,12 +138,6 @@ class WriteReview extends React.Component {
     this.setState({ starsArray: this.state.starsArray })
   }
 
-  // setStarClass(index) {
-  //   return this.state.selectedStarsArray[index - 1]
-  //     ? 'selected'
-  //     : 'unselected'
-  // }
-
   setStar(index) {
     if (this.state.selected) {
       return this.state.selectedStarsArray[index - 1] ? StarYellow : StarNoFill;;
@@ -138,6 +145,14 @@ class WriteReview extends React.Component {
       return this.state.starsArray[index - 1] ? StarYellow : StarNoFill;
     }
   }
+
+  convertToArray(meta) {
+    return meta
+      ? Object.keys(meta.characteristics)
+      : null;
+  }
+
+
 
   render () {
     return (
@@ -256,7 +271,7 @@ class WriteReview extends React.Component {
                 <div >
                   <label className='review-input-form' >
                     Let us know what you think
-                    <input
+                    <textarea
                       placeholder='1000 character max'
                       name='body'
                       value={this.state.body}
@@ -279,7 +294,15 @@ class WriteReview extends React.Component {
               <div id='characteristics-review-box'>
                 <h4>Characteristics</h4>
                 <div className='per-characteristic-box'>
-                  Fit
+                  {this.state.characteristicsArray.map((character, index) => (
+                    <WriteReviewCharacteristics
+                      characteristic={character}
+                      key={index}
+                      handleChange={this.handleChange}
+                    />
+                  ))}
+                  </div>
+                  {/* Fit
                   <label onChange={this.handleChange} value={this.state.rating}>
                     <input type='radio' value='1' name='fit' required/>1
                     <input type='radio' value='2' name='fit'/>2
@@ -317,7 +340,7 @@ class WriteReview extends React.Component {
                     <input type='radio' value='4' name='quality'/>4
                     <input type='radio' value='5' name='quality'/>5
                   </label>
-                </div>
+                </div> */}
               </div>
               <div id='modal-btn-box'>
                 <button id='exit-write-review' onClick={this.props.exit} name='exit'>Go back</button>

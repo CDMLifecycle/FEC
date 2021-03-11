@@ -12,6 +12,7 @@
 
 #ratings-reviews-main-container button:focus {
   outline: none;
+  display: flex;
 }
 
 #ratings-reviews-header {

@@ -16,6 +16,7 @@
   border-radius: 3px;
 }
 
+
 .unselected {
   background-color: transparent;
 }
@@ -23,7 +24,8 @@
 .unselected:hover {
   background-color: transparent;
   color: orange;
-
+  transform: scale(1.2);
+  transition-duration: .2s;
 }
 
 .selected {
@@ -34,8 +36,9 @@
 .selected:hover {
   background-color: orange;
   color: #fefefe;
+  transform: scale(1.1);
+  transition-duration: .2s;
 }
-
 
 
 .range-container {

@@ -47,13 +47,17 @@
   font-weight: 700;
   width: 100%;
   flex: 1;
-
+  font-size: 17px;
 }
+
 
 .plain-button:hover {
   /* color: red; */
   background-color: #CCC;
   cursor: pointer;
+  transform: scale(1.05);
+  transition-duration: .15s;
+  transition: ease-in-out;
 }
 
 
@@ -69,12 +73,25 @@
   align-items: center;
 }
 
+.no-tiles {
+  width: 100%;
+  padding-top: 30px;
+  height: 200px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #write-review-btn, #more-reviews-btn {
   height: 50%;
   width: 40%;
   font-size: 16px;
   border: 1px #CCC solid;
   transition: all ease-in-out 200ms;
+}
+
+#write-review-btn:active, #more-reviews-btn:active {
+  transform: scale(.90);
+  transition-duration: .2s;
 }
 
 #write-review-btn {
