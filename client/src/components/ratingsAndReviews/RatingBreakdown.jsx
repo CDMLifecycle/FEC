@@ -6,7 +6,7 @@ import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 import './ratingBreakdown.css';
 
 const RatingBreakdown = (props) => {
-  return props.productMetadata.totals
+  return props.productMetadata.totals.totalRatings
   ?
     (
     <div className='rating-breakdown-container'>
@@ -31,7 +31,14 @@ const RatingBreakdown = (props) => {
       </div>
     </div>
   )
-  : null;
+  :
+    (<div className='rating-breakdown-container'>
+        <div className='number-stars-container'>
+          <div className='big-number'>
+            <h2>No Review Data</h2>
+        </div>
+      </div>
+    </div>
+    )
 }
-
 export default RatingBreakdown;
