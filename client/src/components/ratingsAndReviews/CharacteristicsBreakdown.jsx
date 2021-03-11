@@ -20,7 +20,7 @@ class CharacteristicsBreakdown extends React.Component {
     return characteristicsArray
       ? (
       <div className='characteristics-container'>
-        <h4>CHARACTERISTICS</h4>
+        <h3>CHARACTERISTICS</h3>
           {characteristicsArray.map((character, index) => (
             <IndicatedSlider
               characteristic={character}

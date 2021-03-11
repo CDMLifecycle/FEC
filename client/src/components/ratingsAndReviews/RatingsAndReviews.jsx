@@ -10,8 +10,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
     this.state = {
       averageRating: '',
-      reviewsList: [], // new
-      product_id: '', //new
+      reviewsList: [],
+      product_id: '',
       filterSelections: [],
       filteredList: [],
       filterFlag: false
@@ -29,20 +29,11 @@ class RatingsAndReviews extends React.Component {
       .catch(() => console.log('Error in component mount'))
     }
 
-
-  // old
-  // componentDidMount() {
-  //   this.setState({ filteredList: this.props.reviewsList })
-  // }
-
-
-  //new
   getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
       return new Promise((resolve, reject) => {
         axios.get('/reviews', { params: { product_id, sort, count, page } })
           .then(res => resolve( this.setState({ reviewsList: res.data.results }) ))
           .then(() => this.reRender())
-          // .then(() => this.getMetadata(product_id))
           .catch(err => reject(console.log('error ratingsAndReiews.jsx - getReviews')))
       });
     }
@@ -51,7 +42,6 @@ class RatingsAndReviews extends React.Component {
   reRender(){
     if (this.state.filterSelections.length) {
       this.filterArray(this.state.reviewsList, this.state.filterSelections);
-      // this.setState({ filteredList: refilter });
     } else {
       this.setState({ filteredList: this.state.reviewsList })
     }
