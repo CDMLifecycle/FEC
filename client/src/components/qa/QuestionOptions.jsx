@@ -9,8 +9,7 @@ class QuestionOptions extends React.Component {
     this.state = {
       modal: false,
       helpfulness: 0,
-      markedHelpful: false,
-      q_id: 0
+      markedHelpful: false
     }
 
     this.markQHelpful = this.markQHelpful.bind(this);
@@ -20,8 +19,9 @@ class QuestionOptions extends React.Component {
 
   markQHelpful (e) {
     e.preventDefault();
-    axios.put('/questions/helpful', {
-      id: this.props.q_id
+    axios.put('/questions/update', {
+      id: this.props.q_id,
+      target: 'helpful'
     })
       .then(response => {
         this.setState({
@@ -61,7 +61,7 @@ class QuestionOptions extends React.Component {
         ({this.state.helpfulness})
         <span className="qaDivider">|</span>
         <button className="qaLinkButton qaButton" onClick={this.addAnswer}>Add Answer</button>
-        <AnswerForm productName={this.props.productName} q_body={this.props.q_body} displayModal={this.state.modal} addAnswer={this.addAnswer}/>
+        <AnswerForm productName={this.props.productName} q_body={this.props.q_body} q_id={this.props.q_id} displayModal={this.state.modal} addAnswer={this.addAnswer}/>
       </div>
     )
   }

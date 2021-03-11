@@ -53,7 +53,7 @@ class QAMain extends React.Component {
           {'QUESTIONS & ANSWERS'}
           </h2>
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList productName={this.props.searchedArr[0].name} questions={this.state.questions} />
+          <QuestionList productID={this.props.productID} productName={this.props.searchedArr[0].name} questions={this.state.questions} />
         </div>
       </>
     )

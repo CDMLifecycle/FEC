@@ -1,67 +1,86 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
-const QuestionForm = props => {
-  const divStyle = {
-    display: props.displayModal ? 'block' : 'none'
+class QuestionForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      form: {
+        question: '',
+        nickname: '',
+        email: '',
+        photos: []
+      }
+    }
+    this.closeModal = this.closeModal.bind(this);
+    this.submitQForm = this.submitQForm.bind(this);
+    this.onType = this.onType.bind(this);
   }
-  function closeModal(e) {
+
+  closeModal (e) {
     e.stopPropagation()
-    props.closeModal(e)
+    this.props.closeModal(e)
   }
 
-  function submitQForm(e) {
+  submitQForm (e) {
     e.preventDefault();
+    axios.post('/qa/question/post', {
+      body: this.state.question,
+      name: this.state.nickname,
+      email: this.state.email,
+      photos: this.state.photos,
+      product_id: this.props.productID
+    })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(reject => {
+        console.log('failed in client', error);
+      });
+    this.closeModal(e);
   }
 
-  let QForm = (
-    <div className="qaModal" onClick={closeModal}
-    style={divStyle}>
-      <div className="Modal-Content" onClick={e => e.stopPropagation()}>
-        <span className="close" onClick={closeModal}>Close</span>
-        <form onSubmit={submitQForm}>
-          <h3>Ask Your Question</h3>
-          <h5 className="qa_subtitle">About the {props.productName}</h5>
-          <label className="qa_label" name="Your Question">Your Question</label><br />
-          <textarea className="qInput q-modal-form" type="text" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" required /><br />
-          <label className="qa_label" name="nickname">Nickname</label><br />
-          <input className="qInput" placeholder="EXAMPLE: JACKSON11!" autoComplete="off" required /><br />
-          <p className="qa_label">For privacy reasons, do not use your full name or email address</p><br />
-          <label className="qa_label" name="email">Email</label><br />
-          <input className="qInput" placeholder="EXAMPLE: JACKSON11@EMAIL.COM" maxLength="60" autoComplete="off" required /><br />
-          <p className="qa_label">For authentication reasons, you wil not be emailed</p><br />
-          <button className="submitQuestion">SUBMIT QUESTION</button>
-        </form>
+  onType (e) {
+    e.preventDefault();
+    var key = e.target.name;
+    this.setState({
+      [key]: e.target.value
+    })
+  }
+
+  render() {
+    const divStyle = {
+      display: this.props.displayModal ? 'block' : 'none'
+    }
+    return (
+      <div>
+        {this.props.displayModal ?
+          <div className="qaModal" onClick={this.closeModal}
+          style={divStyle}>
+            <div className="Modal-Content" onClick={e => e.stopPropagation()}>
+              <span className="close" onClick={this.closeModal}>Close</span>
+              <form className="qa_form" onSubmit={this.submitQForm}>
+                <h3>Ask Your Question</h3>
+                <h5 className="qa_subtitle">About the {this.props.productName}</h5>
+                <label className="qa_label" name="Your Question">Your Question</label><br />
+                <textarea className="qInput q-modal-form" type="text" name="question" minLength="10" maxLength="1000" placeholder="ENTER YOUR QUESTION..." autoComplete="off" value={this.state.question} onChange={this.onType} required /><br />
+                <label className="qa_label" name="nickname">Nickname</label><br />
+                <input className="qInput" type="text" name="nickname" placeholder="EXAMPLE: JACKSON11!" autoComplete="off" minLength="2" value={this.state.nickname} onChange={this.onType} required /><br />
+                <p className="qa_label">For privacy reasons, do not use your full name or email address</p><br />
+                <label className="qa_label" name="email">Email</label><br />
+                <input className="qInput" type="email" name="email" placeholder="EXAMPLE: JACKSON11@EMAIL.COM" maxLength="60" autoComplete="off" value={this.state.email} onChange={this.onType} required /><br />
+                <p className="qa_label">For authentication reasons, you wil not be emailed</p><br />
+                <button className="submitQuestion">SUBMIT QUESTION</button>
+              </form>
+            </div>
+          </div>
+        : (null)}
       </div>
-    </div>
-  )
-
-  return (
-    props.displayModal ? (QForm) : (null)
-  )
+    )
+  }
 }
-
-
-
-
-
-// class QuestionForm extends React.Component {
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-
-//     }
-//   }
-
-//   render() {
-//     return (
-//       <>
-
-//       </>
-//     )
-//   }
-// }
 
 
 export default QuestionForm

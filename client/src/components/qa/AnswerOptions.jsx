@@ -19,7 +19,8 @@ class AnswerOptions extends React.Component {
   aHelpful (e) {
     e.preventDefault();
     axios.put('/answer/helpful', {
-      id: this.props.answerData.id
+      id: this.props.answerData.id,
+      target: 'helpful'
     })
       .then(response => {
         this.setState({
@@ -58,7 +59,17 @@ class AnswerOptions extends React.Component {
     e.preventDefault();
     this.setState({
       reported: true
+    });
+    axios.put('/answer/update', {
+      id: this.props.answerData.id,
+      target: 'report'
     })
+      .then(response => {
+        console.log('successful answer report');
+      })
+      .catch(reject => {
+        console.log('failed to report answer in client');
+      })
     console.log('report this answer');
   }
 
@@ -67,15 +78,6 @@ class AnswerOptions extends React.Component {
       helpfulness: this.props.answerData.helpfulness
     });
   }
-
-  // static getDerivedStateFromProps(props, state) {
-  //   if (props.answerData.helpfulness) {
-  //     if (state.helpfulness !== props.answerData.helpfulness) {
-  //       return {helpfulness: props.answerData.helpfulness};
-  //     }
-  //   }
-  //   return null;
-  // }
 
   render() {
     return (
