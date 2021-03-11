@@ -52,7 +52,7 @@ var ProductCard = (props) => {
            props.compareProducts ? <span onClick={handleActionClick} className="material-icons ProductCard-action-icon">
            compare_arrows
            </span> :
-           <span onClick={handleClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
+           <span onClick={handleActionClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
         }
         </div>
         <img className='ProductCard-primary-img' src={primaryImg}></img>
