@@ -1,5 +1,4 @@
 import React from 'react';
-import Marquee from 'react-fast-marquee';
 class Landing extends React.Component {
   constructor(props) {
     super(props);
