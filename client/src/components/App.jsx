@@ -164,7 +164,7 @@ class App extends React.Component {
   }
 
 
-  updateProductOnClick(id) {
+  updateProductOnClick(id, divRef) {
     if(!id) {
       this.setState({
         paths: '/'
