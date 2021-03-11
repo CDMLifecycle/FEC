@@ -13,20 +13,13 @@ class QAMain extends React.Component {
       questions: []
     }
     this.handleQSearch = this.handleQSearch.bind(this);
-    this.moreQuestions = this.moreQuestions.bind(this);
   }
 
   handleQSearch(e) {
     e.preventDefault();
-    console.log('typing QA search');
     this.setState({
       searchTerm: event.target.value
     })
-  }
-
-  moreQuestions (e) {
-    e.preventDefault();
-    console.log('See 2 more questions, please!')
   }
 
   componentDidMount() {
@@ -53,7 +46,7 @@ class QAMain extends React.Component {
           {'QUESTIONS & ANSWERS'}
           </h2>
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList productName={this.props.searchedArr[0].name} questions={this.state.questions} />
+          <QuestionList productID={this.props.productID} productName={this.props.searchedArr[0].name} questions={this.state.questions} />
         </div>
       </>
     )

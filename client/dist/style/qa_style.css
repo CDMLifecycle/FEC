@@ -130,6 +130,10 @@
   margin: 0 10px;
 }
 
+.qa_form {
+  /* margin: 5% 10%; */
+}
+
 .qaModal {
   position: fixed;
   background-color: rgba(0, 0, 0, .4);
@@ -138,10 +142,9 @@
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
-  padding-top: 80px;
+  z-index: 30;
+  padding-top: 15%;
   font-family: 'Roboto', sans-serif;
-  /* filter: blur(5px) */
 }
 
 .Modal-Content {
@@ -162,6 +165,12 @@
   cursor: pointer;
 }
 
+.qa-modal-form {
+  width: 70%;
+  height: 100px;
+  resize: none;
+}
+
 .q-modal-form::-webkit-textarea-placeholder {
   position: relative !important;
   top: 0;
@@ -169,18 +178,34 @@
   /* transform:translateY(-200%) !important; */
 }
 
-.qa-modal-form {
-  width: 70%;
-  height: 100px;
+
+textarea {
   resize: none;
+  width: 70%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text], input[type=email] {
+  width: 70%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.qa_imgUpload {
+  padding-top: 5px;
+}
+
+input[type=text]:focus, input[type=email]:focus, textarea:focus {
+  width: 90%;
 }
 
 .qa_subtitle {
-  word-wrap: normal;
+  word-wrap: break-word;
 }
 
 .qa_label {
-  margin: 10px 15px;
+  margin: 5px 15px;
 }
 
 .qInput {
@@ -188,21 +213,20 @@
   border-radius: 6px;
   border: none;
   padding: 15px 15px;
-  width: 200px;
   margin: 10px 15px;
   font-family: "roboto", sans-serif;
 }
 
-/* .qInput:focus {
-  box-shadow: 2px 2px 5px #525252;
-} */
+.qInput:focus {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+}
 
 .submitQuestion, .submitAnswer {
   background: #f9f9f9;
   color: #3A3E40;
   font-weight: 600;
   padding: 15px;
-  margin: 25px 0 30px 0;
+  margin: 40px 0 20px 0;
   border: none;
   border-radius: 3px;
   box-shadow: 3px 2px 8px #888;
@@ -224,7 +248,7 @@
   background:#6C8789;
   color: white;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0);
+  /* border: 1px solid rgba(0, 0, 0, 0); */
 }
 
 .qaBigButton:focus, .qaButton {

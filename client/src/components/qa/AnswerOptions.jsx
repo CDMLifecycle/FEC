@@ -1,22 +1,52 @@
 import React from 'react';
-// import $ from 'jquery';
+import axios from 'axios';
+
 
 class AnswerOptions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       reported: false,
-      reportText: ''
+      reportText: '',
+      helpfulness: 0,
+      markedHelpful: false
     }
     this.aHelpful = this.aHelpful.bind(this);
     this.report = this.report.bind(this);
-    // this.formatDate = this.formatDate.bind(this);
+  }
+
+  report (e) {
+    e.preventDefault();
+    this.setState({
+      reported: true
+    });
+    axios.put('/answer/update', {
+      id: this.props.answerData.id,
+      target: 'report'
+    })
+      .then(response => {
+
+      })
+      .catch(reject => {
+        console.log('failed to report answer in client');
+      })
   }
 
   aHelpful (e) {
     e.preventDefault();
-    // put request
-    console.log('this answer is helpful');
+    axios.put('/answer/update', {
+      id: this.props.answerData.id,
+      target: 'helpful'
+    })
+      .then(response => {
+        this.setState({
+          helpfulness: this.state.helpfulness + 1,
+          markedHelpful: true
+        });
+      })
+      .catch(reject => {
+        console.log('failed in client', reject);
+      })
   }
 
   formatDate(isoDate){
@@ -41,15 +71,11 @@ class AnswerOptions extends React.Component {
     return date;
   }
 
-  report (e) {
-    e.preventDefault();
-    this.setState({
-      reported: true
-    })
-    console.log('report this answer');
-  }
 
   componentDidMount() {
+    this.setState({
+      helpfulness: this.props.answerData.helpfulness
+    });
   }
 
   render() {
@@ -61,12 +87,19 @@ class AnswerOptions extends React.Component {
         ${this.formatDate(this.props.answerData.date.toString())}`
         }
         <span className="qaDivider">|</span>
-         Helpful?
-        <button className="underline qaLinkButton qaButton" onClick={this.aHelpful}>Yes</button> ({this.props.answerData.helpfulness})
+        <span className="space">Helpful?</span>
+        {!this.state.markedHelpful ? (
+          <button className="qaLinkButton qaButton" onClick={this.aHelpful}>Yes </button>
+          )
+          : '✓'
+        }
+        ({this.state.helpfulness})
         <span className="qaDivider">|</span>
         {!this.state.reported ? (
           <button className="qaLinkButton qaButton underline" onClick={this.report}>Report</button>
-          ) : 'Reported'}
+          )
+          : 'Reported'
+        }
       </div>
     )
   }

@@ -19,7 +19,6 @@ class AnswerList extends React.Component {
     this.setState({
       answerLimit: updateLimit
     })
-    console.log('clicked on See More Answers')
   }
 
   showLessAnswers (e) {
@@ -68,14 +67,3 @@ class AnswerList extends React.Component {
 }
 
 export default AnswerList
-
-
-// if (state.anwers.length > answerlimit) {
-//   show load more buttons
-// } else {
-//   if(state.answers.length !== limit) {
-//     show collapse
-//   } else {
-//     null
-//   }
-// }
