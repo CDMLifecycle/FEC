@@ -25,7 +25,7 @@ class AnswerOptions extends React.Component {
       target: 'report'
     })
       .then(response => {
-        return;
+
       })
       .catch(reject => {
         console.log('failed to report answer in client');
