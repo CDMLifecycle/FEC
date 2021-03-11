@@ -26,10 +26,10 @@ class App extends React.Component {
       productArr:  [],
       productMetadata: {},
       searchedQuery: '',
-      productID: '',
+      productID: null,
       searchedArr: [],
       // reviewsList: [],
-      paths: '/',
+      paths: '/product',
       currentProductInformation: null
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
@@ -42,6 +42,7 @@ class App extends React.Component {
     this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
     this.updateLooksInSession = this.updateLooksInSession.bind(this);
     this.getLooksInSession = this.getLooksInSession.bind(this);
+    this.updateProductOnClick = this.updateProductOnClick.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +51,10 @@ class App extends React.Component {
     if (!idParam) {
       axios.get('/products')
       .then((res) => {
-        this.setState({productArr: res.data});
+        this.setState({
+          productArr: res.data,
+          paths: '/'
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -106,8 +110,9 @@ class App extends React.Component {
 
   getMetadata(product_id, searchedArr, productID) {
     return new Promise((resolve, reject) => {
-      axios.get('/reviews/meta', { params: { product_id } })
+      axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
       .then(res => {
+        console.log('inside metadata: ', res)
         if (!searchedArr || !productID) {
           resolve(this.setState({ productMetadata: res.data }))
         } else {
@@ -115,7 +120,7 @@ class App extends React.Component {
             productMetadata: res.data,
             searchedArr: [searchedArr],
             productID: productID,
-            paths: '/final'
+            paths: '/product'
           }))
         }
       })
@@ -130,8 +135,8 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if(this.state.paths !== '/final') {
-      this.setState({paths: '/final'});
+    if(this.state.paths !== '/product') {
+      this.setState({paths: '/product'});
     }
   }
 
@@ -160,13 +165,31 @@ class App extends React.Component {
   }
 
 
+  updateProductOnClick(id) {
+    if(!id) {
+      this.setState({
+        paths: '/'
+      })
+    } else {
+      //window.location = 'http://' + window.location.host + '?id=' + id;
+       console.log('inside updateProductOnClick with id: ', id);
+       fetch.getProduct(id, (err, data) => {
+         if (err) {
+           window.location.href = 'http://localhost:3000';
+         } else {
+          this.getMetadata(data.data.id, data.data, data.data.id);
+        }
+      })
+    }
+  }
+
   switchStatement() {
     switch(this.state.paths) {
       case "/":
         return (
           <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
-      case "/final":
+      case "/product":
         return (
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
@@ -174,17 +197,20 @@ class App extends React.Component {
             </form>
             <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
+            {this.state.productID && typeof this.state.productID === 'number' ?
             <RelatedItems
               productId={this.state.productID}
               currentProductInformation={this.state.currentProductInformation}
-            />
+              updateProductOnClick={this.updateProductOnClick}
+            /> : null}
+            {this.state.productID && typeof this.state.productID === 'number' ?
             <Looks
               products={[dummyData.formattedDefaultProduct]}
               currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
-            />
+            /> : null}
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productMetadata.product_id

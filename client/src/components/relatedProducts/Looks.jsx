@@ -11,6 +11,7 @@ var Looks = (props) => {
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
+    console.log('about to look for ', props.currentProductId);
     fetch.getCurrentProductInformation(props.currentProductId, (err, data) => {
       if (err) {
         console.log(err);
@@ -55,27 +56,6 @@ var removeFromLooks = (id) => {
   window.sessionStorage.removeItem('Looks');
   window.sessionStorage.setItem('Looks', JSON.stringify(updatedLooks));
 }
-
-
-
-
-  // var addToLooks = () => {
-  //   var clone = rfdc();
-  //   for (let product of currentLooks) {
-  //     if (product.id === props.currentProductId) {
-  //       return;
-  //     }
-  //   }
-  //   var looksCopy = clone(currentLooks);
-  //   looksCopy.unshift(currentProduct);
-  //   setCurrentLooks(looksCopy);
-  // }
-
-  // var removeFromLooks = (id) => {
-  //   var updatedLooks = currentLooks.filter((product) => product.id !== id);
-  //   setCurrentLooks(updatedLooks);
-  // }
-
 
   return (
     <div className='Looks'>
