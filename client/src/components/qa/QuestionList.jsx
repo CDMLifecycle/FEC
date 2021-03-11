@@ -30,7 +30,6 @@ class QuestionList extends React.Component {
     this.setState({
       modal: !this.state.modal
     })
-    console.log('you want to add a question')
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -42,13 +41,12 @@ class QuestionList extends React.Component {
     return null;
   }
 
-//check this.state.questions in render and CDM
   render() {
     return (
       <div>
         {this.state.questions.slice(0, this.state.questionLimit).map((question) => {
           return (
-            <QuestionItem productName={this.props.productName}q={question} key={question.question_id} />
+            <QuestionItem productName={this.props.productName} q={question} key={question.question_id} />
           )
         })}
         <div className="questionButtons">
@@ -57,7 +55,7 @@ class QuestionList extends React.Component {
             : (null)
           }
           <button name="addQuestion" onClick={this.addQuestion} className="qaBigButton qaCaps">Add A Question +</button>
-          <QuestionForm productName={this.props.productName}displayModal={this.state.modal} closeModal={this.addQuestion}/>
+          <QuestionForm productID={this.props.productID} productName={this.props.productName}displayModal={this.state.modal} closeModal={this.addQuestion}/>
         </div>
       </div>
     )
