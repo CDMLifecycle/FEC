@@ -25,7 +25,7 @@ class Product_Detail extends React.Component {
       hf: false,
       index: 0,
       slide: false,
-      direction: '',
+      direction: ''
     }
     this.getStyle = this.getStyle.bind(this);
     this.changeLarge = this.changeLarge.bind(this);
@@ -40,6 +40,13 @@ class Product_Detail extends React.Component {
     this.changeIndexRight = this.changeIndexRight.bind(this);
     this.changeIndexLeft = this.changeIndexLeft.bind(this);
   }
+
+  componentDidMount() {
+    if (this.props.productID) {
+      this.getStyle(this.props.productID);
+    }
+  }
+
   getStyle(InId) {
     var url = '/products/'  + InId + '/styles';
     axios.get(url)

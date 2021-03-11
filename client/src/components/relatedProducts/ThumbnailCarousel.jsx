@@ -18,15 +18,6 @@ var ThumbnailCarousel = (props) => {
   }
 
   useEffect(() => {
-
-    // let imgs = [];
-    // for (let photo of props.photos) {
-    //   imgs.push(photo);
-    // }
-    // let rowsOfImages = []
-    // for (let i = 0; i < imgs.length; i+= 4) {
-    //   rowsOfImages.push(imgs.slice(i, i + 4));
-    // }
     setImageArray(makePhotoMatrix(props.photos));
   }, []);
 
@@ -39,8 +30,8 @@ var ThumbnailCarousel = (props) => {
       {imageArray ?
         imageArray.map((fourImgArray, index) =>
           <div key={`row${index}`} className='ThumbnailCarousel-row'>
-            {fourImgArray.map(img =>
-              <img className='ThumbnailCarousel-img-cell' key={img} onClick={() => handleClick(img)} src={img}></img>
+            {fourImgArray.map((img, index) =>
+              <img className='ThumbnailCarousel-img-cell' key={img ? img : `blank${index + 1}`} onClick={() => handleClick(img)} src={img}></img>
             )}
           </div>
          )

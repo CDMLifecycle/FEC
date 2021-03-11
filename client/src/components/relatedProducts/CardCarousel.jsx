@@ -35,19 +35,45 @@ var CardCarousel = (props) => {
   return (
     <div className='CardCarousel'>
       <div className='CardCarousel-Arrows'>
-       {props.relatedProducts && startingCardIndex < props.relatedProducts.length - 3 ? <CarouselArrow direction={'forward'} scroll={scroll} /> : null}
-       {startingCardIndex > 1 ? <CarouselArrow direction={'back'} scroll={scroll} /> : null}
+        {props.relatedProducts && startingCardIndex < props.relatedProducts.length - 3 ?
+          <CarouselArrow direction={'forward'}
+            scroll={scroll}
+          />
+        : null}
+        {startingCardIndex > 1 ?
+          <CarouselArrow
+            direction={'back'}
+            scroll={scroll}
+          />
+        : null}
       </div>
 
       <div ref={carouselRef} className='CardCarousel-Scroller'>
-        {props.isLooks ? <AddToLooksCard addToLooks={props.addToLooks}/> : null}
+        {props.isLooks ?
+          <AddToLooksCard
+            addToLooks={props.addToLooks}
+          />
+        : null}
         {props.relatedProducts && props.relatedProducts.length > 0 ?
         props.relatedProducts.map(
           (item, index) =>
           index === 0 ?
-            <ProductCard getWidthOfCard={getWidthOfCard} removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />
+            <ProductCard
+              getWidthOfCard={getWidthOfCard}
+              removeFromLooks={props.removeFromLooks}
+              compareProducts={props.compareProducts}
+              key={item.id}
+              product={item}
+              updateProductOnClick={props.updateProductOnClick}
+            />
           :
-            <ProductCard removeFromLooks={props.removeFromLooks} compareProducts={props.compareProducts} key={item.id} product={item} />)
+            <ProductCard
+              removeFromLooks={props.removeFromLooks}
+              compareProducts={props.compareProducts}
+              key={item.id}
+              product={item}
+              updateProductOnClick={props.updateProductOnClick}
+            />)
         : null}
       </div>
     </div>

@@ -9,20 +9,20 @@ import './relatedProducts.css';
 
 var RelatedItems = (props) => {
   var fakeProps = dummydata.relatedItemsWithFullInformation;
-  const [currentProductId, setCurrentProductId] = useState(props.productId);
+  const [currentProductId, setCurrentProductId] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [compareModel, setCompareModel] = useState(false);
   const [comparedProduct, setComparedProduct] = useState(null);
 
   useEffect(() => {
-    fetch.getRelatedProducts(currentProductId, (err, data) => {
+    fetch.getRelatedProducts(props.productId, (err, data) => {
       if (!err && data) {
         setRelatedProducts(data)
       } else {
         console.log("Error in fetching relatedItem data", err);
       }
     })
-  }, [currentProductId])
+  }, [props.productId])
 
   var handleActionClick = (relatedProduct) => {
     setCompareModel(true);
@@ -36,9 +36,19 @@ var RelatedItems = (props) => {
   return (
     <div className='RelatedItems'>
       <h2>YOU MAY ALSO LIKE</h2>
-     {comparedProduct && compareModel && props.currentProductInformation ? <ProductComparison currentProduct={props.currentProductInformation} comparedProduct={comparedProduct} closeComparisonModel={closeComparisonModel}/> : null}
-     {relatedProducts ?
-      <CardCarousel relatedProducts={relatedProducts} compareProducts={handleActionClick}/> : <LoadingComponent />
+      {comparedProduct && compareModel && props.currentProductInformation ?
+        <ProductComparison
+          currentProduct={props.currentProductInformation}
+          comparedProduct={comparedProduct}
+          closeComparisonModel={closeComparisonModel}/>
+      : null}
+      {relatedProducts ?
+        <CardCarousel
+          relatedProducts={relatedProducts}
+          compareProducts={handleActionClick}
+          updateProductOnClick={props.updateProductOnClick}
+        />
+      : <LoadingComponent />
       }
     </div>
   )

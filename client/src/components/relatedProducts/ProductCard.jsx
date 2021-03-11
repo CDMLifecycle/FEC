@@ -22,7 +22,7 @@ var ProductCard = (props) => {
 
   var defaultImg = 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'
 
-  var handleClick = () => {
+  var handleActionClick = () => {
     if (props.removeFromLooks) {
       props.removeFromLooks(props.product.id);
     } else if (props.compareProducts) {
@@ -39,14 +39,20 @@ var ProductCard = (props) => {
     saleClass = 'ProductCard-product-information-price-discounted'
   }
 
+  var cardClickHandler = () => {
+    if (props.compareProducts) {
+      props.updateProductOnClick(props.product.id);
+    }
+  }
+
   return(
-    <div ref={cardRef} className='ProductCard'>
+    <div ref={cardRef} className='ProductCard' onClick={cardClickHandler}>
       <div className='ProductCard-img-container'>
         <div className='ProductCard-action-icon-background'>{
-           props.compareProducts ? <span onClick={handleClick} className="material-icons ProductCard-action-icon">
+           props.compareProducts ? <span onClick={handleActionClick} className="material-icons ProductCard-action-icon">
            compare_arrows
            </span> :
-           <span onClick={handleClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
+           <span onClick={handleActionClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
         }
         </div>
         <img className='ProductCard-primary-img' src={primaryImg}></img>
