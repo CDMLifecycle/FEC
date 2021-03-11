@@ -376,18 +376,6 @@ button.leftright:hover {
   to {right: 0%;}
 }
 
-input[type=text] {
-  width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-  border: solid;
-  border-color: black;
-}
-
-input[type=text]:focus {
-  width: 500px;
-}
-
 .NavSearch {
   position: relative;
   left: 500px;
