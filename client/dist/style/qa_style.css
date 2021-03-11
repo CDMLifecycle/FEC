@@ -36,6 +36,7 @@
   font-weight: 800;
   width: 100%;
   font-size: 14px;
+  word-break: break-all;
 }
 
 .qa_hr {
@@ -64,7 +65,7 @@
 .qaAnswerBody {
   margin: 0 0 0 7px;
   color: #3A3E40;
-  width: 70%;
+  width: 100%;
   overflow-wrap: break-word;
   font-size: 14px;
 }
