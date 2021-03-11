@@ -7,7 +7,7 @@ class QuestionItem extends React.Component {
     super(props)
 
     this.state = {
-
+      productName: ''
     }
   }
 

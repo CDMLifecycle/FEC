@@ -10,13 +10,22 @@ class QuestionForm extends React.Component {
       form: {
         question: '',
         nickname: '',
-        email: '',
-        photos: []
-      }
+        email: ''
+      },
+      productID: 0
     }
     this.closeModal = this.closeModal.bind(this);
     this.submitQForm = this.submitQForm.bind(this);
     this.onType = this.onType.bind(this);
+  }
+
+    static getDerivedStateFromProps(props, state) {
+    if(props.productID !== state.productID) {
+      return {
+        productID: props.productID
+      }
+    };
+    return null;
   }
 
   closeModal (e) {
@@ -30,8 +39,7 @@ class QuestionForm extends React.Component {
       body: this.state.question,
       name: this.state.nickname,
       email: this.state.email,
-      photos: this.state.photos,
-      product_id: this.props.productID
+      product_id: this.state.productID
     })
       .then(response => {
         console.log(response)

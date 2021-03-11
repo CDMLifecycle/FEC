@@ -24,13 +24,14 @@ class QAMain extends React.Component {
     })
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   if(props.productID !== state.productID) {
-  //     return {
-  //       productID: props.productID
-  //     }
-  //   };
-  // }
+  static getDerivedStateFromProps(props, state) {
+    if(props.productID !== state.productID) {
+      return {
+        productID: props.productID
+      }
+    };
+    return null;
+  }
 
   getNewQA() {
     axios.get(`/qa/questions/`, {
@@ -40,7 +41,8 @@ class QAMain extends React.Component {
     })
     .then(response => {
       this.setState({
-        questions: response.data.results
+        questions: response.data.results,
+        productID: this.props.productID
       })
     })
     .catch(reject => {
@@ -49,9 +51,9 @@ class QAMain extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.getNewQA();
-  }
+  // componentDidMount() {
+  //   this.getNewQA();
+  // }
 
   componentDidUpdate() {
     this.getNewQA();
