@@ -164,20 +164,20 @@ class App extends React.Component {
   }
 
 
-  updateProductOnClick(id, divRef) {
+  updateProductOnClick(id) {
     if(!id) {
       this.setState({
         paths: '/'
       })
-    } else {
-      //window.location = 'http://' + window.location.host + '?id=' + id;
-       fetch.getProduct(id, (err, data) => {
-         if (err) {
-           window.location.href = 'http://localhost:3000';
-         } else {
-          this.getMetadata(data.data.id, data.data, data.data.id);
-        }
-      })
+    } else if (typeof id === 'number') {
+      window.location = 'http://' + window.location.host + '?id=' + id;
+      //  fetch.getProduct(id, (err, data) => {
+      //    if (err) {
+      //      window.location.href = 'http://localhost:3000';
+      //    } else {
+      //     this.getMetadata(data.data.id, data.data, data.data.id);
+      //   }
+      // })
     }
   }
 
