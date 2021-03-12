@@ -224,13 +224,13 @@
   margin-top: 10px;
   margin-bottom: 0;
 }
-m
+
 /* Bottom Buttons   */
 #modal-btn-box {
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
-
+  min-height: 30px;
+  margin-top: 20px;
 }
 
 #submit-write-review, #exit-write-review  {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Stars from './Stars.jsx';
-import { throttle } from 'lodash';
+import CheckMark from './svg/check-mark.svg';
 import './reviewTile.css';
 
 class ReviewTile extends React.Component {
@@ -11,6 +11,7 @@ class ReviewTile extends React.Component {
     }
     this.handleHelpful = this.handleHelpful.bind(this);
     this.handleReport = this.handleReport.bind(this);
+    this.ifRecommend = this.ifRecommend.bind(this);
   }
 
   formatDate(date){
@@ -31,12 +32,20 @@ class ReviewTile extends React.Component {
     }
   }
 
+  ifRecommend(review) {
+    return review.recommend
+      ? (<div className='rt-rec-img'>
+          <img src={CheckMark} alt='check' />I recommend this product!
+        </div>)
+      : null;
+  }
+
   render () {
-    console.log(this.props)
     if (!this.props.productMetadata.totals) {
       return null
     } else {
       let review = this.props.review;
+      console.log(review)
       return (
         <div className='review-tile-container'>
           <div className='review-tile'>
@@ -47,10 +56,11 @@ class ReviewTile extends React.Component {
               <div className='review-body'>
                 <h4>{review.summary}</h4>
                 <h5>{review.body}</h5>
-                <h6>-{review.reviewer_name}</h6>
-              <div className='rt-rec'>{'if recommended'}</div>
-                {/* if verified  */}
-              <div className='rt-response'>{'if response'}</div>
+                <div className='rt-rec'>
+                  {this.ifRecommend(review)}
+                  <h6>-{review.reviewer_name}</h6>
+                </div>
+              {/* <div className='rt-response'>{'if response'}</div> */}
                 {/* if verified  */}
               <div className='btn-box'>
                 <div className='helpful'>

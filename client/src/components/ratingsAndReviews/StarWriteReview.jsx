@@ -10,7 +10,6 @@ class StarWriteReview extends React.Component {
       selected: false,
       starsArray: [false, false, false, false, false]
     }
-    // this.setInputs = this.setInputs.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.selectBtn = this.selectBtn.bind(this);

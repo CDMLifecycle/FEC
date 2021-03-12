@@ -156,7 +156,6 @@ class WriteReview extends React.Component {
     } else if (this.state.recommend === true && bool === true) {
       return 'selected'
     } else {
-      console.log('hi')
       return 'unselected'
     }
   }
@@ -183,6 +182,7 @@ class WriteReview extends React.Component {
                       value='1'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
+                      alt='star'
                     />
                   </label>
                   <label onChange={this.handleChange}>
@@ -196,6 +196,7 @@ class WriteReview extends React.Component {
                       value='2'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
+                      alt='star'
                     />
                   </label>
                   <label onChange={this.handleChange}>
@@ -209,6 +210,7 @@ class WriteReview extends React.Component {
                       value='3'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
+                      alt='star'
                     />
                   </label>
                   <label onChange={this.handleChange}>
@@ -222,6 +224,7 @@ class WriteReview extends React.Component {
                       value='4'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
+                      alt='star'
                     />
                   </label>
                   <label onChange={this.handleChange}>
@@ -235,6 +238,7 @@ class WriteReview extends React.Component {
                       value='5'
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave}
+                      alt='star'
                     />
                   </label>
                 </div>
