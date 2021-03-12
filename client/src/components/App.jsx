@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
