@@ -11,6 +11,7 @@ class Header extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -27,10 +28,16 @@ class Header extends React.Component {
     }
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    let home = window.location.origin;
+    window.location.href = home;
+  }
+
   render() {
     return (
       <div className='Header'>
-        <img className='Header-logo' src={FECIcon}></img>
+        <img className='Header-logo' alt='site-logo' onClick={this.handleClick} src={FECIcon}></img>
         <span></span>
         <div className='Header-search'>
           <input placeholder=' Search' onChange={this.handleChange}/>
