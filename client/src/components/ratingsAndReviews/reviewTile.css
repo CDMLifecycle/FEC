@@ -51,7 +51,29 @@
   font-weight: 500;
   font-size: 14px;
   padding: 0 12px;
+  /* margin-bottom: 15px; */
   font-weight: 800;
+}
+
+.rt-rec {
+  display: flex;
+  margin-top: 5px;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  flex-direction: column;
+  /* align-items: center;
+  align-content: center; */
+}
+.rt-rec-img img {
+  height: 14px;
+  width: auto;
+  margin: 0 15px;
+
+}
+
+.rt-rec-img {
+  margin-top: 15px;
+  font-weight: 400;
 }
 
 .btn-box {
@@ -81,7 +103,7 @@
   transition-duration: .2s;
 }
 
-.btn:active {
+.btn:active .helpful {
   transform: scale(.95);
   transition-duration: .2s;
 }
@@ -95,7 +117,7 @@
 
 .yes {
   text-decoration: none;
-  flex: 1;
+  flex: .5;
   text-align: left;
 }
 
