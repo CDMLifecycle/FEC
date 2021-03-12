@@ -72,7 +72,7 @@ The QA component allows a user to read and add questions and answers from other 
   To run jest tests that cover the entire project, run 'npm test' in the root dir.
 
 ## Authors
-  * Connie Tsai - Question and Answers
+  * Connie Tsai - Question and Answers, Scrum Master
   * Michael Smith - Related Products and User Looks
   * Daniel Kosykh - Product Reviews
   * Liem Nguyen - Product Details

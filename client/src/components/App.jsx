@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
-import NavBar from './NavBar.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
@@ -236,5 +235,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-

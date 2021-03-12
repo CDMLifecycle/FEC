@@ -23,11 +23,7 @@ app.use('/interaction', interactionRoute);
 
 //QA
 var getAnswers = path + '/qa/questions/:questions_id/answers';
-var addQuestion = path + '/qa/questions';
-var addAnswer = path + '/qa/questions/:question_id/answers';
-var markHelpful = path + '/qa/questions/:question_id/helpful';
 var reportQ = path + '/qa/questions/:question_id/report';
-var markAnsHelp = path + '/qa/answers/:answer_id/helpful';
 var reportAns = path + 'qa/answers/:answer_id/report';
 //QA
 
@@ -124,14 +120,69 @@ app.get('/productReview', (req, res) => {
 
 //---------------------QA----------------------//
 app.get('/qa/questions', (req, res) => {
-  console.log(req.query.product_id)
-  var getQA = path + '/qa/questions?product_id=' + req.query.product_id;
+  var getQA = path + '/qa/questions?product_id=' + req.query.product_id + '&count=100';
   axios.get(getQA, headers)
     .then(response => {
       res.send(response.data);
     })
     .catch(error => {
       {error}
+    })
+})
+
+app.put('/answer/update', (req, res) => {
+  var markAns = path + `/qa/answers/${req.body.id}/${req.body.target}`;
+  axios.put(markAns, {}, headers)
+    .then(response => {
+      res.status(204).send(response.data);
+    })
+    .catch(reject => {
+      console.log('failed in server', reject);
+    })
+})
+
+app.put('/questions/update', (req, res) => {
+  var markHelpful = path + `/qa/questions/${req.body.id}/${req.body.target}`;
+  axios.put(markHelpful, {}, headers)
+    .then(response => {
+      res.status(204).send(response.data);
+    })
+    .catch(reject => {
+      console.log('qa_markQHelpful failed in sever', reject);
+    });
+});
+
+app.post('/qa/question/answer', (req, res) => {
+  var addAnswer = path + `/qa/questions/${req.body.id}/answers`;
+  axios.post(addAnswer, {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos
+  }, headers)
+    .then(response => {
+      res.status(201).send(response.data);
+    })
+    .catch(reject => {
+      console.log('failed in server posting', reject);
+    })
+});
+
+app.post('/qa/question/post', (req, res) => {
+  console.log(req.body);
+  var addQuestion = path + '/qa/questions';
+  axios.post(addQuestion, {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.product_id
+  }, headers)
+    .then(response => {
+      console.log('Created');
+      res.status(201).send(response.data);
+    })
+    .catch(reject => {
+      console.log('failed in server posting Q', reject);
     })
 })
 

@@ -3,6 +3,7 @@ var stickyButton = () => {
     var checkoutButton = document.getElementById('checkout');
     checkoutButton.scrollIntoView(false);
   }
+  // var checkoutButton = document.getElementById('checkout').getBoundingClientRect();
   return(
     <button className='scrollup' onClick={(event) => {
       toTop()}}>
