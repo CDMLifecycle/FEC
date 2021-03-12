@@ -549,7 +549,7 @@ button:focus {
   width: 600px;
   height: 600px;
   right: 700px;
-  bottom: 50px;
+  bottom: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -588,10 +588,17 @@ button:focus {
   height: 30px;
   border: 8px;
   left: 254px;
-  bottom: 169px;
+  bottom: 85px;
   transition: all ease-in-out 200ms;
 
 }
 .xBox:hover {
   background-color: #ccc;
+}
+
+.shareSuccess {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 40px;
+  position: relative;
 }

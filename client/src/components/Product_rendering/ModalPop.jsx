@@ -35,6 +35,8 @@ class ModalPop extends React.Component {
       <div className='modalBackground' id='modal' onClick={this.backgroundColor}>
         <form onSubmit={this.onSubmit} className='ProductModal'>
           <button className='xBox'>X</button>
+          <div className='shareSuccess'>Shared Successfully! </div>
+          <div className='shareSuccess'>Sign Up With Us For Future Deals! </div>
           Name: <input name='input' className='ModalContents' onChange={this.onChange} value={this.state.input}></input>
           Email: <input className='ModalContents' name='value' onChange={this.onChange} value={this.state.value}></input>
           <button className='leftright' onClick={this.onSubmit}>OK</button>
