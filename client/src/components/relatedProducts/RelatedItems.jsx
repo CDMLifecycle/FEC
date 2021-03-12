@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import dummydata from './dummydata.js';
 import ProductCard from './ProductCard.jsx';
 import fetch from './fetch.js';
 import CardCarousel from './CardCarousel.jsx';
@@ -8,7 +7,6 @@ import LoadingComponent from './LoadingComponent.jsx';
 import './relatedProducts.css';
 
 var RelatedItems = (props) => {
-  var fakeProps = dummydata.relatedItemsWithFullInformation;
   const [currentProductId, setCurrentProductId] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [compareModel, setCompareModel] = useState(false);

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import CardCarousel from './CardCarousel.jsx';
-import dummydata from './dummydata.js';
 import rfdc from 'rfdc';
 import fetch from './fetch.js';
 import LoadingComponent from './LoadingComponent.jsx';

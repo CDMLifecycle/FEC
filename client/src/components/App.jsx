@@ -10,7 +10,6 @@ import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
-import dummyData from './relatedProducts/dummydata.js';
 import fetch from './relatedProducts/fetch.js';
 import './color-schema.css';
 import './app.css';
@@ -202,7 +201,7 @@ class App extends React.Component {
             /> : null}
             {this.state.productID && typeof this.state.productID === 'number' ?
             <Looks
-              products={[dummyData.formattedDefaultProduct]}
+              products={[]}
               currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
