@@ -7,4 +7,6 @@ bundle.js
 client/src/components/relatedProducts/dummyData.js
 aws-key.pem
 PrimaryKey.pem
+client/dist/bundle.js.LICENSE.txt
+client/dist/244.bundle.js.LICENSE.txt
 /*.pem
