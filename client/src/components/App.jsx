@@ -4,7 +4,6 @@ import ProductDetail from './Product_rendering/Product_Detail.jsx';
 const RelatedItems = React.lazy(() => import('./relatedProducts/RelatedItems.jsx'));
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
-const Landing = React.lazy(() => import('./Landing.jsx'));
 // const Home = React.lazy(() => import('./Home.jsx'));
 import Home from './Home.jsx';
 const Looks = React.lazy(() => import('./relatedProducts/Looks.jsx'));
@@ -60,10 +59,13 @@ class App extends React.Component {
       .catch((error) => {
         console.log(error);
       })
+    } else if (typeof idParam === 'number'){
+      console.log('id param is not a number, ', idParam);
     } else {
       fetch.getProduct(idParam, (err, data) => {
         if (err) {
-          window.location.href = 'http://localhost:3000';
+          alert('error fetching product in App.jsx mounting ', err)
+          window.location.href = window.location.origin;
         } else {
           this.getMetadata(data.data.id, data.data, data.data.id);
         }
@@ -84,9 +86,6 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
-    // if(arr[0]){
-    //   this.setState({searchedArr: arr, productID: arr[0].id});
-    // }
     if(arr[0]){
       window.location = window.location.origin + '?id=' + arr[0].id;
       // let productID = arr[0].id;
@@ -111,7 +110,7 @@ class App extends React.Component {
 
   getMetadata(product_id, searchedArr, productID) {
     return new Promise((resolve, reject) => {
-      axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
+      axios.get('/reviews/meta', { params: { product_id: product_id } })
       .then(res => {
         if (!searchedArr || !productID) {
           resolve(this.setState({ productMetadata: res.data }))
@@ -186,9 +185,7 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-
             <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
-
         )
       case "/product":
         return (
@@ -222,6 +219,9 @@ class App extends React.Component {
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productMetadata.product_id
               ? <RatingsAndReviews
+                // product_id={this.state.productID}
+                // reviewsList={this.state.reviewsList}
+                // getReviews={this.getReviews}
                 productMetadata={this.state.productMetadata}
                 productInfo={this.state.searchedArr[0]}
                 />

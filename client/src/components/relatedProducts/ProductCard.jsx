@@ -61,7 +61,7 @@ var ProductCard = (props) => {
                remove_circle
              </span>
         }</div>
-        <img className='ProductCard-primary-img' alt='Product Image' src={primaryImg}></img>
+        <img className='ProductCard-primary-img' loading='loading' alt='Product Image' src={primaryImg}></img>
       </div>
 
       <div className='ProductCard-product-information'>
