@@ -21,7 +21,7 @@ class QuestionList extends React.Component {
 
   moreQuestions (e) {
     e.preventDefault();
-    let newLimit = this.state.questionLimit + 5;
+    let newLimit = this.state.questionLimit + 2;
     this.setState({
       questionLimit: newLimit
     })

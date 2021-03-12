@@ -120,7 +120,7 @@ app.get('/productReview', (req, res) => {
 
 //---------------------QA----------------------//
 app.get('/qa/questions', (req, res) => {
-  var getQA = path + '/qa/questions?product_id=' + req.query.product_id + '&count=50';
+  var getQA = path + '/qa/questions?product_id=' + req.query.product_id + '&count=100';
   axios.get(getQA, headers)
     .then(response => {
       res.send(response.data);
