@@ -37,7 +37,7 @@ class ModalPop extends React.Component {
           <button className='xBox'>X</button>
           Name: <input name='input' className='ModalContents' onChange={this.onChange} value={this.state.input}></input>
           Email: <input className='ModalContents' name='value' onChange={this.onChange} value={this.state.value}></input>
-          <button onClick={this.onSubmit}>OK</button>
+          <button className='leftright' onClick={this.onSubmit}>OK</button>
         </form>
       </div>
     )
