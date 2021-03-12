@@ -70,6 +70,7 @@ html {
   border-color: lightgrey;
   border-radius: 8px;
   margin-left: 30px;
+
 }
 
 img.thumbnails {
@@ -82,7 +83,6 @@ img.thumbnails {
   object-fit: cover;
   border-width: thin;
   box-shadow: 0 10px 10px -5px;
-  z-index:2;
   position: relative;
   border-radius: 4px;
 }
@@ -549,22 +549,25 @@ button:focus {
   width: 600px;
   height: 600px;
   right: 700px;
-  bottom: 160px;
+  bottom: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   object-fit: cover;
-  background-color: white;
+  background-color: #f9f9f9;
   border-radius: 8px;
   z-index: 3;
+
 }
 
 .ModalContents {
-  position: relative;
-  width: 300px;
-  height: 25px;
-  margin-bottom: 30px;
+  outline: none;
+    border-radius: 6px;
+    border: none;
+    padding: 15px 15px;
+    margin: 10px 15px;
+    font-family: "roboto", sans-serif;
 
 }
 
@@ -580,9 +583,11 @@ button:focus {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  backdrop-filter: blur(5px);
 }
 
 .xBox {
+  background-color: #f9f9f9;
   position: relative;
   width: 30px;
   height: 30px;
@@ -594,6 +599,7 @@ button:focus {
 }
 .xBox:hover {
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .shareSuccess {
