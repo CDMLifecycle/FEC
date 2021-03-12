@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import axios from 'axios';
-import RenderImages from './renderImages.jsx';
-import LargePhoto from './largePhoto.jsx';
-import StylesMap from './stylesMap.jsx';
-import Size from './Size.jsx';
-import Quantity from './Quantity.jsx';
-import Ratings from './Ratings.jsx';
-import Social from './Social_Media.jsx';
+// import RenderImages from './renderImages.jsx';
+const RenderImages = React.lazy(() => import('./renderImages.jsx'));
+// import LargePhoto from './largePhoto.jsx';
+const LargePhoto = React.lazy(() => import ('./largePhoto.jsx'));
+// import StylesMap from './stylesMap.jsx';
+const StylesMap = React.lazy(() => import('./stylesMap.jsx'));
+// import Size from './Size.jsx';
+const Size = React.lazy(() => import('./Size.jsx'));
+// import Quantity from './Quantity.jsx';
+const Quantity = React.lazy(() => import('./Quantity.jsx'));
+// import Ratings from './Ratings.jsx';
+const Ratings = React.lazy(() => import('./Ratings.jsx'));
+// import Social from './Social_Media.jsx';
+const Social = React.lazy(() => import('./Social_Media.jsx'));
 
 class Product_Detail extends React.Component {
   constructor(props) {
@@ -200,35 +207,45 @@ class Product_Detail extends React.Component {
           <div className='pictureBackground'>
             <div className = 'allPhotoscontainer'>
               <div className = 'photoContainer'>
-                <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
+                <Suspense fallback={<div></div>} >
+                  <RenderImages changeLarge={this.changeLarge} photos={this.state.photos}/>
+                </Suspense>
               </div>
               <div className = 'largePhoto'>
-              <button href='#lg' id='fs' onClick={this.fullscreen}>
-                  <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
-                </button>
-                <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
-                  <i className="fa fa-arrow-left" aria-hidden="true"></i>
-                </button>
-                <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} direction={this.state.direction}/>
-                <button type='button' className='rightScroller leftright' onClick={this.changeIndexRight}>
-                  <i className="fa fa-arrow-right" aria-hidden="true"></i>
-                </button>
+                <Suspense fallback={<div><img src='https://www.porcelaingres.com/img/collezioni/JUST-GREY/big/just_grey_light_grey.jpg'></img></div>}>
+                <button href='#lg' id='fs' onClick={this.fullscreen}>
+                    <img src='https://img.icons8.com/material-outlined/2x/full-screen.png' width='30px' height='30px'></img>
+                  </button>
+                  <button type='button' className='leftScroller leftright' onClick={this.changeIndexLeft}>
+                    <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                  </button>
+                  <LargePhoto photo={this.state.largePhoto} fullscreen={this.halffullscreen} prev={this.state.prevPhoto} direction={this.state.direction}/>
+                  <button type='button' className='rightScroller leftright' onClick={this.changeIndexRight}>
+                    <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </Suspense>
               </div>
             </div>
           </div>
           <div className='containerColumn'>
-            <Ratings rating={this.state.rating}/>
-            {categoryName}
-            {productName}
-            {price}
+            <Suspense fallback={<div></div>}>
+              <Ratings rating={this.state.rating}/>
+              {categoryName}
+              {productName}
+              {price}
+            </Suspense>
 
               <div className='styleFont'> { selectedStyles}</div>
             <div className='styleContainer'>
-              {styles}
+              <Suspense fallback={<div></div>}>
+                {styles}
+              </Suspense>
             </div>
-              <Size toggleSize={this.toggleSize}/>
-              <Quantity quantity={this.state.quantity} quantityDecrease={this.quantityDecrease} quantityIncrease={this.quantityIncrease}/>
-              <Social />
+              <Suspense fallback={<div></div>}>
+                <Size toggleSize={this.toggleSize}/>
+                <Quantity quantity={this.state.quantity} quantityDecrease={this.quantityDecrease} quantityIncrease={this.quantityIncrease}/>
+                <Social />
+              </Suspense>
           </div>
         </div>
         {description}

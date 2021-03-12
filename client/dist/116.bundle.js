@@ -1,0 +1,1 @@
+(self.webpackChunkfec=self.webpackChunkfec||[]).push([[116],{2116:(e,n,a)=>{"use strict";a.r(n),a.d(n,{default:()=>c});var s=a(4244),r=a(5893);const c=function(e){return(0,r.jsx)("div",{className:"reviews",children:(0,r.jsx)(s.Z,{value:e.rating,precision:.25,max:5,name:"unique-rating",readOnly:!0})})}}}]);
