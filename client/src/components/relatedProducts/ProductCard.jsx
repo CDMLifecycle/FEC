@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, lazy, Suspense} from 'react';
 import Stars from '../ratingsAndReviews/Stars.jsx';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import './relatedProducts.css';
@@ -47,9 +47,6 @@ var ProductCard = (props) => {
         props.updateProductOnClick(props.product.id, cardRef);
       }
     }
-    // if (props.compareProducts) {
-    //   props.updateProductOnClick(props.product.id, cardRef);
-    // }
   }
 
   return(
@@ -69,7 +66,9 @@ var ProductCard = (props) => {
 
       <div className='ProductCard-product-information'>
         {props.compareProducts && props.product.stylePhotos.length > 1 ?
+        <Suspense fallback={<div>Loading</div>}>
           <ThumbnailCarousel selectImage={selectImage} photos={props.product.stylePhotos} />
+        </Suspense>
           : null
         }
         <p className='ProductCard-product-information-category'>{props.product.category}</p>
@@ -79,7 +78,9 @@ var ProductCard = (props) => {
           <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
         <div className='ProductCard-product-information-rating'>
           {props.product.rating ?
+          <Suspense fallback={<div>Loading</div>}>
             <Stars avgQtr={props.product.rating} size={15} />
+          </Suspense>
             : "N/A"}
         </div>
       </div>

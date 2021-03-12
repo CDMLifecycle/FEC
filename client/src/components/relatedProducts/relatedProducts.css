@@ -279,17 +279,19 @@
 }
 
 .CarouselArrow-forward:hover {
-  border: 1px solid #3A3E40;
+  border: .8px solid #3A3E40;
   color: #fefefe;
-  background-color: #3A3E40;
+  background-color: #6C8789;
   animation: fadein .2s;
+  transition: all ease-in-out 200ms
 }
 
 .CarouselArrow-back:hover {
-  border: 2px solid #3A3E40;
+  border: .8px solid #3A3E40;
   color: #fefefe;
-  background-color: #3A3E40;
+  background-color: #6C8789;
   animation: fadein .2s;
+  transition: all ease-in-out 200ms
 }
 
 .CarouselArrow-back {
@@ -370,7 +372,7 @@
 }
 
 .ProductComparison-overlay {
-  background-color: rgba(164, 163, 163, 0.33);
+  background-color: rgba(0, 0, 0, .4);
   position: fixed;
   width:100vw;
   height:100vh;
@@ -379,6 +381,7 @@
   z-index:100;
   overflow: auto;
   animation: fadein .7s;
+  backdrop-filter: blur(5px)
 }
 
 @keyframes fadein {

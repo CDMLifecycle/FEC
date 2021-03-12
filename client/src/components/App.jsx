@@ -1,13 +1,16 @@
 import React, {lazy, Suspense} from 'react';
 import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
-import RelatedItems from './relatedProducts/RelatedItems.jsx';
+const RelatedItems = React.lazy(() => import('./relatedProducts/RelatedItems.jsx'));
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
-import Landing from './Landing.jsx';
+const Landing = React.lazy(() => import('./Landing.jsx'));
+// const Home = React.lazy(() => import('./Home.jsx'));
 import Home from './Home.jsx';
-import Looks from './relatedProducts/Looks.jsx';
+const Looks = React.lazy(() => import('./relatedProducts/Looks.jsx'));
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
+// const Footer = React.lazy(() => import('./Footer.jsx'));
+// const Header = React.lazy(() => import('./Header.jsx'));
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
 import fetch from './relatedProducts/fetch.js';
@@ -183,10 +186,13 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-          <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+
+            <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+
         )
       case "/product":
         return (
+
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
               <Header handleSubmitForm={this.handleSubmitForm}/>
@@ -194,19 +200,24 @@ class App extends React.Component {
             <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             {this.state.productID && typeof this.state.productID === 'number' ?
-            <RelatedItems
+             <Suspense fallback={<div>Loading</div>}>
+           <RelatedItems
               productId={this.state.productID}
               currentProductInformation={this.state.currentProductInformation}
               updateProductOnClick={this.updateProductOnClick}
-            /> : null}
+            />
+            </Suspense>
+            : null}
             {this.state.productID && typeof this.state.productID === 'number' ?
-            <Looks
+             <Suspense fallback={<div>Loading</div>}>
+           <Looks
               products={[]}
               currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
-            /> : null}
+            />
+            </Suspense> : null}
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productMetadata.product_id

@@ -6,24 +6,10 @@ import './relatedProducts.css';
 
 var ProductComparison = (props) => {
 
-  //look at the .details of each product.
   const [tableData, setTableData] = useState(null);
 
   useEffect(() => {
     structureTableData(props, setTableData);
-    // var featureObj = {}
-    // for (let obj of props.currentProduct.features) {
-    //     featureObj[replaceEscapeQuotes(obj.feature)] = [replaceEscapeQuotes(obj.feature), replaceEscapeQuotes(obj.value), 1]
-    // }
-
-    // for (let feat of props.comparedProduct.features) {
-    //   if (featureObj[replaceEscapeQuotes(feat.feature)] === undefined) {
-    //     featureObj[replaceEscapeQuotes(feat.feature)] = [replaceEscapeQuotes(feat.feature), replaceEscapeQuotes(feat.value), 2]
-    //   } else {
-    //     featureObj[replaceEscapeQuotes(feat.feature)].push(2);
-    //   }
-    // setTableData(Object.values(featureObj))
-    // }
   }, [])
 
   return (
