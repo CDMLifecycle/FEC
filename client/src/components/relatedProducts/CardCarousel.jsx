@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import AddToLooksCard from './AddToLooksCard.jsx';
 import ProductCard from './ProductCard.jsx';
 import CarouselArrow from './CarouselArrow.jsx';
+import {scrollCardByWidth} from './helpers.js';
 import './relatedProducts.css';
 
 var CardCarousel = (props) => {
@@ -14,24 +15,22 @@ var CardCarousel = (props) => {
     setCardWidth(width);
   }
 
+  // var scroll = (direction) => {
+  //   var amount;
+  //  cardWidth !== null ? amount = cardWidth : amount = 350;
+  //   if (direction === 'back') {
+  //     carouselRef.current.scrollBy((-amount), 0);
+  //     setStartingCardIndex(startingCardIndex - 1);
+  //   } else if (direction === 'forward') {
+  //     carouselRef.current.scrollBy(amount, 0);
+  //     setStartingCardIndex(startingCardIndex+1);
+  //   }
+  // }
+
   var scroll = (direction) => {
-    var amount;
-   cardWidth !== null ? amount = cardWidth : amount = 350;
-    if (direction === 'back') {
-      carouselRef.current.scrollBy((-amount), 0);
-      setStartingCardIndex(startingCardIndex - 1);
-    } else if (direction === 'forward') {
-      carouselRef.current.scrollBy(amount, 0);
-      setStartingCardIndex(startingCardIndex+1);
-    }
+    scrollCardByWidth(direction, cardWidth, carouselRef, setStartingCardIndex, startingCardIndex)
   }
 
-  var cardAction;
-  if (props.removeFromLooks) {
-    cardAction = props.removeFromLooks;
-  } else if (props.compareProducts) {
-    cardAction = props.compareProducts;
-  }
   return (
     <div className='CardCarousel'>
       <div className='CardCarousel-Arrows'>
@@ -56,8 +55,7 @@ var CardCarousel = (props) => {
         : null}
         {props.relatedProducts && props.relatedProducts.length > 0 ?
         props.relatedProducts.map(
-          (item, index) =>
-          index === 0 ?
+          (item, index) => index === 0 ?
             <ProductCard
               getWidthOfCard={getWidthOfCard}
               removeFromLooks={props.removeFromLooks}

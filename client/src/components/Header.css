@@ -19,6 +19,7 @@
   margin-left: 20px;
   height: 60px;
   bottom: 0;
+  cursor: pointer;
 }
 
 .input-container {

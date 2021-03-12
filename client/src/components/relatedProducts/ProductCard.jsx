@@ -39,36 +39,49 @@ var ProductCard = (props) => {
     saleClass = 'ProductCard-product-information-price-discounted'
   }
 
-  var cardClickHandler = () => {
-    if (props.compareProducts) {
-      props.updateProductOnClick(props.product.id);
+  var cardClickHandler = (e) => {
+    e.stopPropagation();
+    var className = e.target.className;
+    if (className === 'ProductCard' || className === 'ProductCard-primary-img' || className === 'ProductCard-product-information') {
+      if (props.compareProducts) {
+        props.updateProductOnClick(props.product.id, cardRef);
+      }
     }
+    // if (props.compareProducts) {
+    //   props.updateProductOnClick(props.product.id, cardRef);
+    // }
   }
 
   return(
     <div ref={cardRef} className='ProductCard' onClick={cardClickHandler}>
       <div className='ProductCard-img-container'>
         <div className='ProductCard-action-icon-background'>{
-           props.compareProducts ? <span onClick={handleActionClick} className="material-icons ProductCard-action-icon">
-           compare_arrows
-           </span> :
-           <span onClick={handleActionClick} className="material-icons ProductCard-action-icon ">remove_circle</span>
-        }
-        </div>
-        <img className='ProductCard-primary-img' src={primaryImg}></img>
+           props.compareProducts ?
+             <span onClick={handleActionClick} className="material-icons ProductCard-action-icon">
+               compare_arrows
+             </span> :
+             <span onClick={handleActionClick} className="material-icons ProductCard-action-icon">
+               remove_circle
+             </span>
+        }</div>
+        <img className='ProductCard-primary-img' alt='Product Image' src={primaryImg}></img>
       </div>
+
       <div className='ProductCard-product-information'>
-        { props.compareProducts && props.product.stylePhotos.length > 1 ?
+        {props.compareProducts && props.product.stylePhotos.length > 1 ?
           <ThumbnailCarousel selectImage={selectImage} photos={props.product.stylePhotos} />
           : null
         }
         <p className='ProductCard-product-information-category'>{props.product.category}</p>
         <p className='ProductCard-product-information-name'>{props.product.name.toUpperCase()}</p>
         <p className={saleClass}>${props.product.default_price.substring(0, props.product.default_price.indexOf('.'))}</p>
-        {props.product.sale_price ? <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
+        {props.product.sale_price ?
+          <p className='ProductCard-product-information-sale-price'>{props.product.sale_price}</p> : null}
         <div className='ProductCard-product-information-rating'>
-          {props.product.rating ? <Stars avgQtr={props.product.rating} size={15} /> : "N/A"}
-          </div>
+          {props.product.rating ?
+            <Stars avgQtr={props.product.rating} size={15} />
+            : "N/A"}
+        </div>
       </div>
     </div>
   )

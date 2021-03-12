@@ -10,7 +10,6 @@ import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
-import dummyData from './relatedProducts/dummydata.js';
 import fetch from './relatedProducts/fetch.js';
 import './color-schema.css';
 import './app.css';
@@ -86,15 +85,15 @@ class App extends React.Component {
     //   this.setState({searchedArr: arr, productID: arr[0].id});
     // }
     if(arr[0]){
-      let productID = arr[0].id;
-      // this.getReviews(productID)
-      this.getMetadata(productID)
-        .then(res => {
-          this.setState({
-            searchedArr: arr,
-            productID: productID
-          })
-        });
+      window.location = window.location.origin + '?id=' + arr[0].id;
+      // let productID = arr[0].id;
+      // this.getMetadata(productID)
+      //   .then(res => {
+      //     this.setState({
+      //       searchedArr: arr,
+      //       productID: productID
+      //     })
+      //   });
     }
   }
 
@@ -111,7 +110,6 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
       .then(res => {
-        console.log('inside metadata: ', res)
         if (!searchedArr || !productID) {
           resolve(this.setState({ productMetadata: res.data }))
         } else {
@@ -169,16 +167,15 @@ class App extends React.Component {
       this.setState({
         paths: '/'
       })
-    } else {
-      //window.location = 'http://' + window.location.host + '?id=' + id;
-       console.log('inside updateProductOnClick with id: ', id);
-       fetch.getProduct(id, (err, data) => {
-         if (err) {
-           window.location.href = 'http://localhost:3000';
-         } else {
-          this.getMetadata(data.data.id, data.data, data.data.id);
-        }
-      })
+    } else if (typeof id === 'number') {
+      window.location = window.location.origin + '?id=' + id;
+      //  fetch.getProduct(id, (err, data) => {
+      //    if (err) {
+      //      window.location.href = 'http://localhost:3000';
+      //    } else {
+      //     this.getMetadata(data.data.id, data.data, data.data.id);
+      //   }
+      // })
     }
   }
 
@@ -204,7 +201,7 @@ class App extends React.Component {
             /> : null}
             {this.state.productID && typeof this.state.productID === 'number' ?
             <Looks
-              products={[dummyData.formattedDefaultProduct]}
+              products={[]}
               currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
