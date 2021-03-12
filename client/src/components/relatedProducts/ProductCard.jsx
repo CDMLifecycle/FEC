@@ -41,8 +41,7 @@ var ProductCard = (props) => {
 
   var cardClickHandler = (e) => {
     e.stopPropagation();
-    var className = e.target.className
-    console.log(className)
+    var className = e.target.className;
     if (className === 'ProductCard' || className === 'ProductCard-primary-img' || className === 'ProductCard-product-information') {
       if (props.compareProducts) {
         props.updateProductOnClick(props.product.id, cardRef);
