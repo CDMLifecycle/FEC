@@ -6,7 +6,9 @@ import './reviewTile.css';
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      putHelpful: false
+    }
     this.handleHelpful = this.handleHelpful.bind(this);
     this.handleReport = this.handleReport.bind(this);
   }
@@ -23,14 +25,17 @@ class ReviewTile extends React.Component {
 
   handleHelpful(e){
     e.preventDefault();
-    this.props.sendHelpful(e.target.value)
+    if (!this.state.putHelpful) {
+      this.props.sendHelpful(e.target.value);
+      this.setState({ putHelpful: true });
+    }
   }
 
   render () {
+    console.log(this.props)
     if (!this.props.productMetadata.totals) {
       return null
     } else {
-
       let review = this.props.review;
       return (
         <div className='review-tile-container'>
@@ -43,6 +48,9 @@ class ReviewTile extends React.Component {
                 <h4>{review.summary}</h4>
                 <h5>{review.body}</h5>
                 <h6>-{review.reviewer_name}</h6>
+              <div className='rt-rec'>{'if recommended'}</div>
+                {/* if verified  */}
+              <div className='rt-response'>{'if response'}</div>
                 {/* if verified  */}
               <div className='btn-box'>
                 <div className='helpful'>

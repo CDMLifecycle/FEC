@@ -32,21 +32,20 @@
 #write-review-contents {
   display: flex;
   flex-direction: column;
-  min-height: 800px;
-  width: 60%;
+  height: 85%;
+  min-height: 960px;
   margin: auto;
-  min-width: 500px;
+  min-width: 800px;
   z-index: 300;
   background-color: #f9f9f9;
   color: #3A3E40;
 }
 
 #form-review-container {
-  width: 80%;
+  width: 90%;
   padding-bottom: 10px;
 }
 
-/*    exit btn    */
 
 
 /* title   */
@@ -55,10 +54,8 @@
   letter-spacing: 0.03em;
   color: #3A3E40;
   padding-top: 5px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
-
-
 
 /*    review input text     */
 .review-input-container {
@@ -96,18 +93,17 @@
   border: none;
 }
 
-
 /*   stars       */
-
 #review-stars-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 #star-box {
   display: flex;
+  margin-left: 50px;
   justify-content: flex-end;
 }
 
@@ -148,8 +144,6 @@
   height: 100%;
   width: 100%;
   transition: ease-in-out;
-
-  /* animation-fill-mode:; */
 }
 
 #review-stars-container img:hover {
@@ -163,11 +157,10 @@
   100% {opacity: 100%}
 }
 
-
 #would-recommend-container {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -178,23 +171,62 @@
 
 #yes-no-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 #yes-no-box label {
   padding: 0 10px;
 }
 
+#would-recommend-container input[type="radio"] {
+  display: none;
+}
+
+#wr-rec-radio-both {
+  display: flex;
+  justify-content: space-evenly;
+  width: 200px;
+}
+
+#would-recommend-container .wr-rec-radio-unselected,
+#would-recommend-container .wr-rec-radio-selected {
+  border-radius: 8px;
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+#would-recommend-container .wr-rec-radio-unselected {
+  background-color: #CCC;
+}
+
+#would-recommend-container .wr-rec-radio-selected {
+  background-color: orange;
+}
+
+#would-recommend-container .wr-rec-radio-unselected:hover {
+  background-color: rgb(255, 197, 90);
+}
+
+
+
+
 /* CHARACTERISTICS CONTAINER */
 #characteristics-review-box {
   display: flex;
   flex-direction: column;
+  margin: none;
 }
 
-
+#characteristics-review-box h4 {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+m
 /* Bottom Buttons   */
 #modal-btn-box {
-  border: tomato 2px solid;;
   display: flex;
   justify-content: space-between;
   padding: 15px 0;

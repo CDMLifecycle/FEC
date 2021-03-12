@@ -2,63 +2,80 @@
 .per-characteristic-box {
   display: flex;
   flex-direction: column;
-  /* align-content: space-between; */
-  /* justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start; */
-  border: yellowgreen 3px solid;
   width: 100%;
+  margin-top: 10px;
+  letter-spacing: .04em;
 }
 
 .per-characteristic-box input[type='radio'] {
   cursor: pointer;
 }
 
-.center-one, .center-one, .center-one, .o-right-one, .to-right-two, .to-right-three, .to-right-four, .to-right-five {
-  border: 1px solid black;
+.center-one, .center-two, .center-three, .to-right-one, .to-right-two, .to-right-three, .to-right-four, .to-right-five, .char-selected {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 135px;
+}
+
+.center-one:hover, .center-two:hover, .center-three:hover, .to-right-one:hover, .to-right-two:hover, .to-right-three:hover, .to-right-four:hover, .to-right-five:hover {
+  background-color: rgb(255, 197, 90);
+}
+
+.center-one, .to-right-one {
+  background-color:  #CCC;
+
+}
+
+.to-right-two {
+  background-color:  #CCC;;
+}
+
+.center-two, .to-right-three {
+  background-color: #CCC;;
+}
+
+
+.to-right-four {
+  background-color: #CCC;
+}
+
+.center-three, .to-right-five {
+  background-color: #CCC;
+}
+
+
+.char-selected {
+  background-color: orange;
+  color: #3A3E40;
 }
 
 .per-characteristic-box input[type='radio'] {
   display: none;
 }
-/* .per-characteristic-box .wr-char-input-box {
-  text-align: center;
-} */
+
 .wr-char-radio-box {
   display: flex;
   justify-content: space-between;
-  border: red 3px solid;
-  padding-top: 5px;
+  padding: 10px 0;
+
 }
 
 .wr-char-input-box {
-  position: relative;
-  font-size: 14px;
-  border: 1px solid #3A3E40;
-  border-radius: 8px;
-  padding: 5px;
-  display: inline-block;
-  min-width: 60px;
-  text-align: center;
-}
-
-.wr-char-input-box:before {
   position: absolute;
-  content: '';
-
+  font-size: 12px;
+  padding: 0 20px;
+  padding-top: 10px;
+  display: inline-block;
+  width: 135px;
+  height: 40px;
+  text-align: center;
+  line-height: 30px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  margin: auto 0;
+  cursor: pointer;
 }
 
-/*
-.bars-container-center {
-  background-image: linear-gradient(to right, #fefefe, orange, #fefefe);
-  height: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.bars-container-right {
-  background-image: linear-gradient(to right, #fefefe 5%, orange );
-  height: 8px;
-  display: flex;
-  justify-content: space-between;
-} */

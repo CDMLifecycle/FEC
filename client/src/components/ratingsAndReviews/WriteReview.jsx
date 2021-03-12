@@ -42,23 +42,26 @@ class WriteReview extends React.Component {
     this.handleBoolean = this.handleBoolean.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    this.selectBtn = this.selectBtn.bind(this);
     this.setStar = this.setStar.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
+    this.assignRecClass = this.assignRecClass.bind(this);
   }
 
 
   handleChange(e) {
-    if (e.target.name === 'rating') {
-      this.setState({
-        [e.target.name]: e.target.value,
-        selected: true,
-        selectedStarsArray: new Array(5).fill(true, 0, e.target.value)
-      })
-    } else {
-      this.setState({
-        [e.target.name]: e.target.value
-      })
+    e.stopPropagation();
+    if (e.nativeEvent.defaultPrevented === false) {
+      if (e.target.name === 'rating') {
+        this.setState({
+          [e.target.name]: e.target.value,
+          selected: true,
+          selectedStarsArray: new Array(5).fill(true, 0, e.target.value)
+        })
+      } else {
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+      }
     }
   }
 
@@ -133,11 +136,6 @@ class WriteReview extends React.Component {
       : null
   }
 
-  selectBtn(e) {
-    e.preventDefault();
-    this.setState({ starsArray: this.state.starsArray })
-  }
-
   setStar(index) {
     if (this.state.selected) {
       return this.state.selectedStarsArray[index - 1] ? StarYellow : StarNoFill;;
@@ -152,7 +150,16 @@ class WriteReview extends React.Component {
       : null;
   }
 
-
+  assignRecClass(bool) {
+    if (this.state.recommend === false && bool === false) {
+      return 'selected'
+    } else if (this.state.recommend === true && bool === true) {
+      return 'selected'
+    } else {
+      console.log('hi')
+      return 'unselected'
+    }
+  }
 
   render () {
     return (
@@ -285,62 +292,55 @@ class WriteReview extends React.Component {
               <div id='would-recommend-container'>
                 <h4>Would you recommend this item?</h4>
                   <div id='yes-no-box'>
-                    <label onChange={this.handleBoolean} value={this.state.recommend}>
-                      <input type='radio' name='recommend' value='true' required />Yes
-                      <input type='radio' name='recommend' value='false' />No
+                    <label
+                      id='wr-rec-radio-both'
+                    >
+                      <div>
+                        <label
+                          className={`wr-rec-radio-${this.assignRecClass(true)}`}
+                          htmlFor='wr-rec-true'
+                          onChange={this.handleBoolean}
+                          value={this.state.recommend}
+                        >
+                          <input
+                            type='radio'
+                            name='recommend'
+                            value='true'
+                            required
+                            id='wr-rec-true'
+                          />Yes
+                        </label>
+                      </div>
+                      <div>
+                        <label
+                          className={`wr-rec-radio-${this.assignRecClass(false)}`}
+                          htmlFor='wr-rec-false'
+                          onChange={this.handleBoolean}
+                          value={this.state.recommend}
+                        >
+                          <input
+                            type='radio'
+                            name='recommend'
+                            value='false'
+                            id='wr-rec-false'
+                          />No
+                        </label>
+                      </div>
                     </label>
                   </div>
               </div>
               <div id='characteristics-review-box'>
                 <h4>Characteristics</h4>
-                <div className='per-characteristic-box'>
+                <div className='wr-characteristic-container'>
                   {this.state.characteristicsArray.map((character, index) => (
                     <WriteReviewCharacteristics
                       characteristic={character}
                       key={index}
                       handleChange={this.handleChange}
+                      state={this.state}
                     />
                   ))}
                   </div>
-                  {/* Fit
-                  <label onChange={this.handleChange} value={this.state.rating}>
-                    <input type='radio' value='1' name='fit' required/>1
-                    <input type='radio' value='2' name='fit'/>2
-                    <input type='radio' value='3' name='fit'/>3
-                    <input type='radio' value='4' name='fit'/>4
-                    <input type='radio' value='5' name='fit'/>5
-                  </label>
-                </div>
-                <div className='per-characteristic-box'>
-                  Length
-                  <label onChange={this.handleChange} value={this.state.rating}>
-                    <input type='radio' value='1' name='length' required/>1
-                    <input type='radio' value='2' name='length'/>2
-                    <input type='radio' value='3' name='length'/>3
-                    <input type='radio' value='4' name='length'/>4
-                    <input type='radio' value='5' name='length'/>5
-                  </label>
-                </div>
-                <div className='per-characteristic-box'>
-                  Comfort
-                  <label onChange={this.handleChange} value={this.state.rating}>
-                    <input type='radio' value='1' name='comfort' required/>1
-                    <input type='radio' value='2' name='comfort'/>2
-                    <input type='radio' value='3' name='comfort'/>3
-                    <input type='radio' value='4' name='comfort'/>4
-                    <input type='radio' value='5' name='comfort'/>5
-                  </label>
-                </div>
-                <div className='per-characteristic-box'>
-                  Quality
-                  <label onChange={this.handleChange} value={this.state.rating}>
-                    <input type='radio' value='1' name='quality' required/>1
-                    <input type='radio' value='2' name='quality'/>2
-                    <input type='radio' value='3' name='quality'/>3
-                    <input type='radio' value='4' name='quality'/>4
-                    <input type='radio' value='5' name='quality'/>5
-                  </label>
-                </div> */}
               </div>
               <div id='modal-btn-box'>
                 <button id='exit-write-review' onClick={this.props.exit} name='exit'>Go back</button>
