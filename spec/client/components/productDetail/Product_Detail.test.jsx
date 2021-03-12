@@ -73,9 +73,79 @@ describe('Product_Detail', () => {
     var found = wrapper.find('LargePhoto');
       setTimeout( () => {
         found.simulate('click', {preventDefault: () => {}});
-        expect(wrapper.state('fullscreen')).toEqual(true);
+        expect(wrapper.state('hf')).toEqual(true);
       }, 500);
   });
+
+  it('should call getStyle', () => {
+    const mockGetStyle = jest.fn();
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+    instance.getStyle = mockGetStyle;
+
+    instance.getStyle(user.productID);
+    expect(mockGetStyle).toBeCalled();
+  });
+
+  it('should call sizeSet', () => {
+    const mockGetStyle = jest.fn();
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.sizeSet({target: {value: 'S'}});
+    expect(wrapper.state('quantity')).toBe('S');
+  });
+
+  it('should call colorSet', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.colorSet('blue');
+    expect(wrapper.state('color')).toBe('blue');
+  });
+
+  it('should call fullscreen', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.fullscreen();
+    expect(wrapper.state('fullscreen')).toBe('false');
+  });
+
+  it('should call halfscreen', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.halffullscreen();
+    expect(wrap.instance().halffullscreen()).toHaveBeenCalled();
+  });
+
+  it('should call toggleSize', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.toggleSize();
+    expect(wrap.instance().toggleSize()).toHaveBeenCalled();
+  });
+
+  it('should call quantityIncrease', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.quantityIncrease();
+    expect(wrap.instance().quantityIncrease()).toHaveBeenCalled();
+  });
+
+  it('should call quantityDecrease', () => {
+    const wrap = mount(<Product_Detail productID={user.productID} searched={user.searched} searchedArr={user.searchedArr} />);
+    const instance = wrap.instance();
+
+    instance.quantityDecrease();
+    expect(wrap.instance().quantityDecrease()).toHaveBeenCalled();
+  });
+
+
+
 });
 
 
