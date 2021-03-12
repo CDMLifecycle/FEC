@@ -10,9 +10,11 @@ class QAMain extends React.Component {
 
     this.state = {
       searchTerm: '',
-      questions: []
+      questions: [],
+      productID: 0
     }
     this.handleQSearch = this.handleQSearch.bind(this);
+    this.getNewQA = this.getNewQA.bind(this);
   }
 
   handleQSearch(e) {
@@ -22,7 +24,16 @@ class QAMain extends React.Component {
     })
   }
 
-  componentDidMount() {
+  static getDerivedStateFromProps(props, state) {
+    if(props.productID !== state.productID) {
+      return {
+        productID: props.productID
+      }
+    };
+    return null;
+  }
+
+  getNewQA() {
     axios.get(`/qa/questions/`, {
       params: {
         product_id: this.props.productID
@@ -30,13 +41,24 @@ class QAMain extends React.Component {
     })
     .then(response => {
       this.setState({
-        questions: response.data.results
+        questions: response.data.results,
+        productID: this.props.productID
       })
     })
     .catch(reject => {
       console.log(reject);
     })
+
   }
+
+  // componentDidMount() {
+  //   this.getNewQA();
+  // }
+
+  componentDidUpdate() {
+    this.getNewQA();
+  }
+
 
   render() {
     return(
@@ -46,7 +68,7 @@ class QAMain extends React.Component {
           {'QUESTIONS & ANSWERS'}
           </h2>
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList productID={this.props.productID} productName={this.props.searchedArr[0].name} questions={this.state.questions} />
+          <QuestionList productID={this.state.productID} productName={this.props.searchedArr[0].name} questions={this.state.questions} />
         </div>
       </>
     )
