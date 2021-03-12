@@ -37,7 +37,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className='Header'>
-        <img className='Header-logo' onClick={this.handleClick} src={FECIcon}></img>
+        <img className='Header-logo' alt='site-logo' onClick={this.handleClick} src={FECIcon}></img>
         <span></span>
         <div className='Header-search'>
           <input placeholder=' Search' onChange={this.handleChange}/>

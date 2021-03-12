@@ -62,7 +62,7 @@ var headers = {
 // })
 
 app.get('/products',(req, res) => {
-  var allProducts = path + '/products';
+  var allProducts = path + '/products/?count=20';
   axios.get(allProducts, headers)
   .then((result) => {
     console.log('sent');

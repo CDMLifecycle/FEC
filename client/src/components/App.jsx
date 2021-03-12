@@ -87,15 +87,15 @@ class App extends React.Component {
     //   this.setState({searchedArr: arr, productID: arr[0].id});
     // }
     if(arr[0]){
-      let productID = arr[0].id;
-      // this.getReviews(productID)
-      this.getMetadata(productID)
-        .then(res => {
-          this.setState({
-            searchedArr: arr,
-            productID: productID
-          })
-        });
+      window.location = window.location.origin + '?id=' + arr[0].id;
+      // let productID = arr[0].id;
+      // this.getMetadata(productID)
+      //   .then(res => {
+      //     this.setState({
+      //       searchedArr: arr,
+      //       productID: productID
+      //     })
+      //   });
     }
   }
 
@@ -170,7 +170,7 @@ class App extends React.Component {
         paths: '/'
       })
     } else if (typeof id === 'number') {
-      window.location = 'http://' + window.location.host + '?id=' + id;
+      window.location = window.location.origin + '?id=' + id;
       //  fetch.getProduct(id, (err, data) => {
       //    if (err) {
       //      window.location.href = 'http://localhost:3000';
