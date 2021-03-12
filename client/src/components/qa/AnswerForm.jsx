@@ -71,7 +71,7 @@ class AnswerForm extends React.Component {
                 </h5>
                 <label
                   className="qa_label"
-                  name="Your Question">
+                  name="Your Question" for="answer">
                     Your Answer
                 </label><br />
                 <textarea
@@ -85,7 +85,7 @@ class AnswerForm extends React.Component {
                   name="answer"
                   value={this.state.answer}
                   onChange={this.onType} /><br />
-                <label className="qa_label">
+                <label for="nickname" className="qa_label">
                   Nickname
                 </label><br />
                 <input
@@ -99,6 +99,7 @@ class AnswerForm extends React.Component {
                   value={this.state.nickname}
                   onChange={this.onType}/><br />
                 <label
+                  for="email"
                   className="qa_label"
                   name="email">
                     Email

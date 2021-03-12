@@ -87,6 +87,7 @@ class QuestionForm extends React.Component {
                   About the {this.props.productName}
                 </h5>
                 <label
+                  for="question"
                   className="qa_label"
                   name="Your Question">
                     Your Question
@@ -103,6 +104,7 @@ class QuestionForm extends React.Component {
                   onChange={this.onType}
                   required /><br />
                 <label
+                  for="nickname"
                   className="qa_label"
                   name="nickname">
                     Nickname
@@ -120,8 +122,11 @@ class QuestionForm extends React.Component {
                 <p className="qa_label">
                   For privacy reasons, do not use your full name or email address
                 </p><br />
-                <label className="qa_label" name="email">
-                  Email
+                <label
+                  for="email"
+                  className="qa_label"
+                  name="email">
+                    Email
                 </label><br />
                 <input
                   className="qInput"
@@ -136,6 +141,7 @@ class QuestionForm extends React.Component {
                 <p className="qa_label">
                   For authentication reasons, you wil not be emailed
                 </p><br />
+                <label for=""></label>
                 <button className="submitQuestion">
                   SUBMIT QUESTION
                 </button>
