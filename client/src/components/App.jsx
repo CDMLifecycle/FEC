@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
-import NavBar from './NavBar.jsx';
 import RelatedItems from './relatedProducts/RelatedItems.jsx';
 import QAMain from './qa/QAMain.jsx';
 import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
@@ -11,7 +10,7 @@ import Looks from './relatedProducts/Looks.jsx';
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
-import dummyData from './relatedProducts/dummydata.js';
+import fetch from './relatedProducts/fetch.js';
 import './color-schema.css';
 import './app.css';
 var stringSimilarity = require("string-similarity");
@@ -25,9 +24,10 @@ class App extends React.Component {
       productArr:  [],
       productMetadata: {},
       searchedQuery: '',
-      productID: '',
+      productID: null,
       searchedArr: [],
-      paths: '/',
+      // reviewsList: [],
+      paths: '/product',
       currentProductInformation: null
     }
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
@@ -40,7 +40,36 @@ class App extends React.Component {
     this.updateCurrentProductInformation = this.updateCurrentProductInformation.bind(this);
     this.updateLooksInSession = this.updateLooksInSession.bind(this);
     this.getLooksInSession = this.getLooksInSession.bind(this);
+    this.updateProductOnClick = this.updateProductOnClick.bind(this);
   }
+
+  componentDidMount() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = urlParams.get('id');
+    if (!idParam) {
+      axios.get('/products')
+      .then((res) => {
+        this.setState({
+          productArr: res.data,
+          paths: '/'
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    } else {
+      fetch.getProduct(idParam, (err, data) => {
+        if (err) {
+          window.location.href = 'http://localhost:3000';
+        } else {
+          this.getMetadata(data.data.id, data.data, data.data.id);
+        }
+      })
+    }
+  }
+
+
+
 
   stringComparison() {
     var arr = [];
@@ -56,23 +85,43 @@ class App extends React.Component {
     //   this.setState({searchedArr: arr, productID: arr[0].id});
     // }
     if(arr[0]){
-      let productID = arr[0].id;
-      // this.getReviews(productID)
-      this.getMetadata(productID)
-        .then(res => {
-          this.setState({
-            searchedArr: arr,
-            productID: productID
-          })
-        });
+      window.location = window.location.origin + '?id=' + arr[0].id;
+      // let productID = arr[0].id;
+      // this.getMetadata(productID)
+      //   .then(res => {
+      //     this.setState({
+      //       searchedArr: arr,
+      //       productID: productID
+      //     })
+      //   });
     }
   }
 
-  getMetadata(product_id) {
+  // getReviews(product_id, sort = 'relevant', count = 2, page = 1) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.get('/reviews', { params: { product_id, sort, count, page } })
+  //       .then(res => resolve(this.setState({ reviewsList: res.data.results })))
+  //       .then(() => this.getMetadata(product_id))
+  //       .catch(err => reject(console.log('error App.jsx - getReviews')))
+  //   });
+  // }
+
+  getMetadata(product_id, searchedArr, productID) {
     return new Promise((resolve, reject) => {
-      axios.get('/reviews/meta', { params: { product_id } })
-      .then(res => resolve(this.setState({ productMetadata: res.data })))
-      .catch(err => reject(console.log('error App.jsx - getMetadata')))
+      axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
+      .then(res => {
+        if (!searchedArr || !productID) {
+          resolve(this.setState({ productMetadata: res.data }))
+        } else {
+          resolve(this.setState({
+            productMetadata: res.data,
+            searchedArr: [searchedArr],
+            productID: productID,
+            paths: '/product'
+          }))
+        }
+      })
+      .catch(err => reject(console.log('error App.jsx - getMetadata: ', err.message)))
     })
   }
 
@@ -81,20 +130,10 @@ class App extends React.Component {
     // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
-  componentDidMount() {
-    axios.get('/products')
-    .then((res) => {
-      this.setState({productArr: res.data});
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
   handleSubmit(event) {
     event.preventDefault();
-    if(this.state.paths !== '/final') {
-      this.setState({paths: '/final'});
+    if(this.state.paths !== '/product') {
+      this.setState({paths: '/product'});
     }
   }
 
@@ -122,13 +161,31 @@ class App extends React.Component {
     return JSON.parse(window.sessionStorage.getItem('Looks'))
   }
 
+
+  updateProductOnClick(id) {
+    if(!id) {
+      this.setState({
+        paths: '/'
+      })
+    } else if (typeof id === 'number') {
+      window.location = window.location.origin + '?id=' + id;
+      //  fetch.getProduct(id, (err, data) => {
+      //    if (err) {
+      //      window.location.href = 'http://localhost:3000';
+      //    } else {
+      //     this.getMetadata(data.data.id, data.data, data.data.id);
+      //   }
+      // })
+    }
+  }
+
   switchStatement() {
     switch(this.state.paths) {
       case "/":
         return (
           <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
-      case "/final":
+      case "/product":
         return (
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
@@ -136,17 +193,20 @@ class App extends React.Component {
             </form>
             <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
+            {this.state.productID && typeof this.state.productID === 'number' ?
             <RelatedItems
-              productId={14107}
+              productId={this.state.productID}
               currentProductInformation={this.state.currentProductInformation}
-            />
+              updateProductOnClick={this.updateProductOnClick}
+            /> : null}
+            {this.state.productID && typeof this.state.productID === 'number' ?
             <Looks
-              products={[dummyData.formattedDefaultProduct]}
-              currentProductId={14107}
+              products={[]}
+              currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
-            />
+            /> : null}
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productMetadata.product_id
@@ -171,5 +231,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-

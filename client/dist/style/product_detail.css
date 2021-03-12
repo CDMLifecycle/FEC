@@ -10,7 +10,9 @@ html {
   display:flex;
   height: 100%;
   width: 100%;
-
+  max-height: 840px;
+  position: relative;
+  max-height: 900px;
 }
 
 .allPhotoscontainer {
@@ -31,6 +33,9 @@ html {
   flex-direction: column;
   flex:1;
   align-items: center;
+  overflow: hidden;
+  max-height: 900px;
+  max-width: 600px;
 }
 
 .photoContainer {
@@ -103,12 +108,12 @@ img.thumbnails:hover {
 
 .largeImageL {
   /* height: 690px; */
-  animation: mymoveL .7s ease-in-out;
+  animation: mymoveL .6s ease-in-out;
 }
 
 .largeImageR {
   /* height: 690px; */
-  animation: mymoveR .7s ease-in-out;
+  animation: mymoveR .6s ease-in-out;
 }
 
 img.magnifier-image {
@@ -399,20 +404,6 @@ button.leftright:hover {
   height: 100px;
 }
 
-
-
-input[type=text] {
-  width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-  border: solid;
-  border-color: black;
-}
-
-input[type=text]:focus {
-  width: 500px;
-}
-
 .NavSearch {
   position: relative;
   left: 500px;
@@ -423,14 +414,12 @@ input[type=text]:focus {
   position:absolute;
   left: 10px;
   top: 380px;
-  z-index: 2;
 }
 
 .rightScroller {
   position:absolute;
   left: 940px;
   top: 380px;
-  z-index: 2;
 }
 
 .qsButtonLeft {
@@ -477,7 +466,7 @@ input[type=text]:focus {
   position: relative;
   width: 238px;
   height: 124px;
-  margin-left: 210px;
+  margin-left: 205px;
   font-size: 20px;
   font-family: Arial Narrow, sans-serif	;
 }
@@ -503,7 +492,7 @@ button:focus {
   position: sticky;
   top: 900px;
   left: 1930px;
-  z-index: 500;
+  z-index: 101;
   border: solid;
   border-width: thin;
   background: #fefefe;
@@ -526,4 +515,90 @@ button:focus {
   color: white;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.socialContainer {
+  position: relative;
+  margin-top: 90px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.socialButton {
+  margin-right: 20px;
+  background-color: white;
+  border:solid;
+  background: #fefefe;
+  border: 1px solid #fefefe;
+  border-radius: 3px;
+  color: #3A3E40;
+  margin: 15px 15px 0 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+  transition: all ease-in-out 200ms;
+}
+
+.socialButton:hover {
+  transform: scale(1.2);
+  color: white;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.ProductModal {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  right: 700px;
+  bottom: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 3;
+}
+
+.ModalContents {
+  position: relative;
+  width: 300px;
+  height: 25px;
+  margin-bottom: 30px;
+
+}
+
+.modalBackground#modal {
+  display: hidden; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.xBox {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 8px;
+  left: 254px;
+  bottom: 85px;
+  transition: all ease-in-out 200ms;
+
+}
+.xBox:hover {
+  background-color: #ccc;
+}
+
+.shareSuccess {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 40px;
+  position: relative;
 }
