@@ -73,7 +73,7 @@ describe('Product_Detail', () => {
     var found = wrapper.find('LargePhoto');
       setTimeout( () => {
         found.simulate('click', {preventDefault: () => {}});
-        expect(wrapper.state('fullscreen')).toEqual(true);
+        expect(wrapper.state('hf')).toEqual(true);
       }, 500);
   });
 });
