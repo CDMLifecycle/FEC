@@ -19,6 +19,7 @@ class SingleStar extends React.Component{
             src={StarFill}
             className='star'
             style={{width: `${size}px`}}
+            alt='1 star'
           />);
       case -1:
         return (
@@ -26,6 +27,7 @@ class SingleStar extends React.Component{
             src={StarNoFill}
             className='star'
             style={{width: `${size}px`}}
+            alt='no fill star'
           />);
       case .25:
         return (
@@ -33,6 +35,7 @@ class SingleStar extends React.Component{
             src={StarQuarter}
             className='star'
             style={{width: `${size}px`}}
+            alt='.25 star'
           />);
       case .50:
         return (
@@ -40,6 +43,7 @@ class SingleStar extends React.Component{
             src={StarHalf}
             className='star'
             style={{width: `${size}px`}}
+            alt='.50 stars'
           />);
       case .75:
         return (
@@ -47,6 +51,7 @@ class SingleStar extends React.Component{
             src={StarThreeQuarters}
             className='star'
             style={{width: `${size}px`}}
+            alt='.75 star'
           />);
     }
   }

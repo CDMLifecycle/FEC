@@ -222,9 +222,6 @@ class App extends React.Component {
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
             {this.state.productMetadata.product_id
               ? <RatingsAndReviews
-                // product_id={this.state.productID}
-                // reviewsList={this.state.reviewsList}
-                // getReviews={this.getReviews}
                 productMetadata={this.state.productMetadata}
                 productInfo={this.state.searchedArr[0]}
                 />

@@ -22,7 +22,6 @@ class RatingsAndReviews extends React.Component {
     this.getReviews = this.getReviews.bind(this);
   }
 
-
   componentDidMount() {
     this.getReviews(this.props.productMetadata.product_id)
       .then(() => this.setState({ product_id: this.props.productMetadata.product_id }))
@@ -37,7 +36,6 @@ class RatingsAndReviews extends React.Component {
           .catch(err => reject(console.log('error ratingsAndReiews.jsx - getReviews')))
       });
     }
-
 
   reRender(){
     if (this.state.filterSelections.length) {
@@ -94,7 +92,6 @@ class RatingsAndReviews extends React.Component {
           <div id='review-list-container'>
             <ReviewList
               reviewsList={this.state.filteredList}
-              // productID={this.props.productID}
               getReviews={this.getReviews}
               productMetadata={this.props.productMetadata}
               filterSelections={this.state.filterSelections}

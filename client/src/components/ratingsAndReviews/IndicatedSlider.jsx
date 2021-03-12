@@ -45,7 +45,7 @@ class IndicatedSlider extends React.Component {
               className='indicator'
               style={{ transform: `translateX(${this.ratingToWidth(this.props.metadata.value)})` }}
             >
-              <img src={Triangle} className='icon' ></img>
+              <img src={Triangle} className='icon' alt='indicator'></img>
             </div>
           </div>
         </div>

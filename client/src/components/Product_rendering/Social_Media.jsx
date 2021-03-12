@@ -21,9 +21,13 @@ class Social_Media extends React.Component {
     if(this.state.clicked) {
       this.setState({clicked: !this.state.clicked});
       document.getElementById('modal').style.display = 'hidden';
+      document.getElementById('fs').style.display = 'block';
     } else {
       this.setState({clicked: !this.state.clicked});
-      setTimeout( () => document.getElementById('modal').style.display = 'block', 100);
+      setTimeout( () => {
+        document.getElementById('fs').style.display = 'none';
+        document.getElementById('modal').style.display = 'block', 100;
+      });
     }
   }
   render() {

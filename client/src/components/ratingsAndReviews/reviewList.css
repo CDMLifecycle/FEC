@@ -71,7 +71,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .no-tiles {
@@ -121,7 +120,7 @@
   color: #fefefe;
 }
 
-#none {
+.none {
   background-color: #fefefe;
   height: 50%;
   width: 40%;
