@@ -37,14 +37,14 @@
 }
 
 .bars-container-center {
-  background-image: linear-gradient(to right, #fefefe, orange, #fefefe);
+  background-image: linear-gradient(to right, #CCC, orange, #CCC);
   height: 8px;
   display: flex;
   justify-content: space-between;
 }
 
 .bars-container-right {
-  background-image: linear-gradient(to right, #fefefe 5%, orange );
+  background-image: linear-gradient(to right, #CCC 5%, orange );
   height: 8px;
   display: flex;
   justify-content: space-between;
