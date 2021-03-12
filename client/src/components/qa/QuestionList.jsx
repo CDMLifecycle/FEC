@@ -10,7 +10,9 @@ class QuestionList extends React.Component {
     this.state = {
       modal: false,
       questions: [],
-      questionLimit: 4
+      questionLimit: 4,
+      productID: 0,
+      productName: ''
     }
 
     this.moreQuestions = this.moreQuestions.bind(this);
@@ -38,6 +40,12 @@ class QuestionList extends React.Component {
         return {questions: props.questions};
       }
     }
+    if(props.productID !== state.productID) {
+      return {
+        productID: props.productID,
+        productName: props.productName
+      }
+    }
     return null;
   }
 
@@ -55,7 +63,7 @@ class QuestionList extends React.Component {
             : (null)
           }
           <button name="addQuestion" onClick={this.addQuestion} className="qaBigButton qaCaps">Add A Question +</button>
-          <QuestionForm productID={this.props.productID} productName={this.props.productName}displayModal={this.state.modal} closeModal={this.addQuestion}/>
+          <QuestionForm productID={this.state.productID} productName={this.state.productName} displayModal={this.state.modal} closeModal={this.addQuestion}/>
         </div>
       </div>
     )
