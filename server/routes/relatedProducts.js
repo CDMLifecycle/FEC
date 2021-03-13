@@ -33,7 +33,7 @@ var getAllPhotosFromStyles = (styles) => {
     }
     return stylePhotos;
   } else {
-    return styles[0].photos;
+    return [styles[0].photos[0].thumbnail_url];
   }
 
 }
