@@ -14,6 +14,7 @@
   cursor: pointer;
   transition: all ease-in-out 200ms;
   border-radius: 3px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 
@@ -51,6 +52,7 @@
   width: 90%;
   height: 8px;
   background-color: #CCC;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 .fill {

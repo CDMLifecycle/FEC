@@ -137,6 +137,7 @@
   height: 30px;
   z-index: 300;
   cursor: pointer;
+
 }
 
 #review-stars-container img {
@@ -151,6 +152,7 @@
   animation-duration: .5s;
   transition: ease-in-out;
   transform: scale(1.05);
+  transition-duration: .2s;
   filter: drop-shadow(0 0 20px yellow);
 }
 
@@ -219,11 +221,6 @@
   transform: scale(1.05);
   transition-duration: .2s;
 }
-
-
-
-
-
 
 /* CHARACTERISTICS CONTAINER */
 #characteristics-review-box {

@@ -24,6 +24,7 @@ class ReviewList extends React.Component {
     this.assignSortClass = this.assignSortClass.bind(this);
     this.exitWriteReview = this.exitWriteReview.bind(this);
     this.showMoreReviewsButton = this.showMoreReviewsButton.bind(this);
+    this.showWriteReviewButton = this.showWriteReviewButton.bind(this);
   }
 
   handleSelectChange(e) {
@@ -91,6 +92,14 @@ class ReviewList extends React.Component {
     )
   }
 
+  showWriteReviewButton(){
+    return (
+      <button onClick={this.handleWriteReviewBtn} id='write-review-btn'>
+        WRITE A REVIEW +
+      </button>
+    )
+  }
+
   noReviews() {
     return (
       <div className='no-tiles'>
@@ -133,14 +142,18 @@ class ReviewList extends React.Component {
             : this.noReviews()
           }
           <div className='btn-show-write-container'>
-          {reviewArray.length >= this.state.count ? this.showMoreReviewsButton() : <button className='none' disabled></button>}
-          {!this.state.postedReview
-            ? <button
-                onClick={this.handleWriteReviewBtn}
-                id='write-review-btn'
-              >WRITE A REVIEW +</button>
-            : <button className='none' disabled></button>
-          }
+            <div id='rl-left-button'>
+              {reviewArray.length >= this.state.count
+                ? this.showMoreReviewsButton()
+                : <button className='none' disabled></button>
+              }
+            </div>
+            <div id='rl-right-button'>
+              {!this.state.postedReview
+                ? this.showWriteReviewButton()
+                : <button className='none' disabled></button>
+              }
+            </div>
           </div>
         </div>
           {this.state.writeBtn

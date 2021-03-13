@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 650px;
+  z-index: 20;
+  /* height: 100%; */
+  position: relative;
 }
 
 .sort-header {
@@ -26,6 +29,7 @@
   margin: 0;
   padding: 0;
   cursor: pointer;
+  box-shadow: 2px 2px 2px rgb(0 0 0 / 10%);
 }
 
 .plain-button {
@@ -83,9 +87,14 @@
   justify-content: space-evenly;
 }
 
+#rl-right-button, #rl-left-button {
+  height: 45%;
+  width: 30%;
+}
+
 #write-review-btn, #more-reviews-btn {
-  height: 50%;
-  width: 40%;
+  height: 100%;
+  width: 100%;
   font-size: 16px;
   font-weight: 800;
   transition: ease-in-out 200ms;

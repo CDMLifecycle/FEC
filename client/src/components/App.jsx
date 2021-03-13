@@ -3,7 +3,8 @@ import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
 const RelatedItems = React.lazy(() => import('./relatedProducts/RelatedItems.jsx'));
 import QAMain from './qa/QAMain.jsx';
-import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
+// import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
+const RatingsAndReviews = React.lazy(() => import('./ratingsAndReviews/RatingsAndReviews.jsx'));
 // const Home = React.lazy(() => import('./Home.jsx'));
 import Home from './Home.jsx';
 const Looks = React.lazy(() => import('./relatedProducts/Looks.jsx'));
@@ -129,7 +130,6 @@ class App extends React.Component {
 
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparison());
-    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   handleSubmit(event) {
@@ -217,15 +217,14 @@ class App extends React.Component {
             </Suspense> : null}
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
-            {this.state.productMetadata.product_id
-              ? <RatingsAndReviews
-                // product_id={this.state.productID}
-                // reviewsList={this.state.reviewsList}
-                // getReviews={this.getReviews}
-                productMetadata={this.state.productMetadata}
-                productInfo={this.state.searchedArr[0]}
-                />
-              : <div></div>}
+            <Suspense fallback={<div>Loading</div>}>
+              {this.state.productMetadata.product_id
+                ? <RatingsAndReviews
+                  productMetadata={this.state.productMetadata}
+                  productInfo={this.state.searchedArr[0]}
+                  />
+                : <div></div>}
+            </Suspense>
               <Footer />
           </div>
         )
