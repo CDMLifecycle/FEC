@@ -37,6 +37,6 @@ describe('structure table data', () => {
   })
 })
 
-describe('scrollCardWidth', () => {
+describe('scrollCardByWidth', () => {
 
 })
