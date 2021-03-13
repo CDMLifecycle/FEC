@@ -19,33 +19,8 @@ var Looks = (props) => {
         props.setCurrentProduct(data);
       }
     })
-    //look for session storage
-  // var sessionLooks = props.getLooksInSession();
-  // if (sessionLooks && sessionLooks.length && sessionLooks.length > 0) {
-  //   setCurrentLooks(sessionLooks)
     checkSession(props, setCurrentLooks);
   }, [props.currentProductId])
-
-// var addToLooks = () => {
-//   if (currentLooks.length > 0) {
-//     var clone = rfdc();
-//     for (let product of currentLooks) {
-//       if (product.id === props.currentProductId) {
-//         return;
-//       }
-//     }
-//     var looksCopy = clone(currentLooks);
-//     looksCopy.unshift(currentProduct);
-//     setCurrentLooks(looksCopy);
-//     //update session storage
-//     window.sessionStorage.removeItem('Looks');
-//     props.updateLooksInSession(looksCopy);
-//   } else {
-//     setCurrentLooks([currentProduct])
-//     window.sessionStorage.removeItem('Looks');
-//     props.updateLooksInSession([currentProduct]);
-//   }
-// }
 
   var addToLooks = () => {
     addToLooksSession(props, currentLooks, setCurrentLooks, currentProduct)
@@ -54,15 +29,6 @@ var Looks = (props) => {
   var removeFromLooks = (id) => {
     removeFromLooksSession(id, currentLooks, setCurrentLooks);
   }
-
-// var removeFromLooks = (id) => {
-//   var updatedLooks = currentLooks.filter((product) => product.id !== id);
-//   setCurrentLooks(updatedLooks);
-//   //update session storage;
-//   window.sessionStorage.removeItem('Looks');
-//   window.sessionStorage.setItem('Looks', JSON.stringify(updatedLooks));
-// }
-
   return (
     <div className='Looks'>
       <h2>YOUR LOOKS</h2>

@@ -23,6 +23,7 @@ class Home extends React.Component {
     this.props.handleSubmitForm(this.state.input);
     this.setState({searched: this.state.input, input: ''});
     this.props.handleSubmit(event);
+    console.log('search bar in nav just triggered')
   }
 
   render() {

@@ -1,6 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, lazy, Suspense} from 'react';
 import AddToLooksCard from './AddToLooksCard.jsx';
-import ProductCard from './ProductCard.jsx';
+const ProductCard = React.lazy(() => import('./ProductCard.jsx'));
 import CarouselArrow from './CarouselArrow.jsx';
 import {scrollCardByWidth} from './helpers.js';
 import './relatedProducts.css';
@@ -14,18 +14,6 @@ var CardCarousel = (props) => {
   var getWidthOfCard = (width) => {
     setCardWidth(width);
   }
-
-  // var scroll = (direction) => {
-  //   var amount;
-  //  cardWidth !== null ? amount = cardWidth : amount = 350;
-  //   if (direction === 'back') {
-  //     carouselRef.current.scrollBy((-amount), 0);
-  //     setStartingCardIndex(startingCardIndex - 1);
-  //   } else if (direction === 'forward') {
-  //     carouselRef.current.scrollBy(amount, 0);
-  //     setStartingCardIndex(startingCardIndex+1);
-  //   }
-  // }
 
   var scroll = (direction) => {
     scrollCardByWidth(direction, cardWidth, carouselRef, setStartingCardIndex, startingCardIndex)
@@ -56,22 +44,26 @@ var CardCarousel = (props) => {
         {props.relatedProducts && props.relatedProducts.length > 0 ?
         props.relatedProducts.map(
           (item, index) => index === 0 ?
+          <Suspense fallback={<div>Loading</div>}>
             <ProductCard
               getWidthOfCard={getWidthOfCard}
               removeFromLooks={props.removeFromLooks}
               compareProducts={props.compareProducts}
-              key={item.id}
+              key={item.id + '_' + index}
               product={item}
               updateProductOnClick={props.updateProductOnClick}
             />
+          </Suspense>
           :
+          <Suspense fallback={<div>Loading</div>}>
             <ProductCard
               removeFromLooks={props.removeFromLooks}
               compareProducts={props.compareProducts}
-              key={item.id}
+              key={item.id + '_' + index}
               product={item}
               updateProductOnClick={props.updateProductOnClick}
-            />)
+            />
+            </Suspense>)
         : null}
       </div>
     </div>
