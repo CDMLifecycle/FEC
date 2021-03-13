@@ -71,15 +71,15 @@
 }
 
 .wr-char-input-box {
-  position: absolute;
+  position: relative;
   font-size: 12px;
-  padding: 0 20px;
+  padding: 0 10px;
   padding-top: 10px;
   display: inline-block;
   width: 135px;
   height: 40px;
   text-align: center;
-  line-height: 30px;
+  /* line-height: 30px; */
   vertical-align: baseline;
   letter-spacing: normal;
   margin: auto 0;
