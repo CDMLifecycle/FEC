@@ -4,6 +4,7 @@
   "main": "bundle.js",
   "scripts": {
     "start": "nodemon server/server.js",
+    "start-production": "NODE_ENV=production nodemon server/server.js",
     "react-dev": "webpack",
     "test": "jest --coverage",
     "server-test": "nodemon --inspect-brk server/server.js"

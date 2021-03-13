@@ -57,7 +57,7 @@
   transition: opacity 0.7s;
   border-image: linear-gradient(90deg, white 0%, #fefefe 5%, #CCC 30%, #adb2b6 50%, #CCC 70%, #fefefe 95%, white 100%) 1;
   border-bottom: 2px solid;
-  /* height: 600px; */
+
 }
 
 .ProductCard:hover .ProductCard-product-information-category {
@@ -92,6 +92,7 @@
   text-align: left;
   background-color: white;
   padding-left: 5%;
+  animation: fadein .4s;
 }
 
 
@@ -153,11 +154,10 @@
 }
 
 .ThumbnailCarousel {
-  /* display: flex; */
-  /* justify-content: center; */
   align-items: center;
   width: auto;
   display: none;
+  max-height: 0;
   margin-top: 5px;
   height: auto;
   grid-auto-rows: auto;
@@ -168,16 +168,36 @@
 
 .ProductCard:hover .ThumbnailCarousel {
   display: grid;
+  /* transition: all .5s ease-in-out; */
+  line-height: 0;
+  padding: 0 1em;
+  color: transparent;
 }
+
+.ProductCard:hover .ThumbnailCarousel-row {
+  transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+
 
 .ThumbnailCarousel-img-cell {
   height: 40px;
-  border: .2px solid #ccc;
+  border: .8px solid #ccc;
+  border-radius: 4px;
   width: 40px;
+  z-index: 4;
 }
 
 .ThumbnailCarousel-img-cell:hover {
-  background-color: #ccc;
+  border: 2px solid black;
+  border-radius: 4px;
+  transform: scale(1.1) translateY(2px);
+}
+
+.ThumbnailCarousel-img-cell:hover .ProductCard-primary-img {
+  filter: blur(5px);
 }
 
 .ThumbnailCarousel-row {

@@ -67,6 +67,17 @@ The QA component allows a user to read and add questions and answers from other 
 - Report inappropriate questions/answers
 
 ### Product Reviews
+Ratings and Reviews Module
+
+This module features the ratings and reviews based on a specific product ID. This component is subdivided into 2 interactive columns, a meta-analysis column and a review list column.
+
+The meta-analysis column parses the metadata associated with the product and highlights these data points. The data it yields and presents to the user are overall average rating, total number of reviews, and a percentage of reviews that recommend the product. A five star rating corresponding to the average rating is also included for enhancing visibility. Another graphic enhancement of this section include a characteristics section that shows where an item’s attributes fall in a range, based on previous reviews. The final piece of this section is a chart that quantifies how many reviews per star and that is interactive. This interactivity allows the user to choose a specific star and filter the reviews list that equals the star count selected. This filter is. also additive, allowing to filter multiple star counts at the same time.
+
+The next column is the reviews list. It starts by presenting information 2 reviews at a time until there are none left. It sorts the reviews based on one of three parameters: relevant, newest, and helpful. A user may interact with the sort features at the top to reshuffle the reviews based on the parameter. A user may also interact with a button that finds specific reviews helpful, where a tally is kept and updated, as well as a report button, where a review will be removed from the list.
+
+The last item in this section is a pop-out modal that will allow a user to write they own review and submit it. A graphic enhancement is a star section that highlights over hover or when selected. The review is then added to the review list.
+
+Future enhancements would include a section for a reviewer to post pictures and display them, and a search feature that would filter reviews based on a search parameter.
 
 ## Running The Tests
   To run jest tests that cover the entire project, run 'npm test' in the root dir.
