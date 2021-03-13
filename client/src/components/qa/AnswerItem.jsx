@@ -20,7 +20,7 @@ class AnswerItem extends React.Component {
           {this.props.answer.photos.length > 0 ?
           <div className="qa_ImgContainer">
             {this.props.answer.photos.map((image) => {
-              return <img className="qa_Img" key={image} src={`${image}`}></img>
+              return <img className="qa_Img" key={image} src={`${image}`} alt={`image associated with answer: ${this.props.answer.body}`}></img>
             })}
           </div>
             : (null)

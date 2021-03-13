@@ -11,26 +11,31 @@ class QAMain extends React.Component {
     this.state = {
       searchTerm: '',
       questions: [],
-      productID: 0
+      productID: 0,
+      filteredQuestions: []
     }
     this.handleQSearch = this.handleQSearch.bind(this);
     this.getNewQA = this.getNewQA.bind(this);
   }
 
-  handleQSearch(e) {
+  handleQSearch (e) {
     e.preventDefault();
     this.setState({
-      searchTerm: event.target.value
-    })
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if(props.productID !== state.productID) {
-      return {
-        productID: props.productID
+      searchTerm: e.target.value.toLowerCase()
+    }, () => {
+      if (this.state.searchTerm.length > 2) {
+        var filtered = this.state.questions.filter((question) => {
+          return question.question_body.includes(this.state.searchTerm)
+        })
+        this.setState({
+          filteredQuestions: filtered
+        });
+      } else {
+        this.setState({
+          filteredQuestions: this.state.questions
+        })
       }
-    };
-    return null;
+    })
   }
 
   getNewQA() {
@@ -42,19 +47,20 @@ class QAMain extends React.Component {
     .then(response => {
       this.setState({
         questions: response.data.results,
+        filteredQuestions: response.data.results,
         productID: this.props.productID
       })
     })
     .catch(reject => {
       console.log(reject);
     })
-
   }
 
   componentDidUpdate() {
-    this.getNewQA();
+    if (this.state.productID !== this.props.productID) {
+      this.getNewQA();
+    }
   }
-
 
   render() {
     return(
@@ -64,7 +70,7 @@ class QAMain extends React.Component {
           {'QUESTIONS & ANSWERS'}
           </h2>
           <input className="qaSearchBar qaCaps" type="search" name="search" placeholder="Have a question? Search for answers..." autoComplete="off" value={this.state.searchTerm} onChange={this.handleQSearch}/>
-          <QuestionList productID={this.state.productID} productName={this.props.searchedArr[0].name} questions={this.state.questions} />
+          <QuestionList productID={this.state.productID} productName={this.props.searchedArr[0].name} questions={this.state.filteredQuestions} />
         </div>
       </>
     )
