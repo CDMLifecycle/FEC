@@ -78,5 +78,6 @@ export {
   checkSession,
   addToLooksSession,
   removeFromLooksSession,
-  structureTableData
+  structureTableData,
+  checkCardAction
 };
