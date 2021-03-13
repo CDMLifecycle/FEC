@@ -1,0 +1,1 @@
+(self.webpackChunkfec=self.webpackChunkfec||[]).push([[52],{9052:(e,c,n)=>{"use strict";n.r(c),n.d(c,{default:()=>r});var t=n(5893);const r=function(e){return e.photos.map((function(c,n){var r={backgroundImage:"url(".concat(c.photos[0].thumbnail_url,")")};return(0,t.jsx)("div",{onClick:function(n){return e.colorSet(c.name)},className:"circleStyle",style:r},n)}))}}}]);
