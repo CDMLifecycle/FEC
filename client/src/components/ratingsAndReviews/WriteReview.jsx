@@ -1,10 +1,8 @@
 import React from 'react';
-import StarWriteReview from './StarWriteReview.jsx';
 import WriteReviewCharacteristics from './WriteReviewCharacteristics.jsx';
 import './writeReview.css';
 import StarNoFill from './svg/starNoFill.svg';
 import StarYellow from './svg/starYellow.svg';
-
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -45,8 +43,8 @@ class WriteReview extends React.Component {
     this.setStar = this.setStar.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
     this.assignRecClass = this.assignRecClass.bind(this);
+    this.buildStar = this.buildStar.bind(this);
   }
-
 
   handleChange(e) {
     e.stopPropagation();
@@ -66,8 +64,8 @@ class WriteReview extends React.Component {
   }
 
   handleSubmit(e) {
-    let st = this.state;
     e.preventDefault();
+    let st = this.state;
     this.setState({
       date: new Date(),
       postParams: {
@@ -160,6 +158,25 @@ class WriteReview extends React.Component {
     }
   }
 
+  buildStar(index) {
+    return (
+      <label onChange={this.handleChange} key={index + 100}>
+        <input
+          type='radio'
+          value={`${index + 1}`}
+          name='rating'
+          required
+        />
+        <img
+          src={this.setStar(index + 1)}
+          value={`${index + 1}`}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          alt='star'
+        />
+      </label>
+  )}
+
   render () {
     return (
       <div id='backdrop-write-review' onClick={this.props.exit} name='backdrop'>
@@ -170,77 +187,7 @@ class WriteReview extends React.Component {
               <div id='review-stars-container'>
                 How do you rate this product?
                 <div id='star-box'>
-                  <label onChange={this.handleChange}>
-                    <input
-                      type='radio'
-                      value='1'
-                      name='rating'
-                      required
-                    />
-                    <img
-                      src={this.setStar(1)}
-                      value='1'
-                      onMouseEnter={this.handleMouseEnter}
-                      onMouseLeave={this.handleMouseLeave}
-                      alt='star'
-                    />
-                  </label>
-                  <label onChange={this.handleChange}>
-                    <input
-                      type='radio'
-                      value='2'
-                      name='rating'
-                    />
-                    <img
-                      src={this.setStar(2)}
-                      value='2'
-                      onMouseEnter={this.handleMouseEnter}
-                      onMouseLeave={this.handleMouseLeave}
-                      alt='star'
-                    />
-                  </label>
-                  <label onChange={this.handleChange}>
-                    <input
-                      type='radio'
-                      value='3'
-                      name='rating'
-                    />
-                    <img
-                      src={this.setStar(3)}
-                      value='3'
-                      onMouseEnter={this.handleMouseEnter}
-                      onMouseLeave={this.handleMouseLeave}
-                      alt='star'
-                    />
-                  </label>
-                  <label onChange={this.handleChange}>
-                    <input
-                      type='radio'
-                      value='4'
-                      name='rating'
-                    />
-                    <img
-                      src={this.setStar(4)}
-                      value='4'
-                      onMouseEnter={this.handleMouseEnter}
-                      onMouseLeave={this.handleMouseLeave}
-                      alt='star'
-                    />
-                  </label>
-                  <label onChange={this.handleChange}>
-                    <input
-                      type='radio'
-                      value='5'
-                      name='rating'
-                    />
-                    <img
-                      src={this.setStar(5)}
-                      value='5'
-                      onMouseEnter={this.handleMouseEnter}
-                      onMouseLeave={this.handleMouseLeave}
-                      alt='star'
-                    />
-                  </label>
+                  {Array(5).fill(1).map((item, index) => this.buildStar(index))}
                 </div>
               </div>
               <div className='review-input-container'>

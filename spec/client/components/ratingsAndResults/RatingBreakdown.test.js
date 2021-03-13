@@ -78,12 +78,12 @@ const dummyMetaDataNull = {
 
     it('renders child component <CharacteristicsBreakdown />', () => {
       const wrapper = shallow(<RatingBreakdown productMetadata={dummyMetaData}/>);
-      expect(wrapper.find(DistributionFilter)).toBeTruthy();
+      expect(wrapper.find(CharacteristicsBreakdown)).toBeTruthy();
     })
 
     it('renders child component <Stars />', () => {
       const wrapper = shallow(<RatingBreakdown productMetadata={dummyMetaData}/>);
-      expect(wrapper.find(DistributionFilter)).toBeTruthy();
+      expect(wrapper.find(Stars)).toBeTruthy();
     })
 
     it('renders alternate section if data incomplete', () => {

@@ -20,12 +20,12 @@
 
 .plain-button, .sort-selected {
   font-size: 16px;
-  border: #3A3E40 1px solid;
   transition: all ease-in-out 200ms;
   height: 40px;
   vertical-align: middle;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .plain-button {
@@ -36,7 +36,6 @@
 }
 
 .sort-selected {
-  border: 1px #3A3E40 solid;
   border-bottom: 3px #3A3E40 solid;
   background-color: #6C8789;
   color: #fefefe;
@@ -48,9 +47,12 @@
   padding: 0;
 }
 
+.sort-selected:active, .plain-button:active {
+  transform: scale(.95);
+  transition-duration: .1s;
+}
 
 .plain-button:hover {
-  /* color: red; */
   background-color: #CCC;
   cursor: pointer;
   transform: scale(1.05);
@@ -85,13 +87,16 @@
   height: 50%;
   width: 40%;
   font-size: 16px;
-  border: 1px #CCC solid;
+  font-weight: 800;
   transition: ease-in-out 200ms;
   display: flex;
   vertical-align: middle;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+  border: none;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
+  border-radius: 3px;
 }
 
 #write-review-btn:active, #more-reviews-btn:active {

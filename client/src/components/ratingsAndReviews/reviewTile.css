@@ -51,18 +51,14 @@
   font-weight: 500;
   font-size: 14px;
   padding: 0 12px;
-  /* margin-bottom: 15px; */
   font-weight: 800;
 }
 
 .rt-rec {
   display: flex;
   margin-top: 5px;
-  /* justify-content: space-between; */
   justify-content: flex-start;
   flex-direction: column;
-  /* align-items: center;
-  align-content: center; */
 }
 .rt-rec-img img {
   height: 14px;
@@ -93,19 +89,19 @@
   transition: all ease-in-out 200ms;
 }
 
-.btn:hover {
+.btn {
   cursor: pointer;
-  color: orange;
 }
 
 .helpful .btn:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition-duration: .2s;
+  color: #3A3E40;
 }
 
 .btn:active .helpful {
   transform: scale(.95);
-  transition-duration: .2s;
+  transition-duration: .1s;
 }
 
 .helpful {
@@ -117,7 +113,7 @@
 
 .yes {
   text-decoration: none;
-  flex: .5;
+  /* flex: .9; */
   text-align: left;
 }
 
@@ -125,4 +121,9 @@
   text-decoration: none;
   flex: 1;
   text-align: right;
+}
+
+.report:hover {
+  cursor: pointer;
+  color: orange;
 }
