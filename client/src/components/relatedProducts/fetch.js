@@ -49,7 +49,8 @@ var fetch = {
   getProduct: (id, cb) => {
     if(id) {
       axios({
-        url: `/products/${id}`
+        url: `/products/${id}`,
+        method: 'get'
       })
         .then(result => {
           cb(null, result)

@@ -5,58 +5,32 @@ import StarNoFill from './svg/starNoFill.svg';
 import StarQuarter from './svg/starQuarter.svg';
 import StarFill from './svg/starFill.svg';
 
-class SingleStar extends React.Component{
-  constructor(props){
-    super(props);
-  }
+const starMaker = (starType, size, num) => (
+  <img
+    src={starType}
+    className='star'
+    style={{width: `${size}px`}}
+    alt={`${num}`}
+  />
+)
 
-
-  renderSwitch(num, size) {
+const renderSwitch = (num, size) => {
     switch(num) {
       case 1:
-        return (
-          <img
-            src={StarFill}
-            className='star'
-            style={{width: `${size}px`}}
-          />);
+        return starMaker(StarFill, size, num);
       case -1:
-        return (
-          <img
-            src={StarNoFill}
-            className='star'
-            style={{width: `${size}px`}}
-          />);
+        return starMaker(StarNoFill, size, num);
       case .25:
-        return (
-          <img
-            src={StarQuarter}
-            className='star'
-            style={{width: `${size}px`}}
-          />);
+        return starMaker(StarQuarter, size, num);
       case .50:
-        return (
-          <img
-            src={StarHalf}
-            className='star'
-            style={{width: `${size}px`}}
-          />);
+        return starMaker(StarHalf, size, num);
       case .75:
-        return (
-          <img
-            src={StarThreeQuarters}
-            className='star'
-            style={{width: `${size}px`}}
-          />);
+        return starMaker(StarThreeQuarters, size, num);
+      default:
+        return starMaker(StarNoFill, size, num);
     }
   }
 
- render() {
-   return (this.props ? this.renderSwitch(this.props.num, this.props.size) : null);
-  }
-}
-
-
-
+const SingleStar = (props) => (props ? renderSwitch(props.num, props.size) : null);
 
 export default SingleStar;

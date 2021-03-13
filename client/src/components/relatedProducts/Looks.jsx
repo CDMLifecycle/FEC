@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import CardCarousel from './CardCarousel.jsx';
-import dummydata from './dummydata.js';
 import rfdc from 'rfdc';
 import fetch from './fetch.js';
 import LoadingComponent from './LoadingComponent.jsx';
 import './relatedProducts.css';
+import {checkSession, addToLooksSession, removeFromLooksSession} from './helpers.js';
 
 var Looks = (props) => {
   const [currentLooks, setCurrentLooks] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
-    console.log('about to look for ', props.currentProductId);
     fetch.getCurrentProductInformation(props.currentProductId, (err, data) => {
       if (err) {
         console.log(err);
@@ -20,43 +19,16 @@ var Looks = (props) => {
         props.setCurrentProduct(data);
       }
     })
-    //look for session storage
-  var sessionLooks = props.getLooksInSession();
-  if (sessionLooks && sessionLooks.length && sessionLooks.length > 0) {
-    setCurrentLooks(sessionLooks)
-  }
-
+    checkSession(props, setCurrentLooks);
   }, [props.currentProductId])
 
-var addToLooks = () => {
-  if (currentLooks.length > 0) {
-    var clone = rfdc();
-    for (let product of currentLooks) {
-      if (product.id === props.currentProductId) {
-        return;
-      }
-    }
-    var looksCopy = clone(currentLooks);
-    looksCopy.unshift(currentProduct);
-    setCurrentLooks(looksCopy);
-    //update session storage
-    window.sessionStorage.removeItem('Looks');
-    props.updateLooksInSession(looksCopy);
-  } else {
-    setCurrentLooks([currentProduct])
-    window.sessionStorage.removeItem('Looks');
-    props.updateLooksInSession([currentProduct]);
+  var addToLooks = () => {
+    addToLooksSession(props, currentLooks, setCurrentLooks, currentProduct)
   }
-}
 
-var removeFromLooks = (id) => {
-  var updatedLooks = currentLooks.filter((product) => product.id !== id);
-  setCurrentLooks(updatedLooks);
-  //update session storage;
-  window.sessionStorage.removeItem('Looks');
-  window.sessionStorage.setItem('Looks', JSON.stringify(updatedLooks));
-}
-
+  var removeFromLooks = (id) => {
+    removeFromLooksSession(id, currentLooks, setCurrentLooks);
+  }
   return (
     <div className='Looks'>
       <h2>YOUR LOOKS</h2>

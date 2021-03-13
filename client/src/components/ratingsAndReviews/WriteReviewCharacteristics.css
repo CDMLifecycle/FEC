@@ -2,32 +2,87 @@
 .per-characteristic-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: yellowgreen 3px solid;
-  /* height: 50px; */
   width: 100%;
+  margin-top: 10px;
+  letter-spacing: .04em;
 }
-
 
 .per-characteristic-box input[type='radio'] {
   cursor: pointer;
 }
 
-.center-one, .center-one, .center-one, .o-right-one, .to-right-two, .to-right-three, .to-right-four, .to-right-five {
-  border: 1px solid black;
+.center-one, .center-two, .center-three, .to-right-one, .to-right-two, .to-right-three, .to-right-four, .to-right-five, .char-selected {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 135px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
-/*
-.bars-container-center {
-  background-image: linear-gradient(to right, #fefefe, orange, #fefefe);
-  height: 8px;
-  display: flex;
-  justify-content: space-between;
+.center-one:hover, .center-two:hover, .center-three:hover, .to-right-one:hover, .to-right-two:hover, .to-right-three:hover, .to-right-four:hover, .to-right-five:hover {
+  background-color: rgb(255, 218, 149);
+  transform: scale(1.05);
+  transition-duration: .2s;
 }
 
-.bars-container-right {
-  background-image: linear-gradient(to right, #fefefe 5%, orange );
-  height: 8px;
+.center-one:active, .center-two:active, .center-three:active, .to-right-one:active, .to-right-two:active, .to-right-three:active, .to-right-four:active, .to-right-five:active {
+  transform: scale(.95);
+  transition-duration: .1s;
+}
+
+.center-one, .to-right-one {
+  background-color:  #CCC;
+}
+
+.to-right-two {
+  background-color:  #CCC;;
+}
+
+.center-two, .to-right-three {
+  background-color: #CCC;;
+}
+
+
+.to-right-four {
+  background-color: #CCC;
+}
+
+.center-three, .to-right-five {
+  background-color: #CCC;
+}
+
+
+.char-selected {
+  background-color: rgb(253, 190, 72);
+  color: #3A3E40;
+}
+
+.per-characteristic-box input[type='radio'] {
+  display: none;
+}
+
+.wr-char-radio-box {
   display: flex;
   justify-content: space-between;
-} */
+  padding: 10px 0;
+
+}
+
+.wr-char-input-box {
+  position: absolute;
+  font-size: 12px;
+  padding: 0 20px;
+  padding-top: 10px;
+  display: inline-block;
+  width: 135px;
+  height: 40px;
+  text-align: center;
+  line-height: 30px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  margin: auto 0;
+  cursor: pointer;
+}
+

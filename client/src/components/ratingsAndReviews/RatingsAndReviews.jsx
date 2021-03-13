@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown.jsx';
-import ReviewList from './ReviewList.jsx';
+const ReviewList = React.lazy(()=> import('./ReviewList.jsx'));
 import './ratingsAndReviews.css';
 
 
@@ -22,7 +22,6 @@ class RatingsAndReviews extends React.Component {
     this.getReviews = this.getReviews.bind(this);
   }
 
-
   componentDidMount() {
     this.getReviews(this.props.productMetadata.product_id)
       .then(() => this.setState({ product_id: this.props.productMetadata.product_id }))
@@ -37,7 +36,6 @@ class RatingsAndReviews extends React.Component {
           .catch(err => reject(console.log('error ratingsAndReiews.jsx - getReviews')))
       });
     }
-
 
   reRender(){
     if (this.state.filterSelections.length) {
@@ -92,15 +90,16 @@ class RatingsAndReviews extends React.Component {
             />
           </div>
           <div id='review-list-container'>
+          <Suspense fallback={<div>Loading</div>}>
             <ReviewList
               reviewsList={this.state.filteredList}
-              // productID={this.props.productID}
               getReviews={this.getReviews}
               productMetadata={this.props.productMetadata}
               filterSelections={this.state.filterSelections}
               reRender={this.reRender}
               productInfo={this.props.productInfo}
             />
+          </Suspense>
             </div>
           </div>
       </div>

@@ -13,7 +13,6 @@ html {
   max-height: 840px;
   position: relative;
   max-height: 900px;
-  overflow:hidden;
 }
 
 .allPhotoscontainer {
@@ -34,6 +33,9 @@ html {
   flex-direction: column;
   flex:1;
   align-items: center;
+  overflow: hidden;
+  max-height: 900px;
+  max-width: 600px;
 }
 
 .photoContainer {
@@ -68,6 +70,7 @@ html {
   border-color: lightgrey;
   border-radius: 8px;
   margin-left: 30px;
+
 }
 
 img.thumbnails {
@@ -80,7 +83,6 @@ img.thumbnails {
   object-fit: cover;
   border-width: thin;
   box-shadow: 0 10px 10px -5px;
-  z-index:2;
   position: relative;
   border-radius: 4px;
 }
@@ -402,11 +404,6 @@ button.leftright:hover {
   height: 100px;
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 60aeab8f40e8cf8f584ca2a85c0a4d3887c2ecef
 .NavSearch {
   position: relative;
   left: 500px;
@@ -417,14 +414,12 @@ button.leftright:hover {
   position:absolute;
   left: 10px;
   top: 380px;
-  z-index: 2;
 }
 
 .rightScroller {
   position:absolute;
   left: 940px;
   top: 380px;
-  z-index: 2;
 }
 
 .qsButtonLeft {
@@ -524,8 +519,9 @@ button:focus {
 
 .socialContainer {
   position: relative;
-  margin-top: 100px;
+  margin-top: 90px;
   margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 .socialButton {
@@ -546,4 +542,69 @@ button:focus {
   color: white;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.ProductModal {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  right: 700px;
+  bottom: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  z-index: 3;
+
+}
+
+.ModalContents {
+  outline: none;
+    border-radius: 6px;
+    border: none;
+    padding: 15px 15px;
+    margin: 10px 15px;
+    font-family: "roboto", sans-serif;
+
+}
+
+.modalBackground#modal {
+  display: hidden; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  backdrop-filter: blur(5px);
+}
+
+.xBox {
+  background-color: #f9f9f9;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 8px;
+  left: 254px;
+  bottom: 85px;
+  transition: all ease-in-out 200ms;
+
+}
+.xBox:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.shareSuccess {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 40px;
+  position: relative;
 }

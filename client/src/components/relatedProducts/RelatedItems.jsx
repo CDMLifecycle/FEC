@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import dummydata from './dummydata.js';
-import ProductCard from './ProductCard.jsx';
+import React, {useState, useEffect, lazy, Suspense} from 'react';
 import fetch from './fetch.js';
-import CardCarousel from './CardCarousel.jsx';
-import ProductComparison from './ProductComparison.jsx';
+const CardCarousel = React.lazy(() =>  import('./CardCarousel.jsx'));
+const ProductComparison = React.lazy(() => import('./ProductComparison.jsx'));
 import LoadingComponent from './LoadingComponent.jsx';
 import './relatedProducts.css';
 
 var RelatedItems = (props) => {
-  var fakeProps = dummydata.relatedItemsWithFullInformation;
   const [currentProductId, setCurrentProductId] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [compareModel, setCompareModel] = useState(false);
@@ -43,11 +40,13 @@ var RelatedItems = (props) => {
           closeComparisonModel={closeComparisonModel}/>
       : null}
       {relatedProducts ?
+      <Suspense fallback={<div>...loading</div>}>
         <CardCarousel
           relatedProducts={relatedProducts}
           compareProducts={handleActionClick}
           updateProductOnClick={props.updateProductOnClick}
         />
+      </Suspense>
       : <LoadingComponent />
       }
     </div>

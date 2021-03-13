@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import axios from 'axios';
 import ProductDetail from './Product_rendering/Product_Detail.jsx';
-import RelatedItems from './relatedProducts/RelatedItems.jsx';
+const RelatedItems = React.lazy(() => import('./relatedProducts/RelatedItems.jsx'));
 import QAMain from './qa/QAMain.jsx';
-import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
-import Landing from './Landing.jsx';
+// import RatingsAndReviews from './ratingsAndReviews/RatingsAndReviews.jsx';
+const RatingsAndReviews = React.lazy(() => import('./ratingsAndReviews/RatingsAndReviews.jsx'));
+// const Home = React.lazy(() => import('./Home.jsx'));
 import Home from './Home.jsx';
-import Looks from './relatedProducts/Looks.jsx';
+const Looks = React.lazy(() => import('./relatedProducts/Looks.jsx'));
 import LoadingComponent from './relatedProducts/LoadingComponent.jsx';
+// const Footer = React.lazy(() => import('./Footer.jsx'));
+// const Header = React.lazy(() => import('./Header.jsx'));
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
-import dummyData from './relatedProducts/dummydata.js';
 import fetch from './relatedProducts/fetch.js';
 import './color-schema.css';
 import './app.css';
@@ -58,10 +60,13 @@ class App extends React.Component {
       .catch((error) => {
         console.log(error);
       })
+    } else if (typeof idParam === 'number'){
+      console.log('id param is not a number, ', idParam);
     } else {
       fetch.getProduct(idParam, (err, data) => {
         if (err) {
-          window.location.href = 'http://localhost:3000';
+          alert('error fetching product in App.jsx mounting ', err)
+          window.location.href = window.location.origin;
         } else {
           this.getMetadata(data.data.id, data.data, data.data.id);
         }
@@ -82,19 +87,16 @@ class App extends React.Component {
         arr.push(this.state.productArr[i]);
       }
     }
-    // if(arr[0]){
-    //   this.setState({searchedArr: arr, productID: arr[0].id});
-    // }
     if(arr[0]){
-      let productID = arr[0].id;
-      // this.getReviews(productID)
-      this.getMetadata(productID)
-        .then(res => {
-          this.setState({
-            searchedArr: arr,
-            productID: productID
-          })
-        });
+      window.location = window.location.origin + '?id=' + arr[0].id;
+      // let productID = arr[0].id;
+      // this.getMetadata(productID)
+      //   .then(res => {
+      //     this.setState({
+      //       searchedArr: arr,
+      //       productID: productID
+      //     })
+      //   });
     }
   }
 
@@ -109,9 +111,8 @@ class App extends React.Component {
 
   getMetadata(product_id, searchedArr, productID) {
     return new Promise((resolve, reject) => {
-      axios.get('/reviews/meta', { params: { product_id: parseInt(product_id) } })
+      axios.get('/reviews/meta', { params: { product_id: product_id } })
       .then(res => {
-        console.log('inside metadata: ', res)
         if (!searchedArr || !productID) {
           resolve(this.setState({ productMetadata: res.data }))
         } else {
@@ -129,7 +130,6 @@ class App extends React.Component {
 
   handleSubmitForm(searched) {
     this.setState({searchedQuery: searched}, () => this.stringComparison());
-    // this.setState({searchedQuery: 'camo'}, () => this.stringComparison());
   }
 
   handleSubmit(event) {
@@ -169,16 +169,15 @@ class App extends React.Component {
       this.setState({
         paths: '/'
       })
-    } else {
-      //window.location = 'http://' + window.location.host + '?id=' + id;
-       console.log('inside updateProductOnClick with id: ', id);
-       fetch.getProduct(id, (err, data) => {
-         if (err) {
-           window.location.href = 'http://localhost:3000';
-         } else {
-          this.getMetadata(data.data.id, data.data, data.data.id);
-        }
-      })
+    } else if (typeof id === 'number') {
+      window.location = window.location.origin + '?id=' + id;
+      //  fetch.getProduct(id, (err, data) => {
+      //    if (err) {
+      //      window.location.href = 'http://localhost:3000';
+      //    } else {
+      //     this.getMetadata(data.data.id, data.data, data.data.id);
+      //   }
+      // })
     }
   }
 
@@ -186,10 +185,11 @@ class App extends React.Component {
     switch(this.state.paths) {
       case "/":
         return (
-          <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
+            <Home handleSubmitForm={this.handleSubmitForm} handleSubmit={this.handleSubmit}/>
         )
       case "/product":
         return (
+
           <div className='backgroundcolor1 dark1'>
             <form onSubmit={this.handleSubmit}>
               <Header handleSubmitForm={this.handleSubmitForm}/>
@@ -197,30 +197,34 @@ class App extends React.Component {
             <StickyButton />
             <ProductDetail productID={this.state.productID} searched={this.state.searchedQuery} searchedArr={this.state.searchedArr} Metadata={this.state.productMetadata}/>
             {this.state.productID && typeof this.state.productID === 'number' ?
-            <RelatedItems
+             <Suspense fallback={<div>Loading</div>}>
+           <RelatedItems
               productId={this.state.productID}
               currentProductInformation={this.state.currentProductInformation}
               updateProductOnClick={this.updateProductOnClick}
-            /> : null}
+            />
+            </Suspense>
+            : null}
             {this.state.productID && typeof this.state.productID === 'number' ?
-            <Looks
-              products={[dummyData.formattedDefaultProduct]}
+             <Suspense fallback={<div>Loading</div>}>
+           <Looks
+              products={[]}
               currentProductId={this.state.productID}
               setCurrentProduct={this.updateCurrentProductInformation}
               getLooksInSession={this.getLooksInSession}
               updateLooksInSession={this.updateLooksInSession}
-            /> : null}
+            />
+            </Suspense> : null}
             {this.state.productID ?
             <QAMain productID={this.state.productID} searchedArr={this.state.searchedArr}/> : null}
-            {this.state.productMetadata.product_id
-              ? <RatingsAndReviews
-                // product_id={this.state.productID}
-                // reviewsList={this.state.reviewsList}
-                // getReviews={this.getReviews}
-                productMetadata={this.state.productMetadata}
-                productInfo={this.state.searchedArr[0]}
-                />
-              : <div></div>}
+            <Suspense fallback={<div>Loading</div>}>
+              {this.state.productMetadata.product_id
+                ? <RatingsAndReviews
+                  productMetadata={this.state.productMetadata}
+                  productInfo={this.state.searchedArr[0]}
+                  />
+                : <div></div>}
+            </Suspense>
               <Footer />
           </div>
         )
