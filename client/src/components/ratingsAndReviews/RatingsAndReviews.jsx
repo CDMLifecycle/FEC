@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import axios from 'axios';
 import RatingBreakdown from './RatingBreakdown.jsx';
-import ReviewList from './ReviewList.jsx';
+const ReviewList = React.lazy(()=> import('./ReviewList.jsx'));
 import './ratingsAndReviews.css';
 
 
@@ -90,6 +90,7 @@ class RatingsAndReviews extends React.Component {
             />
           </div>
           <div id='review-list-container'>
+          <Suspense fallback={<div>Loading</div>}>
             <ReviewList
               reviewsList={this.state.filteredList}
               getReviews={this.getReviews}
@@ -98,6 +99,7 @@ class RatingsAndReviews extends React.Component {
               reRender={this.reRender}
               productInfo={this.props.productInfo}
             />
+          </Suspense>
             </div>
           </div>
       </div>

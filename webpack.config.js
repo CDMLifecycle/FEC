@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './client/src/index.jsx',
   output: {
     filename: 'bundle.js',

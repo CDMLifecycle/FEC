@@ -66,7 +66,7 @@ class ReviewTile extends React.Component {
                   <button
                     onClick={this.handleHelpful}
                     value={review.review_id}
-                    className="btn"
+                    className='btn-helpful'
                     >Was this review helpful?</button>
                 </div>
                 <div>
@@ -75,7 +75,7 @@ class ReviewTile extends React.Component {
                 <button
                   onClick={this.handleReport}
                   value={review.review_id}
-                  className="btn report"
+                  className='btn-report'
                 >Report</button>
               </div>
            </div>

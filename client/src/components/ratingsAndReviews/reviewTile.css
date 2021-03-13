@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: column;
   color: #3A3E40;
+  box-shadow: 1px 2px 2px rgb(0 0 0 / 10%);
+  margin-top: 10px;
+  z-index: 15;
 }
 
 .review-tile {
@@ -32,7 +35,6 @@
 .review-body {
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid #3A3E40;
 }
 
 .review-body h4 {
@@ -51,24 +53,19 @@
   font-weight: 500;
   font-size: 14px;
   padding: 0 12px;
-  /* margin-bottom: 15px; */
   font-weight: 800;
 }
 
 .rt-rec {
   display: flex;
   margin-top: 5px;
-  /* justify-content: space-between; */
   justify-content: flex-start;
   flex-direction: column;
-  /* align-items: center;
-  align-content: center; */
 }
 .rt-rec-img img {
   height: 14px;
   width: auto;
   margin: 0 15px;
-
 }
 
 .rt-rec-img {
@@ -85,44 +82,50 @@
 }
 
 
-.btn {
+.btn-helpful{
   text-decoration: underline;
   background-color: transparent;
   border: none;
   padding: 0;
   transition: all ease-in-out 200ms;
-}
-
-.btn:hover {
   cursor: pointer;
-  color: orange;
 }
 
-.helpful .btn:hover{
-  transform: scale(1.1);
+.btn-helpful:hover{
+  transform: scale(1.05);
   transition-duration: .2s;
+  color: #3A3E40;
 }
 
-.btn:active .helpful {
+.btn-helpful:active {
   transform: scale(.95);
-  transition-duration: .2s;
+  transition-duration: .1s;
 }
 
 .helpful {
   display: flex;
   justify-content: flex-start;
-  flex: .75;
   text-align: left;
 }
 
 .yes {
   text-decoration: none;
-  flex: .5;
   text-align: left;
+  flex: 2;
+  margin-right: 175px;
 }
 
-.report {
+.btn-report {
   text-decoration: none;
-  flex: 1;
+  border: none;
+  background-color: transparent;
   text-align: right;
+  padding-right: 10px;
+  transition: all ease-in-out 200ms;
+  cursor: pointer;
+}
+
+.btn-report:hover {
+  cursor: pointer;
+  color: orange;
 }

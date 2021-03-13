@@ -14,29 +14,31 @@
   cursor: pointer;
   transition: all ease-in-out 200ms;
   border-radius: 3px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 
 .unselected {
   background-color: transparent;
 }
-
 .unselected:hover {
-  background-color: transparent;
-  color: orange;
-  transform: scale(1.2);
+  background-color: #CCC;
+  color: #fefefe;
+  transform: scale(1.05);
   transition-duration: .2s;
 }
-
 .selected {
-  background-color: #6C8789;
+  background-color: #6C8789; ;
   color: #fefefe;
 }
-
 .selected:hover {
-  background-color: orange;
+  background-color: #CCC;
   color: #fefefe;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  transition-duration: .2s;
+}
+.unselected:active, .selected:active {
+  transform: scale(.95);
   transition-duration: .2s;
 }
 
@@ -50,9 +52,10 @@
   width: 90%;
   height: 8px;
   background-color: #CCC;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 .fill {
   height: 100%;
-  background-color: orange;
+  background-color: orange ;
 }

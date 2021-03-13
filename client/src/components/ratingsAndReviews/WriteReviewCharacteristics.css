@@ -18,15 +18,22 @@
   align-items: center;
   height: 30px;
   width: 135px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 .center-one:hover, .center-two:hover, .center-three:hover, .to-right-one:hover, .to-right-two:hover, .to-right-three:hover, .to-right-four:hover, .to-right-five:hover {
-  background-color: rgb(255, 197, 90);
+  background-color: rgb(255, 218, 149);
+  transform: scale(1.05);
+  transition-duration: .2s;
+}
+
+.center-one:active, .center-two:active, .center-three:active, .to-right-one:active, .to-right-two:active, .to-right-three:active, .to-right-four:active, .to-right-five:active {
+  transform: scale(.95);
+  transition-duration: .1s;
 }
 
 .center-one, .to-right-one {
   background-color:  #CCC;
-
 }
 
 .to-right-two {
@@ -48,7 +55,7 @@
 
 
 .char-selected {
-  background-color: orange;
+  background-color: rgb(253, 190, 72);
   color: #3A3E40;
 }
 

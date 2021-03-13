@@ -32,10 +32,9 @@
 #write-review-contents {
   display: flex;
   flex-direction: column;
-  height: 85%;
-  min-height: 960px;
+  /* min-height: 960px; */
   margin: auto;
-  min-width: 800px;
+  min-width: 775px;
   z-index: 300;
   background-color: #f9f9f9;
   color: #3A3E40;
@@ -45,7 +44,6 @@
   width: 90%;
   padding-bottom: 10px;
 }
-
 
 
 /* title   */
@@ -71,7 +69,6 @@
   justify-content: space-between;
   flex-direction: column;
   padding: 10px 0;
-
 }
 
 .review-input-form input {
@@ -80,17 +77,21 @@
   padding-left: 10px;
   border: none;
   height: 20px;
+  width: 50%;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 #long-form {
   height: 100px;
   margin-top: 10px;
+  width: 100%;
   display: flex;
   align-content: flex-start;
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 10px;
+  padding: 0 10px;
   background-color: rgb(218, 218, 218);
   border: none;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 /*   stars       */
@@ -150,6 +151,9 @@
   animation-name: star-switch;
   animation-duration: .5s;
   transition: ease-in-out;
+  transform: scale(1.05);
+  transition-duration: .2s;
+  filter: drop-shadow(0 0 20px yellow);
 }
 
 @keyframes star-switch {
@@ -195,6 +199,7 @@
   height: 25px;
   cursor: pointer;
   text-align: center;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 
@@ -202,16 +207,20 @@
   background-color: #CCC;
 }
 
+#would-recommend-container .wr-rec-radio-unselected:active, #would-recommend-container .wr-rec-radio-selected:active {
+  transform: scale(.95);
+  transition-duration: .1s;
+}
+
 #would-recommend-container .wr-rec-radio-selected {
-  background-color: orange;
+  background-color: rgb(253, 190, 72);
 }
 
 #would-recommend-container .wr-rec-radio-unselected:hover {
-  background-color: rgb(255, 197, 90);
+  background-color: rgb(255, 218, 149);
+  transform: scale(1.05);
+  transition-duration: .2s;
 }
-
-
-
 
 /* CHARACTERISTICS CONTAINER */
 #characteristics-review-box {
@@ -237,8 +246,13 @@
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   height: 30px;
   width: 150px;
-  border: 1px #CCC solid;
+  border: none;
   transition: all ease-in-out 200ms;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
 }
 
 #submit-write-review:active, #exit-write-review:active {
@@ -254,7 +268,8 @@
 #submit-write-review:hover {
   background-color: #f9f9f9;
   color: #525252;
-
+  transform: scale(1.05);
+  transition-duration: .2s;
 }
 
 #exit-write-review {
@@ -265,5 +280,7 @@
 #exit-write-review:hover {
   background-color: #6C8789;
   color: #f9f9f9;
+  transform: scale(1.05);
+  transition-duration: .2s;
 }
 
