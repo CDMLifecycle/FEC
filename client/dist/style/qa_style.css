@@ -88,6 +88,12 @@
   height: 110px;
   padding: 5px 10px;
   border-radius: 20px;
+  transition: all 300ms ease-in-out;
+}
+
+.qa_Img:hover {
+  transform: scale(1.2);
+  box-shadow:rgba(0, 0, 0, .3);
 }
 
 .moreAnswers {
@@ -175,7 +181,6 @@
   /* transform:translateY(-200%) !important; */
 }
 
-
 textarea {
   resize: none;
   width: 70%;
@@ -228,6 +233,23 @@ input[type=text]:focus, input[type=email]:focus, textarea:focus {
   border-radius: 3px;
   box-shadow: 3px 2px 8px #888;
   transition: all ease-in-out 200ms;
+}
+
+.newQuestion {
+  background: #6C8789;
+  border: 1px solid #6C8789;
+  border-radius: 3px;
+  color: #fff;
+  padding: 15px;
+  margin: 15px 15px 0 0;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+  transition: all ease-in-out 200ms;
+}
+
+.newQuestion:hover {
+  background:#fefefe;
+  color: #3A3E40;
+  cursor: pointer;
 }
 
 .qaBigButton {
