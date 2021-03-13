@@ -18,23 +18,27 @@ class QuestionOptions extends React.Component {
 
   markQHelpful (e) {
     e.preventDefault();
+    this.setState({
+      markedHelpful: true
+    });
     axios.put('/questions/update', {
       id: this.props.q_id,
       target: 'helpful'
     })
       .then(response => {
         this.setState({
-          helpfulness: this.state.helpfulness + 1,
-          markedHelpful: true
+          helpfulness: this.state.helpfulness + 1
         })
       })
       .catch(reject => {
         console.log('qa_markQHelpful failed in client', reject);
+        this.setState({
+          markedHelpful: false
+        })
       })
   }
 
   addAnswer (e) {
-    e.preventDefault();
     this.setState({
       modal: !this.state.modal
     })

@@ -54,7 +54,6 @@ class QAMain extends React.Component {
     .catch(reject => {
       console.log(reject);
     })
-
   }
 
   componentDidUpdate() {

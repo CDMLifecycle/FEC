@@ -62,7 +62,7 @@ class QuestionList extends React.Component {
             (<button onClick={this.moreQuestions} name="moreQuestions" className="qaBigButton qaCaps">More Answered Questions</button>)
             : (null)
           }
-          <button name="addQuestion" onClick={this.addQuestion} className="qaBigButton qaCaps">Add A Question +</button>
+          <button name="addQuestion" onClick={this.addQuestion} className="newQuestion qaCaps">Add A Question +</button>
           <QuestionForm productID={this.state.productID} productName={this.state.productName} displayModal={this.state.modal} closeModal={this.addQuestion}/>
         </div>
       </div>
