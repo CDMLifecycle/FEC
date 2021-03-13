@@ -4,7 +4,6 @@ var productController = require('../controller/products').productController;
 var reviewController = require('../controller/reviews').reviewController;
 
 router.get('/', (req, res, next) => {
-  //get related item ids by id
   if (!req.query.id) {
     res.sendStatus(404);
   } else {

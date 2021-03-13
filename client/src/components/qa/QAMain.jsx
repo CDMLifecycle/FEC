@@ -51,10 +51,6 @@ class QAMain extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   this.getNewQA();
-  // }
-
   componentDidUpdate() {
     this.getNewQA();
   }
