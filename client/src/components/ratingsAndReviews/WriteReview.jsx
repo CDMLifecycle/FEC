@@ -44,6 +44,9 @@ class WriteReview extends React.Component {
     this.convertToArray = this.convertToArray.bind(this);
     this.assignRecClass = this.assignRecClass.bind(this);
     this.buildStar = this.buildStar.bind(this);
+    this.buildFormInputFields = this.buildFormInputFields.bind(this);
+    this.buildYesNoButtons = this.buildYesNoButtons.bind(this);
+    this.formInputFields = ['Name', 'Email', 'Summary'];
   }
 
   handleChange(e) {
@@ -170,12 +173,55 @@ class WriteReview extends React.Component {
         <img
           src={this.setStar(index + 1)}
           value={`${index + 1}`}
+          name='rating'
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           alt='star'
         />
       </label>
   )}
+
+  buildFormInputFields(inputField, index) {
+    let inputLowercase = inputField.toLowerCase();
+    return (
+      <div key={index + 80}>
+        <label
+          className='review-input-form'
+          htmlFor={inputLowercase}
+        >
+          {inputField}
+          <input
+            placeholder={inputField}
+            name={inputLowercase}
+            value={this.state[inputLowercase]}
+            onChange={this.handleChange}
+            required
+          />
+        </label>
+      </div>
+  )}
+
+  buildYesNoButtons(bool) {
+    return (
+      <div>
+        <label
+          className={`wr-rec-radio-${this.assignRecClass(bool)}`}
+          htmlFor={`wr-rec-${bool}`}
+          onChange={this.handleBoolean}
+          value={this.state.recommend}
+        >
+          <input
+            type='radio'
+            name='recommend'
+            value={`${bool}`}
+            required
+            id={`wr-rec-${bool}`}
+          />
+          {bool ? 'Yes' : 'No'}
+        </label>
+      </div>
+    )
+  }
 
   render () {
     return (
@@ -187,47 +233,13 @@ class WriteReview extends React.Component {
               <div id='review-stars-container'>
                 How do you rate this product?
                 <div id='star-box'>
-                  {Array(5).fill(1).map((item, index) => this.buildStar(index))}
+                  {Array(5).fill(1).map((item, index) => this.buildStar(index) )}
                 </div>
               </div>
               <div className='review-input-container'>
-                <div>
-                  <label className='review-input-form'>
-                    Name
-                    <input
-                      placeholder='Name'
-                      name='name'
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </label>
-                </div>
-                <div>
-                  <label className='review-input-form'>
-                    Email
-                    <input
-                      placeholder='Email'
-                      name='email'
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </label>
-                </div>
-                <div>
-                  <label  className='review-input-form'>
-                    Summary
-                    <input
-                      placeholder='Please give a breif summary of your review'
-                      name='summary'
-                      value={this.state.summary}
-                      onChange={this.handleChange}
-                    />
-                  </label>
-                </div>
+                {this.formInputFields.map((field, index) => this.buildFormInputFields(field, index))}
                 <div >
-                  <label className='review-input-form' >
+                  <label className='review-input-form' htmlFor='long-form'>
                     Let us know what you think
                     <textarea
                       placeholder='1000 character max'
@@ -243,40 +255,9 @@ class WriteReview extends React.Component {
               <div id='would-recommend-container'>
                 <h4>Would you recommend this item?</h4>
                   <div id='yes-no-box'>
-                    <label
-                      id='wr-rec-radio-both'
-                    >
-                      <div>
-                        <label
-                          className={`wr-rec-radio-${this.assignRecClass(true)}`}
-                          htmlFor='wr-rec-true'
-                          onChange={this.handleBoolean}
-                          value={this.state.recommend}
-                        >
-                          <input
-                            type='radio'
-                            name='recommend'
-                            value='true'
-                            required
-                            id='wr-rec-true'
-                          />Yes
-                        </label>
-                      </div>
-                      <div>
-                        <label
-                          className={`wr-rec-radio-${this.assignRecClass(false)}`}
-                          htmlFor='wr-rec-false'
-                          onChange={this.handleBoolean}
-                          value={this.state.recommend}
-                        >
-                          <input
-                            type='radio'
-                            name='recommend'
-                            value='false'
-                            id='wr-rec-false'
-                          />No
-                        </label>
-                      </div>
+                    <label id='wr-rec-radio-both'>
+                      {this.buildYesNoButtons(true)}
+                      {this.buildYesNoButtons(false)}
                     </label>
                   </div>
               </div>

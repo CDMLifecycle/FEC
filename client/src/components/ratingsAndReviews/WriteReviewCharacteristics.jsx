@@ -35,18 +35,18 @@ const radioButtonsMaker = (props, index, name) => (
   <div
     key={index+50}
     onChange={props.handleChange}
-    className={props.state[name] === `'${index + 1}'`
+    className={props.state[name] === `${index + 1}`
       ? 'char-selected'
       : assignSpecifics(props.characteristic, 'className')[index]}
   >
-    <label className='wr-char-input-box' htmlFor={props.characteristic + `'${index + 1}'`}>
+    <label className='wr-char-input-box' htmlFor={props.characteristic + `${index + 1}`}>
       {assignSpecifics(props.characteristic)[index]}
     </label>
     <input
       type='radio'
-      value={`'${index + 1}'`}
+      value={`${index + 1}`}
       name={name}
-      id={props.characteristic + `'${index + 1}'`}
+      id={props.characteristic + `${index + 1}`}
       required
     />
   </div>

@@ -1,68 +1,34 @@
 import React from 'react';
+import axios from 'axios';
 import {mount, shallow} from 'enzyme';
+import dummyData from './reviewsDummyData.js';
+
+import RatingsAndReviews from '../../../../client/src/components/ratingsAndReviews/RatingsAndReviews.jsx';
 import ReviewList from '../../../../client/src/components/ratingsAndReviews/ReviewList.jsx';
+import WriteReview from '../../../../client/src/components/ratingsAndReviews/WriteReview.jsx';
 import ReviewTile from '../../../../client/src/components/ratingsAndReviews/ReviewTile.jsx';
 
-describe('Reviews List testing', () => {
 
+describe('<ReviewList /> test', () => {
 
-  it('It should not render reviews list without reviews list', () => {
+  it('renders 2 reviews upon recieving an array of reviews', () => {
+    const wrapper = shallow(<ReviewList
+      productMetadata={dummyData.metadataExt}
+      productInfo={dummyData.product}
+      reviewsList={dummyData.reviews}
+    />);
+    expect(wrapper.find(ReviewTile)).toHaveLength(2);
+  });
 
-    let review = [{
-      "review_id": 288008,
-      "rating": 4,
-      "summary": "Did component mount? ",
-      "recommend": false,
-      "response": null,
-      "body": "body",
-      "date": "2021-03-04T00:00:00.000Z",
-      "reviewer_name": "Daniel Kosykh",
-      "helpfulness": 43,
-      "photos": []
-  }];
+  it('renders write a review modal upon click', () => {
+    const wrapper = shallow(<ReviewList
+      productMetadata={dummyData.metadataExt}
+      productInfo={dummyData.product}
+      reviewsList={dummyData.reviews}
+    />);
+    wrapper.find('#rl-right-button').simulate('click');
+    expect(wrapper.find(WriteReview)).toBeTruthy();
+  });
 
-  const dummyMetaDataNull = {
-    characteristics: {
-      Comfort: {id: 47021, value: null},
-      Fit: {id: 47019, value: null},
-      Length: {id: 47020, value: null},
-      Quality: {id: 47022, value: null}
-    },
-    product_id: "14034",
-    ratings: {
-      0: null,
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null
-    },
-    recommended: {
-      false: null,
-      true: null
-    },
-    totals: {
-      avgRating: null,
-      avgRatingsToQtr: null,
-      percentRecommend: null,
-      ratingsPercent: {1: null, 2: null, 3: null, 4: null, 5: null},
-      sumRecommendations: 41,
-      totalRatings: null
-    }
-  }
-
-
-    var wrapper = shallow(
-      <ReviewList
-        reviewsList={{}}
-        // getReviews={this.getReviews}
-        // productMetadata={this.props.productMetadata}
-        // filterSelections={this.state.filterSelections}
-        // reRender={this.reRender}
-        // productInfo={this.props.productInfo}
-      />);
-
-    expect(wrapper.find(<h2>Be the first to review this product!</h2>)).toBe(true);
-  })
 
 })

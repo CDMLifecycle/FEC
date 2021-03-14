@@ -25,32 +25,8 @@ class ReviewList extends React.Component {
     this.exitWriteReview = this.exitWriteReview.bind(this);
     this.showMoreReviewsButton = this.showMoreReviewsButton.bind(this);
     this.showWriteReviewButton = this.showWriteReviewButton.bind(this);
-  }
-
-  handleSelectChange(e) {
-    let currentSelect = e.target.value;
-    if (currentSelect !== this.state.sort) {
-      this.props.getReviews(this.props.productMetadata.product_id, currentSelect, this.state.count)
-        .then(this.setState({ sort: currentSelect }))
-    }
-  }
-
-  handleShowMoreReviews(e) {
-    e.preventDefault();
-    this.setState({ count: this.state.count += 2 }, () => {
-      this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
-    })
-  }
-
-  handleWriteReviewBtn(e) {
-    e.preventDefault();
-    return !this.state.writeBtn ? this.setState({ writeBtn: true }) : null;
-  }
-
-  exitWriteReview(e) {
-    if (e.target.getAttribute('name') === 'backdrop' || e.target.getAttribute('name') === 'exit') {
-      this.setState({ writeBtn: false })
-    }
+    this.sortButtonMaker = this.sortButtonMaker.bind(this);
+    this.sortOptions = ['Relevant', 'Newest', 'Helpful'];
   }
 
   submitWriteReview(postParams) {
@@ -80,6 +56,32 @@ class ReviewList extends React.Component {
       .catch(err => console.log(err, 'error with helpful review'))
  }
 
+  handleSelectChange(e) {
+    let currentSelect = e.target.value;
+    if (currentSelect !== this.state.sort) {
+      this.props.getReviews(this.props.productMetadata.product_id, currentSelect, this.state.count)
+        .then(this.setState({ sort: currentSelect }))
+    }
+  }
+
+  handleShowMoreReviews(e) {
+    e.preventDefault();
+    this.setState({ count: this.state.count += 2 }, () => {
+      this.props.getReviews(this.props.productMetadata.product_id, this.state.sort, this.state.count)
+    })
+  }
+
+  handleWriteReviewBtn(e) {
+    e.preventDefault();
+    return !this.state.writeBtn ? this.setState({ writeBtn: true }) : null;
+  }
+
+  exitWriteReview(e) {
+    if (e.target.getAttribute('name') === 'backdrop' || e.target.getAttribute('name') === 'exit') {
+      this.setState({ writeBtn: false })
+    }
+  }
+
   assignSortClass(type) {
     return type === this.state.sort ? 'sort-selected' : 'plain-button';
   }
@@ -104,26 +106,24 @@ class ReviewList extends React.Component {
     return (
       <div className='no-tiles'>
         <h2>Be the first to review this product!</h2>
-      </div>)
+      </div>
+    )
   }
+
+  sortButtonMaker(sortOption, index) {
+    let assignment = sortOption.toLowerCase();
+    return (
+      <button key={index + 60} value={assignment} className={this.assignSortClass(assignment)}>
+        {sortOption}
+      </button>
+  )}
 
   render () {
     let reviewArray = this.props.reviewsList;
     return (
       <div className='reviews-list-container'>
         <div onClick={this.handleSelectChange} className='sort-btn-container'>
-            <button
-              value='relevant'
-              className={this.assignSortClass('relevant')}
-            >Relevant</button>
-            <button
-              value='newest'
-              className={this.assignSortClass('newest')}
-            >Newest</button>
-            <button
-              value='helpful'
-              className={this.assignSortClass('helpful')}
-            >Helpful</button>
+          {this.sortOptions.map((item, index) => this.sortButtonMaker(item, index))}
         </div>
         <div className='mapped-tiles-container'>
           {this.props.productMetadata.totals.totalRatings
@@ -136,7 +136,6 @@ class ReviewList extends React.Component {
                   sendHelpful={this.sendHelpful}
                   sendReport={this.sendReport}
                   productMetadata={this.props.productMetadata}
-                  key={index}
                 />
                ))
             : this.noReviews()
