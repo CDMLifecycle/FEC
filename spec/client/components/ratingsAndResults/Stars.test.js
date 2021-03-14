@@ -14,7 +14,7 @@ describe('Renders <Stars /> for values given', () => {
 
   it('does not render with props undefined', () => {
     const wrapper = shallow(<Stars />);
-    expect(wrapper.find(SingleStar)).toBeNull();
+    expect(wrapper.find(SingleStar)).toHaveLength(0);
   })
 
 })
