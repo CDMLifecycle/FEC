@@ -25,7 +25,7 @@ class QAMain extends React.Component {
     }, () => {
       if (this.state.searchTerm.length > 2) {
         var filtered = this.state.questions.filter((question) => {
-          return question.question_body.includes(this.state.searchTerm)
+          return question.question_body.toLowerCase().includes(this.state.searchTerm);
         })
         this.setState({
           filteredQuestions: filtered
