@@ -83,7 +83,7 @@ Future enhancements would include a section for a reviewer to post pictures and 
   To run jest tests that cover the entire project, run 'npm test' in the root dir.
 
 ## Authors
-  * Connie Tsai - Question and Answers, Scrum Master
+  * Connie Tsai - Questions and Answers, Scrum Master
   * Michael Smith - Related Products and User Looks
   * Daniel Kosykh - Product Reviews
   * Liem Nguyen - Product Details
