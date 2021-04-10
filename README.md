@@ -2,14 +2,14 @@
 
 ### INDEX
 
-**1. Summary**
-**2. Installation**
-**3. Getting Started**
-**4. Module descriptions**
-**5. Running the Tests**
-**6. Authors**
-**7. License**
-**8. Acknowledgments**
+1. [Summary](#summary)
+2. [Installation](#installation)
+3. [Getting Started](#getting-started)
+4. [Module descriptions](#module-descriptions)
+6. [Running the Tests](#running-the-tests)
+7. [Authors](#authors)
+8. [License](#license)
+9. [Acknowledgements](#acknowledgements)
 
 
 ## Summary
